@@ -1,0 +1,43 @@
+h1 {
+  @apply text-32;
+}
+
+h2 {
+  @apply text-20;
+}
+
+h6 {
+  @apply text-18;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply leading-tight font-bold;
+}
+
+small {
+  @apply text-14;
+}
+
+.micro {
+  @apply text-12;
+}
+
+a {
+  @apply cursor-pointer;
+}
+
+p a, label a, a.link {
+  @apply text-accent;
+}
+
+.cta {
+  @apply font-semibold text-font-alt3;
+
+  &:hover, &.active {
+    @apply text-accent;
+  }
+}
+
+p {
+  @apply m-0 text-font-alt3;
+}
