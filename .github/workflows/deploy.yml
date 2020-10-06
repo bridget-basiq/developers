@@ -11,7 +11,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14.13.0
-      - run: npm install
+      - run: npm install --ignore-scripts
+      - run: npm install node-sass sass-loader
       - run: npm run generate
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
