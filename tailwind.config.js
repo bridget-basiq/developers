@@ -13,13 +13,8 @@ module.exports = {
       'pages/**/*.vue',
       'plugins/**/*.js',
       'nuxt.config.js',
-      'content/**/*.md',
       'node_modules/@chargetrip/internal-vue-components/src/**/*.vue',
     ],
-    // These options are passed through directly to PurgeCSS
-    options: {
-      whitelistPatterns: [new RegExp('icon'), new RegExp('^icon-$'), '/^c-/'],
-    },
   },
   theme: {
     extend: {
