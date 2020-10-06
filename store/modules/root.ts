@@ -5,7 +5,7 @@ const store = new Vuex.Store({})
 
 @Module({ namespaced: false, dynamic: true, store, name: 'root' })
 export default class extends VuexModule {
-  _darkMode = false;
+  _darkMode = false
   _sideNav: null | object = null
 
   @Mutation

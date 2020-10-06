@@ -11,6 +11,6 @@ module.exports = {
     ],
     'block-no-empty': null,
     'custom-property-empty-line-before': null,
-    'font-family-no-missing-generic-family-keyword': null
+    'font-family-no-missing-generic-family-keyword': null,
   },
 }

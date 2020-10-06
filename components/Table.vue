@@ -23,10 +23,10 @@ export default class CodeBlock extends Vue {
       return []
     }
 
-    const keys = this.keys.split(',');
-    const types = this.types.split(',');
-    const descriptions = this.descriptions.split(',');
-    const required = this.required.split(',');
+    const keys = this.keys.split(',')
+    const types = this.types.split(',')
+    const descriptions = this.descriptions.split(',')
+    const required = this.required.split(',')
 
     return keys.map((_, i) => [
       `<pre>${keys[i].trim()}</pre>`,
