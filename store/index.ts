@@ -1,62 +1,31 @@
-import * as fs from 'fs'
-import * as path from 'path'
 import Vuex from 'vuex'
 import Main from './modules/root'
-
-const slugify = (str) =>
-  str.trim().replace(new RegExp('\\s+', 'g'), '-').toLowerCase()
 
 const getCookie = (str, key) =>
   Object.fromEntries(str.split(/; */).map((cookie) => cookie.split('=', 2)))[
     key
   ]
 
-const getSideNav = async () => {
-  const pagesPath = path.join(process.cwd(), 'pages')
-  const pages = await fs.readdirSync(pagesPath)
+const getH2Children = (page) => {
+  const arr: any = []
 
-  const sideNav = await Promise.all(
-    pages
-      .filter((page) => page.split('.')[1] === 'mdx')
-      .map(async (mdx) => {
-        const file = await fs.readFileSync(path.join(pagesPath, mdx), 'utf8')
-
-        const h1 = file.match(new RegExp('^#(?!#)(.*)', 'g'))
-        const to = mdx.slice(0, -4)
-        const normalizedH1 = h1
-          ? h1[0].replace('#', '')
-          : to
-              .split('-')
-              .map((word) => word.slice(0, 1).toUpperCase() + word.slice(1))
-              .join(' ')
-
-        const order = file.match(new RegExp('(?:order:)(.*)', 'gm'))
-
-        return {
-          title: normalizedH1.trim(),
-          to,
-          order: order?.length
-            ? parseInt((order![0] || '').replace(/\D/g, ''))
-            : 99,
-          children: file
-            .match(new RegExp('#{2}(?!#)(.*)', 'g'))
-            ?.map((header) => ({
-              title: header.replace('##', ''),
-              hash: slugify(header.replace('##', '')),
-              to,
-            })),
-        }
-      })
-  )
-
-  return sideNav.sort((a, b) => a.order - b.order)
+  page.children.forEach((child) => {
+    if (child.tag === 'h2') {
+      arr.push(child)
+    } else if (child.children) {
+      arr.push(...getH2Children(child))
+    }
+  })
+  return arr
 }
 export default () =>
   new Vuex.Store({
     state: {},
     mutations: {},
     actions: {
-      async nuxtServerInit({ commit }, { req }) {
+      async nuxtServerInit({ commit }, { $content, req }) {
+        const pages = await $content('').fetch()
+
         if (req?.headers?.cookie) {
           const darkMode = getCookie(req.headers.cookie, 'dark_mode')
           commit(
@@ -64,7 +33,21 @@ export default () =>
             darkMode === undefined ? true : darkMode === 'true'
           )
         }
-        commit('setSideNav', await getSideNav())
+
+        commit(
+          'setSideNav',
+          pages
+            .map((page) => ({
+              title: page.title,
+              to: `/${page.slug}`,
+              children: getH2Children(page.body).map((child) => ({
+                to: `/${page.slug}`,
+                hash: child.props.id,
+                title: child.children[1].value,
+              })),
+            }))
+            .sort((a, b) => a.order - b.order)
+        )
       },
     },
     modules: {

@@ -12,7 +12,7 @@ import { Table as CTable } from '@chargetrip/internal-vue-components'
 @Component({
   components: { CTable },
 })
-export default class CodeBlock extends Vue {
+export default class PropertyTable extends Vue {
   @Prop() keys
   @Prop() types
   @Prop() descriptions

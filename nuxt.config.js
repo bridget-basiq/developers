@@ -19,7 +19,7 @@ export default {
     '@chargetrip/internal-vue-components/dist/components.css',
   ],
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['~/plugins/globals.js'],
+  plugins: ['~/plugins/globals.ts'],
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
@@ -32,6 +32,7 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxtjs/mdx',
+    '@nuxt/content',
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)

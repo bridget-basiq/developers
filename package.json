@@ -24,7 +24,7 @@
     }
   },
   "dependencies": {
-    "@chargetrip/internal-vue-components": "0.0.35",
+    "@chargetrip/internal-vue-components": "0.0.39",
     "@nuxt/content": "^1.8.1",
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/axios": "^5.12.2",
@@ -66,6 +66,7 @@
     "stylelint-config-standard": "^20.0.0",
     "ts-jest": "^26.3.0",
     "vue-jest": "^3.0.4",
+    "vue-property-decorator": "^9.0.2",
     "vuex-class": "^0.3.2",
     "vuex-module-decorators": "^1.0.1"
   }
