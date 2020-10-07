@@ -33,7 +33,10 @@
         :dark-mode="darkMode"
         @changeDarkMode="setDarkMode"
       />
-      <div class="content flex-1 flex flex-col relative overflow-y-scroll">
+      <div
+        ref="container"
+        class="content flex-1 flex flex-col relative overflow-y-scroll"
+      >
         <div class="px-8">
           <div class="sticky-header flex items-start">
             <Input
@@ -58,7 +61,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Watch } from 'nuxt-property-decorator'
+import { Component, Vue, Watch, Ref } from 'nuxt-property-decorator'
 import { SideNav, Input, Banner } from '@chargetrip/internal-vue-components'
 import { Getter, Mutation } from 'vuex-class'
 import Table from '~/components/Table.vue'
@@ -78,6 +81,7 @@ import PrevNextNavigation from '~/components/PrevNextNavigation.vue'
 export default class Layout extends Vue {
   @Getter darkMode
   @Getter sideNav
+  @Ref('container') container
   @Mutation setDarkMode
   noTransition = false
   timeout = 0
@@ -88,6 +92,10 @@ export default class Layout extends Vue {
     this.timeout = window.setTimeout(() => {
       this.noTransition = false
     }, 50)
+  }
+
+  @Watch('$route') onRouteChange() {
+    this.container.scrollTo(0, 0)
   }
 }
 </script>
