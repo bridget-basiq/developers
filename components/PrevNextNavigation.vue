@@ -2,7 +2,7 @@
   <div
     class="prev-next-navigation flex py-8 border-t border-alt font-semibold px-8"
   >
-    <router-link v-if="prev" class="flex items-center" :to="`/${prev.to}`">
+    <router-link v-if="prev" class="flex items-center" :to="prev.to">
       <span class="icon-chevron-left" />
       <div class="mx-4">
         <div class="text-14 text-font-alt3">Previous</div>
@@ -12,7 +12,7 @@
     <router-link
       v-if="next"
       class="flex ml-auto justify-end items-center"
-      :to="`/${next.to}`"
+      :to="next.to"
     >
       <div class="mx-4">
         <div class="text-14 text-font-alt3">Next</div>
@@ -38,7 +38,9 @@ export default class CodeBlock extends Vue {
   }
 
   get current() {
-    return this.sideNav.find((item) => `/${item.to}` === this.$route.fullPath)
+    return this.sideNav.find((item) => {
+      return item.to === this.$route.path
+    })
   }
 
   get next() {

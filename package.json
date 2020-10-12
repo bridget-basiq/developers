@@ -24,13 +24,14 @@
     }
   },
   "dependencies": {
-    "@chargetrip/internal-vue-components": "0.0.39",
+    "@chargetrip/internal-vue-components": "0.0.45",
     "@nuxt/content": "^1.8.1",
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/pwa": "^3.0.2",
     "core-js": "^3.6.5",
     "fs": "0.0.1-security",
+    "highlight.js": "^10.2.1",
     "js-cookie": "^2.2.1",
     "nuxt": "^2.14.5"
   },

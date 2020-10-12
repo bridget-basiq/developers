@@ -1,9 +1,5 @@
 <template>
-  <CTable
-    class="no-hover"
-    :columns="['Key', 'Type', 'Description', 'Required']"
-    :rows="rows"
-  />
+  <CTable class="no-hover" :columns="columns" :rows="rows" />
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
@@ -18,6 +14,16 @@ export default class PropertyTable extends Vue {
   @Prop() descriptions
   @Prop() required
 
+  get columns() {
+    const columns = ['Key', 'Type', 'Description']
+
+    if (this.required) {
+      columns.push('Required')
+    }
+
+    return columns
+  }
+
   get rows() {
     if (!this.keys) {
       return []
@@ -26,26 +32,21 @@ export default class PropertyTable extends Vue {
     const keys = this.keys.split(',')
     const types = this.types.split(',')
     const descriptions = this.descriptions.split(',')
-    const required = this.required.split(',')
+    const required = this.required?.split(',')
 
-    return keys.map((_, i) => [
-      `<pre>${keys[i].trim()}</pre>`,
-      `<pre class="text-warning">${types[i].trim()}</pre>`,
-      descriptions[i].trim(),
-      required[i].trim(),
-    ])
+    return keys.map((_, i) => {
+      const arr = [
+        `<pre>${keys[i].trim()}</pre>`,
+        `<pre class="text-warning">${types[i].trim()}</pre>`,
+        descriptions[i].trim(),
+      ]
+
+      if (this.required) {
+        arr.push(required[i].trim())
+      }
+
+      return arr
+    })
   }
 }
 </script>
-<style lang="scss">
-.table {
-  .col {
-    &.first-col {
-      @apply pl-0;
-    }
-    &.last-col {
-      @apply pr-0;
-    }
-  }
-}
-</style>

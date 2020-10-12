@@ -28,7 +28,7 @@
     <div class="flex bg-body relative z-10 flex-1 overflow-hidden rounded-t-xl">
       <SideNav
         class="text-14"
-        :navs="[sideNav]"
+        :navs="normalizedSideNav"
         :dark-mode="darkMode"
         @changeDarkMode="setDarkMode"
       />
@@ -89,9 +89,57 @@ export default class Layout extends Mixins(Base) {
   timeout = 0
   h2Elms: any[] = []
   hash = this.$route.hash.slice(1)
+  stopReplacing = false
 
   mounted() {
     this.onRouteChange()
+    if (this.hash.length) {
+      this.onSubMenuItemClick({ hash: this.hash })
+    }
+    if (process.env.NODE_ENV === 'development') {
+      this.$nuxt.$on('content:update', () => {
+        setTimeout(this.onRouteChange.bind(this), 100)
+      })
+    }
+  }
+
+  get normalizedSideNav() {
+    return [
+      this.sideNav.map((item) => ({
+        ...item,
+        children: item.children.map((child) => ({
+          ...child,
+          callback: this.onSubMenuItemClick.bind(this),
+        })),
+      })),
+    ]
+  }
+
+  onSubMenuItemClick(item) {
+    this.stopReplacing = true
+
+    if (!item.hash?.length) return
+
+    let times = 0
+
+    const interval = setInterval(() => {
+      times++
+
+      if (times > 10) clearInterval(interval)
+
+      const el = this.container.querySelector(`#${item.hash}`)
+      if (!el) return
+      const rect = el.getBoundingClientRect()
+
+      this.container.scrollTo({
+        top: this.container.scrollTop + rect.top - 112,
+        behavior: 'smooth',
+      })
+
+      setTimeout(() => {
+        this.stopReplacing = false
+      }, 1000)
+    }, 50)
   }
 
   @Watch('darkMode') onDarkModeChange() {
@@ -102,17 +150,28 @@ export default class Layout extends Mixins(Base) {
     }, 50)
   }
 
+  @Watch('$route.hash') onHashChange() {
+    this.hash = this.$route.hash.slice(1)
+  }
+
   @Watch('$route.path') onRouteChange() {
+    if (!this.container) return
+
+    this.stopReplacing = true
+    this.container.scrollTo(0, 0)
     setTimeout(() => {
       this.h2Elms = [...(this.container.querySelectorAll('h2') || [])]
+      this.stopReplacing = false
     }, 100)
   }
 
   onScroll() {
+    if (this.stopReplacing) return
+
     const h2 = this.h2Elms.reduce((current, h2) => {
       const rect = h2.getBoundingClientRect()
 
-      if (rect.top < 96) {
+      if (rect.top <= 112) {
         current = h2
       }
 
@@ -146,7 +205,18 @@ export default class Layout extends Mixins(Base) {
       transition-duration: 0s !important;
     }
   }
+  .table {
+    @apply text-14;
 
+    .col {
+      &.first-col {
+        @apply pl-0;
+      }
+      &.last-col {
+        @apply pr-0;
+      }
+    }
+  }
   .mdx {
     .code-block {
       @apply my-4;
@@ -187,6 +257,10 @@ export default class Layout extends Mixins(Base) {
   }
   aside {
     flex: 0 0 383px;
+  }
+
+  .nuxt-content-editor {
+    @apply text-font-primary bg-body;
   }
 }
 </style>

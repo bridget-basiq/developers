@@ -40,6 +40,7 @@ export default () =>
             .map((page) => ({
               title: page.title,
               to: `/${page.slug}`,
+              order: page.order,
               children: getH2Children(page.body).map((child) => ({
                 to: `/${page.slug}`,
                 hash: child.props.id,

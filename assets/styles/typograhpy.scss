@@ -23,7 +23,7 @@ small {
 }
 
 a {
-  @apply cursor-pointer;
+  @apply cursor-pointer outline-none;
 }
 
 p a, label a, a.link {

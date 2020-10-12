@@ -2,7 +2,7 @@
 .theme-dark {
   --body: #0C0C0F;
   --base: #202024;
-  --alt: #2D2D37;
+  --alt: #34343D;
   --alt2: #54545C;
   --alt3: #7C7C84;
   --alt4: #EBEDEF;
@@ -21,7 +21,7 @@
 
   --sticky-bg: linear-gradient(180deg, #0C0C0F 80%, rgba(12, 12, 15, 0) 100%);
 
-  --warning: #ED7B24;
+  --warning: #ED7922;
   --warning-alt: #AA4E09;
   --warning-alt2: #331600;
 
@@ -36,14 +36,24 @@
   --note: #7214E9;
   --note-alt: #4E0EA0;
   --note-alt2: #330967;
+
+  --shadow-up-xl: 0 -8px 16.4762px rgba(0, 0, 0, 0.04), 0 -4px 9px rgba(0, 0, 0, 0.06);
+  --shadow-down-xl: 0 20 30.7363px rgba(0, 0, 0, 0.04), 0 8px 16.4762px rgba(0, 0, 0, 0.04), 0 4px 9px rgba(0, 0, 0, 0.06);;
+  --shadow-down-m: 0 8px 16.4762px rgba(0, 0, 0, 0.04), 0 4px 9px rgba(0, 0, 0, 0.06);
+  --shadow-down-s: 0 4px 4px 4px rgba(0, 0, 0, 0.02), 0 2px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-overlay: 0 45px 83px rgba(32, 32, 36, 0.12), 0 17.2855px 46.5041px rgba(32, 32, 36, 0.081879), 0 10.8345px 34.7712px rgba(32, 32, 36, 0.0669109), 0 7.34724px 27.1788px rgba(32, 32, 36, 0.0544026), 0 4.72049px 19.8662px rgba(32, 32, 36, 0.0403388), 0 2.34878px 11.1476px rgba(32, 32, 36, 0.0227083);
+
+  --chart-gradient-1: rgba(0, 120, 255, 0.5);
+  --chart-gradient-2: rgba(0, 120, 255, 0);
 }
+
 .theme-light {
   --body: #FFF;
-  --base: #F7FBFE;
-  --alt: #EEF3F7;
-  --alt2: #DFE8F0;
-  --alt3: #96A8BA;
-  --alt4: #7B8D9F;
+  --base: #F4F8FB;
+  --alt: #E5F0F5;
+  --alt2: #C9DEE9;
+  --alt3: #8DADBF;
+  --alt4: #608192;
   --accent: #0078FF;
   --accent-alt: #005EE5;
   --accent-alt2: #0041C8;
@@ -74,6 +84,15 @@
   --note: #680DDB;
   --note-alt: #AB6EF7;
   --note-alt2: #E9D8FD;
+
+  --shadow-up-xl: 0 -8px 16.4762px rgba(0, 0, 0, 0.04), 0 -4px 9px rgba(0, 0, 0, 0.06);
+  --shadow-down-xl: 0 20 30.7363px rgba(0, 0, 0, 0.04), 0 8px 16.4762px rgba(0, 0, 0, 0.04), 0 4px 9px rgba(0, 0, 0, 0.06);;
+  --shadow-down-m: 0 8px 16.4762px rgba(0, 0, 0, 0.04), 0 4px 9px rgba(0, 0, 0, 0.06);
+  --shadow-down-s: 0 4px 4px 4px rgba(0, 0, 0, 0.02), 0 2px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-overlay: 0 7.34724px 27.1788px rgba(32, 32, 36, 0.0544026), 0 4.72049px 19.8662px rgba(32, 32, 36, 0.0403388), 0 2.34878px 11.1476px rgba(32, 32, 36, 0.0227083);
+
+  --chart-gradient-1: rgba(31, 151, 255, 0.32);
+  --chart-gradient-2: rgba(31, 151, 255, 0);
 }
 
 /*! purgecss end ignore */

@@ -12,6 +12,12 @@ export default {
   router: {
     base:
       process.env.NODE_ENV === 'production' ? '/chargetrip-developers/' : '/',
+    extendRoutes(routes) {
+      routes.unshift({
+        path: '/',
+        redirect: '/getting-started',
+      })
+    },
   },
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
@@ -19,7 +25,7 @@ export default {
     '@chargetrip/internal-vue-components/dist/components.css',
   ],
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['~/plugins/globals.ts'],
+  plugins: ['~/plugins/globals.ts', '~/utilities/directives.ts'],
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 

@@ -173,7 +173,6 @@ module.exports = {
       fontFamily: {
         mono: [
           'Consolas',
-          '-apple-system',
           'Courier New',
           'Menlo',
           'Monaco',
@@ -184,6 +183,11 @@ module.exports = {
         body: "'Inter', sans-serif",
       },
       boxShadow: {
+        'up-xl': 'var(--shadow-up-xl)',
+        'down-xl': 'var(--shadow-down-xl)',
+        'down-m': 'var(--shadow-down-m)',
+        'down-s': 'var(--shadow-down-s)',
+        overlay: 'var(--shadow-overlay)',
         xs: '0px 1px 0px #030303',
         default: '0px 6px 6px rgba(0, 0, 0, 0.15)',
         inset: 'inset 0px -1px 0px #2D2E33',

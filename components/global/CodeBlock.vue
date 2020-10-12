@@ -11,29 +11,30 @@
     </header>
     <pre
       class="font-mono px-6 py-4 font-base"
-    ><code v-for="(line, key) in codeLines" :key="key" class="flex items-center" v-html="line"></code></pre>
+    ><code v-for="(line, key) in codeLines" :key="key" v-html="line"/></pre>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import highlightjs from 'highlight.js'
 
 @Component
 export default class CodeBlock extends Vue {
   @Prop() title
   @Prop() prefix
-  @Prop() code
 
   get codeLines() {
-    return this.code
-      .trim()
-      .split('\n')
-      .map((line) => line.trim())
+    return highlightjs
+      .highlightAuto(this.$slots?.default?.[0]?.text?.trim() || '')
+      ?.value.split('\n')
   }
 }
 </script>
 <style lang="scss">
 .code-block {
   code {
+    @apply block;
+
     counter-increment: listing;
 
     &::before {
@@ -41,6 +42,18 @@ export default class CodeBlock extends Vue {
 
       content: counter(listing);
     }
+  }
+
+  .null {
+    @apply text-error font-semibold;
+  }
+
+  .hljs-number {
+    @apply text-success;
+  }
+
+  .hljs-string {
+    @apply text-note;
   }
 }
 </style>
