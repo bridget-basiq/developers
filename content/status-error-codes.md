@@ -30,24 +30,6 @@ descriptions:
   - Internal Server Error. If you catch one, report your issue here.,
   - Bad Gateway,
   - Service Unavailable
-  
-keys:
-  - response 
-  - status 
-  - message 
-  - cod
-  
-propertyDescriptions:
-  - Your project id with the corresponding configuration
-  - The status code of the response reflecting the API response codes
-  - The message describing the error
-  - A unique error code that can be used for localization
-  
-propertyTypes:
-  - String
-  - Int
-  - String
-  - String
 ---
 # Status & Error Codes
 
@@ -65,7 +47,33 @@ Our API uses the following response status codes, as defined in the RFC 2616 and
 
 Apart from the response codes, unsuccessful responses return their generic GraphQL error described here alongside some additional fields . The additional fields can be found inside the  extensions object. The most important one here is the  exception  object. This one contains all the information about the error and looks like this;
 
-<property-table :keys="keys" :types="propertyTypes" :descriptions="propertyDescriptions"></property-table>
+<c-table>
+    <c-row>
+        <c-cell tag="th">Key</c-cell>
+        <c-cell tag="th">Type</c-cell>
+        <c-cell tag="th">Description</c-cell>
+    </c-row>
+    <c-row>
+        <c-cell font-family="mono">response</c-cell>
+        <c-cell font-family="mono" color="warning">String</c-cell>
+        <c-cell>Your project id with the corresponding configuration</c-cell>
+    </c-row>
+    <c-row>
+        <c-cell font-family="mono">status</c-cell>
+        <c-cell font-family="mono" color="success">Int</c-cell>
+        <c-cell>The status code of the response reflecting the API response codes</c-cell>
+    </c-row>  
+    <c-row>
+        <c-cell font-family="mono">message</c-cell>
+        <c-cell font-family="mono" color="warning">String</c-cell>
+        <c-cell>The message describing the error</c-cell>
+    </c-row>
+    <c-row>
+        <c-cell font-family="mono">code</c-cell>
+        <c-cell font-family="mono" color="warning">String</c-cell>
+        <c-cell>A unique error code that can be used for localization</c-cell>
+    </c-row>
+</c-table>
 
 If we want to reflect this as a curl it would look like this;
 

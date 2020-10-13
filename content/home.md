@@ -32,6 +32,19 @@ Send over the car details and we will provide you with a route that constantly u
 </guides>
 
 ## Open source
-<status-table :statuses="statuses" :descriptions="descriptions"></status-table>
+<c-table>
+    <c-row>
+        <c-cell tag="th">Status</c-cell>
+        <c-cell tag="th">Description</c-cell>
+    </c-row>
+    <c-row url="http://google.com">
+        <c-cell>Typescript Typings</c-cell>
+        <c-cell>Make integrating with our API easier with our typescript types</c-cell>
+    </c-row>
+    <c-row url="http://google.com">
+        <c-cell>Clusterbuster</c-cell>
+        <c-cell>Easily cluster data to improve render speeds</c-cell>
+    </c-row>
+</c-table>
 
 

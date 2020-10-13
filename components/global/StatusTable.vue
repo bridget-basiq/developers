@@ -1,16 +1,35 @@
 <template>
-  <CTable class="no-hover" :columns="['Status', 'Description']" :rows="rows" />
+  <CTable>
+    <Row>
+      <Cell v-for="(col, c) in columns" :key="c" tag="th">
+        {{ col }}
+      </Cell>
+    </Row>
+    <Row v-for="(row, key) in rows" :key="key">
+      <Cell
+        v-for="(_, c) in columns"
+        :key="`${key}-${c}`"
+        :font-weight="!c ? 'semibold' : null"
+      >
+        {{ row[c] }}
+      </Cell>
+    </Row>
+  </CTable>
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { Table as CTable } from '@chargetrip/internal-vue-components'
+import { Table as CTable, Row, Cell } from '@chargetrip/internal-vue-components'
 
 @Component({
-  components: { CTable },
+  components: { CTable, Row, Cell },
 })
 export default class PropertyTable extends Vue {
   @Prop() statuses
   @Prop() descriptions
+
+  get columns() {
+    return ['Status', 'Description']
+  }
 
   get rows() {
     if (!this.statuses) {
@@ -24,10 +43,7 @@ export default class PropertyTable extends Vue {
       ? this.descriptions
       : this.descriptions?.split('|')
 
-    return this.statuses.map((_, i) => [
-      `<strong>${statuses?.[i]}</strong>`,
-      descriptions?.[i],
-    ])
+    return this.statuses.map((_, i) => [statuses?.[i], descriptions?.[i]])
   }
 }
 </script>

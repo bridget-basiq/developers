@@ -24,7 +24,7 @@
     }
   },
   "dependencies": {
-    "@chargetrip/internal-vue-components": "0.0.45",
+    "@chargetrip/internal-vue-components": "0.0.47",
     "@nuxt/content": "^1.8.1",
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/axios": "^5.12.2",
@@ -60,7 +60,7 @@
     "node-sass": "^4.14.1",
     "nuxt-property-decorator": "^2.8.8",
     "prettier": "^2.1.1",
-    "sass-loader": "^10.0.2",
+    "sass-loader": "^10.0.3",
     "stylelint": "^13.7.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^20.0.0",
