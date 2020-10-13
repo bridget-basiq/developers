@@ -1,18 +1,20 @@
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component
 export default class Base extends Vue {
-  [key: string]: any;
-  public subscriptions: any = [];
-  listeners: any;
+  [key: string]: any
+  public subscriptions: any = []
+  listeners: any
 
   mounted() {
     if (this.listeners) {
-      this.subscriptions.push(...this.listeners.map((listener: string) => this[listener]('decorator')));
+      this.subscriptions.push(
+        ...this.listeners.map((listener: string) => this[listener]('decorator'))
+      )
     }
   }
 
   destroyed() {
-    this.subscriptions.forEach((sub: any) => sub());
+    this.subscriptions.forEach((sub: any) => sub())
   }
 }

@@ -35,6 +35,9 @@ export default class Steps extends Vue {
 </script>
 <style lang="scss">
 .step {
+  img {
+    @apply mb-6 mt-0;
+  }
   h2 {
     margin-top: 0 !important;
   }

@@ -24,7 +24,7 @@ export default () =>
     mutations: {},
     actions: {
       async nuxtServerInit({ commit }, { $content, req }) {
-        const pages = await $content('').fetch()
+        const pages = await $content('').sortBy('order').fetch()
 
         if (req?.headers?.cookie) {
           const darkMode = getCookie(req.headers.cookie, 'dark_mode')
@@ -36,18 +36,15 @@ export default () =>
 
         commit(
           'setSideNav',
-          pages
-            .map((page) => ({
-              title: page.title,
+          pages.map((page) => ({
+            title: page.title,
+            to: `/${page.slug}`,
+            children: getH2Children(page.body).map((child) => ({
               to: `/${page.slug}`,
-              order: page.order,
-              children: getH2Children(page.body).map((child) => ({
-                to: `/${page.slug}`,
-                hash: child.props.id,
-                title: child.children[1].value,
-              })),
-            }))
-            .sort((a, b) => a.order - b.order)
+              hash: child.props.id,
+              title: child.children[1].value,
+            })),
+          }))
         )
       },
     },

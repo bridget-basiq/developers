@@ -1,5 +1,5 @@
 <template>
-  <div class="steps relative">
+  <div class="steps relative my-14">
     <div class="dashed w-px absolute h-full" />
     <slot />
   </div>

@@ -1,0 +1,29 @@
+<template>
+  <a class="guide flex" :href="href" target="_blank">
+    <img class="!mt-0 !mb-0 rounded mr-8 w-1/3" :src="img" />
+    <div class="w-2/3 bg-base rounded border border-alt">
+      <div class="px-8 py-6">
+        <slot />
+      </div>
+    </div>
+  </a>
+</template>
+<script lang="ts">
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
+
+@Component
+export default class Example extends Vue {
+  @Prop() img
+  @Prop() href
+}
+</script>
+<style lang="scss">
+.guide {
+  pre {
+    @apply mb-4;
+  }
+  h6 {
+    @apply mb-1;
+  }
+}
+</style>

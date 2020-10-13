@@ -24,6 +24,15 @@ export default {
     '~/assets/styles/index.scss',
     '@chargetrip/internal-vue-components/dist/components.css',
   ],
+
+  content: {
+    markdown: {
+      prism: {
+        theme: false,
+      },
+    },
+  },
+
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: ['~/plugins/globals.ts', '~/utilities/directives.ts'],
   // Auto import components (https://go.nuxtjs.dev/config-components)

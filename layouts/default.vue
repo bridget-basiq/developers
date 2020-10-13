@@ -50,7 +50,7 @@
               placeholder="Search documentation"
             />
           </div>
-          <Nuxt class="page mdx mb-8" />
+          <Nuxt class="page mb-8" />
         </div>
         <PrevNextNavigation class="mt-auto" />
       </div>
@@ -195,6 +195,37 @@ export default class Layout extends Mixins(Base) {
 }
 </script>
 <style lang="scss">
+.page {
+  .code-block {
+    @apply my-4;
+  }
+  .table {
+    @apply mt-6 mb-10;
+  }
+  h2 {
+    @apply mt-14 mb-2;
+  }
+
+  p {
+    & + p {
+      @apply mt-4;
+    }
+
+    > code {
+      @apply rounded-2xs bg-base border border-alt px-1;
+    }
+  }
+  img {
+    @apply rounded border border-alt overflow-hidden my-10;
+  }
+  h1 {
+    @apply mb-3;
+
+    & + p {
+      @apply text-18;
+    }
+  }
+}
 .layout {
   &.no-transition {
     .box,
@@ -214,37 +245,6 @@ export default class Layout extends Mixins(Base) {
       }
       &.last-col {
         @apply pr-0;
-      }
-    }
-  }
-  .mdx {
-    .code-block {
-      @apply my-4;
-    }
-    .table {
-      @apply mt-6 mb-10;
-    }
-    h2 {
-      @apply mt-14 mb-2;
-    }
-
-    p {
-      & + p {
-        @apply mt-4;
-      }
-
-      > code {
-        @apply rounded-2xs bg-base border border-alt px-1;
-      }
-    }
-    img {
-      @apply rounded border border-alt overflow-hidden my-10;
-    }
-    h1 {
-      @apply mb-3;
-
-      & + p {
-        @apply text-18;
       }
     }
   }

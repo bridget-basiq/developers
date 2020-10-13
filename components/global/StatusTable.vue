@@ -1,5 +1,5 @@
 <template>
-  <CTable class="no-hover" :columns="['Status', 'Descriptions']" :rows="rows" />
+  <CTable class="no-hover" :columns="['Status', 'Description']" :rows="rows" />
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
@@ -16,13 +16,17 @@ export default class PropertyTable extends Vue {
     if (!this.statuses) {
       return []
     }
+    const statuses = Array.isArray(this.statuses)
+      ? this.statuses
+      : this.statuses?.split('|')
 
-    const keys = this.statuses.split(',')
-    const descriptions = this.descriptions.split(',')
+    const descriptions = Array.isArray(this.descriptions)
+      ? this.descriptions
+      : this.descriptions?.split('|')
 
-    return keys.map((_, i) => [
-      `<strong>${keys[i].trim()}</strong>`,
-      descriptions[i].trim(),
+    return this.statuses.map((_, i) => [
+      `<strong>${statuses?.[i]}</strong>`,
+      descriptions?.[i],
     ])
   }
 }
