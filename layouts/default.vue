@@ -62,7 +62,8 @@
         </div>
       </div>
       <aside class="border-l border-alt p-8">
-        <RelatedActions />
+        <MarkdownFormatting v-if="isEditing" />
+        <RelatedActions v-else />
       </aside>
     </div>
   </div>
@@ -76,9 +77,11 @@ import Table from '~/components/global/PropertyTable.vue'
 import RelatedActions from '~/components/RelatedActions.vue'
 import PrevNextNavigation from '~/components/PrevNextNavigation.vue'
 import Base from '~/mixins/base'
+import MarkdownFormatting from '~/components/MarkdownFormatting.vue'
 
 @Component({
   components: {
+    MarkdownFormatting,
     PrevNextNavigation,
     RelatedActions,
     SideNav,
@@ -90,6 +93,7 @@ import Base from '~/mixins/base'
 export default class Layout extends Mixins(Base) {
   @Getter darkMode
   @Getter sideNav
+  @Getter isEditing
   @Ref('container') container
   @Mutation setDarkMode
   noTransition = false
@@ -208,13 +212,20 @@ export default class Layout extends Mixins(Base) {
 }
 </script>
 <style lang="scss">
+.highlighted-code code,
+.page p > code {
+  @apply rounded-2xs bg-base border border-alt px-1 leading-none text-font-primary;
+}
+
 .page {
   .code-block {
     @apply my-4;
   }
+
   .table {
     @apply mt-6 mb-10;
   }
+
   h2 {
     @apply mt-14 mb-2;
   }
@@ -223,14 +234,12 @@ export default class Layout extends Mixins(Base) {
     & + p {
       @apply mt-4;
     }
-
-    > code {
-      @apply rounded-2xs bg-base border border-alt px-1;
-    }
   }
+
   img {
     @apply rounded border border-alt overflow-hidden my-10;
   }
+
   h1 {
     @apply mb-3;
 
@@ -240,6 +249,7 @@ export default class Layout extends Mixins(Base) {
     }
   }
 }
+
 .layout {
   &.no-transition {
     .box,
@@ -250,6 +260,7 @@ export default class Layout extends Mixins(Base) {
       transition-duration: 0s !important;
     }
   }
+
   .table {
     @apply text-14;
 
@@ -257,18 +268,22 @@ export default class Layout extends Mixins(Base) {
       &.first-col {
         @apply pl-0;
       }
+
       &.last-col {
         @apply pr-0;
       }
     }
   }
+
   .c-side-nav {
     flex: 0 0 260px;
   }
 
-  .content {
+  .content,
+  aside {
     max-height: calc(100vh - 34px);
   }
+
   aside {
     flex: 0 0 383px;
   }

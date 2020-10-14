@@ -14,12 +14,12 @@ Get going with the Chargetrip API. Clone one of our examples as a boilerplate, b
 
 Need some information about EV-routing, EVs or graphQL first? No worries we got you covered with our [here](https://www.google.com).
 
-<examples>
+<examples title="Clone an example">
 <example href="https://google.com" img="cars-example.jpg" title="Cars Select a vehicle from a list" tag-line="Web • iOS • Android" description="Quickly fetch a list of cars and implement lazy loading." category="Cars"></example>
 <example href="https://google.com" img="cars-example.jpg" title="Test Select a vehicle from a list" tag-line="Web • iOS • Android" description="Quickly fetch a list of cars and implement lazy loading." category="Test"></example>
 </examples>
 
-<guides>
+<guides title="Guides">
 <guide href="https://google.com" img="guide-example.jpg">
 
     Chapter 1 / 1

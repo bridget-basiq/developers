@@ -47,6 +47,7 @@ module.exports = {
         'note-alt2': 'var(--note-alt2)',
       },
       spacing: {
+        7: '1.75rem',
         14: '3.5rem',
       },
       borderRadius: {

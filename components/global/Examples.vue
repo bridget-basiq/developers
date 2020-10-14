@@ -1,7 +1,7 @@
 <template>
   <div class="examples my-14">
     <div class="flex mb-4 items-center">
-      <h2 class="!m-0">Clone an example</h2>
+      <h2>{{ title }}</h2>
       <nav class="text-font-alt3 ml-auto flex font-semibold">
         <div
           v-for="(category, key) in categories"
@@ -25,6 +25,7 @@ import { Watch } from 'vue-property-decorator'
 
 @Component
 export default class Examples extends Vue {
+  @Prop() title
   @Prop() examples
   categories: string[] = []
   index: number | null = null
@@ -57,3 +58,10 @@ export default class Examples extends Vue {
   }
 }
 </script>
+<style lang="scss">
+.examples {
+  h2 {
+    @apply m-0;
+  }
+}
+</style>

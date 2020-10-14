@@ -11,7 +11,7 @@ Before you can start with our API you need to be able to authorize yourself. You
 ## The API
 Now that you have all credentials that are required you can start using our API. The first thing you will need is the following base url;
 
-<code-block prefix="Authorization" title="Base Url">
+<code-block prefix="Authorization" title="Base Url">					
 http://api.chargetrip.io/graphql
 </code-block>
 
@@ -33,4 +33,4 @@ curl -X POST \
 http://api.chargetrip.io/graphql
 </code-block>
 
-
+		

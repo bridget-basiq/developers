@@ -7,11 +7,16 @@ const store = new Vuex.Store({})
 export default class extends VuexModule {
   _darkMode = false
   _sideNav: null | object = null
+  _isEditing = false
 
   @Mutation
   setDarkMode(darkMode: boolean) {
     this._darkMode = darkMode
     Cookies.set('dark_mode', darkMode.toString(), { expires: 365 })
+  }
+
+  @Mutation setIsEditing(val: boolean) {
+    this._isEditing = val
   }
 
   @Mutation
@@ -21,6 +26,10 @@ export default class extends VuexModule {
 
   get darkMode() {
     return this._darkMode
+  }
+
+  get isEditing() {
+    return this._isEditing
   }
 
   get sideNav() {
