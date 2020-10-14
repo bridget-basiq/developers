@@ -16,7 +16,7 @@ statuses:
   - 502
   - 503
 
-descriptions:
+statusDescriptions:
   - The request succeeded. The client can read the body.
   - The request is created. A new resource will be created.
   - The request is accepted. The client has to wait until it’s done processing.
@@ -41,7 +41,7 @@ To ensure you can respond appropriate when our API outputs something you didn’
 
 Our API uses the following response status codes, as defined in the [RFC 2616](https://www.ietf.org/rfc/rfc2616.txt) and [RFC 6568](https://www.ietf.org/rfc/rfc6585.txt);
 
-<status-table :statuses="statuses" :descriptions="descriptions"></status-table>
+<status-table :statuses="statuses" :descriptions="statusDescriptions"></status-table>
 
 ## API Error Objects
 

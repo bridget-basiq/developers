@@ -101,7 +101,7 @@ export default class Layout extends Mixins(Base) {
   mounted() {
     this.onRouteChange()
     if (this.hash.length) {
-      this.onSubMenuItemClick({ hash: this.hash })
+      this.onMenuItemClick({ hash: this.hash })
     }
     if (process.env.NODE_ENV === 'development') {
       this.$nuxt.$on('content:update', () => {
@@ -114,39 +114,45 @@ export default class Layout extends Mixins(Base) {
     return [
       this.sideNav.map((item) => ({
         ...item,
+        callback: this.onMenuItemClick.bind(this),
         children: item.children.map((child) => ({
           ...child,
-          callback: this.onSubMenuItemClick.bind(this),
+          callback: this.onMenuItemClick.bind(this),
         })),
       })),
     ]
   }
 
-  onSubMenuItemClick(item) {
+  onMenuItemClick(item) {
     this.stopReplacing = true
 
-    if (!item.hash?.length) return
-
-    let times = 0
-
-    const interval = setInterval(() => {
-      times++
-
-      if (times > 10) clearInterval(interval)
-
-      const el = this.container.querySelector(`#${item.hash}`)
-      if (!el) return
-      const rect = el.getBoundingClientRect()
-
+    if (!item.hash?.length) {
       this.container.scrollTo({
-        top: this.container.scrollTop + rect.top - 112,
+        top: 0,
         behavior: 'smooth',
       })
+    } else {
+      let times = 0
 
-      setTimeout(() => {
-        this.stopReplacing = false
-      }, 1000)
-    }, 50)
+      const interval = setInterval(() => {
+        times++
+
+        if (times > 20) clearInterval(interval)
+
+        const el = this.container.querySelector(`#${item.hash}`)
+        if (!el) return
+        const rect = el.getBoundingClientRect()
+
+        this.container.scrollTo({
+          top: this.container.scrollTop + rect.top - 112,
+          behavior: 'smooth',
+        })
+      }, 10)
+    }
+
+    setTimeout(() => {
+      this.stopReplacing = false
+    }, 1000)
   }
 
   @Watch('darkMode') onDarkModeChange() {
