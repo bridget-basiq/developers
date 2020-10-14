@@ -61,7 +61,7 @@
           </nav>
         </div>
       </div>
-      <aside class="border-l border-alt p-8">
+      <aside class="border-l border-alt p-8 overflow-y-scroll">
         <MarkdownFormatting v-if="isEditing" />
         <RelatedActions v-else />
       </aside>
@@ -103,6 +103,8 @@ export default class Layout extends Mixins(Base) {
   stopReplacing = false
 
   mounted() {
+    console.log(this.$store)
+
     this.onRouteChange()
     if (this.hash.length) {
       this.onMenuItemClick({ hash: this.hash })

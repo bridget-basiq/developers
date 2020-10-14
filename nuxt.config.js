@@ -26,6 +26,7 @@ export default {
   ],
 
   content: {
+    editor: '~/components/Editor.vue',
     markdown: {
       prism: {
         theme: false,
