@@ -10,9 +10,8 @@
         v-for="(_, c) in columns"
         :key="`${key}-${c}`"
         :font-weight="!c ? 'semibold' : null"
-      >
-        {{ row[c] }}
-      </Cell>
+        v-html="$options.filters.markdown(row[c])"
+      />
     </Row>
   </CTable>
 </template>

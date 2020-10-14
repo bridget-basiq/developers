@@ -26,8 +26,8 @@ a {
   @apply cursor-pointer outline-none;
 }
 
-p a, label a, a.link {
-  @apply text-accent;
+p a, label a, a.link, td a {
+  @apply text-accent underline;
 }
 
 .cta {
@@ -39,5 +39,5 @@ p a, label a, a.link {
 }
 
 p {
-  @apply m-0 text-font-alt3;
+  @apply m-0;
 }

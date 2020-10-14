@@ -17,19 +17,19 @@ statuses:
   - 503
 
 descriptions:
-  - The request succeeded. The client can read the body.,
-  - The request is created. A new resource will be created.,
-  - The request is accepted. The client has to wait until it’s done processing.,
-  - The request has succeeded but returns no message body.,
-  - Not Modified.,
-  - The request could not be understood by the server due to malformed syntax,
-  - The request requires authentication,
-  - The server understood the request, but is refusing to fulfill it.,
-  - The requested resource could not be found,
-  - Too Many Requests,
-  - Internal Server Error. If you catch one, report your issue here.,
-  - Bad Gateway,
-  - Service Unavailable
+  - The request succeeded. The client can read the body.
+  - The request is created. A new resource will be created.
+  - The request is accepted. The client has to wait until it’s done processing.
+  - The request has succeeded but returns no message body.
+  - Not Modified.
+  - The request could not be understood by the server due to malformed syntax.
+  - The request requires authentication.
+  - The server understood the request, but is refusing to fulfill it.
+  - The requested resource could not be found.
+  - Too Many Requests.
+  - Internal Server Error. If you catch one, report your issue [here](https://google.com).
+  - Bad Gateway.
+  - Service Unavailable.
 ---
 # Status & Error Codes
 
@@ -39,7 +39,7 @@ To ensure you can respond appropriate when our API outputs something you didn’
 
 ## API Response Codes
 
-Our API uses the following response status codes, as defined in the RFC 2616 and RFC 6568;
+Our API uses the following response status codes, as defined in the [RFC 2616](https://www.ietf.org/rfc/rfc2616.txt) and [RFC 6568](https://www.ietf.org/rfc/rfc6585.txt);
 
 <status-table :statuses="statuses" :descriptions="descriptions"></status-table>
 
