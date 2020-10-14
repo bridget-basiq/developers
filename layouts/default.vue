@@ -228,7 +228,8 @@ export default class Layout extends Mixins(Base) {
   h1 {
     @apply mb-3;
 
-    & + p {
+    + p,
+    + p + p {
       @apply text-18 text-font-alt3;
     }
   }
