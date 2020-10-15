@@ -2,7 +2,10 @@
   <div class="guides my-14">
     <div class="flex mb-4 items-center">
       <h2>{{ title }}</h2>
-      <nav class="ml-auto">&lt;- -></nav>
+      <nav class="ml-auto">
+        <span class="icon-arrow-left cursor-pointer" />
+        <span class="icon-arrow-right cursor-pointer" />
+      </nav>
     </div>
     <div>
       <slot />

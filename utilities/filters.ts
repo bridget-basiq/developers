@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import { format } from 'date-fns'
-import * as showdown from 'showdown'
-const converter = new showdown.Converter()
+import marked from 'marked'
 
 Vue.filter('date', (value: Date | string, formatStr: string) => {
   return format(value instanceof Date ? value : new Date(value), formatStr)
@@ -11,7 +10,7 @@ Vue.filter('number', (value: number, locale = 'nl-NL') => {
 })
 Vue.filter('markdown', (value: string) => {
   try {
-    return converter.makeHtml(value)
+    return marked(value)
   } catch (e) {
     return value
   }

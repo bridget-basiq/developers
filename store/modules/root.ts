@@ -8,6 +8,7 @@ export default class extends VuexModule {
   _darkMode = false
   _sideNav: null | object = null
   _isEditing = false
+  _content: null|object = null
 
   @Mutation
   setDarkMode(darkMode: boolean) {
@@ -24,12 +25,21 @@ export default class extends VuexModule {
     this._sideNav = sideNav
   }
 
+  @Mutation
+  setContent(content: object) {
+    this._content = content
+  }
+
   get darkMode() {
     return this._darkMode
   }
 
   get isEditing() {
     return this._isEditing
+  }
+
+  get content() {
+    return this._content
   }
 
   get sideNav() {

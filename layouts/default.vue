@@ -38,7 +38,7 @@
         @scroll="onScroll"
       >
         <div class="px-8">
-          <div class="sticky-header flex items-start">
+          <div v-if="!isEditing" class="sticky-header flex items-start">
             <Input
               type="search"
               icon="search"
@@ -49,11 +49,20 @@
               }"
               placeholder="Search documentation"
             />
+            <Button
+              v-if="isDev"
+              class="ml-auto"
+              size="sm"
+              color="accent"
+              @click="triggerEdit"
+              >Edit page</Button
+            >
           </div>
           <Nuxt class="page mb-8" />
         </div>
         <PrevNextNavigation class="mt-auto" />
         <div class="p-8 border-t flex items-center border-alt text-14">
+          <span class="icon icon-survey mr-3" />
           <p>Was this article useful?</p>
           <nav class="flex h-6 items-center font-semibold ml-auto">
             <div class="underline">No</div>
@@ -71,7 +80,12 @@
 <script lang="ts">
 import { Component, Watch, Ref } from 'nuxt-property-decorator'
 import { Mixins } from 'vue-property-decorator'
-import { SideNav, Input, Banner } from '@chargetrip/internal-vue-components'
+import {
+  SideNav,
+  Input,
+  Banner,
+  Button,
+} from '@chargetrip/internal-vue-components'
 import { Getter, Mutation } from 'vuex-class'
 import Table from '~/components/global/PropertyTable.vue'
 import RelatedActions from '~/components/RelatedActions.vue'
@@ -88,6 +102,7 @@ import MarkdownFormatting from '~/components/MarkdownFormatting.vue'
     Input,
     Table,
     Banner,
+    Button,
   },
 })
 export default class Layout extends Mixins(Base) {
@@ -95,7 +110,9 @@ export default class Layout extends Mixins(Base) {
   @Getter sideNav
   @Getter isEditing
   @Ref('container') container
+  isDev = process.env.NODE_ENV === 'development'
   @Mutation setDarkMode
+  @Mutation setIsEditing
   noTransition = false
   timeout = 0
   h2Elms: any[] = []
@@ -103,8 +120,6 @@ export default class Layout extends Mixins(Base) {
   stopReplacing = false
 
   mounted() {
-    console.log(this.$store)
-
     this.onRouteChange()
     if (this.hash.length) {
       this.onMenuItemClick({ hash: this.hash })
@@ -127,6 +142,13 @@ export default class Layout extends Mixins(Base) {
         })),
       })),
     ]
+  }
+
+  triggerEdit() {
+    this.setIsEditing(true)
+    document
+      .querySelector('.nuxt-content')
+      ?.dispatchEvent(new Event('dblclick'))
   }
 
   onMenuItemClick(item) {
@@ -219,7 +241,7 @@ export default class Layout extends Mixins(Base) {
   @apply rounded-2xs bg-base border border-alt px-1 leading-none text-font-primary;
 }
 
-.page {
+.nuxt-content {
   .code-block {
     @apply my-4;
   }

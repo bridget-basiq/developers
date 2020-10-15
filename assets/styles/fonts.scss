@@ -41,6 +41,27 @@ $fonts: (
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-arrow-alt::before {
+  content: "\e927";
+}
+.icon-italic::before {
+  content: "\e937";
+}
+.icon-bold::before {
+  content: "\e938";
+}
+.icon-h3::before {
+  content: "\e939";
+}
+.icon-h2::before {
+  content: "\e93a";
+}
+.icon-h1::before {
+  content: "\e93b";
+}
+.icon-survey::before {
+  content: "\e93c";
+}
 .icon-off-indicator::before {
   content: "\e900";
 }

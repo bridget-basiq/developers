@@ -84,10 +84,6 @@ export default class MarkdownFormatting extends Vue {
           title: 'Heading 3',
           explanation: '<code>###</code> + <code>space</code>',
         },
-        {
-          title: 'Heading 4',
-          explanation: '<code>####</code> + <code>space</code>',
-        },
       ],
     },
     {

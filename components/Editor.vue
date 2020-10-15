@@ -1,28 +1,156 @@
 <template>
-  <div class="whitespace-pre-line outline-none" contenteditable="true">
-    {{ value }}
+  <div class="editor relative">
+    <div class="sticky-header flex items-center">
+      <h2>Edit {{ content.title }}</h2>
+      <div class="ml-auto flex">
+        <Button size="sm" class="mr-2" color="alt" @click="cancel"
+          >Cancel</Button
+        >
+        <Button size="sm" color="accent" @click="submit">Save edits</Button>
+      </div>
+    </div>
+    <span
+      ref="contentEl"
+      class="whitespace-pre-line block outline-none"
+      contenteditable="true"
+      @mousedown="showHelper = false"
+      >{{ file }}</span
+    >
+    <div
+      v-if="showHelper"
+      class="helper transform -translate-x-1/2 -translate-y-full z-50 absolute bg-black flex shadow-down-m p-1 border border-alt2 rounded-md text-white"
+      :style="{ left: `${helperPosition.x}px`, top: `${helperPosition.y}px` }"
+    >
+      <div
+        v-for="(item, key) in items"
+        :key="key"
+        class="icon relative hover:bg-alt2 cursor-pointer w-6 h-6 rounded-sm flex items-center justify-center"
+        :class="[`icon-${item.icon}`, { divider: item.divider }]"
+        @click="item.fn"
+        @mouseup.stop
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import { Vue, Component, Prop, Watch, Emit } from 'nuxt-property-decorator'
-@Component
-export default class Editor extends Vue {
+import { Component, Prop, Watch, Ref, Mutation } from 'nuxt-property-decorator'
+import { Button } from '@chargetrip/internal-vue-components'
+import { Mixins } from 'vue-property-decorator'
+import { Getter } from 'vuex-class'
+import Base from '~/mixins/base'
+import { Listen } from '~/utilities/decorators'
+
+@Component({ components: { Button } })
+export default class Editor extends Mixins(Base) {
+  @Getter content
   @Prop() value
   @Prop() isEditing
+  @Ref('contentEl') contentEl
+  @Mutation setIsEditing
   file = ''
+  items = [
+    { icon: 'bold', fn: this.makeBold.bind(this) },
+    { icon: 'italic', divider: true, fn: this.makeItalic.bind(this) },
+    { icon: 'h1', fn: this.makeH1.bind(this) },
+    { icon: 'h2', fn: this.makeH2.bind(this) },
+    { icon: 'h3', fn: this.makeH3.bind(this) },
+  ]
 
-  @Watch('value') onValueChange() {
+  showHelper = false
+  selection = null
+  helperPosition = null
+
+  @Watch('value', { immediate: true }) onValueChange() {
     this.file = this.value
   }
 
-  @Watch('isEditing') onIsEditingChange() {
-    // this.onType()
-    // this.$refs.textarea.focus()
+  insert(before, after = '') {
+    if (!this.selection) return
+
+    return (
+      this.file.slice(0, this.selection.start) +
+      before +
+      this.file.slice(this.selection.start, this.selection.end) +
+      after +
+      this.file.slice(this.selection.end)
+    )
   }
 
-  @Emit('input') submit() {
-    return this.file
+  cancel() {
+    this.onValueChange()
+    this.$emit('endEdit')
+    this.setIsEditing(false)
+  }
+
+  makeBold() {
+    this.file = this.insert('**', '**')
+  }
+
+  makeItalic() {
+    this.file = this.insert('__', '__')
+  }
+
+  makeH1() {
+    this.file = this.insert('# ')
+  }
+
+  makeH2() {
+    this.file = this.insert('## ')
+  }
+
+  makeH3() {
+    this.file = this.insert('### ')
+  }
+
+  @Listen('mouseup') onMouseUp(e) {
+    const selection = window.getSelection()
+
+    if (selection.anchorOffset === selection.focusOffset) return
+
+    const rect = this.$el.getBoundingClientRect()
+    this.showHelper = true
+    this.helperPosition = {
+      x: Math.max(72, e.clientX - rect.left),
+      y: Math.max(0, e.clientY - rect.top),
+    }
+
+    this.selection = {
+      start: selection.anchorOffset,
+      end: selection.focusOffset,
+    }
+  }
+
+  submit() {
+    if (!this.contentEl) return
+
+    this.showHelper = false
+    this.$emit('input', this.contentEl.textContent)
+    this.cancel()
   }
 }
 </script>
+<style lang="scss">
+.editor {
+  padding: 0 !important;
+
+  .sticky-header {
+    h2 {
+      @apply m-0;
+    }
+  }
+  .helper {
+    .divider {
+      @apply mr-2;
+
+      & + * {
+        @apply ml-2;
+      }
+      &::after {
+        content: '';
+        @apply w-px h-full bg-alt2 absolute right-0 -mr-2;
+      }
+    }
+  }
+}
+</style>
