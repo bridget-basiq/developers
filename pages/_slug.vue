@@ -15,7 +15,13 @@ export default class Slug extends Vue {
   page = null
   @Mutation setIsEditing
 
-  async asyncData({ $content, route: { path }, store: { commit } }) {
+  async asyncData(args) {
+    const {
+      $content,
+      route: { path },
+      store: { commit },
+    } = args
+
     const page = await $content(path, { deep: true }).fetch()
 
     commit('setContent', page)
