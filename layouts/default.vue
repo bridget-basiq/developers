@@ -27,9 +27,11 @@
     </Banner>
     <div class="flex bg-body relative z-10 flex-1 overflow-hidden rounded-t-xl">
       <SideNav
+        v-if="sideNav"
         class="text-14"
         :navs="normalizedSideNav"
         :dark-mode="darkMode"
+        :spacing="6"
         @changeDarkMode="setDarkMode"
       />
       <div
@@ -60,7 +62,7 @@
           </div>
           <Nuxt class="page mb-8" />
         </div>
-        <PrevNextNavigation class="mt-auto" />
+        <PrevNextNavigation v-if="sideNav" class="mt-auto" />
         <div class="p-8 border-t flex items-center border-alt text-14">
           <span class="icon icon-survey mr-3" />
           <p>Was this article useful?</p>
@@ -131,17 +133,16 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
+  attachHandler(item) {
+    return {
+      ...item,
+      callback: this.onMenuItemClick.bind(this),
+      children: item?.children?.map(this.attachHandler.bind(this)) || [],
+    }
+  }
+
   get normalizedSideNav() {
-    return [
-      this.sideNav.map((item) => ({
-        ...item,
-        callback: this.onMenuItemClick.bind(this),
-        children: item.children.map((child) => ({
-          ...child,
-          callback: this.onMenuItemClick.bind(this),
-        })),
-      })),
-    ]
+    return [this.sideNav.map(this.attachHandler.bind(this))]
   }
 
   triggerEdit() {
@@ -199,7 +200,6 @@ export default class Layout extends Mixins(Base) {
     if (!this.container) return
 
     this.stopReplacing = true
-    this.container.scrollTo(0, 0)
     setTimeout(() => {
       this.h2Elms = [...(this.container.querySelectorAll('h2') || [])]
       this.stopReplacing = false
@@ -261,7 +261,7 @@ export default class Layout extends Mixins(Base) {
   }
 
   img {
-    @apply rounded border border-alt overflow-hidden my-10;
+    @apply rounded overflow-hidden my-10;
   }
 
   h1 {
@@ -269,7 +269,12 @@ export default class Layout extends Mixins(Base) {
 
     + p,
     + p + p {
-      @apply text-18 text-font-alt3;
+      @apply text-18 text-font-alt3 pr-24;
+
+      img {
+        width: calc(100% + 96px);
+        max-width: unset;
+      }
     }
   }
 }

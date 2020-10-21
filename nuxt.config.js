@@ -15,8 +15,22 @@ export default {
     extendRoutes(routes) {
       routes.unshift({
         path: '/',
-        redirect: '/getting-started',
+        redirect: '/home',
       })
+
+      routes.push(
+        ...[
+          ...new Array(5).fill('x').map((_, i) => ({
+            path:
+              new Array(i)
+                .fill('x')
+                .map((_, v) => `/:var${v}`)
+                .join('') + '/:slug',
+            name: `depth-${i + 1}`,
+            component: 'pages/_slug.vue',
+          })),
+        ]
+      )
     },
   },
   // Global CSS (https://go.nuxtjs.dev/config-css)
