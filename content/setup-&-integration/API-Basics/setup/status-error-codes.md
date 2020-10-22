@@ -35,7 +35,7 @@ statusDescriptions:
 
 To ensure you can respond appropriate when our API outputs something you didn’t expect we maintain a consistent set of API response and error codes. The general design of the response and error codes will be discussed inside this chapter.
 
-<c-image alt="Authorization image" src="status-and-error-codes.jpg"></c-image>
+<c-image alt="Authorization image" src="status-and-error-codes.png"></c-image>
 
 ## API Response Codes
 
