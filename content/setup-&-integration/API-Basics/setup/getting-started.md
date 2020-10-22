@@ -6,7 +6,7 @@ order: 2
 The Chargetrip API can be used to render electric vehicles, plot stations and calculate routes. The API itself has different access levels depending on the plan you are on. Everyone can start with a limited dataset on the free plan, but you can [contact sales](http://google.com) at any time to upgrade your plan.
 
 <steps>
-<step img="getting-access.png">
+<step img="getting-access.jpg">
 
 ## Getting access
 
@@ -29,7 +29,7 @@ Want to use the same configuration in a different app? Create additional app key
 </step-note>
 
 </step>
-<step img="collect-your-keys.png">
+<step img="collect-your-keys.jpg">
 
 ## Collect your keys
 After you configured your project you need to click save. You will then be redirected to the project overview where you can copy your project key.

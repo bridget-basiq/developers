@@ -6,7 +6,7 @@ order: 3
 
 Before you can start with our API you need to be able to authorize yourself. You can do this by [signing up](https://google.com) and [configuring](https://google.com) your own free key. After you’ve done that we will guide you through the process of configuring your key and authorizing yourself.
 
-![Authorization image](authorization.jpg)
+<c-image alt="Authorization image" src="authorization.jpg"></c-image>
 
 ## The API
 Now that you have all credentials that are required you can start using our API. The first thing you will need is the following base url;

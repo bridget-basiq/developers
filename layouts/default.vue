@@ -40,25 +40,38 @@
         @scroll="onScroll"
       >
         <div class="px-8">
-          <div v-if="!isEditing" class="sticky-header flex items-start">
-            <Input
-              type="search"
-              icon="search"
-              :hotkey="{
-                icon: 'slash',
-                key: '/',
-                fn: (input) => input.focus(),
-              }"
-              placeholder="Search documentation"
-            />
-            <Button
-              v-if="isDev"
-              class="ml-auto"
-              size="sm"
-              color="accent"
-              @click="triggerEdit"
-              >Edit page</Button
-            >
+          <div class="sticky-header flex items-start">
+            <template v-if="!isEditing">
+              <Input
+                type="search"
+                icon="search"
+                :hotkey="{
+                  icon: 'slash',
+                  key: '/',
+                  fn: (input) => input.focus(),
+                }"
+                placeholder="Search documentation"
+              />
+              <Button
+                v-if="isDev"
+                class="ml-auto"
+                size="sm"
+                color="accent"
+                @click="triggerEdit"
+                >Edit page</Button
+              >
+            </template>
+            <template v-else>
+              <h2>Edit {{ content.title }}</h2>
+              <div class="ml-auto flex">
+                <Button size="sm" class="mr-2" color="alt" @click="cancel"
+                  >Cancel</Button
+                >
+                <Button size="sm" color="accent" @click="submit"
+                  >Save edits</Button
+                >
+              </div>
+            </template>
           </div>
           <Nuxt class="page mb-8" />
         </div>
@@ -110,6 +123,7 @@ import MarkdownFormatting from '~/components/MarkdownFormatting.vue'
 export default class Layout extends Mixins(Base) {
   @Getter darkMode
   @Getter sideNav
+  @Getter content
   @Getter isEditing
   @Ref('container') container
   isDev = process.env.NODE_ENV === 'development'
@@ -131,6 +145,14 @@ export default class Layout extends Mixins(Base) {
         setTimeout(this.onRouteChange.bind(this), 100)
       })
     }
+  }
+
+  submit() {
+    this.$root.$emit('submitEditor')
+  }
+
+  cancel() {
+    this.$root.$emit('cancelEditor')
   }
 
   attachHandler(item) {
@@ -198,6 +220,10 @@ export default class Layout extends Mixins(Base) {
 
   @Watch('$route.path') onRouteChange() {
     if (!this.container) return
+
+    if (!this.$route.hash?.length) {
+      this.container.scrollTo(0, 0)
+    }
 
     this.stopReplacing = true
     setTimeout(() => {

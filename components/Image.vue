@@ -5,7 +5,7 @@
 import { Component, Vue, Prop, Getter } from 'nuxt-property-decorator'
 
 @Component
-export default class Image extends Vue {
+export default class CImage extends Vue {
   @Prop() src
   @Prop() alt
   @Getter darkMode

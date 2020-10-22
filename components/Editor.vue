@@ -1,14 +1,5 @@
 <template>
   <div class="editor relative">
-    <div class="sticky-header flex items-center">
-      <h2>Edit {{ content.title }}</h2>
-      <div class="ml-auto flex">
-        <Button size="sm" class="mr-2" color="alt" @click="cancel"
-          >Cancel</Button
-        >
-        <Button size="sm" color="accent" @click="submit">Save edits</Button>
-      </div>
-    </div>
     <span
       ref="contentEl"
       class="whitespace-pre-line block outline-none"
@@ -35,13 +26,12 @@
 
 <script>
 import { Component, Prop, Watch, Ref, Mutation } from 'nuxt-property-decorator'
-import { Button } from '@chargetrip/internal-vue-components'
 import { Mixins } from 'vue-property-decorator'
 import { Getter } from 'vuex-class'
 import Base from '~/mixins/base'
 import { Listen } from '~/utilities/decorators'
 
-@Component({ components: { Button } })
+@Component
 export default class Editor extends Mixins(Base) {
   @Getter content
   @Prop() value
@@ -60,6 +50,13 @@ export default class Editor extends Mixins(Base) {
   showHelper = false
   selection = null
   helperPosition = null
+
+  beforeMount() {
+    this.submit = this.submit.bind(this)
+    this.cancel = this.cancel.bind(this)
+    this.$root.$on('submitEditor', this.submit)
+    this.$root.$on('cancelEditor', this.cancel)
+  }
 
   @Watch('value', { immediate: true }) onValueChange() {
     this.file = this.value
@@ -128,17 +125,17 @@ export default class Editor extends Mixins(Base) {
     this.$emit('input', this.contentEl.textContent)
     this.cancel()
   }
+
+  beforeDestroy() {
+    this.$root.$off('submitEditor', this.submit)
+    this.$root.$off('cancelEditor', this.cancel)
+  }
 }
 </script>
 <style lang="scss">
 .editor {
   padding: 0 !important;
 
-  .sticky-header {
-    h2 {
-      @apply m-0;
-    }
-  }
   .helper {
     .divider {
       @apply mr-2;
