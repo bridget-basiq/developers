@@ -1,0 +1,41 @@
+{
+  "kind": "ENUM",
+  "name": "OCPITariffType",
+  "description": null,
+  "fields": null,
+  "inputFields": null,
+  "interfaces": null,
+  "enumValues": [
+    {
+      "name": "AD_HOC_PAYMENT",
+      "description": "Used to describe that a Tariff is valid when ad-hoc payment is used at the Charge Point (for example: Debit or Credit card payment terminal).",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "PROFILE_CHEAP",
+      "description": "Used to describe that a Tariff is valid when Charging Preference: CHEAP is set for the session.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "PROFILE_FAST",
+      "description": "Used to describe that a Tariff is valid when Charging Preference: FAST is set for the session.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "PROFILE_GREEN",
+      "description": "Used to describe that a Tariff is valid when Charging Preference: GREEN is set for the session.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "REGULAR",
+      "description": "Used to describe that a Tariff is valid when using an RFID, without any Charging Preference, or when Charging Preference: REGULAR is set for the session.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "possibleTypes": null
+}

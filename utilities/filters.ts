@@ -15,3 +15,22 @@ Vue.filter('markdown', (value: string) => {
     return value
   }
 })
+
+Vue.filter('colorType', (value: string) => {
+  const lowerCase = value.toLowerCase()
+
+  switch (lowerCase) {
+    case 'enum':
+      return `<span class="text-note">${value}</span>`
+    case 'string':
+      return `<span class="text-warning">${value}</span>`
+    case 'float':
+      return `<span class="text-success">${value}</span>`
+    case 'int':
+      return `<span class="text-success">${value}</span>`
+    case 'id':
+      return `<span class="text-error">${value}</span>`
+    default:
+      return value
+  }
+})

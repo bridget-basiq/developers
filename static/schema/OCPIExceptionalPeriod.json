@@ -1,0 +1,35 @@
+{
+  "kind": "OBJECT",
+  "name": "OCPIExceptionalPeriod",
+  "description": "Specifies one exceptional period for opening or access hours.",
+  "fields": [
+    {
+      "name": "period_begin",
+      "description": "Begin of the exception. In UTC, time_zone field can be used to convert to local time.",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "DateTime",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "period_end",
+      "description": "End of the exception. In UTC, time_zone field can be used to convert to local time.",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "DateTime",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "inputFields": null,
+  "interfaces": [],
+  "enumValues": null,
+  "possibleTypes": null
+}

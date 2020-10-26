@@ -1,0 +1,159 @@
+{
+  "kind": "OBJECT",
+  "name": "Review",
+  "description": "The review model",
+  "fields": [
+    {
+      "name": "id",
+      "description": "ID of a review",
+      "args": [],
+      "type": {
+        "kind": "NON_NULL",
+        "name": null,
+        "ofType": {
+          "kind": "SCALAR",
+          "name": "ID",
+          "ofType": null
+        }
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "station",
+      "description": "Station for which a review was provided",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "Station",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "user",
+      "description": "User who added a review, in case a review was added by an anonymous user, this will be null",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "ReviewUser",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "rating",
+      "description": "Rating of a review",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Int",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "message",
+      "description": "Message of a review",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "locale",
+      "description": "Locale of a message",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "ev",
+      "description": "Car which was provided/selected by a user",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "Car",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "plugType",
+      "description": "Plug type which was provided/selected by a user",
+      "args": [],
+      "type": {
+        "kind": "ENUM",
+        "name": "OCPIConnectorType",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "properties",
+      "description": "Optional object where you can store custom data you need in your application. This extends the current functionalities we offer",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "JSON",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "tags",
+      "description": "Boolean tags for a station review",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "ReviewTags",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "createdAt",
+      "description": "Date and time when a review was created",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "updatedAt",
+      "description": "Date and time when a review was updated",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "inputFields": null,
+  "interfaces": [],
+  "enumValues": null,
+  "possibleTypes": null
+}

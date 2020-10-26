@@ -1,0 +1,41 @@
+{
+  "kind": "INPUT_OBJECT",
+  "name": "RequestEvBatteryInput",
+  "description": null,
+  "fields": null,
+  "inputFields": [
+    {
+      "name": "capacity",
+      "description": "Usable capacity of a battery used to compute a route. If this in not filled in, we assume it is the same value as the car batteryUsableKwh.",
+      "type": {
+        "kind": "INPUT_OBJECT",
+        "name": "RequestEvBatteryInputValue",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "stateOfCharge",
+      "description": "Current amount of energy in a battery. If this is not filled in, we assume the battery is full and we fill it in with car batteryUsableKwh.",
+      "type": {
+        "kind": "INPUT_OBJECT",
+        "name": "RequestEvBatteryInputValue",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "finalStateOfCharge",
+      "description": "Desired final amount of energy in a battery. If this is not filled in, we assume it is 20% of the car batteryUsableKwh.",
+      "type": {
+        "kind": "INPUT_OBJECT",
+        "name": "RequestEvBatteryInputValue",
+        "ofType": null
+      },
+      "defaultValue": null
+    }
+  ],
+  "interfaces": null,
+  "enumValues": null,
+  "possibleTypes": null
+}

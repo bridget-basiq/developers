@@ -1,0 +1,47 @@
+{
+  "kind": "OBJECT",
+  "name": "OCPIStatusSchedule",
+  "description": "This type is used to schedule status periods in the future. The eMSP can provide this information to the EV user for trip planning purposes. A period MAY have no end. Example: \"This station will be running as of tomorrow. Today it is still planned and under construction.",
+  "fields": [
+    {
+      "name": "period_begin",
+      "description": "Begin of the scheduled period.",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "DateTime",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "period_end",
+      "description": "End of the scheduled period, if known.",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "DateTime",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "status",
+      "description": "Status value during the scheduled period.",
+      "args": [],
+      "type": {
+        "kind": "ENUM",
+        "name": "OCPIStatus",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "inputFields": null,
+  "interfaces": [],
+  "enumValues": null,
+  "possibleTypes": null
+}

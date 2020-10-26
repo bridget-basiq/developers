@@ -1,0 +1,41 @@
+{
+  "kind": "ENUM",
+  "name": "CarImageType",
+  "description": "Available types of images which can be found for a car. Each type has specific image sizes",
+  "fields": null,
+  "inputFields": null,
+  "interfaces": null,
+  "enumValues": [
+    {
+      "name": "provider",
+      "description": "Images provided by a Car Datasource",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "image",
+      "description": "Full size image at 1536x864 px",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "image_thumbnail",
+      "description": "The thumbnail of the full size image at 131x72 px",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "brand",
+      "description": "Full size brand (maker) logo at 768x432 px",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "brand_thumbnail",
+      "description": "The thumbnail of the full size brand logo at 56x24 px",
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "possibleTypes": null
+}

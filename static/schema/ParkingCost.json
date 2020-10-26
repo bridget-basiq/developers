@@ -1,0 +1,23 @@
+{
+  "kind": "ENUM",
+  "name": "ParkingCost",
+  "description": null,
+  "fields": null,
+  "inputFields": null,
+  "interfaces": null,
+  "enumValues": [
+    {
+      "name": "free",
+      "description": "Parking is free",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "paid",
+      "description": "Parking includes a fee",
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "possibleTypes": null
+}

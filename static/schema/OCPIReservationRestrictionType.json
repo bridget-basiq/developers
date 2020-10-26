@@ -1,0 +1,23 @@
+{
+  "kind": "ENUM",
+  "name": "OCPIReservationRestrictionType",
+  "description": null,
+  "fields": null,
+  "inputFields": null,
+  "interfaces": null,
+  "enumValues": [
+    {
+      "name": "RESERVATION",
+      "description": "Used in TariffElements to describe costs for a reservation.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "RESERVATION_EXPIRES",
+      "description": "Used in TariffElements to describe costs for a reservation that expires (i.e. driver does not start a charging session before expiry_date of the reservation).",
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "possibleTypes": null
+}

@@ -48,6 +48,7 @@ module.exports = {
       },
       spacing: {
         7: '1.75rem',
+        9: '2.25rem',
         14: '3.5rem',
       },
       borderRadius: {
@@ -68,6 +69,7 @@ module.exports = {
         full: '100%',
       },
       fontSize: {
+        10: '10px',
         12: '12px',
         14: '14px',
         16: '16px',
@@ -95,5 +97,8 @@ module.exports = {
         'down-s': 'var(--shadow-down-s)',
       },
     },
+  },
+  variants: {
+    borderWidth: ['responsive', 'first'],
   },
 }

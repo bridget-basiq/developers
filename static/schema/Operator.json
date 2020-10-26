@@ -1,0 +1,95 @@
+{
+  "kind": "OBJECT",
+  "name": "Operator",
+  "description": "The operator data which extends OCPI BusinessDetails",
+  "fields": [
+    {
+      "name": "id",
+      "description": "Unique operator ID",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "ID",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "external_id",
+      "description": "External ID of an operator provided by the operator data source",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "name",
+      "description": "Name of an operator",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "website",
+      "description": "Link to an operator’s website",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "logo",
+      "description": "Image link to an operator’s logo",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "OCPIImage",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "country",
+      "description": "ISO-3166 alpha-2 country code",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "contact",
+      "description": "Contact information",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "Contact",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "inputFields": null,
+  "interfaces": [],
+  "enumValues": null,
+  "possibleTypes": null
+}

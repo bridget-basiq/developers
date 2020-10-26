@@ -1,0 +1,29 @@
+{
+  "kind": "ENUM",
+  "name": "RouteSeason",
+  "description": "The season of the route",
+  "fields": null,
+  "inputFields": null,
+  "interfaces": null,
+  "enumValues": [
+    {
+      "name": "summer",
+      "description": "We suppose it is summer and we have the best weather conditions",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "winter",
+      "description": "We suppose it is winter and we have the worst weather conditions",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "current",
+      "description": "We fetch the current weather conditions",
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "possibleTypes": null
+}

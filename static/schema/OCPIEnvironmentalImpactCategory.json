@@ -1,0 +1,23 @@
+{
+  "kind": "ENUM",
+  "name": "OCPIEnvironmentalImpactCategory",
+  "description": "Categories of environmental impact values.",
+  "fields": null,
+  "inputFields": null,
+  "interfaces": null,
+  "enumValues": [
+    {
+      "name": "NUCLEAR_WASTE",
+      "description": "Produced nuclear waste in grams per kilowatthour.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "CARBON_DIOXIDE",
+      "description": "Exhausted carbon dioxide in grams per kilowatthour.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "possibleTypes": null
+}

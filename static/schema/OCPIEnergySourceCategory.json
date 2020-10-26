@@ -1,0 +1,59 @@
+{
+  "kind": "ENUM",
+  "name": "OCPIEnergySourceCategory",
+  "description": "Categories of energy sources.",
+  "fields": null,
+  "inputFields": null,
+  "interfaces": null,
+  "enumValues": [
+    {
+      "name": "NUCLEAR",
+      "description": "Nuclear power sources.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "GENERAL_FOSSIL",
+      "description": "All kinds of fossil power sources.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "COAL",
+      "description": "Fossil power from coal.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "GAS",
+      "description": "Fossil power from gas.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "GENERAL_GREEN",
+      "description": "All kinds of regenerative power sources.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "SOLAR",
+      "description": "Regenerative power from PV.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "WIND",
+      "description": "Regenerative power from wind turbines.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "WATER",
+      "description": "Regenerative power from water turbines.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "possibleTypes": null
+}

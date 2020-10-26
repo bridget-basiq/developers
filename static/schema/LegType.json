@@ -1,0 +1,41 @@
+{
+  "kind": "ENUM",
+  "name": "LegType",
+  "description": "The types of the leg",
+  "fields": null,
+  "inputFields": null,
+  "interfaces": null,
+  "enumValues": [
+    {
+      "name": "station",
+      "description": "This leg ends at a charging station and the car must recharge",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "stationVia",
+      "description": "This leg ends at a via charging station and the car must recharge",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "via",
+      "description": "This leg ends at a via location",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "final",
+      "description": "This leg ends at the destination, and is the last leg of the route",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "stationFinal",
+      "description": "This leg ends at the destination which is a charging station, and is the last leg of the route",
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "possibleTypes": null
+}

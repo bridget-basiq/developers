@@ -1,0 +1,47 @@
+{
+  "kind": "OBJECT",
+  "name": "CarEstimationData",
+  "description": "Car estimated data format",
+  "fields": [
+    {
+      "name": "highway",
+      "description": "Estimated battery efficiency on a highway or express roads, in km",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Float",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "city",
+      "description": "Estimated battery efficiency on a city road, in km",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Float",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "combined",
+      "description": "Estimated battery efficiency on highway and city roads combined, in km",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Float",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "inputFields": null,
+  "interfaces": [],
+  "enumValues": null,
+  "possibleTypes": null
+}

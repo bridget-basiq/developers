@@ -1,0 +1,35 @@
+{
+  "kind": "OBJECT",
+  "name": "PowerList",
+  "description": "The list of powers for the speed type",
+  "fields": [
+    {
+      "name": "power",
+      "description": "The maximum power the plug provides in kW",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Float",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "total",
+      "description": "The total number of stations with the specified power",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Int",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "inputFields": null,
+  "interfaces": [],
+  "enumValues": null,
+  "possibleTypes": null
+}

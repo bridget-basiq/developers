@@ -6,9 +6,10 @@ const store = new Vuex.Store({})
 @Module({ namespaced: false, dynamic: true, store, name: 'root' })
 export default class extends VuexModule {
   _darkMode = false
+  _querySchema: null | object = null
   _sideNav: null | object = null
   _isEditing = false
-  _content: null|object = null
+  _content: null | object = null
 
   @Mutation
   setDarkMode(darkMode: boolean) {
@@ -26,12 +27,21 @@ export default class extends VuexModule {
   }
 
   @Mutation
+  setQuerySchema(querySchema: object) {
+    this._querySchema = querySchema
+  }
+
+  @Mutation
   setContent(content: object) {
     this._content = content
   }
 
   get darkMode() {
     return this._darkMode
+  }
+
+  get querySchema() {
+    return this._querySchema
   }
 
   get isEditing() {

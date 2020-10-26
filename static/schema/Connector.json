@@ -1,0 +1,175 @@
+{
+  "kind": "OBJECT",
+  "name": "Connector",
+  "description": "Connector data which extends OCPI Connector",
+  "fields": [
+    {
+      "name": "id",
+      "description": "Identifier of a connector within an EVSE. Two connectors may have the same ID as long as they do not belong to the same EVSE object.",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "standard",
+      "description": "Standard of an installed connector.",
+      "args": [],
+      "type": {
+        "kind": "ENUM",
+        "name": "OCPIConnectorType",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "format",
+      "description": "Format (socket/cable) of an installed connector.",
+      "args": [],
+      "type": {
+        "kind": "ENUM",
+        "name": "OCPIConnectorFormat",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "power_type",
+      "description": "Type of power of an installed connector. ",
+      "args": [],
+      "type": {
+        "kind": "ENUM",
+        "name": "OCPIPowerType",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "max_voltage",
+      "description": "Maximum voltage of an connector (line to neutral for AC_3_PHASE), in volt [V]. For example: DC Chargers might vary the voltage during charging when battery almost full.",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Int",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "max_amperage",
+      "description": "Maximum amperage of a connector, in ampere [A].",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Int",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "max_electric_power",
+      "description": "Maximum electric power that can be delivered by a connector, in watt [W]. When the maximum electric power is lower than the calculated value from voltage and amperage, this value should be set.\nFor example: A DC Charge Point which can deliver up to 920V and up to 400A can be limited to a maximum of 150kW. Depending on the car, it may supply maximum voltage or current, but not both at the same time.\nFor AC Charge Points, the amount of phases used can also have influence on the maximum power.",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Int",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "power",
+      "description": "Maximum electric power in kW",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Float",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "tariff_ids",
+      "description": "Identifiers of the currently valid charging tariffs. Multiple tariffs are possible, but only one of each Tariff.type can be active at the same time. Tariffs with the same type are only allowed, if they are not active at the same time: start_date_time and end_date_time period not overlapping.\nWhen preference-based smart charging is supported, one tariff for every possible ProfileType should be provided. This tells the user about the options they have at this Connector, and what the tariff is for every option.\nFor a \"free of charge\" tariff, this field should be set and point to a defined \"free of charge\" tariff.",
+      "args": [],
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "terms_and_conditions",
+      "description": "URL to an operator’s terms and conditions.",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "last_updated",
+      "description": "Timestamp when a connector was last updated (or created).",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "DateTime",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "properties",
+      "description": "Optional object where you can store custom data you need in your application. This extends the current functionalities we offer",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "JSON",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "tariff",
+      "description": "List of valid charging tariffs",
+      "args": [],
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "OBJECT",
+          "name": "OCPITariff",
+          "ofType": null
+        }
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "inputFields": null,
+  "interfaces": [],
+  "enumValues": null,
+  "possibleTypes": null
+}

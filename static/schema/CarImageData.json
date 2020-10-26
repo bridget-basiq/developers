@@ -1,0 +1,59 @@
+{
+  "kind": "OBJECT",
+  "name": "CarImageData",
+  "description": "Images of a car in structured data",
+  "fields": [
+    {
+      "name": "image",
+      "description": "Full size image of a car",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "CarImage",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "image_thumbnail",
+      "description": "Thumbnail of a full size image",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "CarImage",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "brand",
+      "description": "Full size logo of the maker of a car",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "CarImage",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "brand_thumbnail",
+      "description": "Thumbnail of a full size logo of the maker of a car",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "CarImage",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "inputFields": null,
+  "interfaces": [],
+  "enumValues": null,
+  "possibleTypes": null
+}

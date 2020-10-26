@@ -43,6 +43,7 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '~/plugins/globals.ts',
+    '~/plugins/axios.ts',
     '~/utilities/directives.ts',
     '~/utilities/filters.ts',
   ],
@@ -57,6 +58,7 @@ export default {
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/axios',
     '@nuxt/content',
   ],
 

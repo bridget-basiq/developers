@@ -1,0 +1,41 @@
+{
+  "kind": "INPUT_OBJECT",
+  "name": "RequestEvConsumptionInput",
+  "description": null,
+  "fields": null,
+  "inputFields": [
+    {
+      "name": "aux",
+      "description": "Consumption, in kWh, of the auxiliaries",
+      "type": {
+        "kind": "INPUT_OBJECT",
+        "name": "CarConsumptionInput",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "bms",
+      "description": "Cnsumption, in kWh, of the battery management system",
+      "type": {
+        "kind": "INPUT_OBJECT",
+        "name": "CarConsumptionInput",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "idle",
+      "description": "Consumption, in kWh, of the car in idle mode",
+      "type": {
+        "kind": "INPUT_OBJECT",
+        "name": "CarConsumptionInput",
+        "ofType": null
+      },
+      "defaultValue": null
+    }
+  ],
+  "interfaces": null,
+  "enumValues": null,
+  "possibleTypes": null
+}

@@ -1,0 +1,31 @@
+{
+  "kind": "INPUT_OBJECT",
+  "name": "ReviewTagsInput",
+  "description": "Boolean tags for a station review",
+  "fields": null,
+  "inputFields": [
+    {
+      "name": "working",
+      "description": "Flag which indicates if a station was working when the review was added",
+      "type": {
+        "kind": "SCALAR",
+        "name": "Boolean",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "recommended",
+      "description": "Flag which indicates if a user recommended a station when the review was added",
+      "type": {
+        "kind": "SCALAR",
+        "name": "Boolean",
+        "ofType": null
+      },
+      "defaultValue": null
+    }
+  ],
+  "interfaces": null,
+  "enumValues": null,
+  "possibleTypes": null
+}

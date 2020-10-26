@@ -1,0 +1,51 @@
+{
+  "kind": "INPUT_OBJECT",
+  "name": "OperatorListQuery",
+  "description": "Filter which can be applied to retrieve the operator list action",
+  "fields": null,
+  "inputFields": [
+    {
+      "name": "id",
+      "description": "Unique operator ID",
+      "type": {
+        "kind": "SCALAR",
+        "name": "ID",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "external_id",
+      "description": "External ID of an operator provided by an operator data source",
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "name",
+      "description": "Exact name",
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "country",
+      "description": "Exact country code",
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "defaultValue": null
+    }
+  ],
+  "interfaces": null,
+  "enumValues": null,
+  "possibleTypes": null
+}

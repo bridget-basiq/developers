@@ -1,0 +1,41 @@
+{
+  "kind": "ENUM",
+  "name": "OCPIParkingRestriction",
+  "description": "This value, if provided, represents the restriction to the parking spot for different purposes.",
+  "fields": null,
+  "inputFields": null,
+  "interfaces": null,
+  "enumValues": [
+    {
+      "name": "EV_ONLY",
+      "description": "Reserved parking spot for electric vehicles.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "PLUGGED",
+      "description": "Parking is only allowed while plugged in (charging).",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "DISABLED",
+      "description": "Reserved parking spot for disabled people with valid ID.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "CUSTOMERS",
+      "description": "Parking spot for customers/guests only, for example in case of a hotel or shop.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "MOTORCYCLES",
+      "description": "Parking spot only suitable for (electric) motorcycles or scooters.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "possibleTypes": null
+}
