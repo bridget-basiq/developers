@@ -53,6 +53,13 @@
           <Nuxt class="page mb-8" />
         </div>
         <PrevNextNavigation class="mt-auto" />
+        <div class="p-8 border-t flex items-center border-alt text-14">
+          <p>Was this article useful?</p>
+          <nav class="flex h-6 items-center font-semibold ml-auto">
+            <div class="underline">No</div>
+            <div class="underline ml-6 text-accent">Yes</div>
+          </nav>
+        </div>
       </div>
       <aside class="border-l border-alt p-8">
         <RelatedActions />
@@ -221,8 +228,9 @@ export default class Layout extends Mixins(Base) {
   h1 {
     @apply mb-3;
 
-    & + p {
-      @apply text-18;
+    + p,
+    + p + p {
+      @apply text-18 text-font-alt3;
     }
   }
 }

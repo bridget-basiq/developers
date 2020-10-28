@@ -26,9 +26,6 @@ $fonts: (
 
 /*! purgecss start ignore */
 
-.icon-circle {
-  @apply flex items-center justify-center rounded-full w-5 h-5 text-10 border bg-accent border-accent-alt2;
-}
 .icon, [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;

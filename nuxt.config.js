@@ -34,7 +34,11 @@ export default {
   },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ['~/plugins/globals.ts', '~/utilities/directives.ts'],
+  plugins: [
+    '~/plugins/globals.ts',
+    '~/utilities/directives.ts',
+    '~/utilities/filters.ts',
+  ],
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
@@ -50,15 +54,7 @@ export default {
   ],
 
   // Modules (https://go.nuxtjs.dev/config-modules)
-  modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-    // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
-  ],
-
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  modules: [],
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     extend(config) {
