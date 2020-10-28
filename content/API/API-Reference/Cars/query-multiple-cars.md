@@ -1,6 +1,6 @@
 ---
-title: Query car details
-order: 3
+title: Query multiple cars
+order: 2
 frequently:
  - id
  - chargetripEdition
@@ -9,7 +9,7 @@ frequently:
  - carModel
 ---
 
-# Query car details
+# Query multiple cars
 
 This query is used to get a list of all the details of an electric car in our database. Some attributes are coming from our partner [EVDatabase](http://google.com).
 
@@ -17,7 +17,7 @@ This query is used to get a list of all the details of an electric car in our da
 
 This request uses the id parameter to identify which details should be fetched. This parameter is required.
 
-<schema name="Car" :frequent="frequently"></schema>
+<schema name="CarList" :frequent="frequently"></schema>
 
 ## Response
 

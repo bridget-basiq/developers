@@ -81,7 +81,7 @@ module.exports = {
       fontFamily: {
         mono: [
           'Consolas',
-          'Courier New',
+          'Courier New Bold',
           'Menlo',
           'Monaco',
           'Liberation Mono',

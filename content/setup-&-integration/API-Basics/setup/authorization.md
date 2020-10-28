@@ -1,6 +1,6 @@
 ---
 title: Authorization
-order: 3
+order: 6
 ---
 # Authorization
 

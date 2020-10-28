@@ -4,7 +4,7 @@
     :class="{ 'is-child': depth, 'show-children': showChildren }"
   >
     <div
-      class="content py-4 relative"
+      class="content border-alt py-4 relative"
       :class="{
         'pl-10': depth,
         'border-b': !(active && showChildren),
@@ -138,14 +138,30 @@ export default class Property extends Vue {
     }
   }
   &:not(.is-child) {
-    &:last-child {
-      &.show-children {
-        > .content {
-          > .line-v {
-            @apply top-1/2;
+    //&:last-child {
+    &.show-children {
+      > .content {
+        > .line-v {
+          @apply top-1/2;
+        }
+      }
+    }
+    //}
+  }
+  &.show-children {
+    .property.show-children {
+      //&:not(:first-child) {
+      &:not(:last-child) {
+        ul {
+          @apply relative;
+
+          &::before {
+            content: '';
+            @apply bg-alt w-px h-full absolute left-0 h-full block -ml-5;
           }
         }
       }
+      //}
     }
   }
 }

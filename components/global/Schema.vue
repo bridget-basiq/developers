@@ -1,7 +1,7 @@
 <template>
   <div class="schema my-8 pl-10">
     <section v-for="(section, i) in sections" :key="i" class="mb-12 last:mb-0">
-      <h2>{{ section.title }}</h2>
+      <h2 :id="section.id">{{ section.title }}</h2>
       <div class="mt-3">
         <Property
           v-for="(item, c) in section.items"
@@ -14,21 +14,19 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import { Getter } from 'vuex-class'
 import Property from '~/components/Property.vue'
+import { slugify } from '~/utilities/project.functions'
 @Component({
   components: { Property },
 })
 export default class Schema extends Vue {
   @Getter querySchema
+  @Getter sideNav
   @Prop() name
   schema: any = null
   @Prop({ default: [] }) frequent!: string[]
-
-  @Watch('attributes') onAttributesChange() {
-    console.log(this.attributes)
-  }
 
   get sections() {
     return [
@@ -44,7 +42,7 @@ export default class Schema extends Vue {
         title: 'Other attributes',
         items: this.attributes,
       },
-    ]
+    ].map((section) => ({ ...section, id: slugify(section.title) }))
   }
 
   get frequentlyUsedAttributes() {
@@ -86,9 +84,9 @@ export default class Schema extends Vue {
           return field
         }
 
-        const ofType: any = await this.$axios
-          .get(`/schema/${field.type?.ofType?.name || field.type.name}.json`)
-          .catch(console.log)
+        const ofType: any = await this.$axios.get(
+          `/schema/${field.type?.ofType?.name || field.type.name}.json`
+        )
 
         if (ofType?.fields) {
           ofType.fields = await this.appendOfType(ofType.fields)
@@ -106,9 +104,9 @@ export default class Schema extends Vue {
   }
 
   async fetch() {
-    const schema: any = await this.$axios
-      .get(`/schema/${this.pascalCaseName}.json`)
-      .catch(console.log)
+    const schema: any = await this.$axios.get(
+      `/schema/${this.pascalCaseName}.json`
+    )
 
     if (schema?.fields) {
       schema.fields = await this.appendOfType(schema.fields)

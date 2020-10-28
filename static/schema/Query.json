@@ -68,6 +68,29 @@
       "deprecationReason": null
     },
     {
+      "name": "carPremium",
+      "description": "Get premium information about a car by its ID",
+      "args": [
+        {
+          "name": "id",
+          "description": "The car ID",
+          "type": {
+            "kind": "SCALAR",
+            "name": "ID",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "type": {
+        "kind": "OBJECT",
+        "name": "CarPremium",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
       "name": "carList",
       "description": "Get a full list of cars",
       "args": [
@@ -107,7 +130,7 @@
         "name": null,
         "ofType": {
           "kind": "OBJECT",
-          "name": "Car",
+          "name": "CarList",
           "ofType": null
         }
       },

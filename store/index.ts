@@ -1,5 +1,8 @@
+import * as fs from 'fs'
+import { join } from 'path'
 import Vuex from 'vuex'
 import Main from './modules/root'
+import { slugify } from '~/utilities/project.functions'
 
 const getCookie = (str, key) =>
   Object.fromEntries(str.split(/; */).map((cookie) => cookie.split('=', 2)))[
@@ -12,6 +15,14 @@ const getH2Children = (page) => {
   page.children.forEach((child) => {
     if (child.tag === 'h2') {
       arr.push(child)
+    } else if (child.tag === 'schema') {
+      arr.push(
+        ...[
+          'Request parameters',
+          'Frequently used attributes',
+          'Other attributes',
+        ].map((title) => ({ title, props: { id: slugify(title) } }))
+      )
     } else if (child.children) {
       arr.push(...getH2Children(child))
     }
@@ -27,8 +38,8 @@ const getObj = (list, arr) => {
   return list
 }
 
-const getSideNav = (pages) =>
-  pages.reduce(
+const getSideNav = (pages) => {
+  return pages.reduce(
     (tree, page) => {
       const path = page.path.split('/').slice(1)
 
@@ -48,7 +59,7 @@ const getSideNav = (pages) =>
                 : getH2Children(page.body).map((child) => ({
                     to: page.path,
                     hash: child.props.id,
-                    title: child.children[1].value,
+                    title: child.title || child.children[1].value,
                   })),
           })
         } else if (!obj.children.find((child) => child.path === p)) {
@@ -67,6 +78,7 @@ const getSideNav = (pages) =>
     },
     { children: [] }
   ).children
+}
 
 export default () =>
   new Vuex.Store({
@@ -87,7 +99,9 @@ export default () =>
           )
         }
 
-        commit('setSideNav', getSideNav(pages))
+        const sideNav = await getSideNav(pages)
+
+        commit('setSideNav', sideNav)
         commit('setQuerySchema', querySchema)
       },
     },

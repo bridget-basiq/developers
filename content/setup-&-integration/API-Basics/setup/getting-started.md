@@ -1,6 +1,6 @@
 ---
 title: Getting started
-order: 2
+order: 5
 ---
 # Getting started
 The Chargetrip API can be used to render electric vehicles, plot stations and calculate routes. The API itself has different access levels depending on the plan you are on. Everyone can start with a limited dataset on the free plan, but you can [contact sales](http://google.com) at any time to upgrade your plan.
