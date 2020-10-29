@@ -24,7 +24,7 @@
     }
   },
   "dependencies": {
-    "@chargetrip/internal-vue-components": "0.0.62",
+    "@chargetrip/internal-vue-components": "0.0.64",
     "@nuxt/content": "^1.8.1",
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/axios": "^5.12.2",
@@ -55,6 +55,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.3.0",
+    "dotenv": "^8.2.0",
     "eslint": "^7.8.1",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-nuxt": "^1.0.0",

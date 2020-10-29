@@ -45,15 +45,15 @@ export default class CodeBlock extends Vue {
   findParent(arr) {
     let item = null
 
-    arr.forEach((x) => {
-      const index = x?.children?.findIndex(
+    arr.forEach((child) => {
+      const index = child?.children?.findIndex(
         (child) => !child?.hash?.length && child.to === this.current.to
       )
 
-      item = index >= 0 ? x : null
+      item = index >= 0 ? child : null
 
-      if (x.children) {
-        item = this.findParent(x.children) || item
+      if (child.children) {
+        item = this.findParent(child.children) || item
       }
     })
 
@@ -63,13 +63,13 @@ export default class CodeBlock extends Vue {
   findRecursive(arr) {
     let item = null
 
-    arr.forEach((x) => {
-      if (!x?.hash?.length && x.to === this.$route.path) {
-        item = x
+    arr.forEach((child) => {
+      if (!child?.hash?.length && child.to === this.$route.path) {
+        item = child
       }
 
-      if (x.children) {
-        item = this.findRecursive(x.children) || item
+      if (child.children) {
+        item = this.findRecursive(child.children) || item
       }
     })
 

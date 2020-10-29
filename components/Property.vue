@@ -37,28 +37,41 @@
             class="icon-line-v absolute w-px h-full top-1/2 left-1/2 bg-alt -translate-y-1/2 -translate-x-1/2"
           />
         </div>
-        <p class="text-font-primary flex">
-          <span class="font-mono">
+        <p class="text-font-primary flex items-center">
+          <Tag
+            v-if="type.kind === ofTypeKind.INPUT_OBJECT"
+            class="mr-2"
+            color="alt3"
+            type="secondary"
+            >Query</Tag
+          >
+          <span v-else class="font-mono">
             {{ name }}
           </span>
           <template v-if="type">
-            <span class="mx-1">•</span>
-            <span
-              class="type font-mono"
-              v-html="$options.filters.colorType(normalizedType)"
-            />
-            <template
-              v-if="
-                type.kind === 'LIST' ||
-                type.kind === 'OBJECT' ||
-                type.kind === 'ENUM'
-              "
-            >
+            <template v-if="type.kind !== ofTypeKind.INPUT_OBJECT">
               <span class="mx-1">•</span>
+              <span
+                class="type font-mono"
+                :class="{ lowercase: normalizedType !== 'ID' }"
+                v-html="$options.filters.colorType(normalizedType)"
+              />
+              <Tag
+                v-if="showRequiredTag"
+                class="ml-2"
+                color="accent"
+                type="secondary"
+                >Required</Tag
+              >
+            </template>
+            <template v-if="showType">
+              <span v-if="type.kind !== ofTypeKind.INPUT_OBJECT" class="mx-1"
+                >•</span
+              >
               <span class="font-mono text-font-alt3">
-                <span v-if="type.kind === 'LIST'">[</span
-                >{{ type.ofType.name || type.name
-                }}<span v-if="type.kind === 'LIST'">]</span>
+                <span v-if="type.kind === ofTypeKind.LIST">[</span
+                >{{ normalizedName
+                }}<span v-if="type.kind === ofTypeKind.LIST">]</span>
               </span>
             </template>
           </template>
@@ -91,10 +104,13 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
+import { Tag } from '@chargetrip/internal-vue-components'
+import { OfTypeKind } from '~/utilities/constants'
 
-@Component({ name: 'property' })
+@Component({ name: 'property', components: { Tag } })
 export default class Property extends Vue {
   @Prop() name
+  @Prop() showRequired
   @Prop() description
   @Prop({ default: 0 }) depth
   @Prop() type
@@ -102,17 +118,34 @@ export default class Property extends Vue {
   @Prop() forceActive
   showChildren = false
   active = false
+  ofTypeKind = OfTypeKind
 
   @Watch('initialActive', { immediate: true }) onActiveChange() {
     this.active = this.initialActive || this.forceActive
+  }
+
+  get showRequiredTag() {
+    return this.normalizedType === 'NON_NULL' && this.showRequired
   }
 
   get normalizedType() {
     return this?.type?.kind === 'SCALAR' ? this?.type?.name : this?.type.kind
   }
 
+  get normalizedName() {
+    return (this.type?.ofType?.name || this.type.name).replace('Query', '')
+  }
+
   get children() {
-    return this?.type?.ofType?.fields || this?.type?.ofType?.enumValues
+    return (
+      this?.type?.ofType?.fields ||
+      this?.type?.ofType?.enumValues ||
+      this?.type?.ofType?.inputFields
+    )
+  }
+
+  get showType() {
+    return Object.keys(OfTypeKind).includes(this.type.ofType?.kind)
   }
 }
 </script>
@@ -126,10 +159,12 @@ export default class Property extends Vue {
     .toggle-children {
       @apply bg-base;
     }
+
     .type {
       @apply text-font-primary;
     }
   }
+
   &:last-child {
     > .content {
       > .line-v {
@@ -137,8 +172,8 @@ export default class Property extends Vue {
       }
     }
   }
+
   &:not(.is-child) {
-    //&:last-child {
     &.show-children {
       > .content {
         > .line-v {
@@ -146,11 +181,10 @@ export default class Property extends Vue {
         }
       }
     }
-    //}
   }
+
   &.show-children {
     .property.show-children {
-      //&:not(:first-child) {
       &:not(:last-child) {
         ul {
           @apply relative;
@@ -161,7 +195,6 @@ export default class Property extends Vue {
           }
         }
       }
-      //}
     }
   }
 }

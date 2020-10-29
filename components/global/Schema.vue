@@ -6,6 +6,7 @@
         <Property
           v-for="(item, c) in section.items"
           :key="`${i}-${c}`"
+          :show-required="!i"
           :initial-active="i < 2"
           v-bind="item"
         />
@@ -14,10 +15,11 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
 import { Getter } from 'vuex-class'
 import Property from '~/components/Property.vue'
 import { slugify } from '~/utilities/project.functions'
+import { OfTypeKind } from '~/utilities/constants'
 @Component({
   components: { Property },
 })
@@ -27,6 +29,7 @@ export default class Schema extends Vue {
   @Prop() name
   schema: any = null
   @Prop({ default: [] }) frequent!: string[]
+  requestParameters: any[] = []
 
   get sections() {
     return [
@@ -57,10 +60,12 @@ export default class Schema extends Vue {
     )
   }
 
-  get requestParameters() {
-    return this.querySchema.fields.find(
+  @Watch('name', { immediate: true }) async onNameChange() {
+    const args = this.querySchema.fields.find(
       (field) => field.name === this.camelCaseName
     )?.args
+
+    this.requestParameters = await this.appendOfType(args)
   }
 
   get camelCaseName() {
@@ -77,8 +82,9 @@ export default class Schema extends Vue {
         if (
           !(
             field.type?.ofType?.name ||
-            field.type.kind === 'ENUM' ||
-            field.type.kind === 'OBJECT'
+            field.type.kind === OfTypeKind.ENUM ||
+            field.type.kind === OfTypeKind.OBJECT ||
+            field.type.kind === OfTypeKind.INPUT_OBJECT
           )
         ) {
           return field

@@ -16,7 +16,7 @@ export function Listen(name: string) {
       if (args[0] === 'decorator') {
         const fn = oldValue.bind(this)
 
-        window.addEventListener(name, fn)
+        window.addEventListener(name, fn, true)
         return () => window.removeEventListener(name, fn)
       } else {
         return oldValue.apply(this, args)

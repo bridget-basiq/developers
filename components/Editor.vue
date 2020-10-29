@@ -25,7 +25,14 @@
 </template>
 
 <script>
-import { Component, Prop, Watch, Ref, Mutation } from 'nuxt-property-decorator'
+import {
+  Component,
+  Prop,
+  Watch,
+  Ref,
+  Mutation,
+  Emit,
+} from 'nuxt-property-decorator'
 import { Mixins } from 'vue-property-decorator'
 import { Getter } from 'vuex-class'
 import Base from '~/mixins/base'
@@ -56,6 +63,9 @@ export default class Editor extends Mixins(Base) {
     this.cancel = this.cancel.bind(this)
     this.$root.$on('submitEditor', this.submit)
     this.$root.$on('cancelEditor', this.cancel)
+
+    this.toggleEdit = this.toggleEdit.bind(this)
+    this.$root.$on('toggleEdit', this.toggleEdit)
   }
 
   @Watch('value', { immediate: true }) onValueChange() {
@@ -100,6 +110,10 @@ export default class Editor extends Mixins(Base) {
     this.file = this.insert('### ')
   }
 
+  @Emit('endEdit') toggleEdit() {
+    return true
+  }
+
   @Listen('mouseup') onMouseUp(e) {
     const selection = window.getSelection()
 
@@ -129,6 +143,7 @@ export default class Editor extends Mixins(Base) {
   beforeDestroy() {
     this.$root.$off('submitEditor', this.submit)
     this.$root.$off('cancelEditor', this.cancel)
+    this.$root.$off('toggleEdit', this.toggleEdit)
   }
 }
 </script>

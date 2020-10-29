@@ -25,6 +25,7 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import highlightjs from 'highlight.js'
 import { Snackbar } from '@chargetrip/internal-vue-components'
+import { copy } from '~/utilities/project.functions'
 
 @Component({ components: { Snackbar } })
 export default class CodeBlock extends Vue {
@@ -39,13 +40,7 @@ export default class CodeBlock extends Vue {
   }
 
   copy() {
-    const el = document.createElement('textarea')
-    el.value = this.$slots?.default?.[0]?.text || ''
-    document.body.appendChild(el)
-    el.select()
-    document.execCommand('copy')
-    document.body.removeChild(el)
-
+    copy(this.$slots?.default?.[0]?.text || '')
     this.showSnackbar = true
 
     setTimeout(() => {

@@ -1,5 +1,3 @@
-import * as fs from 'fs'
-import { join } from 'path'
 import Vuex from 'vuex'
 import Main from './modules/root'
 import { slugify } from '~/utilities/project.functions'

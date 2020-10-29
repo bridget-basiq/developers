@@ -107,6 +107,7 @@ import RelatedActions from '~/components/RelatedActions.vue'
 import PrevNextNavigation from '~/components/PrevNextNavigation.vue'
 import Base from '~/mixins/base'
 import MarkdownFormatting from '~/components/MarkdownFormatting.vue'
+import { Listen } from '~/utilities/decorators'
 
 @Component({
   components: {
@@ -168,6 +169,7 @@ export default class Layout extends Mixins(Base) {
   }
 
   triggerEdit() {
+    this.$root.$emit('toggleEdit')
     this.setIsEditing(true)
     document
       .querySelector('.nuxt-content')
@@ -218,6 +220,10 @@ export default class Layout extends Mixins(Base) {
     this.hash = this.$route.hash.slice(1)
   }
 
+  @Listen('dblclick') onDblClick(e) {
+    e.stopPropagation()
+  }
+
   @Watch('$route.path') onRouteChange() {
     if (!this.container) return
 
@@ -259,6 +265,8 @@ export default class Layout extends Mixins(Base) {
       this.$router.replace(this.$route.fullPath.replace(this.$route.hash, ''))
     }
   }
+
+  beforeDestroy() {}
 }
 </script>
 <style lang="scss">
