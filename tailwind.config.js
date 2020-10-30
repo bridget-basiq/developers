@@ -68,6 +68,9 @@ module.exports = {
         '1/3': `calc(100% / 3)`,
         full: '100%',
       },
+      opacity: {
+        20: 0.2,
+      },
       fontSize: {
         10: '10px',
         12: '12px',
@@ -77,6 +80,10 @@ module.exports = {
         20: '20px',
         22: '22px',
         32: '32px',
+        40: '40px',
+      },
+      translate: {
+        '1/4': '25%',
       },
       fontFamily: {
         mono: [

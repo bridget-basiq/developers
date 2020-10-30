@@ -123,7 +123,7 @@ export default class Editor extends Mixins(Base) {
     this.showHelper = true
     this.helperPosition = {
       x: Math.max(72, e.clientX - rect.left),
-      y: Math.max(0, e.clientY - rect.top),
+      y: Math.max(0, e.clientY - rect.top - 12),
     }
 
     this.selection = {

@@ -6,7 +6,7 @@ require('dotenv').config()
 const axios = require('axios')
 
 
-axios.post(process.env.API_URL, {
+axios.post(process.env.CHARGETRIP_API_URL, {
   variables: {},
   query: getIntrospectionQuery({ descriptions: true })
 }).then(({ data: { data: { __schema: { types } } } }) => {

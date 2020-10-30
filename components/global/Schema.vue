@@ -61,7 +61,9 @@ export default class Schema extends Vue {
   }
 
   @Watch('name', { immediate: true }) async onNameChange() {
-    const args = this.querySchema.fields.find(
+    if (!this.querySchema) return
+
+    const args = this.querySchema?.fields?.find(
       (field) => field.name === this.camelCaseName
     )?.args
 

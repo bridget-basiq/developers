@@ -13,10 +13,9 @@
       class="font-mono px-6 py-4 font-base"
     ><code v-for="(line, key) in codeLines" :key="key" v-html="line"/></pre>
     <Snackbar
-      class="fixed transition duration-300 bottom-0 mb-8 transform translate-y-20"
       :class="{ active: showSnackbar }"
       type="success"
-      icon="checkmark"
+      icon="circle-checkmark"
       title="Copied!"
     ></Snackbar>
   </div>
@@ -51,11 +50,6 @@ export default class CodeBlock extends Vue {
 </script>
 <style lang="scss">
 .code-block {
-  .c-snackbar {
-    &.active {
-      @apply translate-y-0;
-    }
-  }
   code {
     @apply block;
 
