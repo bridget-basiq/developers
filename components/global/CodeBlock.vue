@@ -7,26 +7,44 @@
     >
       <span class="text-font-alt3 mr-1">{{ prefix }} / </span>
       {{ title }}
-      <span class="icon icon-clipboard ml-auto"></span>
+      <span class="icon icon-clipboard ml-auto cursor-pointer" @click="copy" />
     </header>
     <pre
       class="font-mono px-6 py-4 font-base"
     ><code v-for="(line, key) in codeLines" :key="key" v-html="line"/></pre>
+    <Snackbar
+      :class="{ active: showSnackbar }"
+      type="success"
+      icon="circle-checkmark"
+      title="Copied!"
+    ></Snackbar>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import highlightjs from 'highlight.js'
+import { Snackbar } from '@chargetrip/internal-vue-components'
+import { copy } from '~/utilities/project.functions'
 
-@Component
+@Component({ components: { Snackbar } })
 export default class CodeBlock extends Vue {
   @Prop() title
   @Prop() prefix
+  showSnackbar = false
 
   get codeLines() {
     return highlightjs
       .highlightAuto(this.$slots?.default?.[0]?.text?.trim() || '')
       ?.value.split('\n')
+  }
+
+  copy() {
+    copy(this.$slots?.default?.[0]?.text || '')
+    this.showSnackbar = true
+
+    setTimeout(() => {
+      this.showSnackbar = false
+    }, 3000)
   }
 }
 </script>

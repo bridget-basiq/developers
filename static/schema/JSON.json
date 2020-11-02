@@ -1,0 +1,10 @@
+{
+  "kind": "SCALAR",
+  "name": "JSON",
+  "description": "Any JSON object or array",
+  "fields": null,
+  "inputFields": null,
+  "interfaces": null,
+  "enumValues": null,
+  "possibleTypes": null
+}

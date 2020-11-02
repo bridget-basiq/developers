@@ -1,0 +1,35 @@
+{
+  "kind": "ENUM",
+  "name": "OCPITariffDimensionType",
+  "description": null,
+  "fields": null,
+  "inputFields": null,
+  "interfaces": null,
+  "enumValues": [
+    {
+      "name": "ENERGY",
+      "description": "Defined in kWh, step_size multiplier: 1 Wh",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "FLAT",
+      "description": "Flat fee without unit for step_size",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "PARKING_TIME",
+      "description": "Time not charging: defined in hours, step_size multiplier: 1 second",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "TIME",
+      "description": "Time charging: defined in hours, step_size multiplier: 1 second Can also be used in combination with a RESERVATION restriction to describe the price of the reservation time.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "possibleTypes": null
+}

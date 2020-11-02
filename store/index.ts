@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import Main from './modules/root'
+import { slugify } from '~/utilities/project.functions'
 
 const getCookie = (str, key) =>
   Object.fromEntries(str.split(/; */).map((cookie) => cookie.split('=', 2)))[
@@ -12,19 +13,81 @@ const getH2Children = (page) => {
   page.children.forEach((child) => {
     if (child.tag === 'h2') {
       arr.push(child)
+    } else if (child.tag === 'schema') {
+      arr.push(
+        ...[
+          'Request parameters',
+          'Frequently used attributes',
+          'Other attributes',
+        ].map((title) => ({ title, props: { id: slugify(title) } }))
+      )
     } else if (child.children) {
       arr.push(...getH2Children(child))
     }
   })
   return arr
 }
+
+const getObj = (list, arr) => {
+  arr.forEach((p) => {
+    list = list.children.find((i) => i.path === p)
+  })
+
+  return list
+}
+
+const getSideNav = (pages) => {
+  return pages.reduce(
+    (tree, page) => {
+      const path = page.path.split('/').slice(1)
+
+      let obj = tree
+
+      path.forEach((p, i) => {
+        obj = getObj(tree, path.slice(0, i))
+
+        if (path.length - 1 === i) {
+          obj.children.push({
+            to: page.path,
+            icon: page.icon,
+            title: page.title,
+            children:
+              page.slug === 'home'
+                ? []
+                : getH2Children(page.body).map((child) => ({
+                    to: page.path,
+                    hash: child.props.id,
+                    title: child.title || child.children[1].value,
+                  })),
+          })
+        } else if (!obj.children.find((child) => child.path === p)) {
+          obj.children.push({
+            path: p,
+            children: [],
+            title: p
+              .split('-')
+              .map((x) => x.slice(0, 1).toUpperCase() + x.slice(1))
+              .join(' '),
+          })
+        }
+      })
+
+      return tree
+    },
+    { children: [] }
+  ).children
+}
+
 export default () =>
   new Vuex.Store({
     state: {},
     mutations: {},
     actions: {
-      async nuxtServerInit({ commit }, { $content, req }) {
-        const pages = await $content('').sortBy('order').fetch()
+      async nuxtServerInit({ commit }, { $content, $axios, req }) {
+        const [pages, querySchema] = await Promise.all([
+          $content('', { deep: true }).sortBy('order').fetch(),
+          $axios.get('/schema/Query.json'),
+        ]).catch(() => [])
 
         if (req?.headers?.cookie) {
           const darkMode = getCookie(req.headers.cookie, 'dark_mode')
@@ -34,18 +97,14 @@ export default () =>
           )
         }
 
-        commit(
-          'setSideNav',
-          pages.map((page) => ({
-            title: page.title,
-            to: `/${page.slug}`,
-            children: getH2Children(page.body).map((child) => ({
-              to: `/${page.slug}`,
-              hash: child.props.id,
-              title: child.children[1].value,
-            })),
-          }))
-        )
+        if (pages) {
+          const sideNav = await getSideNav(pages)
+          commit('setSideNav', sideNav)
+        }
+
+        if (querySchema) {
+          commit('setQuerySchema', querySchema)
+        }
       },
     },
     modules: {

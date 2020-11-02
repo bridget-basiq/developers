@@ -1,0 +1,29 @@
+{
+  "kind": "ENUM",
+  "name": "StationSpeedType",
+  "description": "The station speed type",
+  "fields": null,
+  "inputFields": null,
+  "interfaces": null,
+  "enumValues": [
+    {
+      "name": "slow",
+      "description": "Slow charging (below 43 kWh)",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "fast",
+      "description": "Fast charging stations (above 43 kWh and below 150 kWh)",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "turbo",
+      "description": "Ultra fast charging stations (above 150 kWh)",
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "possibleTypes": null
+}

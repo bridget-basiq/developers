@@ -1,0 +1,67 @@
+{
+  "kind": "INPUT_OBJECT",
+  "name": "StationAroundQuery",
+  "description": "Filter which can be applied to retrieve the station around list action",
+  "fields": null,
+  "inputFields": [
+    {
+      "name": "location",
+      "description": "The GeoJSON Point of the center of the around me circle",
+      "type": {
+        "kind": "NON_NULL",
+        "name": null,
+        "ofType": {
+          "kind": "INPUT_OBJECT",
+          "name": "PointInput",
+          "ofType": null
+        }
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "distance",
+      "description": "Distance, in meters, to search around",
+      "type": {
+        "kind": "NON_NULL",
+        "name": null,
+        "ofType": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "power",
+      "description": "Power in kWh",
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "SCALAR",
+          "name": "Float",
+          "ofType": null
+        }
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "amenities",
+      "description": "Amentities available near a station. Values: restaurant, bathroom, supermarket, playground, coffee, shopping, museum, hotel, park",
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      "defaultValue": null
+    }
+  ],
+  "interfaces": null,
+  "enumValues": null,
+  "possibleTypes": null
+}

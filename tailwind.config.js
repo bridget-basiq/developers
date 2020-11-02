@@ -47,6 +47,8 @@ module.exports = {
         'note-alt2': 'var(--note-alt2)',
       },
       spacing: {
+        7: '1.75rem',
+        9: '2.25rem',
         14: '3.5rem',
       },
       borderRadius: {
@@ -66,7 +68,11 @@ module.exports = {
         '1/3': `calc(100% / 3)`,
         full: '100%',
       },
+      opacity: {
+        20: 0.2,
+      },
       fontSize: {
+        10: '10px',
         12: '12px',
         14: '14px',
         16: '16px',
@@ -74,11 +80,15 @@ module.exports = {
         20: '20px',
         22: '22px',
         32: '32px',
+        40: '40px',
+      },
+      translate: {
+        '1/4': '25%',
       },
       fontFamily: {
         mono: [
           'Consolas',
-          'Courier New',
+          'Courier New Bold',
           'Menlo',
           'Monaco',
           'Liberation Mono',
@@ -94,5 +104,8 @@ module.exports = {
         'down-s': 'var(--shadow-down-s)',
       },
     },
+  },
+  variants: {
+    borderWidth: ['responsive', 'first'],
   },
 }

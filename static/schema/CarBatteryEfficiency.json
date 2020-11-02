@@ -1,0 +1,47 @@
+{
+  "kind": "OBJECT",
+  "name": "CarBatteryEfficiency",
+  "description": "Car battery efficiency",
+  "fields": [
+    {
+      "name": "average",
+      "description": "Average efficiency measured in kWh/100km",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Float",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "worst",
+      "description": "Worst conditions are based on -10°C and use of heating, measured in kWh/100km",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "CarEstimationData",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "best",
+      "description": "Best conditions are based on 23°C and no use of A/C, measured in kWh/100km",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "CarEstimationData",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "inputFields": null,
+  "interfaces": [],
+  "enumValues": null,
+  "possibleTypes": null
+}

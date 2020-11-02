@@ -1,0 +1,47 @@
+{
+  "kind": "OBJECT",
+  "name": "RequestEvConsumption",
+  "description": null,
+  "fields": [
+    {
+      "name": "aux",
+      "description": "Consumption, in kWh, of the auxiliaries",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "CarConsumption",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "bms",
+      "description": "The consumption, in kWh, of the battery management system",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "CarConsumption",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "idle",
+      "description": "The consumption, in kWh, of the car in idle mode",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "CarConsumption",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "inputFields": null,
+  "interfaces": [],
+  "enumValues": null,
+  "possibleTypes": null
+}

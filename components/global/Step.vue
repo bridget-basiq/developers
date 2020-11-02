@@ -2,13 +2,14 @@
   <div class="step mb-24 relative">
     <div class="image-wrapper relative">
       <div class="pl-24 overflow-hidden">
-        <img :src="img" :alt="title" />
+        <c-image :alt="title" :src="img" />
       </div>
     </div>
+
     <div class="number-wrapper relative flex">
       <div class="w-24 flex-shrink-0 font-semibold text-font-alt3 relative">
         <div class="flex items-center">
-          <div class="border rounded-full border-alt4">
+          <div class="border bg-body rounded-full border-alt4">
             <div class="w-2 h-2 rounded-full bg-alt4 m-px"></div>
           </div>
           <div class="flex mx-auto">

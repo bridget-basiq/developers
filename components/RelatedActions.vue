@@ -1,5 +1,5 @@
 <template>
-  <div class="related-actions">
+  <div class="related-actions text-14">
     <h2 class="mb-8">Related actions</h2>
     <nav>
       <MenuItem v-for="(item, key) in items" :key="key" v-bind="item" />
@@ -28,3 +28,10 @@ export default class RelatedActions extends Vue {
   ]
 }
 </script>
+<style lang="scss">
+.related-actions {
+  .c-menu-item.has-icon {
+    @apply h-10;
+  }
+}
+</style>

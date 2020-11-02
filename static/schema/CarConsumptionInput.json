@@ -1,0 +1,31 @@
+{
+  "kind": "INPUT_OBJECT",
+  "name": "CarConsumptionInput",
+  "description": "The consumption of the car",
+  "fields": null,
+  "inputFields": [
+    {
+      "name": "worst",
+      "description": "Worst conditions are based on -10°C and use of heating",
+      "type": {
+        "kind": "SCALAR",
+        "name": "Float",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "best",
+      "description": "Best conditions are based on 23°C and no use of A/C",
+      "type": {
+        "kind": "SCALAR",
+        "name": "Float",
+        "ofType": null
+      },
+      "defaultValue": null
+    }
+  ],
+  "interfaces": null,
+  "enumValues": null,
+  "possibleTypes": null
+}

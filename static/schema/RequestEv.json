@@ -1,0 +1,115 @@
+{
+  "kind": "OBJECT",
+  "name": "RequestEv",
+  "description": "EV specific data for a route request",
+  "fields": [
+    {
+      "name": "id",
+      "description": "Internal ID of a Car",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "ID",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "battery",
+      "description": "EV battery specific data",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "RequestEvBattery",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "plugs",
+      "description": "Supported plugs for an EV",
+      "args": [],
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "OBJECT",
+          "name": "RequestEvPlug",
+          "ofType": null
+        }
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "adapters",
+      "description": "Supported adapters of plugs for an EV",
+      "args": [],
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "OBJECT",
+          "name": "RequestEvPlug",
+          "ofType": null
+        }
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "minPower",
+      "description": "Minimum desired power of chargers",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Int",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "climate",
+      "description": "Climate is on. The default is true",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Boolean",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "numberOfPassengers",
+      "description": "The number of passengers on board",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Int",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "consumption",
+      "description": "Consumption specific to an EV or inputed by a request",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "RequestEvConsumption",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "inputFields": null,
+  "interfaces": [],
+  "enumValues": null,
+  "possibleTypes": null
+}

@@ -1,0 +1,83 @@
+{
+  "kind": "OBJECT",
+  "name": "Charger",
+  "description": "A groupped representation of EVSEs",
+  "fields": [
+    {
+      "name": "standard",
+      "description": "Type of charger",
+      "args": [],
+      "type": {
+        "kind": "ENUM",
+        "name": "OCPIConnectorType",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "power",
+      "description": "Power of a charger",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Float",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "price",
+      "description": "Price of a charger",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "speed",
+      "description": "Charging speed",
+      "args": [],
+      "type": {
+        "kind": "ENUM",
+        "name": "StationSpeedType",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "status",
+      "description": "Statuses of all the EVSEs grouped in a charger",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "ChargerStatuses",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "total",
+      "description": "Total number of EVSEs grouped in a charger",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Int",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "inputFields": null,
+  "interfaces": [],
+  "enumValues": null,
+  "possibleTypes": null
+}

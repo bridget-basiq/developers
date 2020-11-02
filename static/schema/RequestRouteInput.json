@@ -1,0 +1,131 @@
+{
+  "kind": "INPUT_OBJECT",
+  "name": "RequestRouteInput",
+  "description": null,
+  "fields": null,
+  "inputFields": [
+    {
+      "name": "amenities",
+      "description": "A list of desired amenities near the stations, with a 1 km radius",
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "operatorIds",
+      "description": "A list of requested operators",
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "operatorRequired",
+      "description": "Flag which indicates if the operators are required",
+      "type": {
+        "kind": "SCALAR",
+        "name": "Boolean",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "operatorPrefer",
+      "description": "Flag which indicates if the preferred operators should be loaded",
+      "type": {
+        "kind": "SCALAR",
+        "name": "Boolean",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "season",
+      "description": "Optional flag to specify the season",
+      "type": {
+        "kind": "ENUM",
+        "name": "RouteSeason",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "safeRiskMargin",
+      "description": "Percentage for a minimum limit of a battery capacity before a recharge. The value should be between 0 and 60, with a default of 10%",
+      "type": {
+        "kind": "SCALAR",
+        "name": "Int",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "origin",
+      "description": "Origin of a route",
+      "type": {
+        "kind": "NON_NULL",
+        "name": null,
+        "ofType": {
+          "kind": "INPUT_OBJECT",
+          "name": "FeaturePointInput",
+          "ofType": null
+        }
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "destination",
+      "description": "Destination of a route",
+      "type": {
+        "kind": "NON_NULL",
+        "name": null,
+        "ofType": {
+          "kind": "INPUT_OBJECT",
+          "name": "FeaturePointInput",
+          "ofType": null
+        }
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "via",
+      "description": "An optional list of locations where we should stop",
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "INPUT_OBJECT",
+          "name": "FeaturePointInput",
+          "ofType": null
+        }
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "stationsAlongRouteRadius",
+      "description": "Alternative stations along a route within a specified radius in meters (min 500, max 5000)",
+      "type": {
+        "kind": "SCALAR",
+        "name": "Int",
+        "ofType": null
+      },
+      "defaultValue": null
+    }
+  ],
+  "interfaces": null,
+  "enumValues": null,
+  "possibleTypes": null
+}

@@ -1,0 +1,53 @@
+{
+  "kind": "ENUM",
+  "name": "OCPIImageCategory",
+  "description": "The category of an image to obtain the correct usage in a user presentation. The category has to be set accordingly to the image content in order to guarantee the right usage.",
+  "fields": null,
+  "inputFields": null,
+  "interfaces": null,
+  "enumValues": [
+    {
+      "name": "CHARGER",
+      "description": "Photo of the physical device that contains one or more EVSEs.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "ENTRANCE",
+      "description": "Location entrance photo. Should show the car entrance to the location from street side.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "LOCATION",
+      "description": "Location overview photo.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "NETWORK",
+      "description": "Logo of an associated roaming network to be displayed with the EVSE for example in lists, maps and detailed information views.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "OPERATOR",
+      "description": "Logo of the charge point operator, for example a municipality, to be displayed in the EVSEs detailed information view or in lists and maps, if no network logo is present.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "OTHER",
+      "description": "Other",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "OWNER",
+      "description": "Logo of the charge point owner, for example a local store, to be displayed in the EVSEs detailed information view.",
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "possibleTypes": null
+}

@@ -1,0 +1,35 @@
+{
+  "kind": "OBJECT",
+  "name": "StandardStats",
+  "description": "Standards(plug type) stats model",
+  "fields": [
+    {
+      "name": "type",
+      "description": "The plug type",
+      "args": [],
+      "type": {
+        "kind": "ENUM",
+        "name": "OCPIConnectorType",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "total",
+      "description": "The total number of stations with the specified plug",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Int",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "inputFields": null,
+  "interfaces": [],
+  "enumValues": null,
+  "possibleTypes": null
+}

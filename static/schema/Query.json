@@ -1,0 +1,553 @@
+{
+  "kind": "OBJECT",
+  "name": "Query",
+  "description": null,
+  "fields": [
+    {
+      "name": "amenityList",
+      "description": "Get a full list of amenities around a station",
+      "args": [
+        {
+          "name": "stationId",
+          "description": "The station ID",
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            }
+          },
+          "defaultValue": null
+        }
+      ],
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "OBJECT",
+          "name": "Amenity",
+          "ofType": null
+        }
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "car",
+      "description": "Get information about a car by its ID",
+      "args": [
+        {
+          "name": "id",
+          "description": "The car ID",
+          "type": {
+            "kind": "SCALAR",
+            "name": "ID",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "externalId",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "Int",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "type": {
+        "kind": "OBJECT",
+        "name": "Car",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "carPremium",
+      "description": "Get premium information about a car by its ID",
+      "args": [
+        {
+          "name": "id",
+          "description": "The car ID",
+          "type": {
+            "kind": "SCALAR",
+            "name": "ID",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "type": {
+        "kind": "OBJECT",
+        "name": "CarPremium",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "carList",
+      "description": "Get a full list of cars",
+      "args": [
+        {
+          "name": "query",
+          "description": "Query object",
+          "type": {
+            "kind": "INPUT_OBJECT",
+            "name": "CarListQuery",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "size",
+          "description": "Number of elements (count) to return, default: 10",
+          "type": {
+            "kind": "SCALAR",
+            "name": "Int",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "page",
+          "description": "Page number to return, default: 0",
+          "type": {
+            "kind": "SCALAR",
+            "name": "Int",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "OBJECT",
+          "name": "CarList",
+          "ofType": null
+        }
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "operatorList",
+      "description": "Get a full list of operators",
+      "args": [
+        {
+          "name": "query",
+          "description": "Query parameters",
+          "type": {
+            "kind": "INPUT_OBJECT",
+            "name": "OperatorListQuery",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "size",
+          "description": "Number of elements (count) to return, default: 10",
+          "type": {
+            "kind": "SCALAR",
+            "name": "Int",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "page",
+          "description": "Page number to return, default: 0",
+          "type": {
+            "kind": "SCALAR",
+            "name": "Int",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "OBJECT",
+          "name": "Operator",
+          "ofType": null
+        }
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "operator",
+      "description": "Get information about an operator by its ID",
+      "args": [
+        {
+          "name": "id",
+          "description": "The operator ID",
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            }
+          },
+          "defaultValue": null
+        }
+      ],
+      "type": {
+        "kind": "OBJECT",
+        "name": "Operator",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "reviewList",
+      "description": "Get all reviews of a station by the station ID",
+      "args": [
+        {
+          "name": "stationId",
+          "description": "ID of the station",
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            }
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "size",
+          "description": "Number of elements (count) to return, default: 10",
+          "type": {
+            "kind": "SCALAR",
+            "name": "Int",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "page",
+          "description": "Page number to return, default: 0",
+          "type": {
+            "kind": "SCALAR",
+            "name": "Int",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "NON_NULL",
+          "name": null,
+          "ofType": {
+            "kind": "OBJECT",
+            "name": "Review",
+            "ofType": null
+          }
+        }
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "route",
+      "description": "Get a route by ID",
+      "args": [
+        {
+          "name": "id",
+          "description": null,
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            }
+          },
+          "defaultValue": null
+        }
+      ],
+      "type": {
+        "kind": "OBJECT",
+        "name": "Route",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "routePath",
+      "description": "Retrieve information about a route path segment",
+      "args": [
+        {
+          "name": "id",
+          "description": "ID of a route which you require for a route path segment",
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            }
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "location",
+          "description": "The GeoJSON Point of a route path segment",
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "INPUT_OBJECT",
+              "name": "PointInput",
+              "ofType": null
+            }
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "alternativeId",
+          "description": "Optional alternative ID. By default we will retrieve the fastest route",
+          "type": {
+            "kind": "SCALAR",
+            "name": "ID",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "type": {
+        "kind": "OBJECT",
+        "name": "RoutePath",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "stationStats",
+      "description": "Get the station statistics",
+      "args": [],
+      "type": {
+        "kind": "OBJECT",
+        "name": "StationStats",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "station",
+      "description": "Get information about a station by its ID",
+      "args": [
+        {
+          "name": "id",
+          "description": "The station ID",
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            }
+          },
+          "defaultValue": null
+        }
+      ],
+      "type": {
+        "kind": "OBJECT",
+        "name": "Station",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "stationList",
+      "description": "Get a full list of stations",
+      "args": [
+        {
+          "name": "query",
+          "description": "Query parameters",
+          "type": {
+            "kind": "INPUT_OBJECT",
+            "name": "StationListQuery",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "size",
+          "description": "Number of elements (count) to return, default: 10",
+          "type": {
+            "kind": "SCALAR",
+            "name": "Int",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "page",
+          "description": "Page number to return, default: 0",
+          "type": {
+            "kind": "SCALAR",
+            "name": "Int",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "OBJECT",
+          "name": "Station",
+          "ofType": null
+        }
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "stationAround",
+      "description": "Search for stations around a GeoJSON point with a specific distance in meters",
+      "args": [
+        {
+          "name": "query",
+          "description": "Query parameters",
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "INPUT_OBJECT",
+              "name": "StationAroundQuery",
+              "ofType": null
+            }
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "size",
+          "description": "Number of elements (count) to return, default: 10",
+          "type": {
+            "kind": "SCALAR",
+            "name": "Int",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "page",
+          "description": "Page number to return, default: 0",
+          "type": {
+            "kind": "SCALAR",
+            "name": "Int",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "OBJECT",
+          "name": "Station",
+          "ofType": null
+        }
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "tariff",
+      "description": "Get information about a tariff by the tariff ID",
+      "args": [
+        {
+          "name": "id",
+          "description": "The tariff ID",
+          "type": {
+            "kind": "NON_NULL",
+            "name": null,
+            "ofType": {
+              "kind": "SCALAR",
+              "name": "ID",
+              "ofType": null
+            }
+          },
+          "defaultValue": null
+        }
+      ],
+      "type": {
+        "kind": "OBJECT",
+        "name": "OCPITariff",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "tariffList",
+      "description": "Get the full list of tariffs",
+      "args": [
+        {
+          "name": "size",
+          "description": "The number of element (count) to return, default: 10",
+          "type": {
+            "kind": "SCALAR",
+            "name": "Int",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "page",
+          "description": "Page number to return, default: 0",
+          "type": {
+            "kind": "SCALAR",
+            "name": "Int",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "OBJECT",
+          "name": "OCPITariff",
+          "ofType": null
+        }
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "inputFields": null,
+  "interfaces": [],
+  "enumValues": null,
+  "possibleTypes": null
+}

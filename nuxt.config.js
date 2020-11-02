@@ -15,7 +15,13 @@ export default {
     extendRoutes(routes) {
       routes.unshift({
         path: '/',
-        redirect: '/getting-started',
+        redirect: '/home',
+      })
+
+      routes.push({
+        path: '*',
+        name: `catch-all`,
+        component: 'pages/_slug.vue',
       })
     },
   },
@@ -26,6 +32,7 @@ export default {
   ],
 
   content: {
+    editor: '~/components/Editor.vue',
     markdown: {
       prism: {
         theme: false,
@@ -36,12 +43,12 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '~/plugins/globals.ts',
+    '~/plugins/axios.ts',
     '~/utilities/directives.ts',
     '~/utilities/filters.ts',
   ],
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
-
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     // https://go.nuxtjs.dev/typescript
@@ -50,6 +57,7 @@ export default {
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/axios',
     '@nuxt/content',
   ],
 

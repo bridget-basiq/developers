@@ -27,9 +27,11 @@
     </Banner>
     <div class="flex bg-body relative z-10 flex-1 overflow-hidden rounded-t-xl">
       <SideNav
+        v-if="sideNav"
         class="text-14"
         :navs="normalizedSideNav"
         :dark-mode="darkMode"
+        :spacing="6"
         @changeDarkMode="setDarkMode"
       />
       <div
@@ -39,21 +41,43 @@
       >
         <div class="px-8">
           <div class="sticky-header flex items-start">
-            <Input
-              type="search"
-              icon="search"
-              :hotkey="{
-                icon: 'slash',
-                key: '/',
-                fn: (input) => input.focus(),
-              }"
-              placeholder="Search documentation"
-            />
+            <template v-if="!isEditing">
+              <Input
+                type="search"
+                icon="search"
+                :hotkey="{
+                  icon: 'slash',
+                  key: '/',
+                  fn: (input) => input.focus(),
+                }"
+                placeholder="Search documentation"
+              />
+              <Button
+                v-if="isDev"
+                class="ml-auto"
+                size="sm"
+                color="accent"
+                @click="triggerEdit"
+                >Edit page</Button
+              >
+            </template>
+            <template v-else>
+              <h2>Edit {{ content.title }}</h2>
+              <div class="ml-auto flex">
+                <Button size="sm" class="mr-2" color="alt" @click="cancel"
+                  >Cancel</Button
+                >
+                <Button size="sm" color="accent" @click="submit"
+                  >Save edits</Button
+                >
+              </div>
+            </template>
           </div>
           <Nuxt class="page mb-8" />
         </div>
-        <PrevNextNavigation class="mt-auto" />
+        <PrevNextNavigation v-if="sideNav" class="mt-auto" />
         <div class="p-8 border-t flex items-center border-alt text-14">
+          <span class="icon icon-survey mr-3" />
           <p>Was this article useful?</p>
           <nav class="flex h-6 items-center font-semibold ml-auto">
             <div class="underline">No</div>
@@ -61,8 +85,9 @@
           </nav>
         </div>
       </div>
-      <aside class="border-l border-alt p-8">
-        <RelatedActions />
+      <aside class="border-l border-alt p-8 overflow-y-scroll">
+        <MarkdownFormatting v-if="isEditing" />
+        <RelatedActions v-else />
       </aside>
     </div>
   </div>
@@ -70,28 +95,41 @@
 <script lang="ts">
 import { Component, Watch, Ref } from 'nuxt-property-decorator'
 import { Mixins } from 'vue-property-decorator'
-import { SideNav, Input, Banner } from '@chargetrip/internal-vue-components'
+import {
+  SideNav,
+  Input,
+  Banner,
+  Button,
+} from '@chargetrip/internal-vue-components'
 import { Getter, Mutation } from 'vuex-class'
 import Table from '~/components/global/PropertyTable.vue'
 import RelatedActions from '~/components/RelatedActions.vue'
 import PrevNextNavigation from '~/components/PrevNextNavigation.vue'
 import Base from '~/mixins/base'
+import MarkdownFormatting from '~/components/MarkdownFormatting.vue'
+import { Listen } from '~/utilities/decorators'
 
 @Component({
   components: {
+    MarkdownFormatting,
     PrevNextNavigation,
     RelatedActions,
     SideNav,
     Input,
     Table,
     Banner,
+    Button,
   },
 })
 export default class Layout extends Mixins(Base) {
   @Getter darkMode
   @Getter sideNav
+  @Getter content
+  @Getter isEditing
   @Ref('container') container
+  isDev = process.env.NODE_ENV === 'development'
   @Mutation setDarkMode
+  @Mutation setIsEditing
   noTransition = false
   timeout = 0
   h2Elms: any[] = []
@@ -101,7 +139,7 @@ export default class Layout extends Mixins(Base) {
   mounted() {
     this.onRouteChange()
     if (this.hash.length) {
-      this.onSubMenuItemClick({ hash: this.hash })
+      this.onMenuItemClick({ hash: this.hash })
     }
     if (process.env.NODE_ENV === 'development') {
       this.$nuxt.$on('content:update', () => {
@@ -110,43 +148,64 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
-  get normalizedSideNav() {
-    return [
-      this.sideNav.map((item) => ({
-        ...item,
-        children: item.children.map((child) => ({
-          ...child,
-          callback: this.onSubMenuItemClick.bind(this),
-        })),
-      })),
-    ]
+  submit() {
+    this.$root.$emit('submitEditor')
   }
 
-  onSubMenuItemClick(item) {
+  cancel() {
+    this.$root.$emit('cancelEditor')
+  }
+
+  attachHandler(item) {
+    return {
+      ...item,
+      callback: this.onMenuItemClick.bind(this),
+      children: item?.children?.map(this.attachHandler.bind(this)) || [],
+    }
+  }
+
+  get normalizedSideNav() {
+    return [this.sideNav.map(this.attachHandler.bind(this))]
+  }
+
+  triggerEdit() {
+    this.$root.$emit('toggleEdit')
+    this.setIsEditing(true)
+    document
+      .querySelector('.nuxt-content')
+      ?.dispatchEvent(new Event('dblclick'))
+  }
+
+  onMenuItemClick(item) {
     this.stopReplacing = true
 
-    if (!item.hash?.length) return
-
-    let times = 0
-
-    const interval = setInterval(() => {
-      times++
-
-      if (times > 10) clearInterval(interval)
-
-      const el = this.container.querySelector(`#${item.hash}`)
-      if (!el) return
-      const rect = el.getBoundingClientRect()
-
+    if (!item.hash?.length) {
       this.container.scrollTo({
-        top: this.container.scrollTop + rect.top - 112,
+        top: 0,
         behavior: 'smooth',
       })
+    } else {
+      let times = 0
 
-      setTimeout(() => {
-        this.stopReplacing = false
-      }, 1000)
-    }, 50)
+      const interval = setInterval(() => {
+        times++
+
+        if (times > 20) clearInterval(interval)
+
+        const el = this.container.querySelector(`#${item.hash}`)
+        if (!el) return
+        const rect = el.getBoundingClientRect()
+
+        this.container.scrollTo({
+          top: this.container.scrollTop + rect.top - 112,
+          behavior: 'smooth',
+        })
+      }, 10)
+    }
+
+    setTimeout(() => {
+      this.stopReplacing = false
+    }, 1000)
   }
 
   @Watch('darkMode') onDarkModeChange() {
@@ -161,11 +220,18 @@ export default class Layout extends Mixins(Base) {
     this.hash = this.$route.hash.slice(1)
   }
 
+  @Listen('dblclick') onDblClick(e) {
+    e.stopPropagation()
+  }
+
   @Watch('$route.path') onRouteChange() {
     if (!this.container) return
 
+    if (!this.$route.hash?.length) {
+      this.container.scrollTo(0, 0)
+    }
+
     this.stopReplacing = true
-    this.container.scrollTo(0, 0)
     setTimeout(() => {
       this.h2Elms = [...(this.container.querySelectorAll('h2') || [])]
       this.stopReplacing = false
@@ -199,41 +265,55 @@ export default class Layout extends Mixins(Base) {
       this.$router.replace(this.$route.fullPath.replace(this.$route.hash, ''))
     }
   }
+
+  beforeDestroy() {}
 }
 </script>
 <style lang="scss">
-.page {
+.highlighted-code code,
+.page p > code {
+  @apply rounded-2xs bg-base border border-alt px-1 leading-none text-font-primary;
+}
+
+.nuxt-content {
   .code-block {
     @apply my-4;
   }
+
   .table {
     @apply mt-6 mb-10;
   }
-  h2 {
+
+  h2,
+  h3 {
     @apply mt-14 mb-2;
   }
 
-  p {
+  > p {
     & + p {
       @apply mt-4;
     }
+  }
 
-    > code {
-      @apply rounded-2xs bg-base border border-alt px-1;
-    }
-  }
   img {
-    @apply rounded border border-alt overflow-hidden my-10;
+    @apply rounded overflow-hidden my-10;
   }
+
   h1 {
     @apply mb-3;
 
     + p,
     + p + p {
-      @apply text-18 text-font-alt3;
+      @apply text-18 text-font-alt3 pr-24;
+
+      img {
+        width: calc(100% + 96px);
+        max-width: unset;
+      }
     }
   }
 }
+
 .layout {
   &.no-transition {
     .box,
@@ -244,6 +324,7 @@ export default class Layout extends Mixins(Base) {
       transition-duration: 0s !important;
     }
   }
+
   .table {
     @apply text-14;
 
@@ -251,18 +332,22 @@ export default class Layout extends Mixins(Base) {
       &.first-col {
         @apply pl-0;
       }
+
       &.last-col {
         @apply pr-0;
       }
     }
   }
+
   .c-side-nav {
     flex: 0 0 260px;
   }
 
-  .content {
+  .content,
+  aside {
     max-height: calc(100vh - 34px);
   }
+
   aside {
     flex: 0 0 383px;
   }

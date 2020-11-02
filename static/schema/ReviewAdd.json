@@ -1,0 +1,99 @@
+{
+  "kind": "INPUT_OBJECT",
+  "name": "ReviewAdd",
+  "description": "Form input to add a new review",
+  "fields": null,
+  "inputFields": [
+    {
+      "name": "stationId",
+      "description": "Station ID for which a review is provided",
+      "type": {
+        "kind": "NON_NULL",
+        "name": null,
+        "ofType": {
+          "kind": "SCALAR",
+          "name": "String",
+          "ofType": null
+        }
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "rating",
+      "description": "Rating of a review",
+      "type": {
+        "kind": "NON_NULL",
+        "name": null,
+        "ofType": {
+          "kind": "SCALAR",
+          "name": "Int",
+          "ofType": null
+        }
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "message",
+      "description": "Review message",
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "locale",
+      "description": "Locale of a message",
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "ev",
+      "description": "ID of the Car which was provided/selected by a user",
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "plugType",
+      "description": "Plug type which was provided/selected by a user",
+      "type": {
+        "kind": "ENUM",
+        "name": "OCPIConnectorType",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "properties",
+      "description": "Optional object where you can store custom data you need in your application. This extends the current functionalities we offer",
+      "type": {
+        "kind": "SCALAR",
+        "name": "JSON",
+        "ofType": null
+      },
+      "defaultValue": null
+    },
+    {
+      "name": "tags",
+      "description": "Boolean tags for a station review",
+      "type": {
+        "kind": "INPUT_OBJECT",
+        "name": "ReviewTagsInput",
+        "ofType": null
+      },
+      "defaultValue": null
+    }
+  ],
+  "interfaces": null,
+  "enumValues": null,
+  "possibleTypes": null
+}

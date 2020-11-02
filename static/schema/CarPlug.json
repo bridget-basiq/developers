@@ -1,0 +1,59 @@
+{
+  "kind": "OBJECT",
+  "name": "CarPlug",
+  "description": "Car plug model",
+  "fields": [
+    {
+      "name": "standard",
+      "description": "Plug type, known as connector standard in OCPI",
+      "args": [],
+      "type": {
+        "kind": "ENUM",
+        "name": "OCPIConnectorType",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "power",
+      "description": "This is the maximum power a plug accepts in kW",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Float",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "time",
+      "description": "Time it takes to charge from 10% to 80%, with a fast charger in minutes",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Int",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "speed",
+      "description": "Charging speed in km/h",
+      "args": [],
+      "type": {
+        "kind": "SCALAR",
+        "name": "Int",
+        "ofType": null
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "inputFields": null,
+  "interfaces": [],
+  "enumValues": null,
+  "possibleTypes": null
+}

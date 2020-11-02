@@ -1,0 +1,41 @@
+{
+  "kind": "ENUM",
+  "name": "RouteStatus",
+  "description": "The status of a route. The status can be pending, processing, done, not_found or error",
+  "fields": null,
+  "inputFields": null,
+  "interfaces": null,
+  "enumValues": [
+    {
+      "name": "pending",
+      "description": "Route is queued and pending processing. Temporary status",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "processing",
+      "description": "We are computing the route for your request. Temporary status",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "done",
+      "description": "We finished computing the route, with a result. Final status",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "not_found",
+      "description": "We finished the computing the route, without any result. Final status",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "error",
+      "description": "An error occurred while computing the route. Final status",
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "possibleTypes": null
+}

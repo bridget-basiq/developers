@@ -1,0 +1,29 @@
+{
+  "kind": "ENUM",
+  "name": "CarMode",
+  "description": "Mode (state) of the current production",
+  "fields": null,
+  "inputFields": null,
+  "interfaces": null,
+  "enumValues": [
+    {
+      "name": "index_only",
+      "description": "Old car that is no longer manufactured",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "production",
+      "description": "The car is in production and released",
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
+      "name": "concept",
+      "description": "Future releases of a car, a concept of the car, specs may change over time",
+      "isDeprecated": false,
+      "deprecationReason": null
+    }
+  ],
+  "possibleTypes": null
+}
