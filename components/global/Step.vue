@@ -1,13 +1,15 @@
 <template>
   <div class="step mb-24 relative">
     <div class="image-wrapper relative">
-      <div class="pl-24 overflow-hidden">
+      <div class="sm:pl-24 overflow-hidden">
         <c-image :alt="title" :src="img" />
       </div>
     </div>
 
     <div class="number-wrapper relative flex">
-      <div class="w-24 flex-shrink-0 font-semibold text-font-alt3 relative">
+      <div
+        class="w-24 hidden sm:block flex-shrink-0 font-semibold text-font-alt3 relative"
+      >
         <div class="flex items-center">
           <div class="border bg-body rounded-full border-alt4">
             <div class="w-2 h-2 rounded-full bg-alt4 m-px"></div>
@@ -36,6 +38,15 @@ export default class Steps extends Vue {
 </script>
 <style lang="scss">
 .step {
+  .image-wrapper {
+    width: calc(100% + 48px);
+    @apply -ml-6;
+  }
+  @screen sm {
+    .image-wrapper {
+      @apply w-full ml-0;
+    }
+  }
   img {
     @apply mb-6 mt-0;
   }

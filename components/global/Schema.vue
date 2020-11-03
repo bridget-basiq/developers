@@ -1,5 +1,5 @@
 <template>
-  <div class="schema my-8 pl-10">
+  <div class="schema my-8 sm:pl-10">
     <section v-for="(section, i) in sections" :key="i" class="mb-12 last:mb-0">
       <h2 :id="section.id">{{ section.title }}</h2>
       <div class="mt-3">
@@ -78,9 +78,19 @@ export default class Schema extends Vue {
     return this.name.slice(0, 1).toUpperCase() + this.name.slice(1)
   }
 
+  get ofTypeKinds() {
+    return Object.keys(OfTypeKind)
+  }
+
   appendOfType(fields) {
     return Promise.all(
       fields?.map(async (field) => {
+        const typeStr =
+          field.type.kind === 'SCALAR' ? field.type?.name : field.type?.kind
+
+        const required = typeStr === 'NON_NULL'
+        const showQuery = field.type.kind === OfTypeKind.INPUT_OBJECT
+
         if (
           !(
             field.type?.ofType?.name ||
@@ -89,7 +99,12 @@ export default class Schema extends Vue {
             field.type.kind === OfTypeKind.INPUT_OBJECT
           )
         ) {
-          return field
+          return {
+            ...field,
+            typeStr,
+            required,
+            showQuery,
+          }
         }
 
         const ofType: any = await this.$axios.get(
@@ -100,8 +115,21 @@ export default class Schema extends Vue {
           ofType.fields = await this.appendOfType(ofType.fields)
         }
 
+        const typeName = (ofType?.name || field.type?.name || '').replace(
+          'Query',
+          ''
+        )
+        const showOfTypeKind =
+          this.ofTypeKinds.includes(ofType?.kind) || showQuery
+
         return {
           ...field,
+          showOfTypeKind,
+          typeStr,
+          typeName,
+          required,
+          showQuery,
+          children: ofType.fields || ofType.enumValues || ofType.inputFields,
           type: {
             ...field.type,
             ofType,

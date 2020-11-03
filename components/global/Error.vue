@@ -1,6 +1,6 @@
 <template>
   <div
-    class="error flex flex-col items-start py-4 border-t border-alt border-b mt-6"
+    class="error flex flex-col items-start py-4 border-t border-alt border-b mt-6 text-14"
   >
     <div class="flex items-center">
       <Tag color="error" type="secondary">Error</Tag>

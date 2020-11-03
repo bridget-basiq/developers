@@ -1,6 +1,22 @@
 ---
 title: Authorization
 order: 6
+
+keys:
+- x-client-id
+- x-app-id
+
+types:
+- string
+- string
+
+descriptions:
+- Your project id with the corresponding configuration
+- Your app id for splitting up analytics
+
+required:
+- Yes
+- No
 ---
 # Authorization
 
@@ -20,7 +36,7 @@ To communicate with the chargetrip API, we require authorization on our endpoint
 
   If you would like to split up your analytics per platform you can provide an additional `x-app-id`. This way your requests will be categorised on this level.
 
-<property-table keys="x-client-id|x-app-id" types="string|string" descriptions="Your project id with the corresponding configuration|Your app id for splitting up analytics" required="Yes|No"></property-table>
+<property-table :keys="keys" :types="types" :descriptions="descriptions" :required="required"></property-table>
 
 If we want to reflect this as a curl it would look like this;
 

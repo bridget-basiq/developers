@@ -1,28 +1,43 @@
 <template>
-  <CTable>
-    <Row>
-      <Cell v-for="(col, c) in columns" :key="c" tag="th">
-        {{ col }}
-      </Cell>
-    </Row>
-    <Row v-for="(row, key) in rows" :key="key">
-      <Cell
-        v-for="(_, c) in columns"
-        :key="`${key}-${c}`"
-        :font-family="c <= 1 ? 'mono' : null"
-        :color="c === 1 ? 'warning' : null"
-      >
-        {{ row[c] }}
-      </Cell>
-    </Row>
-  </CTable>
+  <div class="property-table">
+    <CTable class="hidden sm:table">
+      <Row>
+        <Cell v-for="(col, c) in columns" :key="c" tag="th">
+          {{ col }}
+        </Cell>
+      </Row>
+      <Row v-for="(row, key) in rows" :key="key">
+        <Cell
+          v-for="(_, c) in columns"
+          :key="`${key}-${c}`"
+          :font-family="c <= 1 ? 'mono' : null"
+          :color="c === 1 ? 'warning' : null"
+        >
+          {{ row[c] }}
+        </Cell>
+      </Row>
+    </CTable>
+    <div class="block sm:hidden">
+      <property
+        v-for="(row, key) in rows"
+        :key="key"
+        :force-active="true"
+        :name="row[0]"
+        :type-str="row[1]"
+        :description="row[2]"
+        :required="row[3] === 'Yes'"
+        :optional="row[3] === 'No'"
+      ></property>
+    </div>
+  </div>
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import { Table as CTable, Row, Cell } from '@chargetrip/internal-vue-components'
+import Property from '~/components/Property.vue'
 
 @Component({
-  components: { CTable, Row, Cell },
+  components: { Property, CTable, Row, Cell },
 })
 export default class PropertyTable extends Vue {
   @Prop() keys

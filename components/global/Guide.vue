@@ -1,7 +1,7 @@
 <template>
-  <a class="guide flex" :href="href" target="_blank">
-    <img class="rounded mr-8 w-1/3" :src="img" />
-    <div class="w-2/3 bg-base rounded border border-alt">
+  <a class="guide flex flex-col sm:flex-row" :href="href" target="_blank">
+    <img class="rounded-t sm:rounded-b sm:mr-8 sm:w-1/3" :src="img" />
+    <div class="sm:w-2/3 bg-base sm:rounded-t rounded-b border border-alt">
       <div class="px-8 py-6">
         <slot />
       </div>

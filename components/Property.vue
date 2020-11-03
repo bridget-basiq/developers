@@ -1,34 +1,36 @@
 <template>
   <li
-    class="property list-none border-alt first:border-t text-14 relative"
+    class="property list-none text-14 relative"
     :class="{ 'is-child': depth, 'show-children': showChildren }"
   >
     <div
-      class="content border-alt py-4 relative"
+      class="content py-4 relative"
       :class="{
-        'pl-10': depth,
-        'border-b': !(active && showChildren),
+        'sm:pl-10': depth,
         'cursor-pointer': !forceActive,
       }"
       @click="active = !active || forceActive"
     >
       <div
         v-if="depth"
-        class="line-h absolute w-10 left-0 top-1/2 -ml-5 transform -translate-y-1/2 h-px bg-alt2"
+        class="line-h block sm:block hidden absolute w-10 left-0 top-1/2 -ml-5 transform -translate-y-1/2 h-px bg-alt2"
       />
       <div
         v-if="showChildren || depth"
-        class="line-v absolute w-px h-full top-0 left-0 -ml-5 bg-alt"
+        class="line-v sm:block hidden absolute w-px h-full top-0 left-0 -ml-5 bg-alt2"
       />
 
       <div class="relative">
         <div
-          class="absolute h-full w-10 flex items-center justify-center left-0 top-1/2 transform -translate-y-1/2 -translate-x-full"
+          class="hidden sm:flex absolute h-full w-10 items-center justify-center left-0 top-1/2 transform -translate-y-1/2 -translate-x-full"
         >
           <span
             v-if="children"
-            class="z-10 toggle-children bg-body w-4 h-4 flex items-center justify-center text-10 rounded-full border border-accent text-accent"
-            :class="{ 'icon-minus': showChildren, 'icon-add': !showChildren }"
+            class="z-10 toggle-children bg-body text-accent"
+            :class="{
+              'icon-circle-cross': showChildren,
+              'icon-circle-plus': !showChildren,
+            }"
             @click.stop="showChildren = !showChildren"
           />
           <span v-else-if="depth" class="w-1 h-1 rounded-full bg-alt2" />
@@ -38,45 +40,35 @@
           />
         </div>
         <p class="text-font-primary flex items-center">
-          <Tag
-            v-if="type.kind === ofTypeKind.INPUT_OBJECT"
-            class="mr-2"
-            color="alt3"
-            type="secondary"
+          <Tag v-if="showQuery" class="mr-1" color="alt3" type="secondary"
             >Query</Tag
           >
           <span v-else class="font-mono">
             {{ name }}
           </span>
-          <template v-if="type">
-            <template v-if="type.kind !== ofTypeKind.INPUT_OBJECT">
-              <span class="mx-1">•</span>
-              <span
-                class="type font-mono"
-                :class="{ lowercase: normalizedType !== 'ID' }"
-                v-html="$options.filters.colorType(normalizedType)"
-              />
-              <Tag
-                v-if="showRequiredTag"
-                class="ml-2"
-                color="accent"
-                type="secondary"
-                >Required</Tag
-              >
-            </template>
-            <template v-if="showType">
-              <span v-if="type.kind !== ofTypeKind.INPUT_OBJECT" class="mx-1"
-                >•</span
-              >
-              <span class="font-mono text-font-alt3">
-                <span v-if="type.kind === ofTypeKind.LIST">[</span
-                >{{ normalizedName
-                }}<span v-if="type.kind === ofTypeKind.LIST">]</span>
-              </span>
-            </template>
+          <template v-if="typeStr">
+            <span class="mx-1">•</span>
+            <span
+              class="type font-mono"
+              :class="{ lowercase: typeStr !== 'ID' }"
+              v-html="$options.filters.colorType(typeStr)"
+            />
           </template>
+          <template v-if="showOfTypeKind">
+            <span class="mx-1">•</span>
+            <span class="font-mono text-font-alt3">
+              <span v-if="typeStr === ofTypeKind.LIST">[</span>{{ typeName
+              }}<span v-if="typeStr === ofTypeKind.LIST">]</span>
+            </span>
+          </template>
+          <Tag v-if="required" class="ml-2" color="accent" type="secondary"
+            >Required</Tag
+          >
+          <Tag v-if="optional" class="ml-2" color="alt3" type="secondary"
+            >Optional</Tag
+          >
           <span
-            v-if="!depth && description"
+            v-if="!depth && description && !forceActive"
             class="ml-auto cursor-pointer"
             :class="{
               'icon-chevron-right': !active,
@@ -89,11 +81,27 @@
         </p>
       </div>
     </div>
+    <p
+      v-if="children"
+      class="py-3 mobile-toggle border-t border-alt cursor-pointer text-accent flex items-center justify-between"
+      @click="showChildren = !showChildren"
+    >
+      <strong>
+        {{ showChildren ? 'Collapse' : 'Expand' }} {{ typeName }} attrributes
+      </strong>
+      <span
+        class="icon"
+        :class="{
+          'icon-circle-cross': showChildren,
+          'icon-circle-plus': !showChildren,
+        }"
+      />
+    </p>
     <ul v-if="children && showChildren">
       <property
         v-for="(child, i) in children"
         :key="i"
-        :class="{ 'ml-10': depth }"
+        :class="{ 'sm:ml-10': depth }"
         :force-active="true"
         :initial-active="true"
         :depth="depth + 1"
@@ -111,9 +119,16 @@ import { OfTypeKind } from '~/utilities/constants'
 export default class Property extends Vue {
   @Prop() name
   @Prop() showRequired
+  @Prop() required
+  @Prop() optional
+  @Prop() showQuery
   @Prop() description
   @Prop({ default: 0 }) depth
   @Prop() type
+  @Prop() typeStr
+  @Prop() typeName
+  @Prop() showOfTypeKind
+  @Prop() children
   @Prop() initialActive
   @Prop() forceActive
   showChildren = false
@@ -123,34 +138,21 @@ export default class Property extends Vue {
   @Watch('initialActive', { immediate: true }) onActiveChange() {
     this.active = this.initialActive || this.forceActive
   }
-
-  get showRequiredTag() {
-    return this.normalizedType === 'NON_NULL' && this.showRequired
-  }
-
-  get normalizedType() {
-    return this?.type?.kind === 'SCALAR' ? this?.type?.name : this?.type.kind
-  }
-
-  get normalizedName() {
-    return (this.type?.ofType?.name || this.type.name).replace('Query', '')
-  }
-
-  get children() {
-    return (
-      this?.type?.ofType?.fields ||
-      this?.type?.ofType?.enumValues ||
-      this?.type?.ofType?.inputFields
-    )
-  }
-
-  get showType() {
-    return Object.keys(OfTypeKind).includes(this.type.ofType?.kind)
-  }
 }
 </script>
 <style lang="scss">
+.property,
+.property .mobile-toggle,
+.property .content {
+  @screen sm-max {
+    width: calc(100% + 48px);
+    @apply -ml-6 px-6;
+  }
+}
 .property {
+  .line-v {
+    height: calc(100% + 2px);
+  }
   &.is-child {
     .content {
       @apply bg-base;
@@ -174,6 +176,15 @@ export default class Property extends Vue {
   }
 
   &:not(.is-child) {
+    @apply border-t border-alt;
+
+    @screen sm {
+      &:last-child {
+        > .content {
+          @apply border-b border-alt;
+        }
+      }
+    }
     &.show-children {
       > .content {
         > .line-v {
@@ -186,12 +197,12 @@ export default class Property extends Vue {
   &.show-children {
     .property.show-children {
       &:not(:last-child) {
-        ul {
+        > ul {
           @apply relative;
 
           &::before {
             content: '';
-            @apply bg-alt w-px h-full absolute left-0 h-full block -ml-5;
+            @apply bg-alt2 w-px h-full absolute left-0 h-full block -ml-5;
           }
         }
       }

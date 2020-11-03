@@ -16,7 +16,7 @@ Vue.filter('markdown', (value: string) => {
   }
 })
 
-Vue.filter('colorType', (value: string) => {
+Vue.filter('colorType', (value: string = '') => {
   const lowerCase = value.toLowerCase()
 
   switch (lowerCase) {

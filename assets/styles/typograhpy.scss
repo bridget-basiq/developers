@@ -1,5 +1,9 @@
 h1 {
-  @apply text-32;
+  @apply text-22;
+
+  @screen md {
+    @apply text-32;
+  }
 }
 
 h2, h3 {
@@ -13,6 +17,7 @@ h6 {
 h1, h2, h3, h4, h5, h6 {
   @apply leading-tight font-bold;
 }
+
 
 small {
   @apply text-14;

@@ -28,7 +28,7 @@
     <div class="flex bg-body relative z-10 flex-1 overflow-hidden rounded-t-xl">
       <SideNav
         v-if="sideNav"
-        class="text-14"
+        class="text-14 sm:flex hidden"
         :navs="normalizedSideNav"
         :dark-mode="darkMode"
         :spacing="6"
@@ -39,44 +39,44 @@
         class="content flex-1 flex flex-col relative overflow-y-scroll"
         @scroll="onScroll"
       >
-        <div class="px-8">
-          <div class="sticky-header flex items-start">
-            <template v-if="!isEditing">
-              <Input
-                type="search"
-                icon="search"
-                :hotkey="{
-                  icon: 'slash',
-                  key: '/',
-                  fn: (input) => input.focus(),
-                }"
-                placeholder="Search documentation"
-              />
-              <Button
-                v-if="isDev"
-                class="ml-auto"
-                size="sm"
-                color="accent"
-                @click="triggerEdit"
-                >Edit page</Button
+        <div class="sticky-header flex items-start sm:px-8 px-6">
+          <template v-if="!isEditing">
+            <Input
+              type="search"
+              icon="search"
+              :hotkey="{
+                icon: 'slash',
+                key: '/',
+                fn: (input) => input.focus(),
+              }"
+              placeholder="Search documentation"
+            />
+            <Button
+              v-if="isDev"
+              class="ml-auto"
+              size="sm"
+              color="accent"
+              @click="triggerEdit"
+              >Edit page</Button
+            >
+          </template>
+          <template v-else>
+            <h2>Edit {{ content.title }}</h2>
+            <div class="ml-auto flex">
+              <Button size="sm" class="mr-2" color="alt" @click="cancel"
+                >Cancel</Button
               >
-            </template>
-            <template v-else>
-              <h2>Edit {{ content.title }}</h2>
-              <div class="ml-auto flex">
-                <Button size="sm" class="mr-2" color="alt" @click="cancel"
-                  >Cancel</Button
-                >
-                <Button size="sm" color="accent" @click="submit"
-                  >Save edits</Button
-                >
-              </div>
-            </template>
-          </div>
+              <Button size="sm" color="accent" @click="submit"
+                >Save edits</Button
+              >
+            </div>
+          </template>
+        </div>
+        <div class="sm:px-8 px-6">
           <Nuxt class="page mb-8" />
         </div>
         <PrevNextNavigation v-if="sideNav" class="mt-auto" />
-        <div class="p-8 border-t flex items-center border-alt text-14">
+        <div class="p-6 sm:p-8 border-t flex items-center border-alt text-14">
           <span class="icon icon-survey mr-3" />
           <p>Was this article useful?</p>
           <nav class="flex h-6 items-center font-semibold ml-auto">
@@ -85,7 +85,7 @@
           </nav>
         </div>
       </div>
-      <aside class="border-l border-alt p-8 overflow-y-scroll">
+      <aside class="border-l border-alt p-8 overflow-y-scroll hidden sm:block">
         <MarkdownFormatting v-if="isEditing" />
         <RelatedActions v-else />
       </aside>
@@ -280,7 +280,8 @@ export default class Layout extends Mixins(Base) {
     @apply my-4;
   }
 
-  .table {
+  .table,
+  .property-table {
     @apply mt-6 mb-10;
   }
 

@@ -1,11 +1,24 @@
 ---
 title: Home
-icon: clipboard
+icon: documentation
 order: 1
 statuses: 
   - Typescript Typings
   - Clusterbuster
+  
 descriptions: 
+- Make integrating with our API easier with our typescript types
+- Easily cluster data to improve render speeds
+
+columns:
+- Status
+- Description
+
+row1:
+- Typescript Typings
+- Clusterbuster
+
+row2:
 - Make integrating with our API easier with our typescript types
 - Easily cluster data to improve render speeds
 ---
@@ -39,11 +52,11 @@ Send over the car details and we will provide you with a route that constantly u
         <c-cell tag="th">Description</c-cell>
     </c-row>
     <c-row url="http://google.com">
-        <c-cell>Typescript Typings</c-cell>
+        <c-cell font-weight="semibold">Typescript Typings</c-cell>
         <c-cell>Make integrating with our API easier with our typescript types</c-cell>
     </c-row>
     <c-row url="http://google.com">
-        <c-cell>Clusterbuster</c-cell>
+        <c-cell font-weight="semibold">Clusterbuster</c-cell>
         <c-cell>Easily cluster data to improve render speeds</c-cell>
     </c-row>
 </c-table>

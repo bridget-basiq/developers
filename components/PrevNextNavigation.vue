@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="prev || next"
-    class="prev-next-navigation flex py-8 border-t border-alt font-semibold px-8"
+    class="prev-next-navigation flex p-6 sm:p-8 border-t border-alt font-semibold"
   >
     <router-link v-if="prev && prev.to" class="flex items-center" :to="prev.to">
       <span class="icon-chevron-left" />
