@@ -1,5 +1,5 @@
 <template>
-  <div class="schema my-8 sm:pl-10">
+  <div class="schema my-8 lg:pl-10">
     <section v-for="(section, i) in sections" :key="i" class="mb-12 last:mb-0">
       <h2 :id="section.id">{{ section.title }}</h2>
       <div class="mt-3">

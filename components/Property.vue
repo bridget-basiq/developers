@@ -6,23 +6,23 @@
     <div
       class="content py-4 relative"
       :class="{
-        'sm:pl-10': depth,
+        'lg:pl-10': depth,
         'cursor-pointer': !forceActive,
       }"
       @click="active = !active || forceActive"
     >
       <div
         v-if="depth"
-        class="line-h block sm:block hidden absolute w-10 left-0 top-1/2 -ml-5 transform -translate-y-1/2 h-px bg-alt2"
+        class="line-h block lg:block hidden absolute w-10 left-0 top-1/2 -ml-5 transform -translate-y-1/2 h-px bg-alt2"
       />
       <div
         v-if="showChildren || depth"
-        class="line-v sm:block hidden absolute w-px h-full top-0 left-0 -ml-5 bg-alt2"
+        class="line-v lg:block hidden absolute w-px h-full top-0 left-0 -ml-5 bg-alt2"
       />
 
       <div class="relative">
         <div
-          class="hidden sm:flex absolute h-full w-10 items-center justify-center left-0 top-1/2 transform -translate-y-1/2 -translate-x-full"
+          class="hidden lg:flex absolute h-full w-10 items-center justify-center left-0 top-1/2 transform -translate-y-1/2 -translate-x-full"
         >
           <span
             v-if="children"
@@ -83,7 +83,7 @@
     </div>
     <p
       v-if="children"
-      class="py-3 mobile-toggle border-t border-alt cursor-pointer text-accent flex items-center justify-between"
+      class="py-3 mobile-toggle flex lg:hidden border-t border-alt cursor-pointer text-accent items-center justify-between"
       @click="showChildren = !showChildren"
     >
       <strong>
@@ -101,7 +101,7 @@
       <property
         v-for="(child, i) in children"
         :key="i"
-        :class="{ 'sm:ml-10': depth }"
+        :class="{ 'lg:ml-10': depth }"
         :force-active="true"
         :initial-active="true"
         :depth="depth + 1"
@@ -144,7 +144,7 @@ export default class Property extends Vue {
 .property,
 .property .mobile-toggle,
 .property .content {
-  @screen sm-max {
+  @screen lg-max {
     width: calc(100% + 48px);
     @apply -ml-6 px-6;
   }
@@ -186,6 +186,9 @@ export default class Property extends Vue {
       }
     }
     &.show-children {
+      .mobile-toggle {
+        @apply border-b;
+      }
       > .content {
         > .line-v {
           @apply top-1/2;

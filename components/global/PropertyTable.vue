@@ -1,6 +1,6 @@
 <template>
   <div class="property-table">
-    <CTable class="hidden sm:table">
+    <CTable class="hidden md:table">
       <Row>
         <Cell v-for="(col, c) in columns" :key="c" tag="th">
           {{ col }}
@@ -17,7 +17,7 @@
         </Cell>
       </Row>
     </CTable>
-    <div class="block sm:hidden">
+    <div class="block md:hidden">
       <property
         v-for="(row, key) in rows"
         :key="key"

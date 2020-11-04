@@ -12,7 +12,7 @@ export default class Steps extends Vue {}
 </script>
 <style lang="scss">
 .steps {
-  @screen sm {
+  @screen md {
     .dashed {
       margin-left: 5px;
       background-image: linear-gradient(

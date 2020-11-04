@@ -2,7 +2,7 @@
   <div class="examples my-14">
     <div class="flex mb-4 items-center flex-wrap justify-between">
       <h2>{{ title }}</h2>
-      <nav class="text-font-alt3 mt-2 sm:mt-0 flex font-semibold">
+      <nav class="text-font-alt3 mt-2 lg:mt-0 flex font-semibold">
         <div
           v-for="(category, key) in categories"
           :key="key"
@@ -14,7 +14,7 @@
         </div>
       </nav>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 sm:gap-4 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:gap-4 gap-8">
       <slot />
     </div>
   </div>

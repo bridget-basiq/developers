@@ -1,5 +1,5 @@
 <template>
-  <div class="guides my-14">
+  <div class="guides my-14 hidden md:block">
     <div class="flex mb-4 items-center">
       <h2>{{ title }}</h2>
       <nav class="ml-auto text-20">

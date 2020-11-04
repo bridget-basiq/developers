@@ -1,6 +1,6 @@
 <template>
   <div
-    class="layout flex flex-col antialiased font-body min-h-screen text-font-primary text-16 bg-body overflow-hidden"
+    class="layout flex flex-col antialiased font-body min-h-screen text-font-primary text-16 bg-body"
     :class="{
       'theme-dark': darkMode,
       'theme-light': !darkMode,
@@ -25,21 +25,26 @@
         </div>
       </div>
     </Banner>
-    <div class="flex bg-body relative z-10 flex-1 overflow-hidden rounded-t-xl">
+    <div
+      class="flex bg-body flex-col lg:flex-row relative z-10 flex-1 rounded-t-xl"
+    >
       <SideNav
         v-if="sideNav"
-        class="text-14 sm:flex hidden"
+        class="text-14 z-10 top-0"
         :navs="normalizedSideNav"
         :dark-mode="darkMode"
+        :current-page="content.title"
         :spacing="6"
         @changeDarkMode="setDarkMode"
-      />
+      >
+        <span class="icon-search ml-4" />
+      </SideNav>
       <div
         ref="container"
-        class="content flex-1 flex flex-col relative overflow-y-scroll"
+        class="content flex-1 flex flex-col relative overflow-y-scroll mt-8 lg:mt-0"
         @scroll="onScroll"
       >
-        <div class="sticky-header flex items-start sm:px-8 px-6">
+        <div class="sticky-header items-start lg:px-8 px-6 hidden lg:flex">
           <template v-if="!isEditing">
             <Input
               type="search"
@@ -72,11 +77,11 @@
             </div>
           </template>
         </div>
-        <div class="sm:px-8 px-6">
+        <div class="lg:px-8 px-6">
           <Nuxt class="page mb-8" />
         </div>
         <PrevNextNavigation v-if="sideNav" class="mt-auto" />
-        <div class="p-6 sm:p-8 border-t flex items-center border-alt text-14">
+        <div class="p-6 lg:p-8 border-t flex items-center border-alt text-14">
           <span class="icon icon-survey mr-3" />
           <p>Was this article useful?</p>
           <nav class="flex h-6 items-center font-semibold ml-auto">
@@ -85,7 +90,7 @@
           </nav>
         </div>
       </div>
-      <aside class="border-l border-alt p-8 overflow-y-scroll hidden sm:block">
+      <aside class="border-l border-alt p-8 overflow-y-scroll hidden xl:block">
         <MarkdownFormatting v-if="isEditing" />
         <RelatedActions v-else />
       </aside>
@@ -96,11 +101,12 @@
 import { Component, Watch, Ref } from 'nuxt-property-decorator'
 import { Mixins } from 'vue-property-decorator'
 import {
-  SideNav,
   Input,
   Banner,
   Button,
+  SideNav,
 } from '@chargetrip/internal-vue-components'
+
 import { Getter, Mutation } from 'vuex-class'
 import Table from '~/components/global/PropertyTable.vue'
 import RelatedActions from '~/components/RelatedActions.vue'
@@ -340,17 +346,19 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
-  .c-side-nav {
-    flex: 0 0 260px;
-  }
+  @screen lg {
+    .c-side-nav {
+      flex: 0 0 260px;
+    }
 
-  .content,
-  aside {
-    max-height: calc(100vh - 34px);
-  }
+    .content,
+    aside {
+      max-height: calc(100vh - 34px);
+    }
 
-  aside {
-    flex: 0 0 383px;
+    aside {
+      flex: 0 0 383px;
+    }
   }
 
   .nuxt-content-editor {
