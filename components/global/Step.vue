@@ -6,7 +6,7 @@
           class="box md:rounded overflow-hidden relative mb-6 whitespace-no-wrap"
           :class="{ 'bg-accent': !darkMode, 'bg-base': darkMode }"
         >
-          <c-image v-if="img" class="shadow-down-m" :alt="title" :src="img" />
+          <c-image v-if="img" class="shadow-down-md" :alt="title" :src="img" />
           <div
             v-if="images"
             class="rails transition duration-300 ease-in-out"
@@ -15,7 +15,7 @@
             <c-image
               v-for="(image, i) in images"
               :key="i"
-              class="inline-block shadow-down-m transform -translate-x-1/2"
+              class="inline-block shadow-down-md transform -translate-x-1/2"
               :alt="title"
               :src="image"
             />
@@ -36,12 +36,12 @@
             >
               <div
                 v-if="sliderIndex"
-                class="cursor-pointer shadow-down-m flex items-center justify-center w-8 h-8 rounded-full bg-body icon-chevron-left"
+                class="cursor-pointer shadow-down-md flex items-center justify-center w-8 h-8 rounded-full bg-body icon-chevron-left"
                 @click="sliderIndex--"
               />
               <div
                 v-if="sliderIndex < images.length - 1"
-                class="cursor-pointer shadow-down-m flex items-center justify-center w-8 h-8 rounded-full bg-body icon-chevron-right ml-auto"
+                class="cursor-pointer shadow-down-md flex items-center justify-center w-8 h-8 rounded-full bg-body icon-chevron-right ml-auto"
                 @click="sliderIndex++"
               />
             </nav>

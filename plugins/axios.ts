@@ -1,3 +1,3 @@
-export default function ({ $axios  }) {
+export default function ({ $axios }) {
   $axios.onResponse((response) => response.data)
 }

@@ -33,6 +33,7 @@
         class="text-14 z-10 top-0"
         :navs="normalizedSideNav"
         :dark-mode="darkMode"
+        :show-toggle-menu="$route.path !== '/home'"
         :current-page="content.title"
         :spacing="6"
         @changeDarkMode="setDarkMode"
@@ -62,18 +63,18 @@
               size="sm"
               color="accent"
               @click="triggerEdit"
-              >Edit page</Button
-            >
+              >Edit page
+            </Button>
           </template>
           <template v-else>
             <h2>Edit {{ content.title }}</h2>
             <div class="ml-auto flex">
               <Button size="sm" class="mr-2" color="alt" @click="cancel"
-                >Cancel</Button
-              >
+                >Cancel
+              </Button>
               <Button size="sm" color="accent" @click="submit"
-                >Save edits</Button
-              >
+                >Save edits
+              </Button>
             </div>
           </template>
         </div>
@@ -95,6 +96,7 @@
         <RelatedActions v-else />
       </aside>
     </div>
+    <QuickNav class="z-50" :items="quickNavItems" />
   </div>
 </template>
 <script lang="ts">
@@ -105,6 +107,7 @@ import {
   Banner,
   Button,
   SideNav,
+  QuickNav,
 } from '@chargetrip/internal-vue-components'
 
 import { Getter, Mutation } from 'vuex-class'
@@ -125,6 +128,7 @@ import { Listen } from '~/utilities/decorators'
     Table,
     Banner,
     Button,
+    QuickNav,
   },
 })
 export default class Layout extends Mixins(Base) {
@@ -152,6 +156,24 @@ export default class Layout extends Mixins(Base) {
         setTimeout(this.onRouteChange.bind(this), 100)
       })
     }
+  }
+
+  findFirstChild(arr) {
+    if (arr?.[0]?.to) {
+      return arr[0]
+    }
+
+    return this.findFirstChild(arr[0].children)
+  }
+
+  get quickNavItems() {
+    return this.sideNav.map((item) => {
+      return {
+        ...item,
+        to: item.to || this.findFirstChild(item.children)?.to,
+        icon: item.icon,
+      }
+    })
   }
 
   submit() {
@@ -271,8 +293,6 @@ export default class Layout extends Mixins(Base) {
       this.$router.replace(this.$route.fullPath.replace(this.$route.hash, ''))
     }
   }
-
-  beforeDestroy() {}
 }
 </script>
 <style lang="scss">

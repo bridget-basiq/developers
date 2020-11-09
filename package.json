@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "install": "npm install --ignore-scripts && npm install node-sass sass-loader",
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
     "start": "nuxt-ts start",
@@ -24,7 +23,7 @@
     }
   },
   "dependencies": {
-    "@chargetrip/internal-vue-components": "0.0.77",
+    "@chargetrip/internal-vue-components": "0.0.79",
     "@nuxt/content": "^1.8.1",
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/axios": "^5.12.2",
@@ -43,7 +42,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^9.1.2",
-    "@commitlint/config-conventional": "^9.1.2",
+    "@commitlint/config-conventional": "^11.0.0",
     "@nuxt/types": "^2.14.5",
     "@nuxt/typescript-build": "^2.0.3",
     "@nuxtjs/eslint-config": "^3.1.0",
@@ -67,7 +66,7 @@
     "node-sass": "^4.14.1",
     "nuxt-property-decorator": "^2.8.8",
     "prettier": "^2.1.1",
-    "sass-loader": "^10.0.4",
+    "sass-loader": "^10.0.5",
     "stylelint": "^13.7.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^20.0.0",
