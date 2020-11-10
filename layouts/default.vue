@@ -96,7 +96,7 @@
         <RelatedActions v-else />
       </aside>
     </div>
-    <QuickNav v-if="!isHome" class="lg:hidden z-50" :items="quickNavItems" />
+    <QuickNav class="lg:hidden z-50" :items="quickNavItems" />
   </div>
 </template>
 <script lang="ts">
