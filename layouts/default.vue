@@ -33,7 +33,7 @@
         class="text-14 z-10 top-0"
         :navs="normalizedSideNav"
         :dark-mode="darkMode"
-        :show-toggle-menu="$route.path !== '/home'"
+        :show-toggle-menu="!isHome"
         :current-page="content.title"
         :spacing="6"
         @changeDarkMode="setDarkMode"
@@ -96,7 +96,7 @@
         <RelatedActions v-else />
       </aside>
     </div>
-    <QuickNav class="z-50" :items="quickNavItems" />
+    <QuickNav v-if="!isHome" class="lg:hidden z-50" :items="quickNavItems" />
   </div>
 </template>
 <script lang="ts">
@@ -250,6 +250,10 @@ export default class Layout extends Mixins(Base) {
 
   @Listen('dblclick') onDblClick(e) {
     e.stopPropagation()
+  }
+
+  get isHome() {
+    return this.$route.path === '/home'
   }
 
   @Watch('$route.path') onRouteChange() {

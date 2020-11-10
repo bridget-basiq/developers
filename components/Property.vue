@@ -39,7 +39,7 @@
             class="icon-line-v absolute w-px h-full top-1/2 left-1/2 bg-alt -translate-y-1/2 -translate-x-1/2"
           />
         </div>
-        <p class="text-font-primary flex items-center">
+        <div class="text-font-primary flex items-center">
           <Tag v-if="showQuery" class="mr-1" color="alt3" type="secondary"
             >Query</Tag
           >
@@ -75,7 +75,7 @@
               'icon-chevron-down': active,
             }"
           />
-        </p>
+        </div>
         <p v-if="description && active" class="text-font-alt3">
           {{ description }}
         </p>

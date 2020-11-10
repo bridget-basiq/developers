@@ -2,34 +2,34 @@
 title: Status & Error Codes
 order: 7
 statuses:
-  - 200
-  - 201
-  - 202
-  - 204
-  - 304
-  - 400
-  - 401
-  - 403
-  - 404
-  - 429
-  - 500
-  - 502
-  - 503
+- 200
+- 201
+- 202
+- 204
+- 304
+- 400
+- 401
+- 403
+- 404
+- 429
+- 500
+- 502
+- 503
 
 statusDescriptions:
-  - The request succeeded. The client can read the body.
-  - The request is created. A new resource will be created.
-  - The request is accepted. The client has to wait until it’s done processing.
-  - The request has succeeded but returns no message body.
-  - Not Modified.
-  - The request could not be understood by the server due to malformed syntax.
-  - The request requires authentication.
-  - The server understood the request, but is refusing to fulfill it.
-  - The requested resource could not be found.
-  - Too Many Requests.
-  - Internal Server Error. If you catch one, report your issue [here](https://google.com).
-  - Bad Gateway.
-  - Service Unavailable.
+- The request succeeded. The client can read the body.
+- The request is created. A new resource will be created.
+- The request is accepted. The client has to wait until it’s done processing.
+- The request has succeeded but returns no message body.
+- Not Modified.
+- The request could not be understood by the server due to malformed syntax.
+- The request requires authentication.
+- The server understood the request, but is refusing to fulfill it.
+- The requested resource could not be found.
+- Too Many Requests.
+- Internal Server Error. If you catch one, report your issue [here](https://google.com).
+- Bad Gateway.
+- Service Unavailable.
   
 keys:
 - response
