@@ -1,4 +1,5 @@
 import Vuex from 'vuex'
+import { toSentenceCase } from 'js-convert-case/lib'
 import Main from './modules/root'
 import { slugify } from '~/utilities/project.functions'
 
@@ -64,10 +65,7 @@ const getSideNav = (pages) => {
           obj.children.push({
             path: p,
             children: [],
-            title: p
-              .split('-')
-              .map((x) => x.slice(0, 1).toUpperCase() + x.slice(1))
-              .join(' '),
+            title: toSentenceCase(p),
           })
         }
       })

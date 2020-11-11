@@ -1,6 +1,12 @@
 <template>
-  <div class="step-note flex pt-6 mt-6 border-t border-alt mr-14">
-    <Tag class="mr-6" :color="color" type="secondary">{{ title }}</Tag>
+  <div
+    class="step-note flex pt-6 mt-6 border-t border-alt mr-14 flex-col md:flex-row items-start"
+  >
+    <div class="md:mr-6 md-max:mb-2">
+      <div @click="onClick">
+        <Tag :color="color" type="secondary">{{ title }}</Tag>
+      </div>
+    </div>
     <slot />
   </div>
 </template>
@@ -12,5 +18,12 @@ import { Tag } from '@chargetrip/internal-vue-components'
 export default class Steps extends Vue {
   @Prop() title
   @Prop() color
+  @Prop() khaled
+
+  onClick(e) {
+    if (this.khaled) {
+      this.$root.$emit('openKhaled', { x: e.clientX, y: e.clientY })
+    }
+  }
 }
 </script>

@@ -1,6 +1,6 @@
 ---
 title: Status & Error Codes
-order: 7
+order: 4
 statuses:
 - 200
 - 201

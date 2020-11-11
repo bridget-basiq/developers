@@ -1,6 +1,6 @@
 ---
 title: Authorization
-order: 6
+order: 3
 
 keys:
 - x-client-id

@@ -1,23 +1,20 @@
 <template>
   <div class="step mb-24 relative">
     <div class="image-wrapper relative">
-      <div class="md:pl-24 overflow-hidden">
-        <div
-          class="box md:rounded overflow-hidden relative mb-6 whitespace-no-wrap"
-          :class="{ 'bg-accent': !darkMode, 'bg-base': darkMode }"
-        >
-          <c-image v-if="img" class="shadow-down-md" :alt="title" :src="img" />
+      <div class="md:pl-24">
+        <div class="overflow-hidden mb-6 md:rounded">
+          <StepImage v-if="img" :src="img" :title="title" />
           <div
             v-if="images"
-            class="rails transition duration-300 ease-in-out"
+            class="rails transition whitespace-no-wrap duration-300 ease-in-out"
             :style="{ transform: `translateX(-${sliderIndex * 100}%)` }"
           >
-            <c-image
+            <StepImage
               v-for="(image, i) in images"
               :key="i"
-              class="inline-block shadow-down-md transform -translate-x-1/2"
-              :alt="title"
+              class="inline-block md:mr-8 transform -translate-x-1/2"
               :src="image"
+              :title="title"
             />
           </div>
           <template v-if="images">
@@ -49,7 +46,6 @@
         </div>
       </div>
     </div>
-
     <div class="number-wrapper relative flex">
       <div
         class="w-24 hidden md:block flex-shrink-0 font-semibold text-font-alt3 relative"
@@ -73,8 +69,10 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop, Getter } from 'nuxt-property-decorator'
-
-@Component
+import StepImage from '~/components/StepImage.vue'
+@Component({
+  components: { StepImage },
+})
 export default class Steps extends Vue {
   @Getter darkMode
   @Prop() img
@@ -99,7 +97,7 @@ export default class Steps extends Vue {
     }
   }
   @screen md-max {
-    .box {
+    .step-image {
       overflow: hidden;
       max-height: 400px;
 
@@ -108,13 +106,11 @@ export default class Steps extends Vue {
       }
     }
     &:nth-child(3) {
-      .box {
-        img {
-          @apply translate-x-0;
+      .step-image {
+        @apply translate-x-0;
 
-          &:first-child {
-            @apply origin-top-right;
-          }
+        &:first-child {
+          @apply origin-top-right;
         }
       }
     }

@@ -37,7 +37,7 @@ export default class Steps extends Vue {}
 
       &:nth-child(2) .image-wrapper {
         &::before {
-          height: calc(100% + 6px);
+          height: calc(100% + 28px);
         }
       }
       &:last-child .number-wrapper {

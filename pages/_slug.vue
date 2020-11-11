@@ -1,10 +1,6 @@
 <template>
   <div>
-    <nuxt-content
-      class="max-w-screen-md"
-      :document="page"
-      @dblclick.native="setIsEditing(true)"
-    />
+    <nuxt-content class="max-w-screen-md" :document="page" />
   </div>
 </template>
 

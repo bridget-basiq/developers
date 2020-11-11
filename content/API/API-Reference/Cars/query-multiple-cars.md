@@ -1,6 +1,6 @@
 ---
 title: Query multiple cars
-order: 2
+order: 5
 frequently:
  - id
  - chargetripEdition

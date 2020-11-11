@@ -124,6 +124,7 @@ module.exports = {
     },
   },
   variants: {
+    borderRadius: ['responsive', 'first', 'last'],
     borderWidth: ['responsive', 'first'],
     margin: ['responsive', 'last', 'first'],
   },

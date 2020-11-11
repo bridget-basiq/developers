@@ -1,6 +1,6 @@
 ---
 title: Getting started
-order: 5
+order: 2
 images:
 - configuring-your-project-1.png
 - configuring-your-project-2.png
@@ -37,7 +37,7 @@ Want to use the same configuration in a different app? Create additional app key
 ## Collect your keys
 After you configured your project you need to click save. You will then be redirected to the project overview where you can copy your project key.
 
-<step-note color="note" title="Chargetrip">
+<step-note color="note" title="Key alert" :khaled="true">
 
 Want to use the same configuration in a different app? Create additional app keys inside your project and add them to your header as explained here.
 

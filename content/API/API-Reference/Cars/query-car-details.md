@@ -1,6 +1,6 @@
 ---
 title: Query car details
-order: 3
+order: 6
 frequently:
  - id
  - chargetripEdition

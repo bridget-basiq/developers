@@ -47,16 +47,7 @@
       >
         <div class="sticky-header items-start lg:px-8 px-6 hidden lg:flex">
           <template v-if="!isEditing">
-            <Input
-              type="search"
-              icon="search"
-              :hotkey="{
-                icon: 'slash',
-                key: '/',
-                fn: (input) => input.focus(),
-              }"
-              placeholder="Search documentation"
-            />
+            <Search />
             <Button
               v-if="isDev"
               class="ml-auto"
@@ -78,7 +69,7 @@
             </div>
           </template>
         </div>
-        <div class="lg:px-8 px-6">
+        <div class="lg:px-8 px-6 lg-max:overflow-hidden">
           <Nuxt class="page mb-8" />
         </div>
         <PrevNextNavigation v-if="sideNav" class="mt-auto" />
@@ -97,13 +88,21 @@
       </aside>
     </div>
     <QuickNav class="lg:hidden z-50" :items="quickNavItems" />
+    <video
+      v-if="showKhaled"
+      class="absolute max-w-screen-sm z-50 rounded shadow-down-xl transform -translate-x-1/2 -translate-y-full bottom-0 -mt-6"
+      :style="{ top: `${khaledPosition.y}px`, left: `${khaledPosition.x}px` }"
+      autoplay
+      loop
+      src="/khaled.mp4"
+      @click="closeKhaled"
+    />
   </div>
 </template>
 <script lang="ts">
 import { Component, Watch, Ref } from 'nuxt-property-decorator'
 import { Mixins } from 'vue-property-decorator'
 import {
-  Input,
   Banner,
   Button,
   SideNav,
@@ -117,14 +116,15 @@ import PrevNextNavigation from '~/components/PrevNextNavigation.vue'
 import Base from '~/mixins/base'
 import MarkdownFormatting from '~/components/MarkdownFormatting.vue'
 import { Listen } from '~/utilities/decorators'
+import Search from '~/components/Search.vue'
 
 @Component({
   components: {
+    Search,
     MarkdownFormatting,
     PrevNextNavigation,
     RelatedActions,
     SideNav,
-    Input,
     Table,
     Banner,
     Button,
@@ -136,6 +136,8 @@ export default class Layout extends Mixins(Base) {
   @Getter sideNav
   @Getter content
   @Getter isEditing
+  showKhaled = false
+  khaledPosition = { x: 0, y: 0 }
   @Ref('container') container
   isDev = process.env.NODE_ENV === 'development'
   @Mutation setDarkMode
@@ -145,6 +147,14 @@ export default class Layout extends Mixins(Base) {
   h2Elms: any[] = []
   hash = this.$route.hash.slice(1)
   stopReplacing = false
+
+  beforeMount() {
+    this.openKhaled = this.openKhaled.bind(this)
+    this.closeKhaled = this.closeKhaled.bind(this)
+
+    this.$root.$on('openKhaled', this.openKhaled)
+    this.$root.$on('closeKhaled', this.closeKhaled)
+  }
 
   mounted() {
     this.onRouteChange()
@@ -156,6 +166,15 @@ export default class Layout extends Mixins(Base) {
         setTimeout(this.onRouteChange.bind(this), 100)
       })
     }
+  }
+
+  openKhaled(position) {
+    this.khaledPosition = position
+    this.showKhaled = true
+  }
+
+  closeKhaled() {
+    this.showKhaled = false
   }
 
   findFirstChild(arr) {
@@ -297,6 +316,11 @@ export default class Layout extends Mixins(Base) {
       this.$router.replace(this.$route.fullPath.replace(this.$route.hash, ''))
     }
   }
+
+  beforeDestroy() {
+    this.$root.$off('openKhaled', this.openKhaled)
+    this.$root.$off('closeKhaled', this.closeKhaled)
+  }
 }
 </script>
 <style lang="scss">
@@ -335,7 +359,11 @@ export default class Layout extends Mixins(Base) {
 
     + p,
     + p + p {
-      @apply text-18 text-font-alt3 pr-24;
+      @apply text-18 text-font-alt3;
+
+      @screen md {
+        @apply pr-24;
+      }
 
       img {
         width: calc(100% + 96px);

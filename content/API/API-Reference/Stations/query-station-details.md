@@ -1,6 +1,6 @@
 ---
 title: Query station details
-order: 4
+order: 7
 frequently:
  - id
  - chargetripEdition
