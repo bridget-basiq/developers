@@ -1,6 +1,8 @@
 ---
 title: Status & Error Codes
+description: Status & Error Codes placeholder description...
 order: 4
+
 statuses:
 - 200
 - 201

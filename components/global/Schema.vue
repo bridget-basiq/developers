@@ -1,11 +1,17 @@
 <template>
   <div class="schema my-8 lg:pl-10">
-    <section v-for="(section, i) in sections" :key="i" class="mb-12 last:mb-0">
+    <section
+      v-for="(section, i) in sections"
+      :key="i"
+      class="mb-12 last:mb-0"
+      :class="section.id"
+    >
       <h2 :id="section.id">{{ section.title }}</h2>
       <div class="mt-3">
         <Property
           v-for="(item, c) in section.items"
           :key="`${i}-${c}`"
+          :section-i-d="section.id"
           :show-required="!i"
           :initial-active="i < 2"
           v-bind="item"

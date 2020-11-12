@@ -1,5 +1,6 @@
 ---
 title: Authorization
+description: Authorization placeholder description...
 order: 3
 
 keys:

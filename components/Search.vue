@@ -15,10 +15,9 @@
     />
     <nav
       v-show="showSuggestions && suggestions.length"
-      class="suggestions rounded-sm border border-alt shadow-down-xl absolute left-0 top-full bg-body min-w-full mt-2 text-14"
-      @mousedown.prevent
+      class="rounded-sm border border-alt shadow-down-xl absolute left-0 top-full bg-body min-w-full mt-2 text-14"
     >
-      <div class="p-2 flex flex-col">
+      <div class="p-2 flex flex-col suggestions overflow-y-scroll">
         <router-link
           v-for="(suggestion, key) in suggestions"
           :key="key"
@@ -27,6 +26,7 @@
           :class="{ 'bg-base': index === key }"
           :to="suggestion.url"
           @mouseenter.native="index = key"
+          @mousedown.prevent.native="onClick(suggestion)"
         >
           <p class="whitespace-no-wrap">
             <strong>
@@ -36,7 +36,13 @@
               {{ suggestion.title }}
             </strong>
           </p>
-          <p v-html="suggestion._snippetResult.html.value" />
+          <p
+            v-html="
+              suggestion._highlightResult
+                ? suggestion._highlightResult.description.value
+                : suggestion.description
+            "
+          />
         </router-link>
       </div>
       <footer class="border-t border-alt py-1 px-3 flex whitespace-no-wrap">
@@ -57,13 +63,17 @@
             {{ hotKey.title }}
           </p>
         </div>
-        <!--        <img class="pl-8 ml-auto w-24 flex-shrink-0" src="/algolia.png" alt="algolia" />-->
+        <img
+          class="pl-8 ml-auto w-24 h-auto object-contain flex-shrink-0 max-w-xs"
+          src="/algolia.png"
+          alt="algolia"
+        />
       </footer>
     </nav>
   </div>
 </template>
 <script lang="ts">
-import { Component, Watch } from 'nuxt-property-decorator'
+import { Component, Watch, Prop } from 'nuxt-property-decorator'
 import { Input } from '@chargetrip/internal-vue-components'
 import algoliasearch from 'algoliasearch/lite'
 import { Mixins } from 'vue-property-decorator'
@@ -72,6 +82,7 @@ import { Listen } from '~/utilities/decorators'
 
 @Component({ components: { Input } })
 export default class Search extends Mixins(Base) {
+  @Prop() clickHandler
   suggestions: any[] = []
   showSuggestions = false
   index = 0
@@ -87,18 +98,20 @@ export default class Search extends Mixins(Base) {
     },
   ]
 
-  length = 5
+  length = 50
 
   client = algoliasearch(
     this.$config.ALGOLIA_APP_ID as string,
     this.$config.ALGOLIA_API_PUBLIC_KEY as string
   )
 
-  database = this.client.initIndex('pages')
+  database = this.client.initIndex('items')
 
   @Watch('search') async onSearchChange() {
     const { hits } = await this.database.search(this.search, {
       attributesToSnippet: ['*:5'],
+      attributesToHighlight: ['description'],
+      // ranking: ['title', 'h1', 'h2', 'parent', 'description'],
       length: this.length,
       offset: 0,
     })
@@ -124,13 +137,18 @@ export default class Search extends Mixins(Base) {
   @Watch('$route') onRouteChange() {
     this.showSuggestions = false
     this.index = 0
-    this.search = ''
-    this.suggestions = []
+  }
+
+  onClick({ url }) {
+    this.clickHandler({ hash: url.split('#')?.[1] })
   }
 }
 </script>
 <style lang="scss">
 .search {
+  .suggestions {
+    max-height: 400px;
+  }
   em {
     @apply not-italic text-warning;
   }

@@ -24,8 +24,11 @@
               <li
                 v-for="(_, key) in images"
                 :key="key"
-                class="w-2 h-2 rounded-full border border-font-alt3 mr-2 last:mr-0"
-                :class="{ 'border-none bg-accent': sliderIndex === key }"
+                class="w-2 h-2 rounded-full mr-2 last:mr-0"
+                :class="{
+                  'bg-font-primary': sliderIndex === key,
+                  'bg-font-alt3': sliderIndex !== key,
+                }"
               />
             </ul>
             <nav

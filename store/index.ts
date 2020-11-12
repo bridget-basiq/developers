@@ -22,6 +22,11 @@ const getH2Children = (page) => {
           'Other attributes',
         ].map((title) => ({ title, props: { id: slugify(title) } }))
       )
+    } else if (child.tag === 'guides' || child.tag === 'examples') {
+      arr.push({
+        title: child.props.title,
+        props: { id: slugify(child.props.title) },
+      })
     } else if (child.children) {
       arr.push(...getH2Children(child))
     }
@@ -52,14 +57,12 @@ const getSideNav = (pages) => {
             to: page.path,
             icon: page.icon,
             title: page.title,
-            children:
-              page.slug === 'home'
-                ? []
-                : getH2Children(page.body).map((child) => ({
-                    to: page.path,
-                    hash: child.props.id,
-                    title: child.title || child.children[1].value,
-                  })),
+            hideChildren: page.slug === 'home',
+            children: getH2Children(page.body).map((child) => ({
+              to: page.path,
+              hash: child.props.id,
+              title: child.title || child.children[1].value,
+            })),
           })
         } else if (!obj.children.find((child) => child.path === p)) {
           obj.children.push({

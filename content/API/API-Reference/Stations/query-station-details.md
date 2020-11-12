@@ -1,5 +1,6 @@
 ---
 title: Query station details
+description: Query station details placeholder description...
 order: 7
 frequently:
  - id
@@ -9,7 +10,7 @@ frequently:
  - carModel
 ---
 
-# Query car details
+# Query Station details
 
 This query is used to get a list of all the details of an electric car in our database. Some attributes are coming from our partner [EVDatabase](http://google.com).
 

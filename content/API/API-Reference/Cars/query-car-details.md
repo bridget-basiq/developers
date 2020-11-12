@@ -1,6 +1,8 @@
 ---
 title: Query car details
 order: 6
+description: Query car details placeholder description...
+
 frequently:
  - id
  - chargetripEdition

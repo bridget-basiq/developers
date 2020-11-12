@@ -6,6 +6,7 @@
       'theme-light': !darkMode,
       'no-transition': noTransition,
     }"
+    @click="closeKhaled"
   >
     <Banner type="switcher">
       <div class="flex w-full text-font-alt3 text-12 font-semibold">
@@ -13,11 +14,8 @@
           >Website</a
         >
         /
-        <a
-          class="mx-1 text-font-primary"
-          href="https://chargetrip.com"
-          target="_blank"
-          >Developers</a
+        <router-link class="mx-1 text-font-primary" to="/"
+          >Developers</router-link
         >
         /
         <div class="ml-1" href="https://chargetrip.com" target="_blank">
@@ -26,11 +24,11 @@
       </div>
     </Banner>
     <div
-      class="flex bg-body flex-col lg:flex-row relative z-10 flex-1 rounded-t-xl"
+      class="view flex bg-body flex-col lg:flex-row relative z-10 flex-1 rounded-t-xl"
     >
       <SideNav
         v-if="sideNav"
-        class="text-14 z-10 top-0"
+        class="text-14 z-50 top-0"
         :navs="normalizedSideNav"
         :dark-mode="darkMode"
         :show-toggle-menu="!isHome"
@@ -47,7 +45,7 @@
       >
         <div class="sticky-header items-start lg:px-8 px-6 hidden lg:flex">
           <template v-if="!isEditing">
-            <Search />
+            <Search :click-handler="onMenuItemClick" />
             <Button
               v-if="isDev"
               class="ml-auto"
@@ -95,7 +93,6 @@
       autoplay
       loop
       src="/khaled.mp4"
-      @click="closeKhaled"
     />
   </div>
 </template>
@@ -237,9 +234,13 @@ export default class Layout extends Mixins(Base) {
       const interval = setInterval(() => {
         times++
 
-        if (times > 20) clearInterval(interval)
+        if (times > 100) {
+          console.log(`Didn't find ${item.hash}`)
+          clearInterval(interval)
+        }
 
         const el = this.container.querySelector(`#${item.hash}`)
+
         if (!el) return
         const rect = el.getBoundingClientRect()
 
@@ -384,6 +385,10 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
+  .view {
+    height: calc(100vh - 34px);
+  }
+
   .table {
     @apply text-14;
 
@@ -410,6 +415,12 @@ export default class Layout extends Mixins(Base) {
 
     aside {
       flex: 0 0 383px;
+    }
+  }
+
+  @screen xl2 {
+    .c-side-nav {
+      margin-right: 260px;
     }
   }
 

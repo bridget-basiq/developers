@@ -1,6 +1,8 @@
 ---
 title: Getting started
+description: Getting started placeholder description...
 order: 2
+
 images:
 - configuring-your-project-1.png
 - configuring-your-project-2.png

@@ -4,6 +4,7 @@ export default {
     ALGOLIA_APP_ID: process.env.ALGOLIA_APP_ID,
     ALGOLIA_API_PUBLIC_KEY: process.env.ALGOLIA_API_PUBLIC_KEY,
   },
+  target: 'static',
   head: {
     title: 'dev-portal',
     meta: [

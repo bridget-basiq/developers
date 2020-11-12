@@ -1,5 +1,6 @@
 <template>
   <li
+    :id="`${sectionID}-${name}`"
     class="property list-none text-14 relative"
     :class="{ 'is-child': depth, 'show-children': showChildren }"
   >
@@ -43,7 +44,7 @@
           <Tag v-if="showQuery" class="mr-1" color="alt3" type="secondary"
             >Query</Tag
           >
-          <span v-else class="font-mono">
+          <span v-else class="font-mono title">
             {{ name }}
           </span>
           <template v-if="typeStr">
@@ -76,7 +77,11 @@
             }"
           />
         </div>
-        <p v-if="description && active" class="text-font-alt3">
+        <p
+          v-if="description"
+          v-show="active"
+          class="description text-font-alt3"
+        >
           {{ description }}
         </p>
       </div>
@@ -97,7 +102,7 @@
         }"
       />
     </p>
-    <ul v-if="children && showChildren">
+    <ul v-if="children" v-show="showChildren">
       <property
         v-for="(child, i) in children"
         :key="i"
@@ -117,6 +122,7 @@ import { OfTypeKind } from '~/utilities/constants'
 
 @Component({ name: 'property', components: { Tag } })
 export default class Property extends Vue {
+  @Prop() sectionID
   @Prop() name
   @Prop() showRequired
   @Prop() required

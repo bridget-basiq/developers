@@ -3,7 +3,7 @@
     class="step-note flex pt-6 mt-6 border-t border-alt mr-14 flex-col md:flex-row items-start"
   >
     <div class="md:mr-6 md-max:mb-2">
-      <div @click="onClick">
+      <div @click.stop="onClick">
         <Tag :color="color" type="secondary">{{ title }}</Tag>
       </div>
     </div>

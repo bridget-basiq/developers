@@ -17,6 +17,8 @@ module.exports = {
   theme: {
     extend: {
       screens: {
+        xl2: '1440px',
+        'xl2-max': { max: '1439px' },
         'xl-max': { max: '1279px' },
         // => @media (max-width: 1279px) { ... }
 
@@ -92,6 +94,7 @@ module.exports = {
         18: '18px',
         20: '20px',
         22: '22px',
+        24: '24px',
         32: '32px',
         40: '40px',
       },

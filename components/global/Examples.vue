@@ -1,5 +1,5 @@
 <template>
-  <div class="examples my-14">
+  <div :id="slug" class="examples my-14">
     <div class="flex mb-4 items-center flex-wrap justify-between">
       <h2>{{ title }}</h2>
       <nav class="text-font-alt3 mt-2 lg:mt-0 flex font-semibold">
@@ -20,8 +20,8 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { Watch } from 'vue-property-decorator'
+import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
+import { slugify } from '~/utilities/project.functions'
 
 @Component
 export default class Examples extends Vue {
@@ -29,6 +29,10 @@ export default class Examples extends Vue {
   @Prop() examples
   categories: string[] = []
   index: number | null = null
+
+  get slug() {
+    return slugify(this.title)
+  }
 
   created() {
     this.categories =
@@ -45,12 +49,10 @@ export default class Examples extends Vue {
     this.$slots?.default?.map((child) => {
       if (child?.componentInstance?.$data) {
         if (this.index === null) {
-          // @ts-ignore
-          child?.componentInstance?.$data?.active = true
+          child.componentInstance.$data.active = true
         } else {
-          // @ts-ignore
-          child?.componentInstance?.$data?.active =
-            child?.componentInstance?.$props.category ===
+          child.componentInstance.$data.active =
+            child.componentInstance.$props.category ===
             this.categories[this.index]
         }
       }
