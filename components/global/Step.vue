@@ -1,8 +1,8 @@
 <template>
   <div class="step mb-24 relative">
-    <div class="image-wrapper relative">
-      <div class="md:pl-24">
-        <div class="overflow-hidden mb-6 md:rounded">
+    <div class="side relative md:pl-24">
+      <div class="image-wrapper overflow-hidden mb-6 md:rounded relative">
+        <div class="absolute w-full top-0 left-0">
           <StepImage v-if="img" :src="img" :title="title" />
           <div
             v-if="images"
@@ -17,36 +17,36 @@
               :title="title"
             />
           </div>
-          <template v-if="images">
-            <ul
-              class="flex md:hidden absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-4 justify-center"
-            >
-              <li
-                v-for="(_, key) in images"
-                :key="key"
-                class="w-2 h-2 rounded-full mr-2 last:mr-0"
-                :class="{
-                  'bg-font-primary': sliderIndex === key,
-                  'bg-font-alt3': sliderIndex !== key,
-                }"
-              />
-            </ul>
-            <nav
-              class="md:hidden absolute transform top-1/2 translate-y-1/2 w-full flex text-font-primary px-2"
-            >
-              <div
-                v-if="sliderIndex"
-                class="cursor-pointer shadow-down-md flex items-center justify-center w-8 h-8 rounded-full bg-body icon-chevron-left"
-                @click="sliderIndex--"
-              />
-              <div
-                v-if="sliderIndex < images.length - 1"
-                class="cursor-pointer shadow-down-md flex items-center justify-center w-8 h-8 rounded-full bg-body icon-chevron-right ml-auto"
-                @click="sliderIndex++"
-              />
-            </nav>
-          </template>
         </div>
+        <template v-if="images">
+          <ul
+            class="flex md:hidden absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-4 justify-center"
+          >
+            <li
+              v-for="(_, key) in images"
+              :key="key"
+              class="w-2 h-2 rounded-full mr-2 last:mr-0"
+              :class="{
+                'bg-font-primary': sliderIndex === key,
+                'bg-font-alt3': sliderIndex !== key,
+              }"
+            />
+          </ul>
+          <nav
+            class="md:hidden absolute transform top-1/2 translate-y-1/2 w-full flex text-font-primary px-2"
+          >
+            <div
+              v-if="sliderIndex"
+              class="cursor-pointer shadow-down-md flex items-center justify-center w-8 h-8 rounded-full bg-body icon-chevron-left"
+              @click="sliderIndex--"
+            />
+            <div
+              v-if="sliderIndex < images.length - 1"
+              class="cursor-pointer shadow-down-md flex items-center justify-center w-8 h-8 rounded-full bg-body icon-chevron-right ml-auto"
+              @click="sliderIndex++"
+            />
+          </nav>
+        </template>
       </div>
     </div>
     <div class="number-wrapper relative flex">
@@ -87,22 +87,28 @@ export default class Steps extends Vue {
 <style lang="scss">
 .step {
   .image-wrapper {
-    width: calc(100% + 48px);
-    @apply -ml-6;
+    &::after {
+      content: '';
+      padding-bottom: 50%;
+      @apply block;
+    }
   }
   @screen md {
-    .image-wrapper {
-      @apply w-full ml-0;
-    }
-
     .rails {
       transform: unset !important;
     }
   }
   @screen md-max {
+    .image-wrapper {
+      width: calc(100% + 48px);
+      @apply -ml-6;
+
+      &::after {
+        padding-bottom: 50%;
+      }
+    }
     .step-image {
       overflow: hidden;
-      max-height: 400px;
 
       img {
         @apply origin-top-left transform scale-150;

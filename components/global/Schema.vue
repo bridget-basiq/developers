@@ -23,9 +23,10 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
 import { Getter } from 'vuex-class'
+import { toSnakeCase } from 'js-convert-case/lib'
 import Property from '~/components/Property.vue'
-import { slugify } from '~/utilities/project.functions'
 import { OfTypeKind } from '~/utilities/constants'
+
 @Component({
   components: { Property },
 })
@@ -51,7 +52,7 @@ export default class Schema extends Vue {
         title: 'Other attributes',
         items: this.attributes,
       },
-    ].map((section) => ({ ...section, id: slugify(section.title) }))
+    ].map((section) => ({ ...section, id: toSnakeCase(section.title) }))
   }
 
   get frequentlyUsedAttributes() {

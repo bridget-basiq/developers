@@ -26,7 +26,7 @@ export default class Steps extends Vue {}
     .step {
       counter-increment: step;
 
-      &:nth-child(2) .image-wrapper,
+      &:nth-child(2) .side,
       &:last-child .number-wrapper {
         &::before {
           @apply absolute top-0 left-0 bg-body w-10 z-10;
@@ -35,12 +35,12 @@ export default class Steps extends Vue {}
         }
       }
 
-      &:nth-child(2) .image-wrapper {
+      &:nth-child(2) .side {
         &::before {
           height: calc(100% + 28px);
         }
       }
-      &:last-child .number-wrapper {
+      &:last-child .side {
         &::before {
           @apply mt-5;
 

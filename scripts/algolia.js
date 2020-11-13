@@ -49,7 +49,7 @@ async function getEntries(path) {
   )
 }
 
-function getProperties({ dom, url, h1 }) {
+function getProperties({ dom, url }) {
   const arr = []
 
   propertySections.map((section) => {
@@ -60,7 +60,6 @@ function getProperties({ dom, url, h1 }) {
         arr.push({
           type: 'property',
           url: `${url}#${property.getAttribute('id')}`,
-          parent: h1,
           title: property.querySelector('.title')?.textContent?.trim(),
           description: property
             .querySelector('.description')

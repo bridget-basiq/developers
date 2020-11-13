@@ -1,6 +1,6 @@
 <template>
   <li
-    :id="`${sectionID}-${name}`"
+    :id="normalizedSectionID"
     class="property list-none text-14 relative"
     :class="{ 'is-child': depth, 'show-children': showChildren }"
   >
@@ -14,7 +14,7 @@
     >
       <div
         v-if="depth"
-        class="line-h block lg:block hidden absolute w-10 left-0 top-1/2 -ml-5 transform -translate-y-1/2 h-px bg-alt2"
+        class="line-h block lg:block hidden absolute w-10 left-0 -ml-5 mt-3 h-px bg-alt2"
       />
       <div
         v-if="showChildren || depth"
@@ -23,25 +23,28 @@
 
       <div class="relative">
         <div
-          class="hidden lg:flex absolute h-full w-10 items-center justify-center left-0 top-1/2 transform -translate-y-1/2 -translate-x-full"
+          class="hidden lg:flex absolute w-10 h-full justify-center left-0 transform -translate-x-full"
         >
           <span
             v-if="children"
-            class="z-10 toggle-children bg-body text-accent"
+            class="z-10 mt-3 flex items-center toggle-children bg-body text-accent transform -translate-y-1/2"
             :class="{
               'icon-circle-cross': showChildren,
               'icon-circle-plus': !showChildren,
             }"
             @click.stop="showChildren = !showChildren"
           />
-          <span v-else-if="depth" class="w-1 h-1 rounded-full bg-alt2" />
+          <span
+            v-else-if="depth"
+            class="w-1 mt-3 h-1 self-start transform -translate-y-px rounded-full bg-alt2"
+          />
           <div
             v-if="showChildren && depth"
             class="icon-line-v absolute w-px h-full top-1/2 left-1/2 bg-alt -translate-y-1/2 -translate-x-1/2"
           />
         </div>
         <div class="text-font-primary flex items-center">
-          <Tag v-if="showQuery" class="mr-1" color="alt3" type="secondary"
+          <Tag v-if="showQuery" class="mr-1" color="note" type="secondary"
             >Query</Tag
           >
           <span v-else class="font-mono title">
@@ -106,6 +109,7 @@
       <property
         v-for="(child, i) in children"
         :key="i"
+        :section-i-d="normalizedSectionID"
         :class="{ 'lg:ml-10': depth }"
         :force-active="true"
         :initial-active="true"
@@ -144,6 +148,10 @@ export default class Property extends Vue {
   @Watch('initialActive', { immediate: true }) onActiveChange() {
     this.active = this.initialActive || this.forceActive
   }
+
+  get normalizedSectionID() {
+    return `${this.sectionID}-${this.name}`
+  }
 }
 </script>
 <style lang="scss">
@@ -176,7 +184,7 @@ export default class Property extends Vue {
   &:last-child {
     > .content {
       > .line-v {
-        @apply h-1/2;
+        @apply h-7;
       }
     }
   }
