@@ -32,7 +32,6 @@ import { OfTypeKind } from '~/utilities/constants'
 })
 export default class Schema extends Vue {
   @Getter querySchema
-  @Getter sideNav
   @Prop() name
   schema: any = null
   @Prop({ default: [] }) frequent!: string[]

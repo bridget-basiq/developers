@@ -5,6 +5,7 @@
       'theme-dark': darkMode,
       'theme-light': !darkMode,
       'no-transition': noTransition,
+      'is-playground': isPlayground,
     }"
     @click="closeKhaled"
   >
@@ -80,7 +81,9 @@
           </nav>
         </div>
       </div>
-      <aside class="border-l border-alt p-8 overflow-y-scroll hidden xl:block">
+      <aside
+        class="right-aside border-l border-alt p-8 overflow-y-scroll hidden xl:block"
+      >
         <MarkdownFormatting v-if="isEditing" />
         <RelatedActions v-else />
       </aside>
@@ -235,25 +238,28 @@ export default class Layout extends Mixins(Base) {
         times++
 
         if (times > 100) {
+          // eslint-disable-next-line no-console
           console.log(`Didn't find ${item.hash}`)
+          this.stopReplacing = false
           clearInterval(interval)
         }
 
         const el = this.container.querySelector(`#${item.hash}`)
 
         if (!el) return
+        clearInterval(interval)
         const rect = el.getBoundingClientRect()
 
         this.container.scrollTo({
           top: this.container.scrollTop + rect.top - 112,
           behavior: 'smooth',
         })
+
+        setTimeout(() => {
+          this.stopReplacing = false
+        }, 1000)
       }, 10)
     }
-
-    setTimeout(() => {
-      this.stopReplacing = false
-    }, 1000)
   }
 
   @Watch('darkMode') onDarkModeChange() {
@@ -266,6 +272,26 @@ export default class Layout extends Mixins(Base) {
 
   @Watch('$route.hash') onHashChange() {
     this.hash = this.$route.hash.slice(1)
+  }
+
+  findInArray(arr, name) {
+    let find = false
+
+    arr.forEach((item) => {
+      if (item.tag === name) {
+        find = true
+      }
+
+      if (item.children) {
+        find = this.findInArray(item.children, name) || find
+      }
+    })
+
+    return find
+  }
+
+  get isPlayground() {
+    return this.findInArray(this.content?.body?.children || [], 'playground')
   }
 
   @Listen('dblclick') onDblClick(e) {
@@ -340,8 +366,8 @@ export default class Layout extends Mixins(Base) {
     @apply mt-6 mb-10;
   }
 
-  h2,
-  h3 {
+  > h2,
+  > h3 {
     @apply mt-14 mb-2;
   }
 
@@ -385,6 +411,11 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
+  &.is-playground {
+    .right-aside {
+      flex: 0 0 512px;
+    }
+  }
   .view {
     height: calc(100vh - 34px);
   }
@@ -403,18 +434,19 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
+  .view > .content,
+  .playground,
+  aside {
+    max-height: calc(100vh - 34px);
+  }
+
+  aside {
+    flex: 0 0 383px;
+  }
+
   @screen lg {
     .c-side-nav {
       flex: 0 0 260px;
-    }
-
-    .content,
-    aside {
-      max-height: calc(100vh - 34px);
-    }
-
-    aside {
-      flex: 0 0 383px;
     }
   }
 
