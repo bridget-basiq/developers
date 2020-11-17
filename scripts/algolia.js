@@ -12,9 +12,9 @@ const index = client.initIndex('items')
 const distPath = join(process.cwd(), 'dist')
 const { JSDOM } = require('jsdom')
 const propertySections = [
-  'request-parameters',
-  'frequently-used-attributes',
-  'other-attributes',
+  'request_parameters',
+  'frequently_used_attributes',
+  'other_attributes',
 ]
 
 async function getEntries(path) {

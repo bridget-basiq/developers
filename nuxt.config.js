@@ -15,8 +15,8 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   router: {
-    base:
-      process.env.NODE_ENV === 'production' ? '/chargetrip-developers/' : '/',
+    // base:
+    //   process.env.NODE_ENV === 'production' ? '/chargetrip-developers/' : '/',
     extendRoutes(routes) {
       routes.unshift({
         path: '/',

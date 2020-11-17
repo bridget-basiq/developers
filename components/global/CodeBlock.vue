@@ -19,9 +19,11 @@
       </template>
       <span class="icon icon-clipboard ml-auto cursor-pointer" @click="copy" />
     </header>
-    <pre
-      class="font-mono px-6 py-4 font-base overflow-x-scroll"
-    ><code v-for="(line, key) in codeLines" :key="key" v-html="line"/></pre>
+    <div class="wrapper">
+      <pre
+        class="font-mono px-6 py-4 font-base overflow-x-scroll"
+      ><code v-for="(line, key) in codeLines" :key="key" v-html="line"/></pre>
+    </div>
     <Snackbar
       class="z-40"
       :class="{ active: showSnackbar }"
@@ -71,6 +73,11 @@ export default class CodeBlock extends Vue {
       @apply mr-4 text-font-alt3;
 
       content: counter(listing);
+    }
+
+    &::after {
+      content: '';
+      @apply pr-8 inline-block;
     }
   }
 

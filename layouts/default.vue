@@ -68,7 +68,7 @@
             </div>
           </template>
         </div>
-        <div class="lg:px-8 px-6 lg-max:overflow-hidden">
+        <div class="lg:px-8 px-6 lg-max:overflow-x-hidden">
           <Nuxt class="page mb-8" />
         </div>
         <PrevNextNavigation v-if="sideNav" class="mt-auto" />
@@ -416,9 +416,6 @@ export default class Layout extends Mixins(Base) {
       flex: 0 0 512px;
     }
   }
-  .view {
-    height: calc(100vh - 34px);
-  }
 
   .table {
     @apply text-14;
@@ -434,17 +431,20 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
-  .view > .content,
-  .playground,
-  aside {
-    max-height: calc(100vh - 34px);
-  }
-
-  aside {
-    flex: 0 0 383px;
-  }
-
   @screen lg {
+    .view > .content,
+    .playground,
+    aside {
+      max-height: calc(100vh - 34px);
+    }
+
+    .view {
+      height: calc(100vh - 34px);
+    }
+
+    aside {
+      flex: 0 0 383px;
+    }
     .c-side-nav {
       flex: 0 0 260px;
     }

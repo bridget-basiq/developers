@@ -46,11 +46,13 @@ export default class CodeBlock extends Vue {
     let item = null
 
     arr.forEach((child) => {
-      const index = child?.children?.findIndex(
-        (child) => !child?.hash?.length && child.to === this.current.to
+      const find = child?.children?.find(
+        (_child) => !_child?.hash?.length && _child.to === this.current.to
       )
 
-      item = index >= 0 ? child : null
+      if (find) {
+        return (item = child)
+      }
 
       if (child.children) {
         item = this.findParent(child.children) || item

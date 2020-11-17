@@ -19,7 +19,7 @@
             class="icon toggle-children text-accent relative z-10 bg-body"
             :class="{
               'icon-circle-plus': !showChildren,
-              'icon-circle-cross': showChildren,
+              'icon-circle-minus': showChildren,
             }"
             @click="showChildren = !showChildren"
           />
@@ -76,7 +76,7 @@
           </Tag>
           <span
             v-if="!depth && description && !forceActive"
-            class="ml-auto cursor-pointer"
+            class="ml-auto cursor-pointer lg-max:mr-6"
             :class="{
               'icon-chevron-right': !active,
               'icon-chevron-down': active,
@@ -235,7 +235,7 @@ export default class Property extends Vue {
 
     @screen lg-max {
       > .child-1-b > .children {
-        @apply pl-13 bg-base;
+        @apply pl-10 bg-base;
       }
       > .child-1-a > .child-2-b > .toggle-children-wrapper {
         @apply hidden;

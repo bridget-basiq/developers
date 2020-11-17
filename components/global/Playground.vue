@@ -4,10 +4,9 @@
   >
     <div class="sticky-header px-8 flex items-center">
       <h2>Playground</h2>
-      <Button class="ml-auto mr-2" size="sm" color="base" icon="arrow-up-right">
+      <Button class="ml-auto" size="sm" color="base" icon="arrow-up-right">
         View in Playground
       </Button>
-      <Button size="sm" color="accent">Run query</Button>
     </div>
     <slot />
   </div>
@@ -25,7 +24,11 @@ export default class Playground extends Vue {}
   width: 512px;
 
   .code-block {
-    @apply m-0 rounded-none;
+    @apply m-0 rounded-none border-l-0 border-b-0;
+
+    code {
+      @apply pr-8;
+    }
 
     header {
       @apply bg-body;

@@ -128,6 +128,7 @@ query carListAll {
 </code-block>
 
 </playground>
+
 ## Response
 
 On success, the HTTP status code in the response header is 200 and the response body contains the attributes you requested.
