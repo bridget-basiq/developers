@@ -108,7 +108,7 @@ export default class Steps extends Vue {
       }
     }
     .step-image {
-      overflow: hidden;
+      @apply overflow-hidden;
 
       img {
         @apply origin-top-left transform scale-150;

@@ -1,14 +1,16 @@
 <template>
   <div
-    class="playground fixed border-l border-alt right-0 bg-body h-full z-40 overflow-y-scroll hidden xl:block"
+    class="playground fixed border-l border-alt right-0 bg-body h-full z-40 hidden xl:block"
   >
     <div class="sticky-header px-8 flex items-center">
       <h2>Playground</h2>
       <Button class="ml-auto" size="sm" color="base" icon="arrow-up-right">
-        View in Playground
+        Code Sample
       </Button>
     </div>
-    <slot />
+    <div class="container flex flex-col">
+      <slot />
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -23,6 +25,13 @@ export default class Playground extends Vue {}
   top: 34px;
   width: 512px;
 
+  .container {
+    height: calc(100vh - 128px);
+
+    > * {
+      @apply flex-1 overflow-scroll;
+    }
+  }
   .code-block {
     @apply m-0 rounded-none border-l-0 border-b-0;
 

@@ -1,5 +1,5 @@
 import Vuex from 'vuex'
-import { toSentenceCase } from 'js-convert-case/lib'
+import { toSentenceCase, toSnakeCase } from 'js-convert-case/lib'
 import Main from './modules/root'
 import { slugify } from '~/utilities/project.functions'
 
@@ -20,7 +20,7 @@ const getH2Children = (page) => {
           'Request parameters',
           'Frequently used attributes',
           'Other attributes',
-        ].map((title) => ({ title, props: { id: slugify(title) } }))
+        ].map((title) => ({ title, props: { id: toSnakeCase(title) } }))
       )
     } else if (child.tag === 'guides' || child.tag === 'examples') {
       arr.push({
@@ -91,10 +91,13 @@ export default () =>
         ]).catch(() => [])
 
         if (req?.headers?.cookie) {
-          const darkMode = getCookie(req.headers.cookie, 'dark_mode')
+          const cookie = getCookie(req.headers.cookie, 'dark_mode')
+
           commit(
             'setDarkMode',
-            darkMode === undefined ? true : darkMode === 'true'
+            cookie
+              ? cookie === 'true'
+              : !!window?.matchMedia('(prefers-color-scheme: dark)')?.matches
           )
         }
 

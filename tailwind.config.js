@@ -129,7 +129,7 @@ module.exports = {
   },
   variants: {
     borderRadius: ['responsive', 'first', 'last'],
-    borderWidth: ['responsive', 'first'],
+    borderWidth: ['responsive', 'first', 'last'],
     margin: ['responsive', 'last', 'first'],
   },
 }

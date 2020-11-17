@@ -73,7 +73,7 @@
             <span
               v-for="(key, c) in hotKey.keys"
               :key="`${i}-${c}`"
-              class="w-5 h-5 border border-alt2 first:rounded-l-xs last:rounded-r-xs text-alt2 flex items-center justify-center"
+              class="w-5 h-5 first:border-l border-r border-t border-b border-alt2 first:rounded-l-xs last:rounded-r-xs text-alt2 flex items-center justify-center"
               :class="`icon-${key}`"
             />
           </div>
@@ -85,7 +85,7 @@
         </div>
         <div class="pl-20 ml-auto flex items-center">
           <img
-            class="w-20 pl-8 h-auto object-contain flex-shrink-0 max-w-xs"
+            class="w-24 pl-8 h-auto object-contain flex-shrink-0 max-w-xs"
             src="/algolia.png"
             alt="algolia"
           />

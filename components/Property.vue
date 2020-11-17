@@ -25,12 +25,12 @@
           />
           <div
             v-if="showChildren"
-            class="line-v line-main absolute w-px h-full mt-7 top-0 bg-alt2 transform left-1/2 -translate-x-1/2"
+            class="line-v line-main absolute w-px h-full mt-7 top-0 bg-alt2 transform left-1/2 -translate-x-1/2 -translate-y-1/2"
           />
         </div>
         <div
           v-else-if="depth"
-          class="w-1 h-1 rounded-full bg-alt2 transform mt-2 -translate-y-1/2"
+          class="w-1 h-1 rounded-full bg-alt2 transform mt-7 top-0 absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
         />
         <div
           v-if="depth"
@@ -54,7 +54,7 @@
             {{ name }}
           </span>
           <template v-if="typeStr">
-            <span class="mx-1">•</span>
+            <span class="mx-1 font-mono">•</span>
             <span
               class="type font-mono"
               :class="{ lowercase: typeStr !== 'ID' }"
