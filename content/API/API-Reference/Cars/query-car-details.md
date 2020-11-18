@@ -133,4 +133,4 @@ On success, the HTTP status code in the response header is 200 and the response 
 
 On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
 
-<error title="CAR_NOT_FOUND" message="No EV was found with the provided ID or external ID."></error>
+<errors name="car"></errors>

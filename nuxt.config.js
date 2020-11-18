@@ -13,6 +13,13 @@ export default {
       { hid: 'description', name: 'description', content: '' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    script: [
+      {
+        src: 'https://cdn.usefathom.com/script.js',
+        'data-site': 'OZCKUFXK',
+        defer: true,
+      },
+    ],
   },
   router: {
     base:

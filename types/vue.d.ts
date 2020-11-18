@@ -14,5 +14,6 @@ declare module 'vue/types/vue' {
 declare global {
   interface Window {
     Smallchat: any
+    fathom: any
   }
 }

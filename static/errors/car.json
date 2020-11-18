@@ -1,0 +1,10 @@
+[
+  {
+    "code": "CAR_BAD_REQUEST",
+    "message": "Missing id."
+  },
+  {
+    "code": "CAR_NOT_FOUND",
+    "message": "No EV was found with the provided ID."
+  }
+]
