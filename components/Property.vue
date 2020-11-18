@@ -12,7 +12,7 @@
         <div class="line-v w-px bg-alt2 h-full" />
       </div>
       <div
-        class="child-2-b flex-1 h-full ml-auto flex pt-5 justify-center relative"
+        class="child-2-b flex-1 h-full ml-auto flex justify-center items-center relative"
       >
         <div v-if="children && children.length" class="toggle-children-wrapper">
           <span
@@ -23,19 +23,15 @@
             }"
             @click="showChildren = !showChildren"
           />
-          <div
-            v-if="showChildren"
-            class="line-v line-main absolute w-px h-full mt-7 top-0 bg-alt2 transform left-1/2 -translate-x-1/2 -translate-y-1/2"
-          />
         </div>
         <div
-          v-else-if="depth"
-          class="w-1 h-1 rounded-full bg-alt2 transform mt-7 top-0 absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
-        />
-        <div
           v-if="depth"
-          class="line-h absolute top-0 mt-7 w-5 w-full h-px bg-alt2 transform -translate-x-1/2"
-        />
+          class="line-h absolute top-1/2 w-5 w-full h-px bg-alt2 transform -translate-x-1/2 -translate-y-1/2"
+        >
+          <div
+            class="w-1 h-1 rounded-full bg-alt2 transform top-1/2 right-0 absolute -translate-y-1/2"
+          />
+        </div>
       </div>
     </div>
     <div class="child-1-b flex-1">
@@ -222,7 +218,7 @@ export default class Property extends Vue {
 
   &:last-child {
     > .child-1-a > .child-2-a > .line-v {
-      @apply h-7;
+      @apply h-1/2;
     }
   }
 
@@ -230,6 +226,9 @@ export default class Property extends Vue {
     @apply mt-7 h-12;
   }
 
+  &.show-children > .child-1-b > .content {
+    @apply border-b border-alt;
+  }
   &:not(.is-child) {
     @apply border-t border-alt;
 
