@@ -1,7 +1,7 @@
 ---
 title: Status & Error Codes
-description: Status & Error Codes placeholder description...
-order: 4
+description: Get a clear overview of how to handle chargetrip's API status & error codes
+order: 3
 
 statuses:
 - 200
@@ -29,7 +29,7 @@ statusDescriptions:
 - The server understood the request, but is refusing to fulfill it.
 - The requested resource could not be found.
 - Too Many Requests.
-- Internal Server Error. If you catch one, report your issue [here](https://google.com).
+- Internal Server Error. If you catch one, report your issue [here](https://github.com/chargetrip/chargetrip-developers/issues).
 - Bad Gateway.
 - Service Unavailable.
   

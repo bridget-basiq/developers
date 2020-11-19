@@ -1,6 +1,6 @@
 ---
 title: Getting started
-description: Getting started placeholder description...
+description: Get started by setting up your chargetrip API project
 order: 2
 
 images:
@@ -29,7 +29,7 @@ When logged in to the dashboard, go to projects and click on create new project.
 
 <step-note color="accent" title="Chargetrip">
 
-Want to use the same configuration in a different app? Create additional app keys inside your project and add them to your header as explained [here](https://google.com).
+Want to use the same configuration in a different app? Create additional app keys inside your project and add them to your header as explained [here](http://localhost:3000/setup-&-integration/API-Basics/setup/authorization#authorization-process).
 
 </step-note>
 

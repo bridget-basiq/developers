@@ -40,15 +40,15 @@ export default class Schema extends Vue {
   get sections() {
     return [
       {
-        title: 'Request parameters',
+        title: 'Arguments',
         items: this.requestParameters,
       },
       {
-        title: 'Frequently used attributes',
+        title: 'Frequently used fields',
         items: this.frequentlyUsedAttributes,
       },
       {
-        title: 'Other attributes',
+        title: 'Other fields',
         items: this.attributes,
       },
     ].map((section) => ({ ...section, id: toSnakeCase(section.title) }))

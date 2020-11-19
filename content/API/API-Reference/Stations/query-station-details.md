@@ -1,127 +1,436 @@
 ---
 title: Query station details
-description: Query station details placeholder description...
-order: 7
+description: Query station details to show plug types, amenities and other information.
+order: 3
 frequently:
- - id
- - chargetripEdition
- - make
- - images
- - carModel
+  - address
+  - city
+  - postal_code
+  - state
+  - country
+  - evses
 ---
 
-# Query Station details
+# Query station details
 
-This query is used to get a list of all the details of an electric car in our database. Some attributes are coming from our partner [EVDatabase](http://google.com).
+This query is used to get the details of a specific charge station. Depending on what station database you are using different fields can be requested.
 
-## Request
+## Query
 
-This request uses the id parameter to identify which details should be fetched. This parameter is required.
+Get all information about a single station using the station query. This request uses the id parameter to identify which details should be fetched. This parameter is required.
 
-<schema name="Station" :frequent="frequently"></schema>
+<schema name="station" :frequent="frequently"></schema>
 
 <playground>
 
-<code-block query="carList">					
-query carListAll {
-  carList(size: 2, page: 0) {
+<code-block query="station">					
+query station {
+  station(id: "5e8583c2d3406cac673b90bb") {
     id
-    chargetripEdition
-    images {
-        url
+    external_id
+    country_code
+    party_id
+    name
+    address
+    city
+    postal_code
+    state
+    country
+    coordinates {
+      latitude
+      longitude
     }
-    make
-    model
+    related_locations {
+      latitude
+      longitude
+    }
+    parking_type
+    evses {
+      uid
+      evse_id
+      status
+      status_schedule {
+        period_begin
+        period_end
+        status
+      }
+      capabilities
+      connectors {
+        id
+        standard
+        format
+        power_type
+        max_voltage
+        max_amperage
+        max_electric_power
+        power
+        tariff_ids
+        terms_and_conditions
+        last_updated
+        properties
+      }
+      floor_level
+      coordinates {
+        latitude
+        longitude
+      }
+      physical_reference
+      parking_restrictions
+      images {
+        url
+        thumbnail
+        category
+        type
+        width
+        height
+      }
+      last_updated
+      parking_cost
+      properties
+    }
+    directions {
+      language
+      text
+    }
+    operator {
+      id
+      external_id
+      name
+      website
+      logo {
+        url
+        thumbnail
+        category
+        type
+        width
+        height
+      }
+      country
+      contact {
+        phone
+        email
+        website
+        facebook
+        twitter
+        properties
+      }
+    }
+    suboperator {
+      id
+      name
+    }
+    owner {
+      id
+      name
+    }
+    facilities
+    time_zone
+    opening_times {
+      twentyfourseven
+      regular_hours {
+        weekday
+        period_begin
+        period_end
+      }
+      exceptional_openings {
+        period_begin
+        period_end
+      }
+      exceptional_closings {
+        period_begin
+        period_end
+      }
+    }
+    charging_when_closed
+    images {
+      url
+      thumbnail
+      category
+      type
+      width
+      height
+    }
+    last_updated
+    location {
+      type
+      coordinates
+    }
+    elevation
+    chargers {
+      standard
+      power
+      price
+      speed
+      status {
+        free
+        busy
+        unknown
+        error
+      }
+      total
+    }
+    physical_address {
+      continent
+      country
+      county
+      city
+      street
+      number
+      postalCode
+      what3Words
+      formattedAddress
+    }
+    amenities
+    properties
+    realtime
+    power
+    speed
+    status
+    review {
+      rating
+      count
+    }
   }
 }
 </code-block>
 <code-block>
 {
   "data": {
-    "carList": [
-      {
-        "id": "5d161bdbc9eef45824d9d1ec",
-        "chargetripEdition": "30 kWh",
-        "make": "Nissan",
-        "carModel": "Leaf",
-        "images": [
-          {
-            "url": "https://cars.chargetrip.io/5f1aafc0657beb58f163895a-7aa1f9430fff4286013ce208addaade25555ab64.png"
+    "station": {
+      "id": "5e8583c2d3406cac673b90bb",
+      "external_id": "155228",
+      "country_code": "GB",
+      "party_id": null,
+      "name": "50 KW Charger At Bruce House, Wellgate, Arbroath",
+      "address": "Bruce House",
+      "city": "Wellgate",
+      "postal_code": "DD11 3TP",
+      "state": "Arbroath",
+      "country": "GBR",
+      "coordinates": {
+        "latitude": "56.56188",
+        "longitude": "-2.58951"
+      },
+      "related_locations": [],
+      "parking_type": null,
+      "evses": [
+        {
+          "uid": "218514",
+          "evse_id": "0",
+          "status": "UNKNOWN",
+          "status_schedule": [],
+          "capabilities": [],
+          "connectors": [
+            {
+              "id": null,
+              "standard": "IEC_62196_T2_COMBO",
+              "format": null,
+              "power_type": null,
+              "max_voltage": 0,
+              "max_amperage": 0,
+              "max_electric_power": 50000,
+              "power": 50,
+              "tariff_ids": null,
+              "terms_and_conditions": null,
+              "last_updated": "2020-04-02T13:24:26.711Z",
+              "properties": null
+            }
+          ],
+          "floor_level": null,
+          "coordinates": {
+            "latitude": "56.56188",
+            "longitude": "-2.58951"
           },
-          {
-            "url": "https://cars.chargetrip.io/5f1aafc0657beb58f163895a.png"
+          "physical_reference": null,
+          "parking_restrictions": [],
+          "images": [],
+          "last_updated": "2020-04-02T13:24:26.711Z",
+          "parking_cost": null,
+          "properties": null
+        },
+        {
+          "uid": "218515",
+          "evse_id": "0",
+          "status": "UNKNOWN",
+          "status_schedule": [],
+          "capabilities": [],
+          "connectors": [
+            {
+              "id": null,
+              "standard": "CHADEMO",
+              "format": null,
+              "power_type": null,
+              "max_voltage": 0,
+              "max_amperage": 0,
+              "max_electric_power": 50000,
+              "power": 50,
+              "tariff_ids": null,
+              "terms_and_conditions": null,
+              "last_updated": "2020-04-02T13:24:26.711Z",
+              "properties": null
+            }
+          ],
+          "floor_level": null,
+          "coordinates": {
+            "latitude": "56.56188",
+            "longitude": "-2.58951"
           },
-          {
-            "url": "https://cars.chargetrip.io/5f1aa821657bebb5ba6388b2-27c1ba75d5ef672805dd09e1538f63fbcbc0b209.png"
+          "physical_reference": null,
+          "parking_restrictions": [],
+          "images": [],
+          "last_updated": "2020-04-02T13:24:26.711Z",
+          "parking_cost": null,
+          "properties": null
+        },
+        {
+          "uid": "218516",
+          "evse_id": "0",
+          "status": "UNKNOWN",
+          "status_schedule": [],
+          "capabilities": [],
+          "connectors": [
+            {
+              "id": null,
+              "standard": "IEC_62196_T2",
+              "format": null,
+              "power_type": null,
+              "max_voltage": 0,
+              "max_amperage": 0,
+              "max_electric_power": 43000,
+              "power": 43,
+              "tariff_ids": null,
+              "terms_and_conditions": null,
+              "last_updated": "2020-04-02T13:24:26.711Z",
+              "properties": null
+            }
+          ],
+          "floor_level": null,
+          "coordinates": {
+            "latitude": "56.56188",
+            "longitude": "-2.58951"
           },
-          {
-            "url": "https://cars.chargetrip.io/5f1aa821657bebb5ba6388b2.png"
-          },
-          {
-            "url": "https://cars.chargetrip.io/5ddfa131eec2ccfa26b95ae5-1574936884.png"
-          },
-          {
-            "url": "https://cars.chargetrip.io/5ddfa130eec2ccd9e0b95ae4-1574936883.png"
-          },
-          {
-            "url": "https://cars.chargetrip.io/5ddfa131eec2ccfa26b95ae5.png"
-          },
-          {
-            "url": "https://cars.chargetrip.io/5ddfa130eec2ccd9e0b95ae4.png"
-          },
-          {
-            "url": "https://cars.chargetrip.io/5d9b39fd96801c2ee002c3ee-1570454014.png"
-          },
-          {
-            "url": "https://cars.chargetrip.io/5d9b39fd96801c505f02c3ed-1570454013.png"
-          },
-          {
-            "url": "https://cars.chargetrip.io/5d9b39fd96801c505f02c3ed.png"
-          },
-          {
-            "url": "https://cars.chargetrip.io/5d9b39fd96801c2ee002c3ee.png"
-          },
-          {
-            "url": "https://cars.chargetrip.io/5d161bdbc9eef45824d9d1ec.jpg"
-          }
+          "physical_reference": null,
+          "parking_restrictions": [],
+          "images": [],
+          "last_updated": "2020-04-02T13:24:26.711Z",
+          "parking_cost": null,
+          "properties": null
+        }
+      ],
+      "directions": null,
+      "operator": {
+        "id": "5e85839ad3406cd1333b8f52",
+        "external_id": "3315",
+        "name": "Chargeplace Scotland",
+        "website": "http://chargeplacescotland.org/",
+        "logo": null,
+        "country": null,
+        "contact": {
+          "phone": "0141 648 0750",
+          "email": "",
+          "website": "http://chargeplacescotland.org/",
+          "facebook": null,
+          "twitter": null,
+          "properties": null
+        }
+      },
+      "suboperator": null,
+      "owner": null,
+      "facilities": [],
+      "time_zone": null,
+      "opening_times": {
+        "twentyfourseven": false,
+        "regular_hours": [],
+        "exceptional_openings": [],
+        "exceptional_closings": []
+      },
+      "charging_when_closed": true,
+      "images": [],
+      "last_updated": "2020-04-02T13:24:26.711Z",
+      "location": {
+        "type": "Point",
+        "coordinates": [
+          -2.58951,
+          56.56188
         ]
       },
-      {
-        "id": "5d161be5c9eef46132d9d20a",
-        "chargetripEdition": "75D (2016-2019)",
-        "make": "Tesla",
-        "carModel": "Model S",
-        "images": [
-          {
-            "url": "https://cars.chargetrip.io/5f1aafc4657beb0286638961.png"
+      "elevation": 0,
+      "chargers": [
+        {
+          "standard": "IEC_62196_T2_COMBO",
+          "power": 50,
+          "price": "",
+          "speed": "fast",
+          "status": {
+            "free": 0,
+            "busy": 0,
+            "unknown": 1,
+            "error": 0
           },
-          {
-            "url": "https://cars.chargetrip.io/5f1aafc4657beb0286638961-a42ccac22cb8f60071d514c319a9c6f7e9b87188.png"
+          "total": 1
+        },
+        {
+          "standard": "CHADEMO",
+          "power": 50,
+          "price": "",
+          "speed": "fast",
+          "status": {
+            "free": 0,
+            "busy": 0,
+            "unknown": 1,
+            "error": 0
           },
-          {
-            "url": "https://cars.chargetrip.io/5f1aa823657beb3cd96388b9.png"
+          "total": 1
+        },
+        {
+          "standard": "IEC_62196_T2",
+          "power": 43,
+          "price": "",
+          "speed": "fast",
+          "status": {
+            "free": 0,
+            "busy": 0,
+            "unknown": 1,
+            "error": 0
           },
-          {
-            "url": "https://cars.chargetrip.io/5f1aa823657beb3cd96388b9-4fecd7e41e100e205ebf3193f33e3e84e14a0992.png"
-          },
-          {
-            "url": "https://cars.chargetrip.io/5dcd60afeec2cc22f0b95a8f-1573740763.png"
-          },
-          {
-            "url": "https://cars.chargetrip.io/5dcd60afeec2cce077b95a8e-1573740762.png"
-          },
-          {
-            "url": "https://cars.chargetrip.io/5dcd60afeec2cce077b95a8e.png"
-          },
-          {
-            "url": "https://cars.chargetrip.io/5dcd60afeec2cc22f0b95a8f.png"
-          },
-          {
-            "url": "https://cars.chargetrip.io/5d161be5c9eef46132d9d20a.jpg"
-          }
+          "total": 1
+        }
+      ],
+      "physical_address": {
+        "continent": "EU",
+        "country": "GB",
+        "county": "Arbroath",
+        "city": "Wellgate",
+        "street": "Bruce House",
+        "number": null,
+        "postalCode": "DD11 3TP",
+        "what3Words": "fats.pots.piano",
+        "formattedAddress": [
+          "Bruce House, DD11 3TP",
+          "Wellgate, Arbroath",
+          "United Kingdom"
         ]
+      },
+      "amenities": null,
+      "properties": null,
+      "realtime": false,
+      "power": {
+        "43": {
+          "total": 1,
+          "available": 0
+        },
+        "50": {
+          "total": 2,
+          "available": 0
+        }
+      },
+      "speed": "fast",
+      "status": "unknown",
+      "review": {
+        "rating": 0,
+        "count": 0
       }
-    ]
+    }
   }
 }
 </code-block>
@@ -129,8 +438,8 @@ query carListAll {
 
 ## Response
 
-On success, the HTTP status code in the response header is 200 and the response body contains the attributes you requested.
+On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
 
 On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
 
-<errors name="car"></errors>
+<errors name="station"></errors>

@@ -1,10 +1,10 @@
 ---
 title: Home
-description: Home placeholder description...
+description: A clear overview of our setup guides API reference and open source projects.
 icon: documentation
-order: 1
+order: 0
 
-statuses: 
+package: 
   - Typescript Typings
   - Clusterbuster
   
@@ -13,7 +13,7 @@ descriptions:
 - Easily cluster data to improve render speeds
 
 columns:
-- Status
+- Package
 - Description
 
 row1:
@@ -28,36 +28,23 @@ row2:
 
 Get going with the **Chargetrip** API. Clone one of our examples as a boilerplate, build along with our guides or start by browsing through our API reference.
 
-Need some information about EV-routing, EVs or graphQL first? No worries we got you covered with our [here](https://www.google.com).
+Need some information about EV-routing, EVs or graphQL first? No worries we got you covered with our [here](https://medium.com/chargetrip).
 
 <examples title="Clone an example">
 <example href="https://google.com" img="cars-example.jpg" title="Cars Select a vehicle from a list" tag-line="Web • iOS • Android" description="Quickly fetch a list of cars and implement lazy loading." category="Cars"></example>
-<example href="https://google.com" img="cars-example.jpg" title="Test Select a vehicle from a list" tag-line="Web • iOS • Android" description="Quickly fetch a list of cars and implement lazy loading." category="Test"></example>
 </examples>
-
-<guides title="Guides">
-<guide href="https://google.com" img="guide-example.jpg">
-
-    Chapter 1 / 1
-  
-<h6>Add ev specific routing to your app</h6>
-
-Send over the car details and we will provide you with a route that constantly updates when variables change.
-
-</guide>
-</guides>
 
 ## Open source
 <c-table>
     <c-row>
-        <c-cell tag="th">Status</c-cell>
+        <c-cell tag="th">Package</c-cell>
         <c-cell tag="th">Description</c-cell>
     </c-row>
-    <c-row url="http://google.com">
+    <c-row url="https://github.com/chargetrip/types">
         <c-cell font-weight="semibold">Typescript Typings</c-cell>
         <c-cell>Make integrating with our API easier with our typescript types</c-cell>
     </c-row>
-    <c-row url="http://google.com">
+    <c-row url="https://github.com/chargetrip/clusterbuster">
         <c-cell font-weight="semibold">Clusterbuster</c-cell>
         <c-cell>Easily cluster data to improve render speeds</c-cell>
     </c-row>

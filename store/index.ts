@@ -17,9 +17,9 @@ const getH2Children = (page) => {
     } else if (child.tag === 'schema') {
       arr.push(
         ...[
-          'Request parameters',
-          'Frequently used attributes',
-          'Other attributes',
+          'Arguments',
+          'Frequently used fields',
+          'Other fields',
         ].map((title) => ({ title, props: { id: toSnakeCase(title) } }))
       )
     } else if (child.tag === 'guides' || child.tag === 'examples') {
