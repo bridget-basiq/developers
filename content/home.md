@@ -35,18 +35,6 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
 <example href="https://google.com" img="cars-example.jpg" title="Test Select a vehicle from a list" tag-line="Web • iOS • Android" description="Quickly fetch a list of cars and implement lazy loading." category="Test"></example>
 </examples>
 
-<guides title="Guides">
-<guide href="https://google.com" img="guide-example.jpg">
-
-    Chapter 1 / 1
-  
-<h6>Add ev specific routing to your app</h6>
-
-Send over the car details and we will provide you with a route that constantly updates when variables change.
-
-</guide>
-</guides>
-
 ## Open source
 <c-table>
     <c-row>

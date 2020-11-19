@@ -62,7 +62,7 @@
               <Button size="sm" class="mr-2" color="alt" @click="cancel"
                 >Cancel
               </Button>
-              <Button size="sm" color="accent" @click="submit"
+              <Button size="sm" color="accent" @click="showSaveModal = true"
                 >Save edits
               </Button>
             </div>
@@ -89,6 +89,7 @@
       </aside>
     </div>
     <QuickNav class="lg:hidden z-50" :items="quickNavItems" />
+    <Save v-if="showSaveModal" @save="onSave" @cancel="showSaveModal = false" />
     <video
       v-if="showKhaled"
       class="absolute max-w-screen-sm z-50 rounded shadow-down-xl transform -translate-x-1/2 -translate-y-full bottom-0 -mt-6"
@@ -117,9 +118,11 @@ import Base from '~/mixins/base'
 import MarkdownFormatting from '~/components/MarkdownFormatting.vue'
 import { Listen } from '~/utilities/decorators'
 import Search from '~/components/Search.vue'
+import Save from '~/components/Save.vue'
 
 @Component({
   components: {
+    Save,
     Search,
     MarkdownFormatting,
     PrevNextNavigation,
@@ -136,6 +139,7 @@ export default class Layout extends Mixins(Base) {
   @Getter sideNav
   @Getter content
   @Getter isEditing
+  showSaveModal = false
   showKhaled = false
   khaledPosition = { x: 0, y: 0 }
   @Ref('container') container
@@ -183,6 +187,11 @@ export default class Layout extends Mixins(Base) {
     }
 
     return this.findFirstChild(arr[0].children)
+  }
+
+  onSave() {
+    this.showSaveModal = false
+    this.submit()
   }
 
   get quickNavItems() {

@@ -18,6 +18,7 @@ export default {
         src: 'https://cdn.usefathom.com/script.js',
         'data-site': 'OZCKUFXK',
         defer: true,
+        'data-spa': 'auto',
       },
     ],
   },

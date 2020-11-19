@@ -18,7 +18,7 @@ This query is used to get a list of all the details of an electric car in our da
 
 This request uses the id parameter to identify which details should be fetched. This parameter is required.
 
-<schema name="Station" :frequent="frequently"></schema>
+<schema name="station" :frequent="frequently"></schema>
 
 <playground>
 
@@ -133,4 +133,4 @@ On success, the HTTP status code in the response header is 200 and the response 
 
 On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
 
-<errors name="car"></errors>
+<errors name="car"></errors>****
