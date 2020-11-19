@@ -8,7 +8,7 @@ const axios = require('axios')
 
 axios.post(process.env.CHARGETRIP_API_URL, {
   variables: {},
-  query: getIntrospectionQuery({ descriptions: true })
+    query: getIntrospectionQuery({ descriptions: true })
 }).then(({ data: { data: { __schema: { types } } } }) => {
   for (const type of types) {
     fs.writeFile(

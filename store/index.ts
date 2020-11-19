@@ -84,11 +84,8 @@ export default () =>
     state: {},
     mutations: {},
     actions: {
-      async nuxtServerInit({ commit }, { $content, $axios, req }) {
-        const [pages, querySchema] = await Promise.all([
-          $content('', { deep: true }).sortBy('order').fetch(),
-          $axios.get('/schema/Query.json'),
-        ]).catch(() => [])
+      async nuxtServerInit({ commit }, { $content, req }) {
+        const pages = await $content('', { deep: true }).sortBy('order').fetch()
 
         if (req?.headers?.cookie) {
           const cookie = getCookie(req.headers.cookie, 'dark_mode')
@@ -104,10 +101,6 @@ export default () =>
         if (pages) {
           const sideNav = await getSideNav(pages)
           commit('setSideNav', sideNav)
-        }
-
-        if (querySchema) {
-          commit('setQuerySchema', querySchema)
         }
       },
     },

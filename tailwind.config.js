@@ -66,6 +66,8 @@ module.exports = {
         9: '2.25rem',
         13: '3.25rem',
         14: '3.5rem',
+        17: '4.25rem',
+        30: '7.5rem',
       },
       borderRadius: {
         '2xs': '2px',
@@ -86,6 +88,7 @@ module.exports = {
       },
       opacity: {
         20: 0.2,
+        80: 0.8,
       },
       fontSize: {
         10: '10px',

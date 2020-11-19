@@ -1,17 +1,52 @@
 <template>
-  <img :src="normalizedSrc" :alt="alt" />
+  <div
+    class="w-10 md:w-20 flex absolute z-10 h-full left-0 top-0 transform -translate-x-1/2"
+  >
+    <div class="flex-1 relative">
+      <div
+        v-if="last"
+        class="absolute w-full h-1/2 bottom-0 left-0 bg-base lg:bg-body"
+      />
+    </div>
+    <div class="flex-1 relative">
+      <template v-if="children">
+        <span
+          class="cursor-pointer z-20 text-accent center"
+          :class="{
+            'lg-max:hidden': !depth,
+            'icon-circle-plus': !value,
+            'icon-circle-minus': value,
+            ...bg,
+          }"
+          @click.stop="$emit('input', !value)"
+        />
+        <div class="absolute w-full h-1/2 top-0 left-0" :class="bg" />
+      </template>
+
+      <div
+        v-if="depth"
+        class="h-px w-full transform -translate-x-1/2 bg-alt2 absolute top-1/2 -translate-y-1/2"
+      >
+        <div
+          class="w-1 h-1 rounded-full right-0 top-1/2 transform -translate-y-1/2 absolute bg-alt2 translate-x-full"
+        />
+      </div>
+      <!--      <div v-else class="line-v w-px h-full bg-alt2 absolute center" />-->
+    </div>
+  </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop, Getter } from 'nuxt-property-decorator'
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
 
 @Component
-export default class CImage extends Vue {
-  @Prop() src
-  @Prop() alt
-  @Getter darkMode
+export default class PropertyToggleChildren extends Vue {
+  @Prop() depth
+  @Prop() children
+  @Prop() value
+  @Prop() last
 
-  get normalizedSrc() {
-    return `${this.darkMode ? 'dark-' : 'light-'}${this.src}`
+  get bg() {
+    return { 'bg-body': !this.depth, 'bg-base': this.depth }
   }
 }
 </script>

@@ -1,135 +1,78 @@
 <template>
   <li
     :id="normalizedSectionID"
-    class="property list-none text-14 relative flex"
+    class="property list-none text-14 relative"
     :class="{ 'is-child': depth, 'show-children': showChildren }"
   >
     <div
-      class="child-1-a flex-shrink-0 flex relative z-10 -ml-5 lg:-ml-10"
-      :class="{ 'w-10': !depth, 'w-10 lg:w-20': depth }"
+      v-if="showChildren"
+      class="main-line w-5 md:w-10 absolute left-0 top-0 h-full z-10 transform -translate-x-full"
     >
-      <div v-if="depth" class="child-2-a flex-1 h-full flex justify-center">
-        <div class="line-v w-px bg-alt2 h-full" />
-      </div>
       <div
-        class="child-2-b flex-1 h-full ml-auto flex justify-center items-center relative"
-      >
-        <div v-if="children && children.length" class="toggle-children-wrapper">
-          <span
-            class="icon toggle-children text-accent relative z-10 bg-body"
-            :class="{
-              'icon-circle-plus': !showChildren,
-              'icon-circle-minus': showChildren,
-            }"
-            @click="showChildren = !showChildren"
-          />
-        </div>
-        <div
-          v-if="depth"
-          class="line-h absolute top-1/2 w-5 w-full h-px bg-alt2 transform -translate-x-1/2 -translate-y-1/2"
-        >
-          <div
-            class="w-1 h-1 rounded-full bg-alt2 transform top-1/2 right-0 absolute -translate-y-1/2"
-          />
-        </div>
-      </div>
+        class="line-v w-px h-full absolute transform left-1/2 -translate-x-1/2 bg-alt2"
+      />
     </div>
-    <div class="child-1-b flex-1">
-      <div
-        class="content pl-10 -ml-10 py-4 relative"
-        :class="{
-          'cursor-pointer': !forceActive,
-        }"
-        @click="active = !active || forceActive"
-      >
-        <div class="text-font-primary flex items-center">
-          <Tag v-if="showQuery" class="mr-1" color="note" type="secondary"
-            >Query
-          </Tag>
-          <span v-else class="font-mono title">
-            {{ name }}
-          </span>
-          <template v-if="typeStr">
-            <span class="mx-1 font-mono">•</span>
-            <span
-              class="type font-mono"
-              :class="{ lowercase: typeStr !== 'ID' }"
-              v-html="$options.filters.colorType(typeStr)"
-            />
-          </template>
-          <template v-if="showOfTypeKind">
-            <span class="mx-1">•</span>
-            <span class="font-mono text-font-alt3">
-              <span v-if="typeStr === ofTypeKind.LIST">[</span>{{ typeName
-              }}<span v-if="typeStr === ofTypeKind.LIST">]</span>
-            </span>
-          </template>
-          <Tag v-if="required" class="ml-2" color="accent" type="secondary"
-            >Required
-          </Tag>
-          <Tag v-if="optional" class="ml-2" color="font-alt3" type="secondary"
-            >Optional
-          </Tag>
-          <span
-            v-if="!depth && description && !forceActive"
-            class="ml-auto cursor-pointer lg-max:mr-6"
-            :class="{
-              'icon-chevron-right': !active,
-              'icon-chevron-down': active,
-            }"
-          />
-        </div>
-        <p
-          v-if="description"
-          v-show="active"
-          class="description text-font-alt3"
-        >
-          {{ description }}
-        </p>
-      </div>
-      <p
-        v-if="children && !depth"
-        class="py-3 mobile-toggle flex lg:hidden border-t border-alt cursor-pointer text-accent items-center"
-        @click="showChildren = !showChildren"
-      >
-        <span
-          class="icon mr-3"
-          :class="{
-            'icon-circle-cross': showChildren,
-            'icon-circle-plus': !showChildren,
-          }"
-        />
-        <strong>
-          {{ showChildren ? 'Collapse' : 'Expand' }} {{ typeName }} attrributes
-        </strong>
+    <div
+      class="content pl-6 md:pl-10 -ml-5 md:-ml-10 py-4 relative"
+      :class="{
+        'cursor-pointer': !forceActive,
+      }"
+      @click="active = !active || forceActive"
+    >
+      <PropertyToggleChildren v-model="showChildren" v-bind="$props" />
+      <PropertyTitle v-bind="$props" :active="active" />
+      <p v-if="description" v-show="active" class="description text-font-alt3">
+        {{ description }}
       </p>
-      <ul v-if="children" v-show="showChildren" class="children">
-        <property
-          v-for="(child, i) in children"
-          :key="i"
-          :section-i-d="normalizedSectionID"
-          :force-active="true"
-          :initial-active="true"
-          :depth="depth + 1"
-          v-bind="child"
-        />
-      </ul>
     </div>
+    <p
+      v-if="children && !depth"
+      class="py-3 mobile-toggle bg-body z-20 relative flex lg:hidden border-t border-alt cursor-pointer text-accent items-center"
+      @click="showChildren = !showChildren"
+    >
+      <span
+        class="icon mr-3"
+        :class="{
+          'icon-circle-cross': showChildren,
+          'icon-circle-plus': !showChildren,
+        }"
+      />
+      <strong>
+        {{ showChildren ? 'Collapse' : 'Expand' }} {{ typeName }} attrributes
+      </strong>
+    </p>
+    <ul v-if="children" v-show="showChildren" class="children ml-5 md:ml-10">
+      <property
+        v-for="(child, i) in children"
+        :key="i"
+        :last="i === children.length - 1"
+        :section-i-d="normalizedSectionID"
+        :force-active="true"
+        :initial-active="true"
+        :depth="depth + 1"
+        v-bind="child"
+      />
+    </ul>
   </li>
 </template>
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
 import { Tag } from '@chargetrip/internal-vue-components'
 import { OfTypeKind } from '~/utilities/constants'
+import PropertyTitle from '~/components/PropertyTitle.vue'
+import PropertyToggleChildren from '~/components/PropertyToggleChildren.vue'
 
-@Component({ name: 'property', components: { Tag } })
+@Component({
+  name: 'property',
+  components: { PropertyToggleChildren, PropertyTitle, Tag },
+})
 export default class Property extends Vue {
   @Prop() sectionID
   @Prop() name
+  @Prop() last
   @Prop() showRequired
   @Prop() required
   @Prop() optional
-  @Prop() showQuery
   @Prop() description
   @Prop({ default: 0 }) depth
   @Prop() type
@@ -178,11 +121,11 @@ export default class Property extends Vue {
 </script>
 <style lang="scss">
 .property:not(.is-child),
-.property:not(.is-child) > .child-1-b > .children,
+.property:not(.is-child) > .children,
 .mobile-toggle {
   @screen lg-max {
     width: calc(100% + 48px);
-    @apply -ml-6;
+    @apply -ml-6 px-6;
   }
 }
 
@@ -203,44 +146,38 @@ export default class Property extends Vue {
     .type {
       @apply text-font-primary;
     }
-
-    &:last-child {
-      ul {
-        @apply relative;
-
-        &::before {
-          //content: '';
-          //@apply block absolute bg-body w-10 transform -translate-x-full -ml-10 h-full z-10;
-        }
-      }
-    }
   }
 
   &:last-child {
-    > .child-1-a > .child-2-a > .line-v {
-      @apply h-1/2;
+    > .children {
+      @apply relative;
+
+      &::before {
+        content: '';
+        @apply w-10 transform z-10 -ml-20 bg-body h-full left-0 top-0 absolute -translate-x-full;
+
+        @screen lg-max {
+          @apply bg-base -ml-10;
+        }
+      }
     }
-  }
-
-  .line-main {
-    @apply mt-7 h-12;
-  }
-
-  &.show-children > .child-1-b > .content {
-    @apply border-b border-alt;
   }
   &:not(.is-child) {
     @apply border-t border-alt;
 
     @screen lg-max {
-      > .child-1-b > .children {
-        @apply pl-10 bg-base;
+      > .main-line .line-v {
+        height: calc(100% - 80px);
+        @apply ml-10 mt-20;
       }
-      > .child-1-a > .child-2-b > .toggle-children-wrapper {
-        @apply hidden;
+      > .children {
+        @apply bg-base;
+
+        > .property {
+          @apply ml-9;
+        }
       }
     }
-
     &.show-children {
       .mobile-toggle {
         @apply border-b;

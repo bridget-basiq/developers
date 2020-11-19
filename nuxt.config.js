@@ -19,6 +19,7 @@ export default {
         'data-site': 'OZCKUFXK',
         spa: 'auto',
         defer: true,
+        'data-spa': 'auto',
       },
     ],
   },

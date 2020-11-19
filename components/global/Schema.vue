@@ -21,8 +21,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
-import { Getter } from 'vuex-class'
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import { toSnakeCase } from 'js-convert-case/lib'
 import Property from '~/components/Property.vue'
 import { OfTypeKind } from '~/utilities/constants'
@@ -31,11 +30,11 @@ import { OfTypeKind } from '~/utilities/constants'
   components: { Property },
 })
 export default class Schema extends Vue {
-  @Getter querySchema
   @Prop() name
   schema: any = null
   @Prop({ default: [] }) frequent!: string[]
   requestParameters: any[] = []
+  returnFields: any = []
 
   get sections() {
     return [
@@ -55,25 +54,15 @@ export default class Schema extends Vue {
   }
 
   get frequentlyUsedAttributes() {
-    return this.schema?.fields?.filter((field) =>
+    return this.returnFields?.filter((field) =>
       this.frequent.includes(field.name)
     )
   }
 
   get attributes() {
-    return this.schema?.fields?.filter(
+    return this.returnFields?.filter(
       (field) => !this.frequent.includes(field.name)
     )
-  }
-
-  @Watch('name', { immediate: true }) async onNameChange() {
-    if (!this.querySchema) return
-
-    const args = this.querySchema?.fields?.find(
-      (field) => field.name === this.camelCaseName
-    )?.args
-
-    this.requestParameters = await this.appendOfType(args)
   }
 
   get camelCaseName() {
@@ -92,10 +81,13 @@ export default class Schema extends Vue {
     return Promise.all(
       fields?.map(async (field) => {
         const typeStr =
-          field.type.kind === 'SCALAR' ? field.type?.name : field.type?.kind
+          field.type.kind === 'SCALAR'
+            ? field.type?.name
+            : field.type?.kind === 'INPUT_OBJECT'
+            ? null
+            : field.type?.kind
 
         const required = typeStr === 'NON_NULL'
-        const showQuery = field.type.kind === OfTypeKind.INPUT_OBJECT
 
         if (
           !(
@@ -109,12 +101,11 @@ export default class Schema extends Vue {
             ...field,
             typeStr,
             required,
-            showQuery,
           }
         }
 
-        const ofType: any = await this.$axios.get(
-          `/schema/${field.type?.ofType?.name || field.type.name}.json`
+        const ofType: any = await this.getJson(
+          field.type?.ofType?.name || field.type.name
         )
 
         if (ofType?.fields) {
@@ -125,8 +116,7 @@ export default class Schema extends Vue {
           'Query',
           ''
         )
-        const showOfTypeKind =
-          this.ofTypeKinds.includes(ofType?.kind) || showQuery
+        const showOfTypeKind = this.ofTypeKinds.includes(ofType?.kind)
 
         return {
           ...field,
@@ -134,7 +124,6 @@ export default class Schema extends Vue {
           typeStr,
           typeName,
           required,
-          showQuery,
           children: ofType.fields || ofType.enumValues || ofType.inputFields,
           type: {
             ...field.type,
@@ -145,16 +134,25 @@ export default class Schema extends Vue {
     )
   }
 
+  async getJson(name) {
+    const json = await import(`~/static/schema/${name}.json`)
+
+    return json.default
+  }
+
   async fetch() {
-    const schema: any = await this.$axios.get(
-      `/schema/${this.pascalCaseName}.json`
-    )
+    const { fields }: any = await this.getJson('Query')
 
-    if (schema?.fields) {
-      schema.fields = await this.appendOfType(schema.fields)
-    }
+    this.schema = fields.find((field) => field.name === this.name)
+    const name = this.schema.type?.name || this.schema.type?.ofType?.name
 
-    this.schema = schema
+    const [requestParams, json] = await Promise.all([
+      this.appendOfType(this.schema?.args),
+      this.getJson(name),
+    ])
+
+    this.requestParameters = requestParams
+    this.returnFields = await this.appendOfType(json.fields)
   }
 }
 </script>

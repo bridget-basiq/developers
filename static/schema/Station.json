@@ -464,6 +464,22 @@
       "deprecationReason": null
     },
     {
+      "name": "predictive_availability",
+      "description": "Station availability",
+      "args": [],
+      "type": {
+        "kind": "LIST",
+        "name": null,
+        "ofType": {
+          "kind": "OBJECT",
+          "name": "StationPredictiveAvailability",
+          "ofType": null
+        }
+      },
+      "isDeprecated": false,
+      "deprecationReason": null
+    },
+    {
       "name": "speed",
       "description": "Charging speed for a station",
       "args": [],

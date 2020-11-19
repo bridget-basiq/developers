@@ -17,7 +17,7 @@ columns:
 - Description
 
 row1:
-- Typescript Typings
+- Typescript Typpings
 - Clusterbuster
 
 row2:
