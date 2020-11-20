@@ -23,6 +23,7 @@ const getH2Children = (page) => {
         ].map((title) => ({ title, props: { id: toSnakeCase(title) } }))
       )
     } else if (
+      child.tag === 'release-note' ||
       child.tag === 'guides' ||
       child.tag === 'examples' ||
       child.tag === 'accordion'

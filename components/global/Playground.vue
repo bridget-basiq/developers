@@ -4,9 +4,11 @@
   >
     <div class="sticky-header px-8 flex items-center">
       <h2>Code Sample</h2>
-      <Button class="ml-auto" size="sm" color="base" icon="arrow-up-right">
-        View in Playground
-      </Button>
+      <a v-if="url" :href="url" target="_blank" rel="noopener">
+        <Button class="ml-auto" size="sm" color="base" icon="arrow-up-right">
+          View in Playground
+        </Button>
+      </a>
     </div>
     <div class="container flex flex-col">
       <slot />
@@ -14,11 +16,13 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import { Button } from '@chargetrip/internal-vue-components'
 
 @Component({ components: { Button } })
-export default class Playground extends Vue {}
+export default class Playground extends Vue {
+  @Prop() url
+}
 </script>
 <style lang="scss">
 .playground {

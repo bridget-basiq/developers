@@ -22,7 +22,7 @@ Using GraphQL you can query only the data you need. For example, on the right is
 
 Below you can find a complete overview of [filter, pagination and sorting](howtographql.com) options as well as all available output parameters. 
 
-<schema name="CarList" :frequent="frequently"></schema>
+<schema name="carList" :frequent="frequently"></schema>
 
 <playground>
 

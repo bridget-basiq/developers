@@ -18,7 +18,7 @@ This query is used to get a list of all the details of an electric car in our da
 
 This request uses the id parameter to identify which details should be fetched. This parameter is required.
 
-<schema name="Car" :frequent="frequently"></schema>
+<schema name="car" :frequent="frequently"></schema>
 
 <playground>
 

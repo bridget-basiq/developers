@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-10 md:w-20 flex absolute z-10 h-full left-0 top-0 transform -translate-x-1/2"
+    class="w-10 lg:w-20 flex absolute z-10 h-full left-0 top-0 transform -translate-x-1/2"
   >
     <div class="flex-1 relative">
       <div

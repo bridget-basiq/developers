@@ -424,7 +424,7 @@ export default class Layout extends Mixins(Base) {
 
   &.is-playground {
     .right-aside {
-      flex: 0 0 512px;
+      width: 512px;
     }
   }
 
@@ -454,10 +454,10 @@ export default class Layout extends Mixins(Base) {
     }
 
     aside {
-      flex: 0 0 383px;
+      width: 383px;
     }
     .c-side-nav {
-      flex: 0 0 260px;
+      width: 260px;
     }
   }
 

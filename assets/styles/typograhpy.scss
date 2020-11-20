@@ -6,8 +6,12 @@ h1 {
   }
 }
 
-h2, h3 {
+h2 {
   @apply text-20;
+}
+
+h3 {
+  @apply text-16;
 }
 
 h6 {

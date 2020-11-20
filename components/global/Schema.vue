@@ -6,7 +6,7 @@
       class="mb-12 last:mb-0"
       :class="section.id"
     >
-      <h2 :id="section.id">{{ section.title }}</h2>
+      <h3 :id="section.id">{{ section.title }}</h3>
       <div class="mt-3">
         <Property
           v-for="(item, c) in section.items"
@@ -144,6 +144,7 @@ export default class Schema extends Vue {
     const { fields }: any = await this.getJson('Query')
 
     this.schema = fields.find((field) => field.name === this.name)
+
     const name = this.schema.type?.name || this.schema.type?.ofType?.name
 
     const [requestParams, json] = await Promise.all([
