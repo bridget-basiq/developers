@@ -22,7 +22,11 @@ const getH2Children = (page) => {
           'Other fields',
         ].map((title) => ({ title, props: { id: toSnakeCase(title) } }))
       )
-    } else if (child.tag === 'guides' || child.tag === 'examples') {
+    } else if (
+      child.tag === 'guides' ||
+      child.tag === 'examples' ||
+      child.tag === 'accordion'
+    ) {
       arr.push({
         title: child.props.title,
         props: { id: slugify(child.props.title) },
