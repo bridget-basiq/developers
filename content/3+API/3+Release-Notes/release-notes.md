@@ -22,6 +22,5 @@ With every update we write release notes. This way you know what has been fixed 
 ### 🐞️ Bug fixes
 **Spelling mistakes**
  We fixed spelling mistakes and inconsistencies in the documentation.
- 
-</release-note> 
 
+</release-note>

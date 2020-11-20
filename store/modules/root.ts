@@ -5,6 +5,7 @@ const store = new Vuex.Store({})
 
 @Module({ namespaced: false, dynamic: true, store, name: 'root' })
 export default class extends VuexModule {
+  _dirs: string[] = []
   _darkMode = false
   _querySchema: null | object = null
   _sideNav: null | object = null
@@ -27,6 +28,11 @@ export default class extends VuexModule {
   }
 
   @Mutation
+  setDirs(dirs: string[]) {
+    this._dirs = dirs
+  }
+
+  @Mutation
   setQuerySchema(querySchema: object) {
     this._querySchema = querySchema
   }
@@ -46,6 +52,10 @@ export default class extends VuexModule {
 
   get isEditing() {
     return this._isEditing
+  }
+
+  get dirs() {
+    return this._dirs
   }
 
   get content() {

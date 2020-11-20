@@ -2,7 +2,7 @@
 title: Home
 description: A clear overview of our setup guides API reference and open source projects.
 icon: documentation
-order: 0
+order: 1
 
 package: 
   - Typescript Typings
