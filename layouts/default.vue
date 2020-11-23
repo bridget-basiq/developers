@@ -382,6 +382,33 @@ export default class Layout extends Mixins(Base) {
     @apply mt-14 mb-2;
   }
 
+  > ul,
+  ol {
+    @apply ml-6;
+
+    li::before {
+      @apply mr-3;
+    }
+  }
+
+  > ul {
+    li {
+      &::before {
+        content: '•';
+      }
+    }
+  }
+  > ol {
+    li {
+      counter-increment: listing;
+
+      &::before {
+        content: counter(listing) '.';
+        @apply font-semibold text-accent;
+      }
+    }
+  }
+
   > p {
     & + p {
       @apply mt-4;

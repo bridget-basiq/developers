@@ -34,6 +34,10 @@ export default class Playground extends Vue {
 
     > * {
       @apply flex-1 overflow-scroll;
+
+      header {
+        @apply sticky top-0;
+      }
     }
   }
   .code-block {
