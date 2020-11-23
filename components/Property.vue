@@ -158,10 +158,10 @@ export default class Property extends Vue {
 
       &::before {
         content: '';
-        @apply w-10 transform z-10 -ml-20 bg-body h-full left-0 top-0 absolute -translate-x-full;
+        @apply w-10 transform z-10 -ml-10 bg-body h-full left-0 top-0 absolute -translate-x-full;
 
         @screen lg-max {
-          @apply bg-base -ml-10;
+          @apply bg-base;
         }
       }
     }
