@@ -9,7 +9,7 @@
       />
     </div>
     <div class="flex-1 relative">
-      <template v-if="children">
+      <template v-if="children.length">
         <span
           class="cursor-pointer z-20 text-accent center"
           :class="{

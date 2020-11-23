@@ -26,7 +26,7 @@
       </p>
     </div>
     <p
-      v-if="children && !depth"
+      v-if="children.length && !depth"
       class="py-3 mobile-toggle bg-body z-20 relative flex lg:hidden border-t border-alt cursor-pointer text-accent items-center"
       @click="showChildren = !showChildren"
     >
@@ -42,7 +42,7 @@
       </strong>
     </p>
     <ul
-      v-if="children"
+      v-if="children.length"
       v-show="showChildren"
       class="children pl-5 lg:pl-10 border-t border-alt"
     >
