@@ -23,8 +23,8 @@ export default class ReleaseNote extends Vue {
 <style lang="scss">
 .release-note {
   .title-wrapper {
-    width: calc(100% + 48px);
-    left: -24px;
+    width: calc(100% + 64px);
+    left: -32px;
   }
   .content {
     h3 {

@@ -14,7 +14,11 @@ export default class Err0rs extends Vue {
   errors = []
 
   async fetch() {
-    this.errors = await this.$axios.get(`/errors/${this.name}.json`)
+    try {
+      this.errors = (await import(`~/static/errors/${this.name}.json`)).default
+    } catch (e) {
+      this.errors = []
+    }
   }
 }
 </script>

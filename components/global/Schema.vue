@@ -30,9 +30,10 @@ import { OfTypeKind } from '~/utilities/constants'
   components: { Property },
 })
 export default class Schema extends Vue {
+  @Prop({ default: 'query' }) type
   @Prop() name
   schema: any = null
-  @Prop({ default: [] }) frequent!: string[]
+  @Prop({ default: () => [] }) frequent!: string[]
   requestParameters: any[] = []
   returnFields: any = []
 
@@ -50,7 +51,9 @@ export default class Schema extends Vue {
         title: 'Other fields',
         items: this.attributes,
       },
-    ].map((section) => ({ ...section, id: toSnakeCase(section.title) }))
+    ]
+      .filter((section) => section?.items?.length)
+      .map((section) => ({ ...section, id: toSnakeCase(section.title) }))
   }
 
   get frequentlyUsedAttributes() {
@@ -65,14 +68,6 @@ export default class Schema extends Vue {
     )
   }
 
-  get camelCaseName() {
-    return this.name.slice(0, 1).toLowerCase() + this.name.slice(1)
-  }
-
-  get pascalCaseName() {
-    return this.name.slice(0, 1).toUpperCase() + this.name.slice(1)
-  }
-
   get ofTypeKinds() {
     return Object.keys(OfTypeKind)
   }
@@ -80,6 +75,13 @@ export default class Schema extends Vue {
   appendOfType(fields) {
     return Promise.all(
       fields?.map(async (field) => {
+        const returnField = {
+          ...field,
+          children: [],
+        }
+
+        if (!field.type) return returnField
+
         const typeStr =
           field.type.kind === 'SCALAR'
             ? field.type?.name
@@ -98,51 +100,46 @@ export default class Schema extends Vue {
           )
         ) {
           return {
-            ...field,
+            ...returnField,
             typeStr,
             required,
           }
         }
 
-        const ofType: any = await this.getJson(
+        const json: any = await this.getJson(
           field.type?.ofType?.name || field.type.name
         )
-
-        if (ofType?.fields) {
-          ofType.fields = await this.appendOfType(ofType.fields)
-        }
-
-        const typeName = (ofType?.name || field.type?.name || '').replace(
+        const typeName = (json?.name || field.type?.name || '').replace(
           'Query',
           ''
         )
-        const showOfTypeKind = this.ofTypeKinds.includes(ofType?.kind)
+        const showOfTypeKind = this.ofTypeKinds.includes(json.kind)
+        const children = await this.appendOfType(
+          json.fields || json.enumValues || json.inputFields || []
+        )
 
         return {
-          ...field,
+          ...returnField,
           showOfTypeKind,
           typeStr,
           typeName,
           required,
-          children: ofType.fields || ofType.enumValues || ofType.inputFields,
-          type: {
-            ...field.type,
-            ofType,
-          },
+          children,
         }
       })
     )
   }
 
   async getJson(name) {
-    const json = await import(`~/static/schema/${name}.json`)
+    const json = await import(`~/static/schema/${name}.json`).catch(console.log)
 
     return json.default
   }
 
   async fetch() {
-    const { fields }: any = await this.getJson('Query')
-
+    const { fields }: any = await this.getJson(
+      this.type === 'query' ? 'Query' : 'Mutation'
+    )
     this.schema = fields.find((field) => field.name === this.name)
 
     const name = this.schema.type?.name || this.schema.type?.ofType?.name
@@ -153,7 +150,10 @@ export default class Schema extends Vue {
     ])
 
     this.requestParameters = requestParams
-    this.returnFields = await this.appendOfType(json.fields)
+
+    if (json.fields) {
+      this.returnFields = await this.appendOfType(json.fields)
+    }
   }
 }
 </script>

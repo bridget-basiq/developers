@@ -20,7 +20,7 @@ If you want to request alternative charging stations along a route, you can set 
 
 You can add a station as a waypoint or as a destination. To do this, add `stationId` to `routeRequest.via.properties` or `routeRequest.destination.properties`. 
 
-<schema name=""></schema>
+<schema name="newRoute" type="mutation"></schema>
 
 <playground>
 
