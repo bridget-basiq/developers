@@ -7,6 +7,7 @@
 <script lang="ts">
 import { Vue, Component } from 'nuxt-property-decorator'
 import { Mutation } from 'vuex-class'
+import { getFileByPath } from '~/utilities/project.functions'
 
 @Component
 export default class Slug extends Vue {
@@ -40,12 +41,14 @@ export default class Slug extends Vue {
     const {
       $content,
       route: { path },
-      store: { commit },
+      store,
     } = args
 
-    const page = await $content(path, { deep: true }).fetch()
+    const page = await $content(getFileByPath(path, store.getters.dirs), {
+      deep: true,
+    }).fetch()
 
-    commit('setContent', page)
+    store.commit('setContent', page)
     return {
       page,
     }

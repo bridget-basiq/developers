@@ -95,7 +95,7 @@ export default class Editor extends Mixins(Base) {
   }
 
   makeItalic() {
-    this.file = this.insert('__', '__')
+    this.file = this.insert('_', '_')
   }
 
   makeH1() {

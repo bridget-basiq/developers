@@ -1,7 +1,7 @@
 ---
 title: Getting started
 description: Get started by setting up your chargetrip API project
-order: 1
+order: 2
 
 images:
 - configuring-your-project-1.png

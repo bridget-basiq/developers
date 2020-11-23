@@ -6,7 +6,7 @@
       class="mb-12 last:mb-0"
       :class="section.id"
     >
-      <h2 :id="section.id">{{ section.title }}</h2>
+      <h3 :id="section.id">{{ section.title }}</h3>
       <div class="mt-3">
         <Property
           v-for="(item, c) in section.items"
@@ -39,15 +39,15 @@ export default class Schema extends Vue {
   get sections() {
     return [
       {
-        title: 'Request parameters',
+        title: 'Arguments',
         items: this.requestParameters,
       },
       {
-        title: 'Frequently used attributes',
+        title: 'Frequently used fields',
         items: this.frequentlyUsedAttributes,
       },
       {
-        title: 'Other attributes',
+        title: 'Other fields',
         items: this.attributes,
       },
     ].map((section) => ({ ...section, id: toSnakeCase(section.title) }))

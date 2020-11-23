@@ -57,7 +57,7 @@ export default class MarkdownFormatting extends Vue {
         },
         {
           title: 'Italic',
-          explanation: '<code>__Italic__</code>',
+          explanation: '<code>_Italic_</code>',
         },
         {
           title: 'Strikethrough',

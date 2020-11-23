@@ -1,5 +1,5 @@
 import Vuex from 'vuex'
-import { toSentenceCase, toSnakeCase } from 'js-convert-case/lib'
+import { toSnakeCase } from 'js-convert-case/lib'
 import Main from './modules/root'
 import { slugify } from '~/utilities/project.functions'
 
@@ -17,12 +17,17 @@ const getH2Children = (page) => {
     } else if (child.tag === 'schema') {
       arr.push(
         ...[
-          'Request parameters',
-          'Frequently used attributes',
-          'Other attributes',
+          'Arguments',
+          'Frequently used fields',
+          'Other fields',
         ].map((title) => ({ title, props: { id: toSnakeCase(title) } }))
       )
-    } else if (child.tag === 'guides' || child.tag === 'examples') {
+    } else if (
+      child.tag === 'release-note' ||
+      child.tag === 'guides' ||
+      child.tag === 'examples' ||
+      child.tag === 'accordion'
+    ) {
       arr.push({
         title: child.props.title,
         props: { id: slugify(child.props.title) },
@@ -36,39 +41,61 @@ const getH2Children = (page) => {
 
 const getObj = (list, arr) => {
   arr.forEach((p) => {
-    list = list.children.find((i) => i.path === p)
+    list = list.children.find((i) => i.path === p.split('+').pop())
   })
 
   return list
 }
 
+const orderTree = (arr) => {
+  arr?.sort((a, b) => a.order - b.order)
+
+  arr?.forEach((child) => {
+    if (child.children) {
+      orderTree(child.children)
+    }
+  })
+
+  return arr
+}
 const getSideNav = (pages) => {
-  return pages.reduce(
+  const sideNav = pages.reduce(
     (tree, page) => {
-      const path = page.path.split('/').slice(1)
+      const pathParts = page.path.split('/').slice(1)
 
       let obj = tree
 
-      path.forEach((p, i) => {
-        obj = getObj(tree, path.slice(0, i))
+      pathParts.forEach((p, i) => {
+        obj = getObj(tree, pathParts.slice(0, i))
 
-        if (path.length - 1 === i) {
+        let [order, path] = p.split('+')
+
+        path = path || p
+
+        if (pathParts.length - 1 === i) {
+          const to = page.path
+            .split('/')
+            .map((part) => part.split('+').pop())
+            .join('/')
+
           obj.children.push({
-            to: page.path,
+            to,
+            order: page.order,
             icon: page.icon,
             title: page.title,
             hideChildren: page.slug === 'home',
             children: getH2Children(page.body).map((child) => ({
-              to: page.path,
+              to,
               hash: child.props.id,
               title: child.title || child.children[1].value,
             })),
           })
-        } else if (!obj.children.find((child) => child.path === p)) {
+        } else if (!obj.children.find((child) => child.path === path)) {
           obj.children.push({
-            path: p,
+            order: parseInt(order),
+            path,
             children: [],
-            title: toSentenceCase(p),
+            title: path.replace(new RegExp('-', 'g'), ' '),
           })
         }
       })
@@ -77,6 +104,8 @@ const getSideNav = (pages) => {
     },
     { children: [] }
   ).children
+
+  return orderTree(sideNav)
 }
 
 export default () =>
@@ -85,7 +114,11 @@ export default () =>
     mutations: {},
     actions: {
       async nuxtServerInit({ commit }, { $content, req }) {
+<<<<<<< HEAD
         const pages = await $content('', { deep: true }).sortBy('order').fetch()
+=======
+        const pages = await $content('', { deep: true }).fetch()
+>>>>>>> 136737b9d82051cdb94eee6c180cd2ce516ed378
 
         if (req?.headers?.cookie) {
           const cookie = getCookie(req.headers.cookie, 'dark_mode')
@@ -97,6 +130,8 @@ export default () =>
               : !!window?.matchMedia('(prefers-color-scheme: dark)')?.matches
           )
         }
+
+        commit('setDirs', $content.database.dirs)
 
         if (pages) {
           const sideNav = await getSideNav(pages)

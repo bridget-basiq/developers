@@ -6,14 +6,14 @@
   >
     <div
       v-if="showChildren"
-      class="main-line w-5 md:w-10 absolute left-0 top-0 h-full z-10 transform -translate-x-full"
+      class="main-line w-5 lg:w-10 absolute left-0 top-0 h-full z-10 transform -translate-x-full"
     >
       <div
         class="line-v w-px h-full absolute transform left-1/2 -translate-x-1/2 bg-alt2"
       />
     </div>
     <div
-      class="content pl-6 md:pl-10 -ml-5 md:-ml-10 py-4 relative"
+      class="content pl-6 lg:pl-10 -ml-5 lg:-ml-10 py-4 relative"
       :class="{
         'cursor-pointer': !forceActive,
       }"
@@ -41,7 +41,11 @@
         {{ showChildren ? 'Collapse' : 'Expand' }} {{ typeName }} attrributes
       </strong>
     </p>
-    <ul v-if="children" v-show="showChildren" class="children ml-5 md:ml-10">
+    <ul
+      v-if="children"
+      v-show="showChildren"
+      class="children pl-5 lg:pl-10 border-t border-alt"
+    >
       <property
         v-for="(child, i) in children"
         :key="i"
@@ -176,11 +180,6 @@ export default class Property extends Vue {
         > .property {
           @apply ml-9;
         }
-      }
-    }
-    &.show-children {
-      .mobile-toggle {
-        @apply border-b;
       }
     }
   }
