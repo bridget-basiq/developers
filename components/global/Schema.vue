@@ -147,6 +147,8 @@ export default class Schema extends Vue {
       this.getJson(name),
     ])
 
+    console.log(this.name)
+
     this.requestParameters = requestParams
 
     if (json.fields) {
