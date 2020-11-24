@@ -3,11 +3,6 @@ import { toSnakeCase } from 'js-convert-case/lib'
 import Main from './modules/root'
 import { slugify } from '~/utilities/project.functions'
 
-const getCookie = (str, key) =>
-  Object.fromEntries(str.split(/; */).map((cookie) => cookie.split('=', 2)))[
-    key
-  ]
-
 const getH2Children = (page) => {
   const arr: any = []
 
@@ -113,19 +108,8 @@ export default () =>
     state: {},
     mutations: {},
     actions: {
-      async nuxtServerInit({ commit }, { $content, req }) {
+      async nuxtServerInit({ commit }, { $content }) {
         const pages = await $content('', { deep: true }).fetch()
-
-        if (req?.headers?.cookie) {
-          const cookie = getCookie(req.headers.cookie, 'dark_mode')
-
-          commit(
-            'setDarkMode',
-            cookie
-              ? cookie === 'true'
-              : !!window?.matchMedia('(prefers-color-scheme: dark)')?.matches
-          )
-        }
 
         commit('setDirs', $content.database.dirs)
 

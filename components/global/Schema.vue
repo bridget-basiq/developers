@@ -72,7 +72,7 @@ export default class Schema extends Vue {
     return Object.keys(OfTypeKind)
   }
 
-  appendOfType(fields) {
+  appendOfType(fields, allowRequired = false) {
     return Promise.all(
       fields?.map(async (field) => {
         const returnField = {
@@ -89,7 +89,7 @@ export default class Schema extends Vue {
             ? null
             : field.type?.kind
 
-        const required = typeStr === 'NON_NULL'
+        const required = allowRequired && typeStr === 'NON_NULL'
 
         if (
           !(
@@ -113,7 +113,8 @@ export default class Schema extends Vue {
         const normalizedTypeName = (typeName || '').replace('Query', '')
         const showOfTypeKind = this.ofTypeKinds.includes(json?.kind)
         const children = await this.appendOfType(
-          json?.fields || json?.enumValues || json.inputFields || []
+          json?.fields || json?.enumValues || json.inputFields || [],
+          allowRequired
         )
 
         return {
@@ -154,7 +155,7 @@ export default class Schema extends Vue {
     this.schema = fields.find((field) => field.name === this.name)
 
     const [requestParams, json] = await Promise.all([
-      this.appendOfType(this.schema?.args),
+      this.appendOfType(this.schema?.args, true),
       this.getJson(this.getOfTypeName(this.schema)),
     ])
 
