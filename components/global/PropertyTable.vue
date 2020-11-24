@@ -13,7 +13,7 @@
           :font-family="c <= 1 ? 'mono' : null"
           :color="c === 1 ? 'warning' : null"
         >
-          {{ row[c] }}
+          <span v-html="$options.filters.markdown(row[c])" />
         </Cell>
       </Row>
     </CTable>

@@ -89,14 +89,16 @@
         <div class="lg:px-8 px-6 lg-max:overflow-x-hidden">
           <Nuxt class="page mb-8" />
         </div>
-        <PrevNextNavigation v-if="sideNav" class="mt-auto" />
-        <div class="p-6 lg:p-8 border-t flex items-center border-alt text-14">
-          <span class="icon icon-survey mr-3" />
-          <p>Was this article useful?</p>
-          <nav class="flex h-6 items-center font-semibold ml-auto">
-            <div class="underline">No</div>
-            <div class="underline ml-6 text-accent">Yes</div>
-          </nav>
+        <div class="mt-auto">
+          <PrevNextNavigation v-if="sideNav" />
+          <div class="p-6 lg:p-8 border-t flex items-center border-alt text-14">
+            <span class="icon icon-survey mr-3" />
+            <p>Was this article useful?</p>
+            <nav class="flex h-6 items-center font-semibold ml-auto">
+              <div class="underline">No</div>
+              <div class="underline ml-6 text-accent">Yes</div>
+            </nav>
+          </div>
         </div>
       </div>
       <aside
@@ -127,6 +129,7 @@ import {
 } from '@chargetrip/internal-vue-components'
 
 import { Getter, Mutation } from 'vuex-class'
+import Cookies from 'js-cookie'
 import Table from '~/components/global/PropertyTable.vue'
 import RelatedActions from '~/components/RelatedActions.vue'
 import PrevNextNavigation from '~/components/PrevNextNavigation.vue'
@@ -178,6 +181,14 @@ export default class Layout extends Mixins(Base) {
   }
 
   mounted() {
+    const cookie = Cookies.get('dark_mode')
+
+    this.setDarkMode(
+      cookie
+        ? cookie === 'true'
+        : !!window?.matchMedia('(prefers-color-scheme: dark)')?.matches
+    )
+
     this.onRouteChange()
     if (this.hash.length) {
       this.onMenuItemClick({ hash: this.hash })
