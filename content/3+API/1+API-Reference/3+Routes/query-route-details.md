@@ -8,17 +8,12 @@ frequently:
 ---
 
 # Query route details
-
-After you received your `route ID` through the [route mutation](), setup your [subscription service]() you will be able to receive route details through the following query. 
+After you received your `route ID` through the [route mutation](), you can query your route details. These route details will contain everything from a polyline to charge stations. Ideal for plotting a route on a map or providing turn-by-turn instructions.
 
 ## Query
+To query the route details you will need to configure it with the `route ID`. Be sure to include the status in your response and check it. If your route hasn't completed processing yet, then your route details will not be available. To prevent this from happening you can use the [subscription service]().
 
-This query requires you to provide a resolved `route ID` so we are able to return you every detail of that specific route.
-
-To make sure you always receive your route details, you would like to call this query; 
-
-1. Right after you subscribed to our subscription service
-2. Everytime you receive a `done` status from our subscription service.
+If you also supported additional route options in the [route mutation]() you will now be able to collect the details with the following setup;
 
 ### Support alternative stations along a route
 If your [route mutation]() included the `stationsAlongRouteRadius` with a valid distance, you can now request the station details in this query. To do so, you will need to add the `stationsAlongRoute` field with it's appropriate children.
@@ -26,11 +21,12 @@ If your [route mutation]() included the `stationsAlongRouteRadius` with a valid 
 ### Support stations as waypoint
 If your [route mutation]() included stations in the `via` parameter, you will receive a route with additional stations as waypoints. These station as waypoints can be found inside the `route.leg`.
 
-
 <schema name="route" :frequent="frequently"></schema>
 
-<playground>
+## Response
+On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
 
+<playground url="https://playground.chargetrip.com/?page=getRoute">
 <code-block query="route">					
 query getRoute {
   route(id:"5e300e71f7e26f726afd3d71") {
@@ -744,11 +740,3 @@ query getRoute {
 }
 </code-block>
 </playground>
-
-## Response
-
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
-
-<errors name=""></errors>
