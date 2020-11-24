@@ -1,30 +1,28 @@
 ---
 title: Mutate route
 description: Mutate a route between 2 or more waypoints and support alternative stations along a route
-order: 1
+order: 2
 ---
 
 # Mutate route
-
-To provide a user with a route, you will need to retrieve a `route ID` first. Using this `route ID` you can subscribe for [route details]() to get a polyline and other route data.
+As described in the route introduction, the first thing you will need to do is fetch a `route ID`. This `route ID` can then be sent to subscribe to [route details]() and retrieve a polyline and other route data.
 
 ## Mutation
-
-To get a `route ID` you need to set several parameters. An example can be found on our playground over [here]().
+To get a `route ID`, you will need to provide us with EV details and at least a departure location and destination. Apart from that you can also support any of the options that are described below.
 
 ### Support alternative stations along a route
-
-If you want to request alternative charging stations along a route, you can set the `stationsAlongRouteRadius` property of the [route mutation](). The radius can be set between 500 and 5000 meters. This will return all applicable stations within the set radius following the specified powers and standards. 
+If you want to request alternative charging stations along a route, you can set the `stationsAlongRouteRadius` property of the route mutation. The radius can be set between `500` and `5000` meters. This will return all applicable stations within the set radius following the specified powers and standards. 
 
 ### Support stations as waypoint
-
 You can add a station as a waypoint or as a destination. To do this, add `stationId` to `routeRequest.via.properties` or `routeRequest.destination.properties`. 
 
 <schema name="newRoute" type="mutation"></schema>
 
-<playground>
+## Response
+On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
 
-<code-block query="route">					
+<playground>
+<code-block query="newRoute">					
 mutation newRoute {
   newRoute(
     input: {
@@ -70,11 +68,3 @@ mutation newRoute {
 }
 </code-block>
 </playground>
-
-## Response
-
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
-
-<errors name=""></errors>

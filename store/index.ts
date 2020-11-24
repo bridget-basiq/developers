@@ -114,11 +114,7 @@ export default () =>
     mutations: {},
     actions: {
       async nuxtServerInit({ commit }, { $content, req }) {
-<<<<<<< HEAD
-        const pages = await $content('', { deep: true }).sortBy('order').fetch()
-=======
         const pages = await $content('', { deep: true }).fetch()
->>>>>>> 136737b9d82051cdb94eee6c180cd2ce516ed378
 
         if (req?.headers?.cookie) {
           const cookie = getCookie(req.headers.cookie, 'dark_mode')

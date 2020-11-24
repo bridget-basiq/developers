@@ -377,9 +377,12 @@ export default class Layout extends Mixins(Base) {
     @apply mt-6 mb-10;
   }
 
-  > h2,
-  > h3 {
+  > h2 {
     @apply mt-14 mb-2;
+  }
+
+  > h3 {
+    @apply mt-8 mb-2;
   }
 
   > ul,

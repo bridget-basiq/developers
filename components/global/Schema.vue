@@ -1,5 +1,5 @@
 <template>
-  <div class="schema my-8 lg:pl-10">
+  <div class="schema my-12 lg:pl-10">
     <section
       v-for="(section, i) in sections"
       :key="i"

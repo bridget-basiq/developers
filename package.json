@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@chargetrip/internal-vue-components": "0.0.96",
-    "@nuxt/content": "^1.8.1",
+    "@nuxt/content": "^1.11.0",
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/pwa": "^3.0.2",
@@ -40,7 +40,7 @@
     "js-convert-case": "^4.1.0",
     "js-cookie": "^2.2.1",
     "jsdom": "^16.4.0",
-    "marked": "^1.2.4",
+    "marked": "^1.2.5",
     "nuxt": "^2.14.5",
     "path": "^0.12.7",
     "showdown": "^1.9.1"
@@ -61,7 +61,7 @@
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.3.0",
     "dotenv": "^8.2.0",
-    "eslint": "^7.13.0",
+    "eslint": "^7.14.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-nuxt": "^1.0.0",
     "eslint-plugin-prettier": "^3.1.4",
@@ -70,14 +70,14 @@
     "lint-staged": "^10.3.0",
     "node-sass": "^4.14.1",
     "nuxt-property-decorator": "^2.8.8",
-    "prettier": "^2.1.1",
+    "prettier": "^2.2.0",
     "sass-loader": "^10.1.0",
     "stylelint": "^13.8.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^20.0.0",
     "ts-jest": "^26.4.4",
     "vue-jest": "^3.0.4",
-    "vue-property-decorator": "^9.0.2",
+    "vue-property-decorator": "^9.1.2",
     "vuex-class": "^0.3.2",
     "vuex-module-decorators": "^1.0.1"
   }
