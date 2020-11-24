@@ -399,16 +399,16 @@ export default class Layout extends Mixins(Base) {
     @apply mt-14 mb-2;
   }
 
-  > ul,
+  > ul:not(.errors),
   ol {
-    @apply ml-6;
+    @apply ml-6 my-4;
 
     li::before {
       @apply mr-3;
     }
   }
 
-  > ul {
+  > ul:not(.errors) {
     li {
       &::before {
         content: '•';

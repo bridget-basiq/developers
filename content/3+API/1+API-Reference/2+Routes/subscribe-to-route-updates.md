@@ -2,6 +2,8 @@
 title: Subscribe to route updates
 description: Subscribe to route calculation updates
 order: 2
+frequently: 
+- route
 ---
 
 # Subscribe to route updates
@@ -14,7 +16,7 @@ To be updated you have to send your `route ID` to our subscription service. Afte
 
 **Be aware** that if the route is computed before you subscribe to it, you will **not** receive any updates. This could happen when you create a short route. To prevent that scenario, [query the route details]() once right after you have set up the subscription. If the route is already calculated, `unsubscribe`. 
 
-<schema type="Subscription" name="routeUpdatedById"></schema>
+<schema type="Subscription" name="routeUpdatedById" :frequent="frequently"></schema>
 
 <playground>
 
