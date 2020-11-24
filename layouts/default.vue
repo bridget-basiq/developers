@@ -296,9 +296,9 @@ export default class Layout extends Mixins(Base) {
     }, 50)
   }
 
-  @Watch('$route.hash') onHashChange() {
-    this.hash = this.$route.hash.slice(1)
-  }
+  // @Watch('$route.hash') onHashChange() {
+  //   this.hash = this.$route.hash.slice(1)
+  // }
 
   findInArray(arr, name) {
     let find = false
@@ -343,7 +343,7 @@ export default class Layout extends Mixins(Base) {
         ...(this.container.querySelectorAll('h2, h3') || []),
       ].filter((el) => el.id)
       this.stopReplacing = false
-    }, 100)
+    }, 300)
   }
 
   onScroll() {

@@ -8,17 +8,19 @@
         class="absolute w-full h-1/2 bottom-0 left-0 bg-base lg:bg-body"
       />
     </div>
-    <div class="flex-1 relative">
+    <div
+      class="flex-1 relative cursor-pointer"
+      @click.stop="$emit('input', !value)"
+    >
       <template v-if="children.length">
         <span
-          class="cursor-pointer z-20 text-accent center"
+          class="z-20 text-accent center"
           :class="{
             'lg-max:hidden': !depth,
             'icon-circle-plus': !value,
             'icon-circle-minus': value,
             ...bg,
           }"
-          @click.stop="$emit('input', !value)"
         />
         <div class="absolute w-full h-1/2 top-0 left-0" :class="bg" />
       </template>
