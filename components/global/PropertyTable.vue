@@ -25,8 +25,8 @@
         :name="row[0]"
         :type-str="row[1]"
         :description="row[2]"
-        :required="row[3] === 'Yes'"
-        :optional="row[3] === 'No'"
+        :required="row[3] === requiredEnum.yes"
+        :optional="row[3] === requiredEnum.no"
       ></property>
     </div>
   </div>
@@ -35,6 +35,10 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import { Table as CTable, Row, Cell } from '@chargetrip/internal-vue-components'
 import Property from '~/components/Property.vue'
+enum Required {
+  yes = 'Yes',
+  no = 'No',
+}
 
 @Component({
   components: { Property, CTable, Row, Cell },
@@ -44,6 +48,7 @@ export default class PropertyTable extends Vue {
   @Prop() types
   @Prop() descriptions
   @Prop() required
+  requiredEnum = Required
 
   get columns() {
     const columns = ['Key', 'Type', 'Description']

@@ -16,7 +16,7 @@ export default {
     script: [
       {
         src: 'https://cdn.usefathom.com/script.js',
-        'data-site': 'OZCKUFXK',
+        'data-site': process.env.FATHOM_ID,
         spa: 'auto',
         defer: true,
         'data-spa': 'auto',

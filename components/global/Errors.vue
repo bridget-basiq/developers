@@ -1,7 +1,7 @@
 <template>
-  <div class="errors mt-6">
+  <ul class="errors mt-6">
     <Error v-for="(error, key) in errors" :key="key" v-bind="error" />
-  </div>
+  </ul>
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'

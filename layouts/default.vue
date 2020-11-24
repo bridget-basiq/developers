@@ -90,13 +90,11 @@
     </div>
     <QuickNav class="lg:hidden z-50" :items="quickNavItems" />
     <Save v-if="showSaveModal" @save="onSave" @cancel="showSaveModal = false" />
-    <video
+    <img
       v-if="showKhaled"
       class="absolute max-w-screen-sm z-50 rounded shadow-down-xl transform -translate-x-1/2 -translate-y-full bottom-0 -mt-6"
       :style="{ top: `${khaledPosition.y}px`, left: `${khaledPosition.x}px` }"
-      autoplay
-      loop
-      src="/khaled.mp4"
+      src="/khaled.gif"
     />
   </div>
 </template>

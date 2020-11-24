@@ -71,7 +71,7 @@ import PropertyToggleChildren from '~/components/PropertyToggleChildren.vue'
   components: { PropertyToggleChildren, PropertyTitle, Tag },
 })
 export default class Property extends Vue {
-  @Prop() sectionID
+  @Prop() sectionId
   @Prop() name
   @Prop() last
   @Prop() showRequired
@@ -99,7 +99,7 @@ export default class Property extends Vue {
   }
 
   get normalizedSectionID() {
-    return `${this.sectionID}-${this.name}`
+    return `${this.sectionId}-${this.name}`
   }
 
   getShowChildren() {
