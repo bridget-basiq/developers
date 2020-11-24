@@ -91,7 +91,7 @@
         </div>
         <PrevNextNavigation v-if="sideNav" class="mt-auto" />
         <div
-          class="p-6 lg:p-8 border-t flex items-center border-alt text-14 mt-auto"
+          class="p-6 lg:p-8 border-t flex items-center border-alt text-14 mt-auto last:mt-0"
         >
           <span class="icon icon-survey mr-3" />
           <p>Was this article useful?</p>
