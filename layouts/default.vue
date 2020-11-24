@@ -2,6 +2,7 @@
   <div
     class="layout flex flex-col antialiased font-body min-h-screen text-font-primary text-16 bg-body"
     :class="{
+      'show-search': showSearch,
       'theme-dark': darkMode,
       'theme-light': !darkMode,
       'no-transition': noTransition,
@@ -16,8 +17,8 @@
         >
         /
         <router-link class="mx-1 text-font-primary" to="/"
-          >Developers</router-link
-        >
+          >Developers
+        </router-link>
         /
         <div class="ml-1" href="https://chargetrip.com" target="_blank">
           Dashboard
@@ -29,7 +30,7 @@
     >
       <SideNav
         v-if="sideNav"
-        class="text-14 z-50 top-0"
+        class="text-14 z-40 top-0"
         :navs="normalizedSideNav"
         :dark-mode="darkMode"
         :show-toggle-menu="!isHome"
@@ -37,7 +38,16 @@
         :spacing="6"
         @changeDarkMode="setDarkMode"
       >
-        <span class="icon-search ml-4" />
+        <span class="icon-search ml-4" @click="showSearch = !showSearch" />
+        <span
+          v-show="showSearch"
+          class="icon-close text-20 mr-6 absolute z-20 top-1/2 transform -translate-y-1/2 right-0"
+          @click="showSearch = false"
+        />
+        <Search
+          class="mobile-search absolute hidden left-0 bg-body top-0 z-10 w-full h-14"
+          :click-handler="onMenuItemClick"
+        />
       </SideNav>
       <div
         ref="container"
@@ -46,10 +56,18 @@
       >
         <div class="sticky-header items-start lg:px-8 px-6 hidden lg:flex">
           <template v-if="!isEditing">
-            <Search :click-handler="onMenuItemClick" />
+            <Search
+              :click-handler="onMenuItemClick"
+              icon="search"
+              :hotkey="{
+                icon: 'slash',
+                key: '/',
+                fn: (input) => input.focus(),
+              }"
+            />
             <Button
               v-if="isDev"
-              class="ml-auto"
+              class="ml-auto lg-max:hidden"
               size="sm"
               color="accent"
               @click="triggerEdit"
@@ -149,6 +167,7 @@ export default class Layout extends Mixins(Base) {
   h2Elms: any[] = []
   hash = this.$route.hash.slice(1)
   stopReplacing = false
+  showSearch = false
 
   beforeMount() {
     this.openKhaled = this.openKhaled.bind(this)
@@ -396,6 +415,7 @@ export default class Layout extends Mixins(Base) {
       }
     }
   }
+
   > ol {
     li {
       counter-increment: listing;
@@ -437,6 +457,13 @@ export default class Layout extends Mixins(Base) {
 }
 
 .layout {
+  @screen lg-max {
+    &.show-search {
+      .mobile-search {
+        @apply block;
+      }
+    }
+  }
   &.no-transition {
     .box,
     .animate,
@@ -450,6 +477,20 @@ export default class Layout extends Mixins(Base) {
   &.is-playground {
     .right-aside {
       width: 512px;
+    }
+  }
+
+  .mobile-search {
+    .c-form-control.has-focus,
+    .c-form-control.has-hover,
+    .c-form-control {
+      .box {
+        @apply h-14 bg-body rounded-none border-0;
+
+        input {
+          @apply px-6;
+        }
+      }
     }
   }
 
@@ -481,6 +522,7 @@ export default class Layout extends Mixins(Base) {
     aside {
       width: 383px;
     }
+
     .c-side-nav {
       width: 260px;
     }

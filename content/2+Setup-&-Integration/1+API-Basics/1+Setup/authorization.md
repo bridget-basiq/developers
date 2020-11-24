@@ -23,7 +23,7 @@ required:
 
 Before you can start with our API you need to be able to authorize yourself. You can do this by [signing up](http://dashboard.chargetrip.com/) and [configuring](http://localhost:3000/setup-&-integration/API-Basics/setup/getting-started#configuring-your-project) your own free key. After you’ve done that we will guide you through the process of configuring your key and authorizing yourself.
 
-<c-image max-width="sm" alt="Authorization image" src="authorization.png"></c-image>
+<c-image alt="Authorization image" src="authorization.png"></c-image>
 
 ## The API
 Now that you have all credentials that are required you can start using our API. The first thing you will need is the following base url;
