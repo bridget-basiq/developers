@@ -164,7 +164,7 @@ export default class Layout extends Mixins(Base) {
   @Mutation setIsEditing
   noTransition = false
   timeout = 0
-  h2Elms: any[] = []
+  hElms: any[] = []
   hash = this.$route.hash.slice(1)
   stopReplacing = false
   showSearch = false
@@ -339,7 +339,9 @@ export default class Layout extends Mixins(Base) {
 
     this.stopReplacing = true
     setTimeout(() => {
-      this.h2Elms = [...(this.container.querySelectorAll('h2') || [])]
+      this.hElms = [
+        ...(this.container.querySelectorAll('h2, h3') || []),
+      ].filter((el) => el.id)
       this.stopReplacing = false
     }, 100)
   }
@@ -347,18 +349,18 @@ export default class Layout extends Mixins(Base) {
   onScroll() {
     if (this.stopReplacing) return
 
-    const h2 = this.h2Elms.reduce((current, h2) => {
-      const rect = h2.getBoundingClientRect()
+    const h = this.hElms.reduce((current, h) => {
+      const rect = h.getBoundingClientRect()
 
       if (rect.top <= 112) {
-        current = h2
+        current = h
       }
 
       return current
     }, null)
 
-    if (h2?.id) {
-      const hash = h2.id
+    if (h?.id) {
+      const hash = h.id
       if (hash !== this.hash) {
         this.hash = hash
         this.$router.replace(

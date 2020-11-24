@@ -18,7 +18,7 @@ To be updated you have to send your `route ID` to our subscription service. Afte
 
 <schema type="Subscription" name="routeUpdatedById" :frequent="frequently"></schema>
 
-<playground>
+<playground url="http://googl.eocm">
 
 <code-block query="route">					
 mutation newRoute {
