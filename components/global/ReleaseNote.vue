@@ -1,12 +1,12 @@
 <template>
-  <div class="release-note my-14">
-    <div class="title-wrapper pb-4 border-b border-alt px-6 relative">
+  <div class="release-note my-16">
+    <div class="title-wrapper pb-4 border-b border-alt px-8 relative">
       <h2 class="mb-1">
         {{ title }}
       </h2>
       <p class="text-14 text-font-alt3">{{ date }}</p>
     </div>
-    <div class="content text-14">
+    <div class="content">
       <slot />
     </div>
   </div>
