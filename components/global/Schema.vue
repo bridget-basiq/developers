@@ -106,23 +106,21 @@ export default class Schema extends Vue {
           }
         }
 
-        const json: any = await this.getJson(
-          field.type?.ofType?.name || field.type.name
-        )
-        const typeName = (json?.name || field.type?.name || '').replace(
-          'Query',
-          ''
-        )
-        const showOfTypeKind = this.ofTypeKinds.includes(json.kind)
+        const typeName = this.getOfTypeName(field)
+
+        const json: any = typeName ? await this.getJson(typeName) : null
+
+        const normalizedTypeName = (typeName || '').replace('Query', '')
+        const showOfTypeKind = this.ofTypeKinds.includes(json?.kind)
         const children = await this.appendOfType(
-          json.fields || json.enumValues || json.inputFields || []
+          json?.fields || json?.enumValues || json.inputFields || []
         )
 
         return {
           ...returnField,
           showOfTypeKind,
           typeStr,
-          typeName,
+          typeName: normalizedTypeName,
           required,
           children,
         }
@@ -136,14 +134,28 @@ export default class Schema extends Vue {
     return json.default
   }
 
+  getOfTypeName(item) {
+    let type = item.type
+    let name = item.type.name
+
+    while (type) {
+      type = type.ofType
+
+      if (type) {
+        name = type.name
+      }
+    }
+
+    return name
+  }
+
   async fetch() {
     const { fields }: any = await this.getJson(this.type)
     this.schema = fields.find((field) => field.name === this.name)
-    const name = this.schema.type?.name || this.schema.type?.ofType?.name
 
     const [requestParams, json] = await Promise.all([
       this.appendOfType(this.schema?.args),
-      this.getJson(name),
+      this.getJson(this.getOfTypeName(this.schema)),
     ])
 
     this.requestParameters = requestParams

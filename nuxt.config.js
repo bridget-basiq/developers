@@ -24,6 +24,7 @@ export default {
     ],
   },
   router: {
+    scrollBehavior: () => null,
     base:
       process.env.NODE_ENV === 'production' ? '/chargetrip-developers/' : '/',
     extendRoutes(routes) {

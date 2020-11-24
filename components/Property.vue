@@ -169,6 +169,10 @@ export default class Property extends Vue {
   &:not(.is-child) {
     @apply border-t border-alt;
 
+    &:last-child {
+      @apply border-b;
+    }
+
     @screen lg-max {
       > .main-line .line-v {
         height: calc(100% - 80px);

@@ -3,6 +3,9 @@
 @import "./typograhpy";
 @import "./theme";
 
+body {
+  @apply overflow-hidden;
+}
 .sticky-header, .header-gradient {
   background: var(--sticky-bg);
 }
