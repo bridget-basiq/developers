@@ -11,7 +11,7 @@
         <Property
           v-for="(item, c) in section.items"
           :key="`${i}-${c}`"
-          :section-i-d="section.id"
+          :section-id="section.id"
           :show-required="!i"
           :initial-active="i < 2"
           v-bind="item"
@@ -30,7 +30,7 @@ import { OfTypeKind } from '~/utilities/constants'
   components: { Property },
 })
 export default class Schema extends Vue {
-  @Prop({ default: 'query' }) type
+  @Prop({ default: 'Query' }) type
   @Prop() name
   schema: any = null
   @Prop({ default: () => [] }) frequent!: string[]
@@ -137,9 +137,7 @@ export default class Schema extends Vue {
   }
 
   async fetch() {
-    const { fields }: any = await this.getJson(
-      this.type === 'query' ? 'Query' : 'Mutation'
-    )
+    const { fields }: any = await this.getJson(this.type)
     this.schema = fields.find((field) => field.name === this.name)
     const name = this.schema.type?.name || this.schema.type?.ofType?.name
 

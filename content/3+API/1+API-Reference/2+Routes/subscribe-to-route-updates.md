@@ -26,7 +26,7 @@ The subscription service needs to be initiated with a `route ID`. From there on 
 
 **Be aware** that if the route is computed before you subscribe to it, you will **not** receive any updates. This could happen when you create a short route. To prevent that scenario, [query the route details]() once right after you have set up the subscription. If the route is already calculated, `unsubscribe`. 
 
-<schema name=""></schema>
+<schema type="Subscription" name="routeUpdatedById"></schema>
 
 ## Response
 On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested. The most important value here is the status field. This one will tell you what data is available. It can have any of the following states;

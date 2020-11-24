@@ -31,6 +31,12 @@ module.exports = {
         'sm-max': { max: '639px' },
         // => @media (max-width: 639px) { ... }
       },
+      maxWidth: {
+        xl: '1024px',
+        lg: '736px',
+        md: '352px',
+        sm: '160px',
+      },
       colors: {
         body: 'var(--body)',
         base: 'var(--base)',

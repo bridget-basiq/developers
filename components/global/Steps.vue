@@ -40,7 +40,7 @@ export default class Steps extends Vue {}
           height: calc(100% + 28px);
         }
       }
-      &:last-child .side {
+      &:last-child .number-wrapper {
         &::before {
           @apply mt-5;
 

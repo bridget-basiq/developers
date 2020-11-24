@@ -25,7 +25,3 @@ import { Modal, Input, Button } from '@chargetrip/internal-vue-components'
 @Component({ components: { Modal, Input, Button } })
 export default class CImage extends Vue {}
 </script>
-<style>
-.save {
-}
-</style>

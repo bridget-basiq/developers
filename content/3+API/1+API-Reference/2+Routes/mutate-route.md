@@ -16,7 +16,7 @@ If you want to request alternative charging stations along a route, you can set 
 ### Support stations as waypoint
 You can add a station as a waypoint or as a destination. To do this, add `stationId` to `routeRequest.via.properties` or `routeRequest.destination.properties`. 
 
-<schema name="newRoute" type="mutation"></schema>
+<schema name="newRoute" type="Mutation"></schema>
 
 ## Response
 On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.

@@ -46,7 +46,7 @@ export default class Examples extends Vue {
   }
 
   @Watch('index') onIndexChange() {
-    this.$slots?.default?.map((child) => {
+    this.$slots?.default?.forEach((child) => {
       if (child?.componentInstance?.$data) {
         if (this.index === null) {
           child.componentInstance.$data.active = true

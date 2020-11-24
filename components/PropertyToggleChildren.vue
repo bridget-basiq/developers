@@ -31,7 +31,6 @@
           class="w-1 h-1 rounded-full right-0 top-1/2 transform -translate-y-1/2 absolute bg-alt2 translate-x-full"
         />
       </div>
-      <!--      <div v-else class="line-v w-px h-full bg-alt2 absolute center" />-->
     </div>
   </div>
 </template>
