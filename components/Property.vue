@@ -83,7 +83,7 @@ export default class Property extends Vue {
   @Prop() typeStr
   @Prop() typeName
   @Prop() showOfTypeKind
-  @Prop() children
+  @Prop({ default: () => [] }) children
   @Prop() initialActive
   @Prop() forceActive
   showChildren = false
