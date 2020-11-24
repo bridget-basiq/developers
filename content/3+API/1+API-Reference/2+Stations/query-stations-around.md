@@ -1,23 +1,28 @@
 ---
 title: Query stations around a GeoJSON point
 description: Query stations at a specific location or GeoJSON point.
-order: 2
+order: 3
 frequently:
 - id
 ---
 
 # Query stations around a GeoJSON point
-
-With the query stations around a GeoJSON point you can fetch the closest stations around a GeoJSON point with a specific distance in meters.
+With the query stations around a GeoJSON point you can fetch the stations around a GeoJSON point with a specific distance in meters. This can be useful when a station is busy, or when you want to provide several options.
 
 ## Query
-
-To query a station around GeoJSON point you have set various `query` parameters including `location`, `distance` and optionally `power` and `amenities`. Pagination is also available through the `size` and `page` parameters. 
+To query a station around GeoJSON point you have set various `query` arguments including `location`, `distance` and optionally `power` and `amenities`. To limit your results and improve the performance you can use [pagination]() on your query.
 
 <schema name="stationAround" :frequent="frequently"></schema>
 
-<playground>
+## Response
+On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
 
+On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
+
+<errors name="stationAround"></errors>
+
+
+<playground url="https://playground.chargetrip.com/?page=stationAround">
 <code-block query="stationAround">					
 query stationAround {
   stationAround(
@@ -208,11 +213,3 @@ query stationAround {
 }
 </code-block>
 </playground>
-
-## Response
-
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
-
-<errors name="stationAround"></errors>

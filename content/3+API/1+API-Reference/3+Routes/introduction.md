@@ -1,11 +1,10 @@
 ---
 title: Introduction
-description: An introduction to how Chargetrips routing service works
+description: Start building routes with the chargetrip routing queries, mutations and subscriptions.
 order: 1
 ---
 
-# Introduction on routing
-
+# Route calculations
 To create a route you need the `newRoute` mutation and `routeUpdateById` subscription. We strongly recommend to use subscriptions. Recursively querying a route ID until the route is processed increases costs and delays your application. A visual representation is added below. For a more detailed explanation keep reading.
 
 <c-image alt="Authorization image" src="route-mutation.png"></c-image>

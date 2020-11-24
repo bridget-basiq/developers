@@ -1,26 +1,37 @@
 ---
 title: Query station operators
 description: Query all the operators of your station database
-order: 5
+order: 6
 frequently:
 - id
 ---
 
 # Query station operators
-
-Charge stations are often operated by various different organisations. To provide users with an overview of your charge point operators you can use this query.
+Charge stations are often exploited by various operators. To get an overview of your operators you can use the `operatorList` query. All operator details are available, but keep it as small as possible to improve performance.
 
 ## Query
+The entire operatorList can be accessed by using the `operatorList` query with the attributes you would like to use. Optionally you can use [pagination]() and `filters` to improve your results.
 
-You can access the entire list of operators from your account using `operatorList` query.
+### Pagination & Filters
+To filter your operator list you can use the `query` argument. You can then use `name`, `id`, `external_id` or `country` to specify how you want to filter the list.
 
 <schema name="operatorList" :frequent="frequently"></schema>
 
-<playground>
+## Response
+On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
 
+On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
+
+<errors name="operator"></errors>
+
+<playground>
 <code-block query="operatorList">					
 query operatorList {
-  operatorList {
+  operatorList(
+    query: { name: "AeroVironment" }
+    size: 2
+    page: 0
+  ) {
     id
     external_id
     name
@@ -83,11 +94,3 @@ query operatorList {
 }
 </code-block>
 </playground>
-
-## Response
-
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
-
-<errors name="operator"></errors>

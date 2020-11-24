@@ -1,26 +1,37 @@
 ---
 title: Query stations
 description: Query all stations or stations at a specific location.
-order: 1
+order: 2
 frequently:
 - id
 ---
 
 # Query stations
-
-This query is used to get all stations from your station database. Optionally you can add lazy loading or query on location.
+To be able to browse through all your stations inside your station database you can use the `stationList` query. While querying you will have access to every item on a station. Keep your query as small as possible to improve the performance.
 
 ## Query
+To query your stations you only need to call the `stationList` alongside some attributes. Optionally you can add [pagination]() and `filters`.
 
-Get a list of all your stations. With the `id` then available you can query for specific details of that station.
+### Pagination & Filters
+To filter your station list you can use the `query` argument. You can then use `name`, `id` or `external_id` to specify how you want to filter the list.
 
 <schema name="stationList" :frequent="frequently"></schema>
 
-<playground>
+## Response
+On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
 
+On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
+
+<errors name="station"></errors>
+
+<playground url="https://playground.chargetrip.com/?page=stationListAll">
 <code-block query="stationList">					
 query stationListAll {
-  stationList {
+  stationList(
+    query: { name: "Townley Road (2)" }
+    size: 2
+    page: 1
+  ) {
     id
     external_id
     country_code
@@ -1116,11 +1127,3 @@ query stationListAll {
 }
 </code-block>
 </playground>
-
-## Response
-
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
-
-<errors name="station"></errors>
