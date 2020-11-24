@@ -1,7 +1,7 @@
 ---
 title: Query station operators
 description: Query all the operators of your station database
-order: 6
+order: 7
 frequently:
 - id
 ---

@@ -1,7 +1,7 @@
 ---
 title: Query stations around a GeoJSON point
 description: Query stations at a specific location or GeoJSON point.
-order: 3
+order: 4
 frequently:
 - id
 ---
