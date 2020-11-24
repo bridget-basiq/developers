@@ -22,7 +22,7 @@ This request uses the id parameter to identify which details should be fetched. 
 
 <playground>
 
-<code-block query="carList">					
+<code-block query="carList" lang="graphql">					
 query carListAll {
   carList(size: 2, page: 0) {
     id

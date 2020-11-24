@@ -4,8 +4,8 @@
   >
     <div class="sticky-header px-8 flex items-center">
       <h2>Code Sample</h2>
-      <a v-if="url" :href="url" target="_blank" rel="noopener">
-        <Button class="ml-auto" size="sm" color="base" icon="arrow-up-right">
+      <a v-if="url" :href="url" target="_blank" rel="noopener" class="ml-auto">
+        <Button size="sm" color="base" icon="arrow-up-right">
           View in Playground
         </Button>
       </a>

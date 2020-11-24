@@ -26,7 +26,7 @@ Below you can find a complete overview of [filter, pagination and sorting](howto
 
 <playground>
 
-<code-block query="carList">					
+<code-block query="carList" lang="graphql">					
 query carListAll {
   carList {
     id
