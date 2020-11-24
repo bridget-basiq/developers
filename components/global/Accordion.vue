@@ -8,7 +8,7 @@
         {{ description }}
       </strong>
     </p>
-    <div class="mt-6">
+    <div class="mt-2">
       <slot />
     </div>
   </div>
