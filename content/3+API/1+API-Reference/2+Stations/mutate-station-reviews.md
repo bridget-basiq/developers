@@ -16,7 +16,7 @@ To be able to write a review you will need a stationId and carId. After that you
 On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
 
 <playground url="https://playground.chargetrip.com/?page=reviewListLazyLoading">
-<code-block query="addReview">					
+<code-block lang="graphql" query="addReview">					
 mutation addReview($stationId: String!, $carId: String) {
   addReview(
     review: {

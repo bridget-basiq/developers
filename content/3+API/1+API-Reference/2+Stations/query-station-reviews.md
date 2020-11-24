@@ -15,7 +15,7 @@ To get the reviews of a specific station you will need to provide a `stationId`.
 ## Response
 On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
 
-<playground url="https://playground.chargetrip.com/?page=reviewListLazyLoading">
+<playground lang="graphql" url="https://playground.chargetrip.com/?page=reviewListLazyLoading">
 <code-block query="reviewList">					
 query reviewList($stationId: ID!) {
   reviewList(stationId: $stationId, size: 2, page: 0) {

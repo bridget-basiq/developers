@@ -4,6 +4,12 @@ description: Query all stations or stations at a specific location.
 order: 2
 frequently:
 - id
+- name
+- address
+- coordinates
+- evses
+- operator
+- amenities
 ---
 
 # Query stations

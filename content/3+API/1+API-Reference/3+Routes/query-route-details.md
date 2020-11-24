@@ -27,7 +27,7 @@ If your [route mutation]() included stations in the `via` parameter, you will re
 On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
 
 <playground url="https://playground.chargetrip.com/?page=getRoute">
-<code-block query="route">					
+<code-block lang="graphql" query="route">					
 query getRoute {
   route(id:"5e300e71f7e26f726afd3d71") {
     route {

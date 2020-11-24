@@ -25,7 +25,7 @@ On error the header status code is an error code and the response body contains 
 <errors name="operator"></errors>
 
 <playground>
-<code-block query="operatorList">					
+<code-block lang="graphql" query="operatorList">					
 query operatorList {
   operatorList(
     query: { name: "AeroVironment" }

@@ -22,7 +22,7 @@ On error the header status code is an error code and the response body contains 
 <errors name="stationAround"></errors>
 
 
-<playground url="https://playground.chargetrip.com/?page=stationAround">
+<playground lang="graphql" url="https://playground.chargetrip.com/?page=stationAround">
 <code-block query="stationAround">					
 query stationAround {
   stationAround(
