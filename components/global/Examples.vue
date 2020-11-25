@@ -14,7 +14,7 @@
         </div>
       </nav>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:gap-4 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <slot />
     </div>
   </div>
@@ -35,14 +35,17 @@ export default class Examples extends Vue {
   }
 
   created() {
-    this.categories =
-      this.$slots?.default
-        ?.map(
-          (child: any) =>
-            child?.asyncMeta?.data?.attrs?.category ||
-            child?.componentOptions?.propsData?.category
-        )
-        ?.filter((category) => category) || []
+    this.categories = Array.from(
+      new Set(
+        this.$slots?.default
+          ?.map(
+            (child: any) =>
+              child?.asyncMeta?.data?.attrs?.category ||
+              child?.componentOptions?.propsData?.category
+          )
+          ?.filter((category) => category) || []
+      )
+    )
   }
 
   @Watch('index') onIndexChange() {

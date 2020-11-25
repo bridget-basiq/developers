@@ -31,7 +31,74 @@ Get going with the **Chargetrip** API. Clone one of our examples as a boilerplat
 Need some information about EV-routing, EVs or graphQL first? No worries we got you covered with our [here](https://medium.com/chargetrip).
 
 <examples title="Clone an example">
-<example href="https://google.com" img="cars-example.jpg" title="Cars Select a vehicle from a list" tag-line="Web • iOS • Android" description="Quickly fetch a list of cars and implement lazy loading." category="Cars"></example>
+    <!-- Cars -->
+    <example 
+        href="https://chargetrip.github.io/examples/car/" 
+        img="cars-example.png" 
+        title="Query cars" 
+        tag-line="Web" 
+        description="Quickly fetch a list of cars with additional data." 
+        category="Cars">
+    </example>
+    <!-- Stations -->
+    <example 
+        href="https://chargetrip.github.io/examples/stations/" 
+        img="stations-example.png" 
+        title="Query stations" 
+        tag-line="Web" 
+        description="Query the 20 closest stations and show them on a map." 
+        category="Stations">
+    </example>
+    <example 
+        href="https://chargetrip.github.io/examples/station-info/" 
+        img="stations-info-example.png" 
+        title="Query specific station" 
+        tag-line="Web" 
+        description="Query and parse a complete set of station data" 
+        category="Stations">
+    </example>
+    <!-- Routes -->
+    <example 
+        href="https://chargetrip.github.io/examples/station-info/" 
+        img="route-example.png" 
+        title="Build a route" 
+        tag-line="Web" 
+        description="Query and mutate route information and plot it on a map" 
+        category="Routes">
+    </example>
+    <example 
+        href="https://chargetrip.github.io/examples/station-info/" 
+        img="elevation-example.png" 
+        title="Elevation Plot" 
+        tag-line="Web" 
+        description="Grab the elevation profile from a route and plot it on a graph" 
+        category="Routes">
+    </example>
+    <example 
+        href="https://chargetrip.github.io/examples/station-info/" 
+        img="stations-info-example.png" 
+        title="Elevation Plot" 
+        tag-line="Web" 
+        description="Mutate the state of charge and reroute the journey" 
+        category="Routes">
+    </example>
+    <example 
+        href="https://chargetrip.github.io/examples/station-info/" 
+        img="alternative-stations-example.png" 
+        title="Stations along the route" 
+        tag-line="Web" 
+        description="Query and display alternative stations along a route" 
+        category="Routes">
+    </example>
+    <example 
+        href="https://chargetrip.github.io/examples/station-info/" 
+        img="stations-info-example.png" 
+        title="Alternative routes" 
+        tag-line="Web" 
+        description="Query and render alternative routes" 
+        category="Routes">
+    </example>
+
 </examples>
 
 ## Open source
