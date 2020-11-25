@@ -43,7 +43,8 @@ export default class Examples extends Vue {
               child?.asyncMeta?.data?.attrs?.category ||
               child?.componentOptions?.propsData?.category
           )
-          ?.filter((category) => category) || []
+          ?.filter((category) => category)
+          ?.sort() || []
       )
     )
 

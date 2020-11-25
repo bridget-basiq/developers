@@ -98,7 +98,15 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         description="Query and render alternative routes" 
         category="Routes">
     </example>
-
+    <!-- Tiles -->
+    <example 
+        href="https://chargetrip.github.io/examples/station-info/" 
+        img="tile-service-example.png" 
+        title="Vector tile service" 
+        tag-line="Web" 
+        description="Show stations on a map using our Vector Tile Server" 
+        category="Tiles">
+    </example>
 </examples>
 
 ## Open source
