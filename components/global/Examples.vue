@@ -46,6 +46,8 @@ export default class Examples extends Vue {
           ?.filter((category) => category) || []
       )
     )
+
+    this.index = 0
   }
 
   @Watch('index') onIndexChange() {
