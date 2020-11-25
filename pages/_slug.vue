@@ -37,18 +37,14 @@ export default class Slug extends Vue {
     }
   }
 
-  async asyncData(args) {
-    const {
-      $content,
-      route: { path },
-      store,
-    } = args
-
-    const page = await $content(getFileByPath(path, store.getters.dirs), {
+  async asyncData({ $content, route: { path }, store }) {
+    const actualPath = getFileByPath(path, store.getters.dirs)
+    const page = await $content(actualPath, {
       deep: true,
     }).fetch()
 
     store.commit('setContent', page)
+
     return {
       page,
     }

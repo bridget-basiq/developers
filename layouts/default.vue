@@ -129,7 +129,6 @@ import {
 } from '@chargetrip/internal-vue-components'
 
 import { Getter, Mutation } from 'vuex-class'
-import Cookies from 'js-cookie'
 import Table from '~/components/global/PropertyTable.vue'
 import RelatedActions from '~/components/RelatedActions.vue'
 import PrevNextNavigation from '~/components/PrevNextNavigation.vue'
@@ -181,14 +180,6 @@ export default class Layout extends Mixins(Base) {
   }
 
   mounted() {
-    const cookie = Cookies.get('dark_mode')
-
-    this.setDarkMode(
-      cookie
-        ? cookie === 'true'
-        : !!window?.matchMedia('(prefers-color-scheme: dark)')?.matches
-    )
-
     this.onRouteChange()
     if (this.hash.length) {
       this.onMenuItemClick({ hash: this.hash })
@@ -249,7 +240,36 @@ export default class Layout extends Mixins(Base) {
   }
 
   get normalizedSideNav() {
-    return [this.sideNav.map(this.attachHandler.bind(this))]
+    const sideNav = [
+      ...this.sideNav,
+      {
+        title: 'Tools',
+        children: [
+          {
+            title: 'Playground',
+            href: 'https://playground.chargetrip.com/',
+            arrow: true,
+          },
+          {
+            title: 'Voyager',
+            href: 'https://voyager.chargetrip.com/',
+            arrow: true,
+          },
+          {
+            title: 'Dashboard',
+            href: 'https://account.chargetrip.com',
+            arrow: true,
+          },
+          {
+            title: 'Examples',
+            href: 'https://chargetrip.com/examples/',
+            arrow: true,
+          },
+        ],
+      },
+    ]
+
+    return [sideNav.map(this.attachHandler.bind(this))]
   }
 
   triggerEdit() {

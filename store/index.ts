@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import { toSnakeCase } from 'js-convert-case/lib'
+import cookie from 'cookie'
 import Main from './modules/root'
 import { slugify } from '~/utilities/project.functions'
 
@@ -108,7 +109,14 @@ export default () =>
     state: {},
     mutations: {},
     actions: {
-      async nuxtServerInit({ commit }, { $content }) {
+      async nuxtServerInit({ commit }, args) {
+        const { $content, ssrContext } = args
+
+        const cookies = cookie.parse(ssrContext?.req?.headers?.cookie)
+        const darkMode = cookies.dark_mode
+
+        commit('setDarkMode', darkMode ? darkMode === 'true' : true)
+
         const pages = await $content('', { deep: true }).fetch()
 
         commit('setDirs', $content.database.dirs)

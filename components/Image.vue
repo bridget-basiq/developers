@@ -12,7 +12,7 @@ export default class CImage extends Vue {
   @Getter darkMode
 
   get normalizedSrc() {
-    return `${this.darkMode ? 'dark-' : 'light-'}${this.src}`
+    return `${this.darkMode ? 'dark' : 'light'}-${this.src}`
   }
 }
 </script>

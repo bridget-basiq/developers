@@ -7,25 +7,35 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Getter, Vue } from 'nuxt-property-decorator'
 import { MenuItem } from '@chargetrip/internal-vue-components'
 
 @Component({ components: { MenuItem } })
 export default class RelatedActions extends Vue {
-  items = [
-    {
-      title: 'Suggest an edit',
-      icon: 'edit',
-    },
-    {
-      title: 'View API reference',
-      icon: 'terminal',
-    },
-    {
-      title: 'Contact sales',
-      icon: 'contact',
-    },
-  ]
+  @Getter content
+
+  get items() {
+    return [
+      {
+        title: 'Suggest an edit',
+        icon: 'edit',
+        href: this.githubUrl,
+      },
+      {
+        title: 'View API reference',
+        icon: 'terminal',
+        to: '/API/API-Reference/Stations/introduction',
+      },
+      {
+        title: 'Contact sales',
+        icon: 'contact',
+      },
+    ]
+  }
+
+  get githubUrl() {
+    return `https://github.com/chargetrip/chargetrip-developers/tree/main/content${this.content?.dir}/${this.content?.slug}${this.content?.extension}`
+  }
 }
 </script>
 <style lang="scss">

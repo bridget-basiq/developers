@@ -1,6 +1,6 @@
 <template>
   <a v-show="active" class="example" :href="href" target="_blank">
-    <img :src="img" :alt="title" />
+    <c-image :src="img" :alt="title" />
     <pre class="text-14 text-font-alt3">{{ tagLine }}</pre>
     <h6 class="my-1">
       {{ title }}

@@ -6,7 +6,7 @@ const store = new Vuex.Store({})
 @Module({ namespaced: false, dynamic: true, store, name: 'root' })
 export default class extends VuexModule {
   _dirs: string[] = []
-  _darkMode = true
+  _darkMode = Cookies.get('dark_mode') === 'true'
   _querySchema: null | object = null
   _sideNav: null | object = null
   _isEditing = false
