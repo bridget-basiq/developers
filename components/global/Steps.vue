@@ -37,14 +37,13 @@ export default class Steps extends Vue {}
 
       &:nth-child(2) .side {
         &::before {
-          height: calc(100% + 28px);
+          height: calc(100% + 30px);
         }
       }
       &:last-child .number-wrapper {
         &::before {
-          @apply mt-5;
-
-          height: calc(100% - 20px);
+          top: 14px;
+          height: calc(100% - 14px);
         }
       }
 

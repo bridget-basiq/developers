@@ -464,7 +464,7 @@
       "deprecationReason": null
     },
     {
-      "name": "predictive_availability",
+      "name": "predicted_availability",
       "description": "Station availability",
       "args": [],
       "type": {
@@ -472,7 +472,7 @@
         "name": null,
         "ofType": {
           "kind": "OBJECT",
-          "name": "StationPredictiveAvailability",
+          "name": "StationPredictedAvailability",
           "ofType": null
         }
       },

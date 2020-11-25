@@ -136,8 +136,8 @@ export default class Schema extends Vue {
   }
 
   getOfTypeName(item) {
-    let type = item.type
-    let name = item.type.name
+    let type = item?.type
+    let name = item?.type?.name
 
     while (type) {
       type = type.ofType
@@ -154,14 +154,16 @@ export default class Schema extends Vue {
     const { fields }: any = await this.getJson(this.type)
     this.schema = fields.find((field) => field.name === this.name)
 
+    const name = this.getOfTypeName(this.schema)
+
     const [requestParams, json] = await Promise.all([
       this.appendOfType(this.schema?.args, true),
-      this.getJson(this.getOfTypeName(this.schema)),
+      name ? this.getJson(name) : null,
     ])
 
     this.requestParameters = requestParams
 
-    if (json.fields) {
+    if (json?.fields) {
       this.returnFields = await this.appendOfType(json.fields)
     }
   }

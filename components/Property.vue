@@ -21,9 +21,12 @@
     >
       <PropertyToggleChildren v-model="showChildren" v-bind="$props" />
       <PropertyTitle v-bind="$props" :active="active" />
-      <p v-if="description" v-show="active" class="description text-font-alt3">
-        {{ description }}
-      </p>
+      <div
+        v-if="description"
+        v-show="active"
+        class="description text-font-alt3"
+        v-html="$options.filters.markdown(description)"
+      />
     </div>
     <p
       v-if="children.length && !depth"
@@ -170,7 +173,7 @@ export default class Property extends Vue {
     @apply border-t border-alt;
 
     &:last-child {
-      @apply border-b;
+      @apply border-b-0;
     }
 
     @screen lg-max {
