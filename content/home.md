@@ -40,6 +40,14 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         description="Quickly fetch a list of cars with additional data." 
         category="Cars">
     </example>
+    <example 
+        href="https://chargetrip.github.io/examples/station-info/" 
+        img="state-of-charge-example.png" 
+        title="State of Charge" 
+        tag-line="Web" 
+        description="Mutate the state of charge and reroute the journey" 
+        category="Cars">
+    </example>
     <!-- Stations -->
     <example 
         href="https://chargetrip.github.io/examples/stations/" 
@@ -55,6 +63,14 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         title="Query specific station" 
         tag-line="Web" 
         description="Query and parse a complete set of station data" 
+        category="Stations">
+    </example>
+    <example 
+        href="https://chargetrip.github.io/examples/station-info/" 
+        img="alternative-stations-example.png" 
+        title="Stations along the route" 
+        tag-line="Web" 
+        description="Query and display alternative stations along a route" 
         category="Stations">
     </example>
     <!-- Routes -->
@@ -76,23 +92,7 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
     </example>
     <example 
         href="https://chargetrip.github.io/examples/station-info/" 
-        img="stations-info-example.png" 
-        title="Elevation Plot" 
-        tag-line="Web" 
-        description="Mutate the state of charge and reroute the journey" 
-        category="Routes">
-    </example>
-    <example 
-        href="https://chargetrip.github.io/examples/station-info/" 
-        img="alternative-stations-example.png" 
-        title="Stations along the route" 
-        tag-line="Web" 
-        description="Query and display alternative stations along a route" 
-        category="Routes">
-    </example>
-    <example 
-        href="https://chargetrip.github.io/examples/station-info/" 
-        img="stations-info-example.png" 
+        img="alternative-routes-example.png" 
         title="Alternative routes" 
         tag-line="Web" 
         description="Query and render alternative routes" 
