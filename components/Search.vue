@@ -1,5 +1,5 @@
 <template>
-  <div class="search">
+  <div class="search" :class="{ 'show-suggestions': showSuggestions }">
     <div class="relative">
       <Input
         v-model="search"
@@ -11,7 +11,7 @@
       />
       <nav
         v-show="showSuggestions && suggestions.length"
-        class="rounded-sm text-font-alt3 border border-alt shadow-down-xl absolute left-0 top-full bg-body lg-max:max-w-full min-w-full lg:mt-2 text-14"
+        class="lg:rounded-sm text-font-alt3 lg:border-l border-t lg:border-r border-b border-alt overflow-hidden shadow-down-xl absolute left-0 top-full bg-body lg-max:max-w-full min-w-full lg:mt-2 text-14"
       >
         <main
           ref="container"
@@ -22,14 +22,16 @@
             :key="key"
             class="group"
           >
-            <header
-              v-if="key.length"
-              class="h-10 flex items-center top-0 sticky bg-body border-b border-t border-alt px-5 text-12 uppercase text-font-alt3"
-            >
-              <strong>
-                {{ key }}
-              </strong>
-            </header>
+            <template v-if="key.length">
+              <div class="h-px w-full bg-alt" />
+              <header
+                class="h-10 flex items-center top-0 sticky bg-body border-b border-alt px-5 text-12 uppercase text-font-alt3"
+              >
+                <strong>
+                  {{ key }}
+                </strong>
+              </header>
+            </template>
             <ul class="p-3 lg:p-2">
               <li v-for="(suggestion, s) in suggestionGroup" :key="`${i}-${s}`">
                 <router-link
@@ -115,6 +117,7 @@ export default class Search extends Mixins(Base) {
   showSuggestions = false
   itemIndex = 0
   groupIndex = 0
+  prevent = false
   search = ''
   hotKeys = [
     {
@@ -175,6 +178,8 @@ export default class Search extends Mixins(Base) {
   }
 
   scrollToView() {
+    this.prevent = true
+
     if (this.suggestionEls?.[this.totalIndex]?.$el?.offsetTop) {
       this.container.scrollTo(
         0,
@@ -182,6 +187,10 @@ export default class Search extends Mixins(Base) {
           (this.suggestionGroupKeys[this.groupIndex].length ? 40 : 0)
       )
     }
+
+    setTimeout(() => {
+      this.prevent = false
+    }, 500)
   }
 
   @Listen('keyup') onKeyUp(e) {
@@ -206,6 +215,8 @@ export default class Search extends Mixins(Base) {
   }
 
   onMouseEnter(groupIndex, itemIndex) {
+    if (this.prevent) return
+
     this.groupIndex = groupIndex
     this.itemIndex = itemIndex
   }
@@ -274,6 +285,15 @@ export default class Search extends Mixins(Base) {
 </script>
 <style lang="scss">
 .search {
+  @screen lg-max {
+    &.show-suggestions {
+      &::after {
+        content: '';
+        z-index: -1;
+        @apply block w-screen h-screen absolute top-0 left-0 bg-body opacity-50 pointer-events-none;
+      }
+    }
+  }
   .suggestions {
     max-height: 400px;
   }

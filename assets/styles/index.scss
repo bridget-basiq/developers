@@ -4,7 +4,9 @@
 @import "./theme";
 
 body {
-  @apply overflow-hidden;
+  @screen lg {
+    @apply overflow-hidden;
+  }
 }
 .sticky-header, .header-gradient {
   background: var(--sticky-bg);

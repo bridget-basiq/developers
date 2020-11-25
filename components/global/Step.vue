@@ -1,5 +1,5 @@
 <template>
-  <div class="step mb-24 relative">
+  <div class="step mb-24 relative z-20">
     <div class="side relative md:pl-24">
       <div class="image-wrapper overflow-hidden mb-6 md:rounded relative">
         <div class="absolute w-full top-0 left-0">
@@ -51,7 +51,7 @@
     </div>
     <div class="number-wrapper relative flex">
       <div
-        class="w-24 hidden md:block flex-shrink-0 font-semibold text-font-alt3 relative"
+        class="w-24 hidden md:block flex-shrink-0 font-semibold text-font-alt3 relative z-20"
       >
         <div class="flex items-center">
           <div class="border bg-body rounded-full border-alt4">

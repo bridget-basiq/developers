@@ -26,11 +26,12 @@
       </div>
     </Banner>
     <div
-      class="view flex bg-body flex-col lg:flex-row relative z-10 flex-1 rounded-t-xl"
+      class="view flex bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden lg:rounded-t-xl"
     >
       <SideNav
         v-if="sideNav"
         class="text-14 z-40 top-0"
+        :class="{ 'show-search': showSearch }"
         :navs="normalizedSideNav"
         :dark-mode="darkMode"
         :show-toggle-menu="!isHome"
@@ -308,7 +309,7 @@ export default class Layout extends Mixins(Base) {
         const rect = el.getBoundingClientRect()
 
         this.container.scrollTo({
-          top: this.container.scrollTop + rect.top - 112,
+          top: this.container.scrollTop + rect.top - 124,
           behavior: 'smooth',
         })
 
@@ -383,7 +384,7 @@ export default class Layout extends Mixins(Base) {
     const h = this.hElms.reduce((current, h) => {
       const rect = h.getBoundingClientRect()
 
-      if (rect.top <= 112) {
+      if (rect.top <= 124) {
         current = h
       }
 
@@ -495,6 +496,22 @@ export default class Layout extends Mixins(Base) {
 
 .layout {
   @screen lg-max {
+    &:not(.show-search) {
+      .c-side-nav {
+      }
+    }
+    .c-side-nav {
+      @apply rounded-t-xl;
+
+      &:not(.show-menu) {
+        &:not(.show-search) {
+          @apply overflow-hidden;
+        }
+      }
+    }
+    .view {
+      overflow: unset;
+    }
     &.show-search {
       .mobile-search {
         @apply block;
