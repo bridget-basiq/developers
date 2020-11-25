@@ -34,6 +34,11 @@ export default class Examples extends Vue {
     return slugify(this.title)
   }
 
+  mounted() {
+    this.index = 0
+    this.setActiveExamples()
+  }
+
   created() {
     this.categories = Array.from(
       new Set(
@@ -47,11 +52,13 @@ export default class Examples extends Vue {
           ?.sort() || []
       )
     )
-
-    this.index = 0
   }
 
   @Watch('index') onIndexChange() {
+    this.setActiveExamples()
+  }
+
+  setActiveExamples() {
     this.$slots?.default?.forEach((child) => {
       if (child?.componentInstance?.$data) {
         if (this.index === null) {
