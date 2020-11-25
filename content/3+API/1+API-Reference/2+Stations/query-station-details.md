@@ -27,8 +27,8 @@ On error the header status code is an error code and the response body contains 
 
 <errors name="station"></errors>
 
-<playground lang="graphql" url="https://playground.chargetrip.com/?page=station">
-<code-block query="stationList">					
+<playground url="https://playground.chargetrip.com/?page=station">
+<code-block lang="graphql" query="stationList">					
 query station($stationId: ID!) {
   station(id: $stationId) {
     id

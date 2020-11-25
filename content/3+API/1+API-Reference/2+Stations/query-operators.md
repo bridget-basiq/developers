@@ -12,7 +12,7 @@ Charge stations are often exploited by various operators. To get an overview of 
 ## Query
 The entire operatorList can be accessed by using the `operatorList` query with the attributes you would like to use. Optionally you can use [pagination]() and `filters` to improve your results.
 
-### Pagination & Filters
+### Filters
 To filter your operator list you can use the `query` argument. You can then use `name`, `id`, `external_id` or `country` to specify how you want to filter the list.
 
 <schema name="operatorList" :frequent="frequently"></schema>

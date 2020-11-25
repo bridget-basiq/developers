@@ -18,7 +18,7 @@ To be able to browse through all your stations inside your station database you 
 ## Query
 To query your stations you only need to call the `stationList` alongside some attributes. Optionally you can add [pagination]() and `filters`.
 
-### Pagination & Filters
+### Filters
 To filter your station list you can use the `query` argument. You can then use `name`, `id` or `external_id` to specify how you want to filter the list.
 
 <schema name="stationList" :frequent="frequently"></schema>
@@ -31,7 +31,7 @@ On error the header status code is an error code and the response body contains 
 <errors name="station"></errors>
 
 <playground url="https://playground.chargetrip.com/?page=stationListAll">
-<code-block query="stationList">					
+<code-block lang="graphql" query="stationList">					
 query stationListAll {
   stationList(
     query: { name: "Townley Road (2)" }
