@@ -1,7 +1,7 @@
 <template>
   <div class="release-note my-16">
     <div class="title-wrapper pb-4 border-b border-alt px-8 relative">
-      <h2 class="mb-1">
+      <h2 :id="id" class="mb-1">
         {{ title }}
       </h2>
       <p class="text-14 text-font-alt3">{{ date }}</p>
@@ -13,11 +13,16 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { slugify } from '~/utilities/project.functions'
 
 @Component
 export default class ReleaseNote extends Vue {
   @Prop() title
   @Prop() date
+
+  get id() {
+    return `release-${slugify(this.title)}`
+  }
 }
 </script>
 <style lang="scss">

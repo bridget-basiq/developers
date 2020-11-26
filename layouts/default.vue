@@ -448,7 +448,6 @@ export default class Layout extends Mixins(Base) {
     @apply mt-8 mb-1;
   }
 
-  > ul,
   > ul:not(.errors),
   ol {
     @apply ml-6 my-4;

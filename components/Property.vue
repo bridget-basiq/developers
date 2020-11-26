@@ -47,7 +47,7 @@
     <ul
       v-if="children.length"
       v-show="showChildren"
-      class="children pl-5 lg:pl-10 border-t border-alt"
+      class="children pl-5 lg:pl-10"
     >
       <property
         v-for="(child, i) in children"
@@ -174,6 +174,10 @@ export default class Property extends Vue {
 
     &:last-child {
       @apply border-b-0;
+    }
+
+    > .children {
+      @apply border-t border-alt;
     }
 
     @screen lg-max {
