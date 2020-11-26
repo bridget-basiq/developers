@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Tile service
 description: Speed up your station rendering with our custom tile service
 order: 1
 ---
