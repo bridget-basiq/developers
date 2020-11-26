@@ -1,6 +1,6 @@
 <template>
   <div class="dev-portal-table">
-    <CTable v-if="$slots.default">
+    <CTable v-if="hasDefaultSlot">
       <slot />
     </CTable>
     <CTable v-if="normalizedColumns.length">
@@ -30,6 +30,13 @@ export default class Table extends Vue {
 
   get normalizedColumns() {
     return this.columns || Object.keys(this.$attrs).map(toSentenceCase)
+  }
+
+  get hasDefaultSlot() {
+    return (
+      (this.$slots.default && this.$slots.default.length > 1) ||
+      this.$slots.default?.[0]?.text !== '\n'
+    )
   }
 
   get normalizedRows() {
