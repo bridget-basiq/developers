@@ -1,7 +1,7 @@
 ---
 title: GraphQL
 description: A short introduction on what graphQL is.
-order: 3
+order: 1
 ---
 
 # Introduction on GraphQL
