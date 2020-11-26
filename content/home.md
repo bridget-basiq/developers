@@ -41,7 +41,7 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         category="Cars">
     </example>
     <example 
-        href="https://chargetrip.github.io/examples/station-info/" 
+        href="https://chargetrip.github.io/examples/state-of-charge/" 
         img="state-of-charge-example.png" 
         title="State of Charge" 
         tag-line="Web" 
@@ -66,7 +66,7 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         category="Stations">
     </example>
     <example 
-        href="https://chargetrip.github.io/examples/station-info/" 
+        href="https://chargetrip.github.io/examples/stations-along-route/" 
         img="alternative-stations-example.png" 
         title="Stations along the route" 
         tag-line="Web" 
@@ -75,7 +75,7 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
     </example>
     <!-- Routes -->
     <example 
-        href="https://chargetrip.github.io/examples/station-info/" 
+        href="https://chargetrip.github.io/examples/route/" 
         img="route-example.png" 
         title="Build a route" 
         tag-line="Web" 
@@ -83,7 +83,7 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         category="Routes">
     </example>
     <example 
-        href="https://chargetrip.github.io/examples/station-info/" 
+        href="https://chargetrip.github.io/examples/elevation-plot/" 
         img="elevation-example.png" 
         title="Elevation Plot" 
         tag-line="Web" 
@@ -91,7 +91,7 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         category="Routes">
     </example>
     <example 
-        href="https://chargetrip.github.io/examples/station-info/" 
+        href="https://chargetrip.github.io/examples/alternative-routes/" 
         img="alternative-routes-example.png" 
         title="Alternative routes" 
         tag-line="Web" 
@@ -100,7 +100,7 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
     </example>
     <!-- Tiles -->
     <example 
-        href="https://chargetrip.github.io/examples/station-info/" 
+        href="https://chargetrip.github.io/examples/tile-server/?provider=eco#eco" 
         img="tile-service-example.png" 
         title="Vector tile service" 
         tag-line="Web" 
