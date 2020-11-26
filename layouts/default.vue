@@ -94,7 +94,7 @@
           <PrevNextNavigation v-if="sideNav" />
           <div class="p-6 lg:p-8 border-t flex items-center border-alt text-14">
             <span class="icon icon-survey mr-3" />
-            <p>Was this article useful?</p>
+            <p>Was this section useful?</p>
             <nav class="flex h-6 items-center font-semibold ml-auto">
               <div class="underline">No</div>
               <div class="underline ml-6 text-accent">Yes</div>

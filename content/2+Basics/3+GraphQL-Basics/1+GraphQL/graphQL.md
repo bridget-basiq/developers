@@ -1,5 +1,5 @@
 ---
-title: GraphQL
+title: Introduction
 description: A short introduction on what graphQL is.
 order: 1
 ---
