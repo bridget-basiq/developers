@@ -21,6 +21,10 @@ export default {
         defer: true,
         'data-spa': 'auto',
       },
+      {
+        src: 'https://embed.small.chat/T33286SKGGSBRX0P8T.js',
+        defer: true,
+      },
     ],
   },
   router: {

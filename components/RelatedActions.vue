@@ -2,7 +2,12 @@
   <div class="related-actions text-14">
     <h2 class="mb-8">Related actions</h2>
     <nav>
-      <MenuItem v-for="(item, key) in items" :key="key" v-bind="item" />
+      <MenuItem
+        v-for="(item, key) in items"
+        :key="key"
+        v-bind="item"
+        @click.native="item.callback ? item.callback(item) : null"
+      />
     </nav>
   </div>
 </template>
@@ -29,6 +34,7 @@ export default class RelatedActions extends Vue {
       {
         title: 'Contact sales',
         icon: 'contact',
+        callback: () => window.Smallchat('open'),
       },
     ]
   }
@@ -36,6 +42,8 @@ export default class RelatedActions extends Vue {
   get githubUrl() {
     return `https://github.com/chargetrip/chargetrip-developers/tree/main/content${this.content?.dir}/${this.content?.slug}${this.content?.extension}`
   }
+
+  onClick() {}
 }
 </script>
 <style lang="scss">

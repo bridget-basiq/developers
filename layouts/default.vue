@@ -26,7 +26,7 @@
       </div>
     </Banner>
     <div
-      class="view flex bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden lg:rounded-t-xl"
+      class="view flex bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden rounded-t-xl"
     >
       <SideNav
         v-if="sideNav"
@@ -53,7 +53,6 @@
       <div
         ref="container"
         class="content flex-1 flex flex-col relative overflow-y-scroll mt-8 lg:mt-0"
-        @scroll="onScroll"
       >
         <div class="sticky-header items-start lg:px-8 px-6 hidden lg:flex">
           <template v-if="!isEditing">
@@ -165,6 +164,7 @@ export default class Layout extends Mixins(Base) {
   isDev = process.env.NODE_ENV === 'development'
   @Mutation setDarkMode
   @Mutation setIsEditing
+  quickNavIcons = ['documentation', 'projects', 'squared-terminal']
   noTransition = false
   timeout = 0
   hElms: any[] = []
@@ -215,11 +215,11 @@ export default class Layout extends Mixins(Base) {
   }
 
   get quickNavItems() {
-    return this.sideNav.map((item) => {
+    return this.sideNav.map((item, i) => {
       return {
         ...item,
         to: item.to || this.findFirstChild(item.children)?.to,
-        icon: item.icon,
+        icon: this.quickNavIcons[i],
       }
     })
   }
@@ -273,6 +273,10 @@ export default class Layout extends Mixins(Base) {
     return [sideNav.map(this.attachHandler.bind(this))]
   }
 
+  get offset() {
+    return window.innerWidth < 1024 ? 60 : 124
+  }
+
   triggerEdit() {
     this.$root.$emit('toggleEdit')
     this.setIsEditing(true)
@@ -281,11 +285,16 @@ export default class Layout extends Mixins(Base) {
       ?.dispatchEvent(new Event('dblclick'))
   }
 
+  scrollTo(args) {
+    window.scrollTo(args)
+    this.container.scrollTo(args)
+  }
+
   onMenuItemClick(item) {
     this.stopReplacing = true
 
     if (!item.hash?.length) {
-      this.container.scrollTo({
+      this.scrollTo({
         top: 0,
         behavior: 'smooth',
       })
@@ -308,8 +317,11 @@ export default class Layout extends Mixins(Base) {
         clearInterval(interval)
         const rect = el.getBoundingClientRect()
 
-        this.container.scrollTo({
-          top: this.container.scrollTop + rect.top - 124,
+        this.scrollTo({
+          top:
+            (this.container.scrollTop || window.scrollY) +
+            rect.top -
+            this.offset,
           behavior: 'smooth',
         })
 
@@ -328,9 +340,9 @@ export default class Layout extends Mixins(Base) {
     }, 50)
   }
 
-  // @Watch('$route.hash') onHashChange() {
-  //   this.hash = this.$route.hash.slice(1)
-  // }
+  @Watch('$route.hash') onHashChange() {
+    this.hash = this.$route.hash.slice(1)
+  }
 
   findInArray(arr, name) {
     let find = false
@@ -366,7 +378,7 @@ export default class Layout extends Mixins(Base) {
     if (!this.container) return
 
     if (!this.$route.hash?.length) {
-      this.container.scrollTo(0, 0)
+      this.scrollTo({ top: 0 })
     }
 
     this.stopReplacing = true
@@ -378,13 +390,13 @@ export default class Layout extends Mixins(Base) {
     }, 300)
   }
 
-  onScroll() {
+  @Listen('scroll') onScroll() {
     if (this.stopReplacing) return
 
     const h = this.hElms.reduce((current, h) => {
       const rect = h.getBoundingClientRect()
 
-      if (rect.top <= 124) {
+      if (rect.top <= this.offset) {
         current = h
       }
 
