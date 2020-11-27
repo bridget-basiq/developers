@@ -34,7 +34,7 @@
         :class="{ 'show-search': showSearch }"
         :navs="normalizedSideNav"
         :dark-mode="darkMode"
-        :show-toggle-menu="!isHome"
+        :show-toggle-menu="true"
         :current-page="content.title"
         :spacing="6"
         @changeDarkMode="setDarkMode"
@@ -54,37 +54,39 @@
         ref="container"
         class="content flex-1 flex flex-col relative overflow-y-scroll mt-8 lg:mt-0"
       >
-        <div class="sticky-header items-start lg:px-8 px-6 hidden lg:flex">
-          <template v-if="!isEditing">
-            <Search
-              :click-handler="onMenuItemClick"
-              icon="search"
-              :hotkey="{
-                icon: 'slash',
-                key: '/',
-                fn: (input) => input.focus(),
-              }"
-            />
-            <Button
-              v-if="isDev"
-              class="ml-auto lg-max:hidden"
-              size="sm"
-              color="accent"
-              @click="triggerEdit"
-              >Edit page
-            </Button>
-          </template>
-          <template v-else>
-            <h2>Edit {{ content.title }}</h2>
-            <div class="ml-auto flex">
-              <Button size="sm" class="mr-2" color="alt" @click="cancel"
-                >Cancel
+        <div class="sticky-header lg:px-8 px-6 hidden lg:block">
+          <div class="flex items-center">
+            <template v-if="!isEditing">
+              <Search
+                :click-handler="onMenuItemClick"
+                icon="search"
+                :hotkey="{
+                  icon: 'slash',
+                  key: '/',
+                  fn: (input) => input.focus(),
+                }"
+              />
+              <Button
+                v-if="isDev"
+                class="ml-auto lg-max:hidden"
+                size="sm"
+                color="accent"
+                @click="triggerEdit"
+                >Edit page
               </Button>
-              <Button size="sm" color="accent" @click="showSaveModal = true"
-                >Save edits
-              </Button>
-            </div>
-          </template>
+            </template>
+            <template v-else>
+              <h2>Edit {{ content.title }}</h2>
+              <div class="ml-auto flex">
+                <Button size="sm" class="mr-2" color="alt" @click="cancel"
+                  >Cancel
+                </Button>
+                <Button size="sm" color="accent" @click="showSaveModal = true"
+                  >Save edits
+                </Button>
+              </div>
+            </template>
+          </div>
         </div>
         <div class="lg:px-8 px-6 lg-max:overflow-x-hidden">
           <Nuxt class="page mb-8" />
@@ -108,7 +110,6 @@
         <RelatedActions v-else />
       </aside>
     </div>
-    <QuickNav class="lg:hidden z-50" :items="quickNavItems" />
     <Save v-if="showSaveModal" @save="onSave" @cancel="showSaveModal = false" />
     <img
       v-if="showKhaled"
@@ -121,12 +122,7 @@
 <script lang="ts">
 import { Component, Watch, Ref } from 'nuxt-property-decorator'
 import { Mixins } from 'vue-property-decorator'
-import {
-  Banner,
-  Button,
-  SideNav,
-  QuickNav,
-} from '@chargetrip/internal-vue-components'
+import { Banner, Button, SideNav } from '@chargetrip/internal-vue-components'
 
 import { Getter, Mutation } from 'vuex-class'
 import Table from '~/components/global/PropertyTable.vue'
@@ -149,7 +145,6 @@ import Save from '~/components/Save.vue'
     Table,
     Banner,
     Button,
-    QuickNav,
   },
 })
 export default class Layout extends Mixins(Base) {
@@ -164,7 +159,6 @@ export default class Layout extends Mixins(Base) {
   isDev = process.env.NODE_ENV === 'development'
   @Mutation setDarkMode
   @Mutation setIsEditing
-  quickNavIcons = ['documentation', 'projects', 'squared-terminal']
   noTransition = false
   timeout = 0
   hElms: any[] = []
@@ -212,16 +206,6 @@ export default class Layout extends Mixins(Base) {
   onSave() {
     this.showSaveModal = false
     this.submit()
-  }
-
-  get quickNavItems() {
-    return this.sideNav.map((item, i) => {
-      return {
-        ...item,
-        to: item.to || this.findFirstChild(item.children)?.to,
-        icon: this.quickNavIcons[i],
-      }
-    })
   }
 
   submit() {
@@ -384,7 +368,7 @@ export default class Layout extends Mixins(Base) {
     this.stopReplacing = true
     setTimeout(() => {
       this.hElms = [
-        ...(this.container.querySelectorAll('h2, h3') || []),
+        ...(this.container.querySelectorAll('.page h2, .page h3') || []),
       ].filter((el) => el.id)
       this.stopReplacing = false
     }, 300)
