@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: Stations
 description: An introduction on the chargetrip charging station databases and station queries
 order: 1
 ---
