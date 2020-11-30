@@ -1,0 +1,52 @@
+<template>
+  <div class="release-note my-16">
+    <div class="title-wrapper pb-4 border-b border-alt px-8 relative">
+      <h2 :id="id" class="mb-1">
+        {{ title }}
+      </h2>
+      <p class="text-14 text-font-alt3">{{ date }}</p>
+    </div>
+    <div class="content">
+      <slot />
+    </div>
+  </div>
+</template>
+<script lang="ts">
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { slugify } from '~/utilities/project.functions'
+
+@Component
+export default class ReleaseNote extends Vue {
+  @Prop() title
+  @Prop() date
+
+  get id() {
+    return `release-${slugify(this.title)}`
+  }
+}
+</script>
+<style lang="scss">
+.release-note {
+  .title-wrapper {
+    width: calc(100% + 64px);
+    left: -32px;
+  }
+  .content {
+    h3 {
+      @apply mt-8;
+
+      &:not(:first-child) {
+        @apply mt-12;
+      }
+    }
+
+    p {
+      @apply my-4 text-font-alt3;
+
+      strong {
+        @apply block text-font-primary;
+      }
+    }
+  }
+}
+</style>

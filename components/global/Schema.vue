@@ -1,11 +1,17 @@
 <template>
-  <div class="schema my-8 pl-10">
-    <section v-for="(section, i) in sections" :key="i" class="mb-12 last:mb-0">
-      <h2 :id="section.id">{{ section.title }}</h2>
+  <div class="schema my-12 lg:pl-10">
+    <section
+      v-for="(section, i) in sections"
+      :key="i"
+      class="mb-12 last:mb-0"
+      :class="section.id"
+    >
+      <h3 :id="section.id">{{ section.title }}</h3>
       <div class="mt-3">
         <Property
           v-for="(item, c) in section.items"
           :key="`${i}-${c}`"
+          :section-id="section.id"
           :show-required="!i"
           :initial-active="i < 2"
           v-bind="item"
@@ -15,72 +21,76 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
-import { Getter } from 'vuex-class'
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { toSnakeCase } from 'js-convert-case/lib'
 import Property from '~/components/Property.vue'
-import { slugify } from '~/utilities/project.functions'
 import { OfTypeKind } from '~/utilities/constants'
+
 @Component({
   components: { Property },
 })
 export default class Schema extends Vue {
-  @Getter querySchema
-  @Getter sideNav
+  @Prop({ default: 'Query' }) type
   @Prop() name
   schema: any = null
-  @Prop({ default: [] }) frequent!: string[]
+  @Prop({ default: () => [] }) frequent!: string[]
   requestParameters: any[] = []
+  returnFields: any = []
 
   get sections() {
     return [
       {
-        title: 'Request parameters',
+        title: 'Arguments',
         items: this.requestParameters,
       },
       {
-        title: 'Frequently used attributes',
+        title: 'Frequently used fields',
         items: this.frequentlyUsedAttributes,
       },
       {
-        title: 'Other attributes',
+        title: 'Other fields',
         items: this.attributes,
       },
-    ].map((section) => ({ ...section, id: slugify(section.title) }))
+    ]
+      .filter((section) => section?.items?.length)
+      .map((section) => ({ ...section, id: toSnakeCase(section.title) }))
   }
 
   get frequentlyUsedAttributes() {
-    return this.schema?.fields?.filter((field) =>
+    return this.returnFields?.filter((field) =>
       this.frequent.includes(field.name)
     )
   }
 
   get attributes() {
-    return this.schema?.fields?.filter(
+    return this.returnFields?.filter(
       (field) => !this.frequent.includes(field.name)
     )
   }
 
-  @Watch('name', { immediate: true }) async onNameChange() {
-    if (!this.querySchema) return
-
-    const args = this.querySchema?.fields?.find(
-      (field) => field.name === this.camelCaseName
-    )?.args
-
-    this.requestParameters = await this.appendOfType(args)
+  get ofTypeKinds() {
+    return Object.keys(OfTypeKind)
   }
 
-  get camelCaseName() {
-    return this.name.slice(0, 1).toLowerCase() + this.name.slice(1)
-  }
-
-  get pascalCaseName() {
-    return this.name.slice(0, 1).toUpperCase() + this.name.slice(1)
-  }
-
-  appendOfType(fields) {
+  appendOfType(fields, allowRequired = false) {
     return Promise.all(
       fields?.map(async (field) => {
+        const returnField = {
+          ...field,
+          children: [],
+        }
+
+        if (!field.type) return returnField
+
+        const typeStr =
+          field.type.kind === 'SCALAR'
+            ? field.type?.name
+            : field.type?.kind === 'INPUT_OBJECT'
+            ? null
+            : field.type?.kind
+
+        const required = allowRequired && typeStr === 'NON_NULL'
+
         if (
           !(
             field.type?.ofType?.name ||
@@ -89,38 +99,73 @@ export default class Schema extends Vue {
             field.type.kind === OfTypeKind.INPUT_OBJECT
           )
         ) {
-          return field
+          return {
+            ...returnField,
+            typeStr,
+            required,
+          }
         }
 
-        const ofType: any = await this.$axios.get(
-          `/schema/${field.type?.ofType?.name || field.type.name}.json`
+        const typeName = this.getOfTypeName(field)
+
+        const json: any = typeName ? await this.getJson(typeName) : null
+
+        const normalizedTypeName = (typeName || '').replace('Query', '')
+        const showOfTypeKind = this.ofTypeKinds.includes(json?.kind)
+        const children = await this.appendOfType(
+          json?.fields || json?.enumValues || json.inputFields || [],
+          allowRequired
         )
 
-        if (ofType?.fields) {
-          ofType.fields = await this.appendOfType(ofType.fields)
-        }
-
         return {
-          ...field,
-          type: {
-            ...field.type,
-            ofType,
-          },
+          ...returnField,
+          showOfTypeKind,
+          typeStr,
+          typeName: normalizedTypeName,
+          required,
+          children,
         }
       })
     )
   }
 
-  async fetch() {
-    const schema: any = await this.$axios.get(
-      `/schema/${this.pascalCaseName}.json`
-    )
+  async getJson(name) {
+    const json = await import(`~/static/schema/${name}.json`).catch(console.log)
 
-    if (schema?.fields) {
-      schema.fields = await this.appendOfType(schema.fields)
+    return json.default
+  }
+
+  getOfTypeName(item) {
+    let type = item?.type
+    let name = item?.type?.name
+
+    while (type) {
+      type = type.ofType
+
+      if (type) {
+        name = type.name
+      }
     }
 
-    this.schema = schema
+    return name
+  }
+
+  async fetch() {
+    const { fields }: any = await this.getJson(this.type)
+    this.schema = fields.find((field) => field.name === this.name)
+
+    const name = this.getOfTypeName(this.schema)
+
+    const [requestParams, json] = await Promise.all([
+      this.appendOfType(this.schema?.args, true),
+      name ? this.getJson(name) : null,
+    ])
+
+    this.requestParameters = requestParams
+
+    if (json?.fields) {
+      this.returnFields = await this.appendOfType(json.fields)
+    }
   }
 }
 </script>

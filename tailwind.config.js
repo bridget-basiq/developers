@@ -16,6 +16,27 @@ module.exports = {
   },
   theme: {
     extend: {
+      screens: {
+        xl2: '1920px',
+        'xl2-max': { max: '1920px' },
+        'xl-max': { max: '1279px' },
+        // => @media (max-width: 1279px) { ... }
+
+        'lg-max': { max: '1023px' },
+        // => @media (max-width: 1023px) { ... }
+
+        'md-max': { max: '767px' },
+        // => @media (max-width: 767px) { ... }
+
+        'sm-max': { max: '639px' },
+        // => @media (max-width: 639px) { ... }
+      },
+      maxWidth: {
+        xl: '1024px',
+        lg: '736px',
+        md: '352px',
+        sm: '160px',
+      },
       colors: {
         body: 'var(--body)',
         base: 'var(--base)',
@@ -49,7 +70,10 @@ module.exports = {
       spacing: {
         7: '1.75rem',
         9: '2.25rem',
+        13: '3.25rem',
         14: '3.5rem',
+        17: '4.25rem',
+        30: '7.5rem',
       },
       borderRadius: {
         '2xs': '2px',
@@ -70,6 +94,7 @@ module.exports = {
       },
       opacity: {
         20: 0.2,
+        80: 0.8,
       },
       fontSize: {
         10: '10px',
@@ -79,6 +104,7 @@ module.exports = {
         18: '18px',
         20: '20px',
         22: '22px',
+        24: '24px',
         32: '32px',
         40: '40px',
       },
@@ -99,13 +125,20 @@ module.exports = {
       },
       boxShadow: {
         'up-xl': 'var(--shadow-up-xl)',
+        'up-md': 'var(--shadow-up-md)',
         'down-xl': 'var(--shadow-down-xl)',
-        'down-m': 'var(--shadow-down-m)',
-        'down-s': 'var(--shadow-down-s)',
+        'down-md': 'var(--shadow-down-md)',
+        'down-sm': 'var(--shadow-down-sm)',
+        overlay: 'var(--shadow-overlay)',
+        xs: '0px 1px 0px #030303',
+        default: '0px 6px 6px rgba(0, 0, 0, 0.15)',
+        inset: 'inset 0px -1px 0px #2D2E33',
       },
     },
   },
   variants: {
-    borderWidth: ['responsive', 'first'],
+    borderRadius: ['responsive', 'first', 'last'],
+    borderWidth: ['responsive', 'first', 'last'],
+    margin: ['responsive', 'last', 'first'],
   },
 }

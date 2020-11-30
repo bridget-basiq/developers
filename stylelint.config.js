@@ -6,7 +6,14 @@ module.exports = {
     'at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: ['extends', 'tailwind', 'mixin', 'each', 'include'],
+        ignoreAtRules: [
+          'extends',
+          'tailwind',
+          'mixin',
+          'each',
+          'include',
+          'screen',
+        ],
       },
     ],
     'block-no-empty': null,

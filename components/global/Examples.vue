@@ -1,27 +1,27 @@
 <template>
-  <div class="examples my-14">
-    <div class="flex mb-4 items-center">
+  <div :id="slug" class="examples my-14">
+    <div class="flex mb-4 items-center flex-wrap justify-between">
       <h2>{{ title }}</h2>
-      <nav class="text-font-alt3 ml-auto flex font-semibold">
+      <nav class="text-font-alt3 mt-2 lg:mt-0 flex font-semibold">
         <div
           v-for="(category, key) in categories"
           :key="key"
           class="cursor-pointer mr-4 last:mr-0"
-          :class="{ 'text-accent': key === index }"
+          :class="{ 'text-font-primary': key === index }"
           @click="index = key"
         >
           {{ category }}
         </div>
       </nav>
     </div>
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <slot />
     </div>
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { Watch } from 'vue-property-decorator'
+import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
+import { slugify } from '~/utilities/project.functions'
 
 @Component
 export default class Examples extends Vue {
@@ -30,27 +30,42 @@ export default class Examples extends Vue {
   categories: string[] = []
   index: number | null = null
 
+  get slug() {
+    return slugify(this.title)
+  }
+
+  mounted() {
+    this.index = 0
+    this.setActiveExamples()
+  }
+
   created() {
-    this.categories =
-      this.$slots?.default
-        ?.map(
-          (child: any) =>
-            child?.asyncMeta?.data?.attrs?.category ||
-            child?.componentOptions?.propsData?.category
-        )
-        ?.filter((category) => category) || []
+    this.categories = Array.from(
+      new Set(
+        this.$slots?.default
+          ?.map(
+            (child: any) =>
+              child?.asyncMeta?.data?.attrs?.category ||
+              child?.componentOptions?.propsData?.category
+          )
+          ?.filter((category) => category)
+          ?.sort() || []
+      )
+    )
   }
 
   @Watch('index') onIndexChange() {
-    this.$slots?.default?.map((child) => {
+    this.setActiveExamples()
+  }
+
+  setActiveExamples() {
+    this.$slots?.default?.forEach((child) => {
       if (child?.componentInstance?.$data) {
         if (this.index === null) {
-          // @ts-ignore
-          child?.componentInstance?.$data?.active = true
+          child.componentInstance.$data.active = true
         } else {
-          // @ts-ignore
-          child?.componentInstance?.$data?.active =
-            child?.componentInstance?.$props.category ===
+          child.componentInstance.$data.active =
+            child.componentInstance.$props.category ===
             this.categories[this.index]
         }
       }

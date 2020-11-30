@@ -1,0 +1,6 @@
+[
+  {
+    "code": "MISSING_REQUIRED_PARAMETERS",
+    "message": "Missing required parameters(s): $parameters"
+  }
+]

@@ -1,11 +1,8 @@
 import Vuex from 'vuex'
+import { toSnakeCase } from 'js-convert-case/lib'
+import cookie from 'cookie'
 import Main from './modules/root'
 import { slugify } from '~/utilities/project.functions'
-
-const getCookie = (str, key) =>
-  Object.fromEntries(str.split(/; */).map((cookie) => cookie.split('=', 2)))[
-    key
-  ]
 
 const getH2Children = (page) => {
   const arr: any = []
@@ -16,11 +13,28 @@ const getH2Children = (page) => {
     } else if (child.tag === 'schema') {
       arr.push(
         ...[
-          'Request parameters',
-          'Frequently used attributes',
-          'Other attributes',
-        ].map((title) => ({ title, props: { id: slugify(title) } }))
+          'Arguments',
+          'Frequently used fields',
+          'Other fields',
+        ].map((title) => ({ title, props: { id: toSnakeCase(title) } }))
       )
+    } else if (
+      child.tag === 'release-note' ||
+      child.tag === 'guides' ||
+      child.tag === 'examples' ||
+      child.tag === 'accordion'
+    ) {
+      arr.push({
+        ...(child.tag === 'release-note' && { inset: false }),
+        title: child.props.title,
+        props: {
+          id: slugify(
+            child.tag === 'release-note'
+              ? `release.${child.props.title}`
+              : child.props.title
+          ),
+        },
+      })
     } else if (child.children) {
       arr.push(...getH2Children(child))
     }
@@ -30,44 +44,66 @@ const getH2Children = (page) => {
 
 const getObj = (list, arr) => {
   arr.forEach((p) => {
-    list = list.children.find((i) => i.path === p)
+    list = list.children.find((i) => i.path === p.split('+').pop())
   })
 
   return list
 }
 
+const orderTree = (arr) => {
+  arr?.sort((a, b) => a.order - b.order)
+
+  arr?.forEach((child) => {
+    if (child.children) {
+      orderTree(child.children)
+    }
+  })
+
+  return arr
+}
 const getSideNav = (pages) => {
-  return pages.reduce(
+  const sideNav = pages.reduce(
     (tree, page) => {
-      const path = page.path.split('/').slice(1)
+      const pathParts = page.path.split('/').slice(1)
+
+      let fullPath = ''
 
       let obj = tree
 
-      path.forEach((p, i) => {
-        obj = getObj(tree, path.slice(0, i))
+      pathParts.forEach((p, i) => {
+        obj = getObj(tree, pathParts.slice(0, i))
 
-        if (path.length - 1 === i) {
+        let [order, path] = p.split('+')
+
+        fullPath += `/${path}`
+        path = path || p
+
+        if (pathParts.length - 1 === i) {
+          const to = page.path
+            .split('/')
+            .map((part) => part.split('+').pop())
+            .join('/')
+
           obj.children.push({
-            to: page.path,
+            to,
+            order: page.order,
             icon: page.icon,
             title: page.title,
-            children:
-              page.slug === 'home'
-                ? []
-                : getH2Children(page.body).map((child) => ({
-                    to: page.path,
-                    hash: child.props.id,
-                    title: child.title || child.children[1].value,
-                  })),
+            ...(page.slug === 'home' && { hideChildren: true }),
+            children: getH2Children(page.body).map((child) => ({
+              to,
+              hash: child.props.id,
+              inset: child.inset,
+              title: child.title || child.children[1].value,
+            })),
           })
-        } else if (!obj.children.find((child) => child.path === p)) {
+        } else if (!obj.children.find((child) => child.path === path)) {
           obj.children.push({
-            path: p,
+            order: parseInt(order),
+            path,
+            fullPath,
             children: [],
-            title: p
-              .split('-')
-              .map((x) => x.slice(0, 1).toUpperCase() + x.slice(1))
-              .join(' '),
+            title: path.replace(new RegExp('-', 'g'), ' '),
           })
         }
       })
@@ -76,6 +112,8 @@ const getSideNav = (pages) => {
     },
     { children: [] }
   ).children
+
+  return orderTree(sideNav)
 }
 
 export default () =>
@@ -83,27 +121,21 @@ export default () =>
     state: {},
     mutations: {},
     actions: {
-      async nuxtServerInit({ commit }, { $content, $axios, req }) {
-        const [pages, querySchema] = await Promise.all([
-          $content('', { deep: true }).sortBy('order').fetch(),
-          $axios.get('/schema/Query.json'),
-        ]).catch(() => [])
+      async nuxtServerInit({ commit }, args) {
+        const { $content, ssrContext } = args
 
-        if (req?.headers?.cookie) {
-          const darkMode = getCookie(req.headers.cookie, 'dark_mode')
-          commit(
-            'setDarkMode',
-            darkMode === undefined ? true : darkMode === 'true'
-          )
-        }
+        const cookies = cookie.parse(ssrContext?.req?.headers?.cookie)
+        const darkMode = cookies.dark_mode
+
+        commit('setDarkMode', darkMode ? darkMode === 'true' : true)
+
+        const pages = await $content('', { deep: true }).fetch()
+
+        commit('setDirs', $content.database.dirs)
 
         if (pages) {
           const sideNav = await getSideNav(pages)
           commit('setSideNav', sideNav)
-        }
-
-        if (querySchema) {
-          commit('setQuerySchema', querySchema)
         }
       },
     },

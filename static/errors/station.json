@@ -1,0 +1,6 @@
+[
+  {
+    "code": "STATION_LOCATION_INVALID_COORDINATES",
+    "message": "Coordinates provided are not valid."
+  }
+]

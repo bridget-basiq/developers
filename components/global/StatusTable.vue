@@ -1,5 +1,5 @@
 <template>
-  <CTable>
+  <CTable class="status-table">
     <Row>
       <Cell v-for="(col, c) in columns" :key="c" tag="th">
         {{ col }}
@@ -10,14 +10,16 @@
         v-for="(_, c) in columns"
         :key="`${key}-${c}`"
         :font-weight="!c ? 'semibold' : null"
-        v-html="$options.filters.markdown(row[c])"
-      />
+      >
+        <div v-html="$options.filters.markdown(row[c])" />
+      </Cell>
     </Row>
   </CTable>
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { Table as CTable, Row, Cell } from '@chargetrip/internal-vue-components'
+import { Row, Cell } from '@chargetrip/internal-vue-components'
+import CTable from '@/components/Table.vue'
 
 @Component({
   components: { CTable, Row, Cell },

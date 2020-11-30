@@ -1,99 +1,63 @@
 <template>
   <li
-    class="property list-none border-alt first:border-t text-14 relative"
-    :class="{ 'is-child': depth, 'show-children': showChildren }"
+    :id="normalizedSectionID"
+    class="property list-none text-14 relative"
+    :class="{
+      'is-child': depth,
+      'show-children': showChildren,
+      'is-deprecated': isDeprecated,
+    }"
   >
     <div
-      class="content border-alt py-4 relative"
+      v-if="showChildren"
+      class="main-line w-5 lg:w-10 absolute left-0 top-0 h-full z-10 transform -translate-x-full"
+    >
+      <div
+        class="line-v w-px h-full absolute transform left-1/2 -translate-x-1/2 bg-alt2"
+      />
+    </div>
+    <div
+      class="content pl-6 lg:pl-10 -ml-5 lg:-ml-10 py-4 relative"
       :class="{
-        'pl-10': depth,
-        'border-b': !(active && showChildren),
         'cursor-pointer': !forceActive,
       }"
       @click="active = !active || forceActive"
     >
+      <PropertyToggleChildren v-model="showChildren" v-bind="$props" />
+      <PropertyTitle v-bind="$props" :active="active" />
       <div
-        v-if="depth"
-        class="line-h absolute w-10 left-0 top-1/2 -ml-5 transform -translate-y-1/2 h-px bg-alt2"
+        v-if="description"
+        v-show="active"
+        class="description text-font-alt3"
+        v-html="$options.filters.markdown(description)"
       />
-      <div
-        v-if="showChildren || depth"
-        class="line-v absolute w-px h-full top-0 left-0 -ml-5 bg-alt"
-      />
-
-      <div class="relative">
-        <div
-          class="absolute h-full w-10 flex items-center justify-center left-0 top-1/2 transform -translate-y-1/2 -translate-x-full"
-        >
-          <span
-            v-if="children"
-            class="z-10 toggle-children bg-body w-4 h-4 flex items-center justify-center text-10 rounded-full border border-accent text-accent"
-            :class="{ 'icon-minus': showChildren, 'icon-add': !showChildren }"
-            @click.stop="showChildren = !showChildren"
-          />
-          <span v-else-if="depth" class="w-1 h-1 rounded-full bg-alt2" />
-          <div
-            v-if="showChildren && depth"
-            class="icon-line-v absolute w-px h-full top-1/2 left-1/2 bg-alt -translate-y-1/2 -translate-x-1/2"
-          />
-        </div>
-        <p class="text-font-primary flex items-center">
-          <Tag
-            v-if="type.kind === ofTypeKind.INPUT_OBJECT"
-            class="mr-2"
-            color="alt3"
-            type="secondary"
-            >Query</Tag
-          >
-          <span v-else class="font-mono">
-            {{ name }}
-          </span>
-          <template v-if="type">
-            <template v-if="type.kind !== ofTypeKind.INPUT_OBJECT">
-              <span class="mx-1">•</span>
-              <span
-                class="type font-mono"
-                :class="{ lowercase: normalizedType !== 'ID' }"
-                v-html="$options.filters.colorType(normalizedType)"
-              />
-              <Tag
-                v-if="showRequiredTag"
-                class="ml-2"
-                color="accent"
-                type="secondary"
-                >Required</Tag
-              >
-            </template>
-            <template v-if="showType">
-              <span v-if="type.kind !== ofTypeKind.INPUT_OBJECT" class="mx-1"
-                >•</span
-              >
-              <span class="font-mono text-font-alt3">
-                <span v-if="type.kind === ofTypeKind.LIST">[</span
-                >{{ normalizedName
-                }}<span v-if="type.kind === ofTypeKind.LIST">]</span>
-              </span>
-            </template>
-          </template>
-          <span
-            v-if="!depth && description"
-            class="ml-auto cursor-pointer"
-            :class="{
-              'icon-chevron-right': !active,
-              'icon-chevron-down': active,
-            }"
-          />
-        </p>
-        <p v-if="description && active" class="text-font-alt3">
-          {{ description }}
-        </p>
-      </div>
     </div>
-    <ul v-if="children && showChildren">
+    <p
+      v-if="children.length && !depth"
+      class="py-3 mobile-toggle bg-body z-20 relative flex lg:hidden border-t border-alt cursor-pointer text-accent items-center"
+      @click="showChildren = !showChildren"
+    >
+      <span
+        class="icon mr-3"
+        :class="{
+          'icon-circle-cross': showChildren,
+          'icon-circle-plus': !showChildren,
+        }"
+      />
+      <strong>
+        {{ showChildren ? 'Collapse' : 'Expand' }} {{ typeName }} attrributes
+      </strong>
+    </p>
+    <ul
+      v-if="children.length"
+      v-show="showChildren"
+      class="children pl-5 lg:pl-10"
+    >
       <property
         v-for="(child, i) in children"
         :key="i"
-        :class="{ 'ml-10': depth }"
+        :last="i === children.length - 1"
+        :section-i-d="normalizedSectionID"
         :force-active="true"
         :initial-active="true"
         :depth="depth + 1"
@@ -106,56 +70,90 @@
 import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
 import { Tag } from '@chargetrip/internal-vue-components'
 import { OfTypeKind } from '~/utilities/constants'
+import PropertyTitle from '~/components/PropertyTitle.vue'
+import PropertyToggleChildren from '~/components/PropertyToggleChildren.vue'
 
-@Component({ name: 'property', components: { Tag } })
+@Component({
+  name: 'property',
+  components: { PropertyToggleChildren, PropertyTitle, Tag },
+})
 export default class Property extends Vue {
+  @Prop() sectionId
+  @Prop() isDeprecated
   @Prop() name
+  @Prop() last
   @Prop() showRequired
+  @Prop() required
+  @Prop() optional
   @Prop() description
   @Prop({ default: 0 }) depth
   @Prop() type
+  @Prop() typeStr
+  @Prop() typeName
+  @Prop() showOfTypeKind
+  @Prop({ default: () => [] }) children
   @Prop() initialActive
   @Prop() forceActive
   showChildren = false
   active = false
   ofTypeKind = OfTypeKind
 
+  created() {
+    this.showChildren = this.getShowChildren()
+  }
+
   @Watch('initialActive', { immediate: true }) onActiveChange() {
     this.active = this.initialActive || this.forceActive
   }
 
-  get showRequiredTag() {
-    return this.normalizedType === 'NON_NULL' && this.showRequired
+  get normalizedSectionID() {
+    return `${this.sectionId}-${this.name}`
   }
 
-  get normalizedType() {
-    return this?.type?.kind === 'SCALAR' ? this?.type?.name : this?.type.kind
-  }
+  getShowChildren() {
+    let currentHash = ''
+    let showChildren = false
 
-  get normalizedName() {
-    return (this.type?.ofType?.name || this.type.name).replace('Query', '')
-  }
+    this.$route.hash
+      .replace('#', '')
+      .split('-')
+      .forEach((part) => {
+        currentHash += part
 
-  get children() {
-    return (
-      this?.type?.ofType?.fields ||
-      this?.type?.ofType?.enumValues ||
-      this?.type?.ofType?.inputFields
-    )
-  }
+        if (currentHash === this.normalizedSectionID) {
+          showChildren = true
+        }
 
-  get showType() {
-    return Object.keys(OfTypeKind).includes(this.type.ofType?.kind)
+        currentHash += '-'
+      })
+
+    return showChildren
   }
 }
 </script>
 <style lang="scss">
-.property {
-  &.is-child {
-    .content {
-      @apply bg-base;
-    }
+.property:not(.is-child),
+.property:not(.is-child) > .children,
+.mobile-toggle {
+  @screen lg-max {
+    width: calc(100% + 48px);
+    @apply -ml-6 px-6;
+  }
+}
 
+.mobile-toggle {
+  @screen lg-max {
+    @apply px-6;
+  }
+}
+
+.property {
+  &.is-deprecated {
+    @apply opacity-50;
+  }
+  &.is-child {
+    .content,
+    .bg,
     .toggle-children {
       @apply bg-base;
     }
@@ -166,33 +164,40 @@ export default class Property extends Vue {
   }
 
   &:last-child {
-    > .content {
-      > .line-v {
-        @apply h-1/2;
-      }
-    }
-  }
+    > .children {
+      @apply relative;
 
-  &:not(.is-child) {
-    &.show-children {
-      > .content {
-        > .line-v {
-          @apply top-1/2;
+      &::before {
+        content: '';
+        @apply w-10 transform z-10 -ml-10 bg-body h-full left-0 top-0 absolute -translate-x-full;
+
+        @screen lg-max {
+          @apply bg-base;
         }
       }
     }
   }
+  &:not(.is-child) {
+    @apply border-t border-alt;
 
-  &.show-children {
-    .property.show-children {
-      &:not(:last-child) {
-        ul {
-          @apply relative;
+    &:last-child {
+      @apply border-b-0;
+    }
 
-          &::before {
-            content: '';
-            @apply bg-alt w-px h-full absolute left-0 h-full block -ml-5;
-          }
+    > .children {
+      @apply border-t border-alt;
+    }
+
+    @screen lg-max {
+      > .main-line .line-v {
+        height: calc(100% - 80px);
+        @apply ml-10 mt-20;
+      }
+      > .children {
+        @apply bg-base;
+
+        > .property {
+          @apply ml-9;
         }
       }
     }

@@ -22,8 +22,6 @@ $fonts: (
   @include font-face('#{$value}', '#{$value}', '#{$item}', normal);
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
-
 /*! purgecss start ignore */
 
 .icon, [class^="icon-"], [class*=" icon-"] {
@@ -46,6 +44,9 @@ $fonts: (
 }
 .icon-ocm::before {
   content: "\e94f";
+}
+.icon-circle-minus::before {
+  content: "\e950";
 }
 .icon-italic::before {
   content: "\e900";

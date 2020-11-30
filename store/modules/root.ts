@@ -5,7 +5,8 @@ const store = new Vuex.Store({})
 
 @Module({ namespaced: false, dynamic: true, store, name: 'root' })
 export default class extends VuexModule {
-  _darkMode = false
+  _dirs: string[] = []
+  _darkMode = Cookies.get('dark_mode') === 'true'
   _querySchema: null | object = null
   _sideNav: null | object = null
   _isEditing = false
@@ -24,6 +25,11 @@ export default class extends VuexModule {
   @Mutation
   setSideNav(sideNav: object) {
     this._sideNav = sideNav
+  }
+
+  @Mutation
+  setDirs(dirs: string[]) {
+    this._dirs = dirs
   }
 
   @Mutation
@@ -46,6 +52,10 @@ export default class extends VuexModule {
 
   get isEditing() {
     return this._isEditing
+  }
+
+  get dirs() {
+    return this._dirs
   }
 
   get content() {

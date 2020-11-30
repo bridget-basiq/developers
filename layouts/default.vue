@@ -1,11 +1,15 @@
 <template>
   <div
-    class="layout flex flex-col antialiased font-body min-h-screen text-font-primary text-16 bg-body overflow-hidden"
+    class="layout flex flex-col antialiased font-body min-h-screen text-font-primary text-16 bg-body"
     :class="{
+      'show-search': showSearch,
       'theme-dark': darkMode,
       'theme-light': !darkMode,
+      'menu-open': menuOpen,
       'no-transition': noTransition,
+      'is-playground': isPlayground,
     }"
+    @click="closeKhaled"
   >
     <Banner type="switcher">
       <div class="flex w-full text-font-alt3 text-12 font-semibold">
@@ -13,94 +17,114 @@
           >Website</a
         >
         /
-        <a
-          class="mx-1 text-font-primary"
-          href="https://chargetrip.com"
-          target="_blank"
-          >Developers</a
-        >
+        <router-link class="mx-1 text-font-primary" to="/"
+          >Developers
+        </router-link>
         /
         <div class="ml-1" href="https://chargetrip.com" target="_blank">
           Dashboard
         </div>
       </div>
     </Banner>
-    <div class="flex bg-body relative z-10 flex-1 overflow-hidden rounded-t-xl">
+    <div
+      class="view flex lg:bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden rounded-t-xl"
+    >
       <SideNav
         v-if="sideNav"
-        class="text-14"
+        class="text-14 z-40 top-0"
+        :class="{ 'show-search': showSearch }"
         :navs="normalizedSideNav"
         :dark-mode="darkMode"
+        :show-toggle-menu="true"
+        :current-page="content.title"
         :spacing="6"
         @changeDarkMode="setDarkMode"
-      />
+      >
+        <span class="icon-search ml-4" @click="showSearch = !showSearch" />
+        <span
+          v-show="showSearch"
+          class="icon-close text-20 mr-6 absolute z-20 top-1/2 transform -translate-y-1/2 right-0"
+          @click="showSearch = false"
+        />
+        <Search
+          class="mobile-search absolute hidden left-0 bg-body top-0 z-10 w-full h-14"
+          :click-handler="onMenuItemClick"
+        />
+      </SideNav>
       <div
         ref="container"
-        class="content flex-1 flex flex-col relative overflow-y-scroll"
-        @scroll="onScroll"
+        class="content flex-1 flex flex-col relative overflow-y-scroll mt-8 lg:mt-0"
       >
-        <div class="px-8">
-          <div class="sticky-header flex items-start">
+        <div class="sticky-header lg:px-8 px-6 hidden lg:block">
+          <div class="flex items-center">
             <template v-if="!isEditing">
-              <Input
-                type="search"
+              <Search
+                :click-handler="onMenuItemClick"
                 icon="search"
                 :hotkey="{
                   icon: 'slash',
                   key: '/',
                   fn: (input) => input.focus(),
                 }"
-                placeholder="Search documentation"
               />
               <Button
                 v-if="isDev"
-                class="ml-auto"
+                class="ml-auto lg-max:hidden"
                 size="sm"
                 color="accent"
                 @click="triggerEdit"
-                >Edit page</Button
-              >
+                >Edit page
+              </Button>
             </template>
             <template v-else>
               <h2>Edit {{ content.title }}</h2>
               <div class="ml-auto flex">
                 <Button size="sm" class="mr-2" color="alt" @click="cancel"
-                  >Cancel</Button
-                >
-                <Button size="sm" color="accent" @click="submit"
-                  >Save edits</Button
-                >
+                  >Cancel
+                </Button>
+                <Button size="sm" color="accent" @click="showSaveModal = true"
+                  >Save edits
+                </Button>
               </div>
             </template>
           </div>
+        </div>
+        <div class="lg:px-8 px-6 lg-max:overflow-x-hidden">
           <Nuxt class="page mb-8" />
         </div>
-        <PrevNextNavigation v-if="sideNav" class="mt-auto" />
-        <div class="p-8 border-t flex items-center border-alt text-14">
-          <span class="icon icon-survey mr-3" />
-          <p>Was this article useful?</p>
-          <nav class="flex h-6 items-center font-semibold ml-auto">
-            <div class="underline">No</div>
-            <div class="underline ml-6 text-accent">Yes</div>
-          </nav>
+        <div class="mt-auto">
+          <PrevNextNavigation v-if="sideNav" />
+          <div class="p-6 lg:p-8 border-t flex items-center border-alt text-14">
+            <span class="icon icon-survey mr-3" />
+            <p>Was this section useful?</p>
+            <nav class="flex h-6 items-center font-semibold ml-auto">
+              <div class="underline">No</div>
+              <div class="underline ml-6 text-accent">Yes</div>
+            </nav>
+          </div>
         </div>
       </div>
-      <aside class="border-l border-alt p-8 overflow-y-scroll">
+      <aside
+        class="right-aside border-l border-alt p-8 overflow-y-scroll hidden xl:block"
+      >
         <MarkdownFormatting v-if="isEditing" />
         <RelatedActions v-else />
       </aside>
     </div>
+    <Save v-if="showSaveModal" @save="onSave" @cancel="showSaveModal = false" />
+    <img
+      v-if="showKhaled"
+      class="absolute max-w-screen-sm z-50 rounded shadow-down-xl transform -translate-x-1/2 -translate-y-full bottom-0 -mt-6"
+      :style="{ top: `${khaledPosition.y}px`, left: `${khaledPosition.x}px` }"
+      src="/khaled.gif"
+    />
   </div>
 </template>
 <script lang="ts">
 import { Component, Watch, Ref } from 'nuxt-property-decorator'
 import { Mixins } from 'vue-property-decorator'
-import {
-  SideNav,
-  Input,
-  Banner,
-  Button,
-} from '@chargetrip/internal-vue-components'
+import { Banner, Button, SideNav } from '@chargetrip/internal-vue-components'
+
 import { Getter, Mutation } from 'vuex-class'
 import Table from '~/components/global/PropertyTable.vue'
 import RelatedActions from '~/components/RelatedActions.vue'
@@ -108,14 +132,17 @@ import PrevNextNavigation from '~/components/PrevNextNavigation.vue'
 import Base from '~/mixins/base'
 import MarkdownFormatting from '~/components/MarkdownFormatting.vue'
 import { Listen } from '~/utilities/decorators'
+import Search from '~/components/Search.vue'
+import Save from '~/components/Save.vue'
 
 @Component({
   components: {
+    Save,
+    Search,
     MarkdownFormatting,
     PrevNextNavigation,
     RelatedActions,
     SideNav,
-    Input,
     Table,
     Banner,
     Button,
@@ -126,15 +153,28 @@ export default class Layout extends Mixins(Base) {
   @Getter sideNav
   @Getter content
   @Getter isEditing
+  showSaveModal = false
+  menuOpen = false
+  showKhaled = false
+  khaledPosition = { x: 0, y: 0 }
   @Ref('container') container
   isDev = process.env.NODE_ENV === 'development'
   @Mutation setDarkMode
   @Mutation setIsEditing
   noTransition = false
   timeout = 0
-  h2Elms: any[] = []
+  hElms: any[] = []
   hash = this.$route.hash.slice(1)
   stopReplacing = false
+  showSearch = false
+
+  beforeMount() {
+    this.openKhaled = this.openKhaled.bind(this)
+    this.closeKhaled = this.closeKhaled.bind(this)
+
+    this.$root.$on('openKhaled', this.openKhaled)
+    this.$root.$on('closeKhaled', this.closeKhaled)
+  }
 
   mounted() {
     this.onRouteChange()
@@ -146,6 +186,28 @@ export default class Layout extends Mixins(Base) {
         setTimeout(this.onRouteChange.bind(this), 100)
       })
     }
+  }
+
+  openKhaled(position) {
+    this.khaledPosition = position
+    this.showKhaled = true
+  }
+
+  closeKhaled() {
+    this.showKhaled = false
+  }
+
+  findFirstChild(arr) {
+    if (arr?.[0]?.to) {
+      return arr[0]
+    }
+
+    return this.findFirstChild(arr[0].children)
+  }
+
+  onSave() {
+    this.showSaveModal = false
+    this.submit()
   }
 
   submit() {
@@ -165,7 +227,40 @@ export default class Layout extends Mixins(Base) {
   }
 
   get normalizedSideNav() {
-    return [this.sideNav.map(this.attachHandler.bind(this))]
+    const sideNav = [
+      ...this.sideNav,
+      {
+        title: 'Tools',
+        children: [
+          {
+            title: 'Playground',
+            href: 'https://playground.chargetrip.com/',
+            arrow: true,
+          },
+          {
+            title: 'Voyager',
+            href: 'https://voyager.chargetrip.com/',
+            arrow: true,
+          },
+          {
+            title: 'Dashboard',
+            href: 'https://account.chargetrip.com',
+            arrow: true,
+          },
+          {
+            title: 'Examples',
+            href: 'https://chargetrip.com/examples/',
+            arrow: true,
+          },
+        ],
+      },
+    ]
+
+    return [sideNav.map(this.attachHandler.bind(this))]
+  }
+
+  get offset() {
+    return window.innerWidth < 1024 ? 60 : 124
   }
 
   triggerEdit() {
@@ -176,11 +271,16 @@ export default class Layout extends Mixins(Base) {
       ?.dispatchEvent(new Event('dblclick'))
   }
 
+  scrollTo(args) {
+    window.scrollTo(args)
+    this.container.scrollTo(args)
+  }
+
   onMenuItemClick(item) {
     this.stopReplacing = true
 
     if (!item.hash?.length) {
-      this.container.scrollTo({
+      this.scrollTo({
         top: 0,
         behavior: 'smooth',
       })
@@ -190,22 +290,32 @@ export default class Layout extends Mixins(Base) {
       const interval = setInterval(() => {
         times++
 
-        if (times > 20) clearInterval(interval)
+        if (times > 100) {
+          // eslint-disable-next-line no-console
+          console.log(`Didn't find ${item.hash}`)
+          this.stopReplacing = false
+          clearInterval(interval)
+        }
 
         const el = this.container.querySelector(`#${item.hash}`)
+
         if (!el) return
+        clearInterval(interval)
         const rect = el.getBoundingClientRect()
 
-        this.container.scrollTo({
-          top: this.container.scrollTop + rect.top - 112,
+        this.scrollTo({
+          top:
+            (this.container.scrollTop || window.scrollY) +
+            rect.top -
+            this.offset,
           behavior: 'smooth',
         })
+
+        setTimeout(() => {
+          this.stopReplacing = false
+        }, 1000)
       }, 10)
     }
-
-    setTimeout(() => {
-      this.stopReplacing = false
-    }, 1000)
   }
 
   @Watch('darkMode') onDarkModeChange() {
@@ -220,39 +330,67 @@ export default class Layout extends Mixins(Base) {
     this.hash = this.$route.hash.slice(1)
   }
 
+  findInArray(arr, name) {
+    let find = false
+
+    arr.forEach((item) => {
+      if (item.tag === name) {
+        find = true
+      }
+
+      if (item.children) {
+        find = this.findInArray(item.children, name) || find
+      }
+    })
+
+    return find
+  }
+
+  get isPlayground() {
+    return this.findInArray(this.content?.body?.children || [], 'playground')
+  }
+
   @Listen('dblclick') onDblClick(e) {
     e.stopPropagation()
   }
 
+  get isHome() {
+    return this.$route.path === '/home'
+  }
+
   @Watch('$route.path') onRouteChange() {
+    window.fathom?.trackPageview()
+
     if (!this.container) return
 
     if (!this.$route.hash?.length) {
-      this.container.scrollTo(0, 0)
+      this.scrollTo({ top: 0 })
     }
 
     this.stopReplacing = true
     setTimeout(() => {
-      this.h2Elms = [...(this.container.querySelectorAll('h2') || [])]
+      this.hElms = [
+        ...(this.container.querySelectorAll('.page h2, .page h3') || []),
+      ].filter((el) => el.id)
       this.stopReplacing = false
-    }, 100)
+    }, 300)
   }
 
-  onScroll() {
+  @Listen('scroll') onScroll() {
     if (this.stopReplacing) return
 
-    const h2 = this.h2Elms.reduce((current, h2) => {
-      const rect = h2.getBoundingClientRect()
+    const h = this.hElms.reduce((current, h) => {
+      const rect = h.getBoundingClientRect()
 
-      if (rect.top <= 112) {
-        current = h2
+      if (rect.top <= this.offset) {
+        current = h
       }
 
       return current
     }, null)
 
-    if (h2?.id) {
-      const hash = h2.id
+    if (h?.id) {
+      const hash = h.id
       if (hash !== this.hash) {
         this.hash = hash
         this.$router.replace(
@@ -266,7 +404,10 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
-  beforeDestroy() {}
+  beforeDestroy() {
+    this.$root.$off('openKhaled', this.openKhaled)
+    this.$root.$off('closeKhaled', this.closeKhaled)
+  }
 }
 </script>
 <style lang="scss">
@@ -280,13 +421,45 @@ export default class Layout extends Mixins(Base) {
     @apply my-4;
   }
 
-  .table {
+  .table,
+  .property-table {
     @apply mt-6 mb-10;
   }
 
-  h2,
-  h3 {
+  > h2 {
     @apply mt-14 mb-2;
+  }
+
+  > h3 {
+    @apply mt-8 mb-1;
+  }
+
+  > ul:not(.errors),
+  ol {
+    @apply ml-6 my-4;
+
+    li::before {
+      @apply mr-3;
+    }
+  }
+
+  > ul:not(.errors) {
+    li {
+      &::before {
+        content: '•';
+      }
+    }
+  }
+
+  > ol {
+    li {
+      counter-increment: listing;
+
+      &::before {
+        content: counter(listing) '.';
+        @apply font-semibold text-accent;
+      }
+    }
   }
 
   > p {
@@ -296,7 +469,7 @@ export default class Layout extends Mixins(Base) {
   }
 
   img {
-    @apply rounded overflow-hidden my-10;
+    @apply rounded overflow-hidden my-10 w-full;
   }
 
   h1 {
@@ -304,7 +477,11 @@ export default class Layout extends Mixins(Base) {
 
     + p,
     + p + p {
-      @apply text-18 text-font-alt3 pr-24;
+      @apply text-18 text-font-alt3;
+
+      @screen md {
+        @apply pr-24;
+      }
 
       img {
         width: calc(100% + 96px);
@@ -315,6 +492,28 @@ export default class Layout extends Mixins(Base) {
 }
 
 .layout {
+  @screen lg-max {
+    &.show-menu {
+      .c-banner {
+        @apply hidden;
+      }
+    }
+    .c-side-nav {
+      &:not(.show-menu) {
+        &:not(.show-search) {
+          @apply overflow-hidden;
+        }
+      }
+    }
+    .view {
+      overflow: unset;
+    }
+    &.show-search {
+      .mobile-search {
+        @apply block;
+      }
+    }
+  }
   &.no-transition {
     .box,
     .animate,
@@ -322,6 +521,26 @@ export default class Layout extends Mixins(Base) {
     .transition,
     .transition-all {
       transition-duration: 0s !important;
+    }
+  }
+
+  &.is-playground {
+    .right-aside {
+      width: 512px;
+    }
+  }
+
+  .mobile-search {
+    .c-form-control.has-focus,
+    .c-form-control.has-hover,
+    .c-form-control {
+      .box {
+        @apply h-14 bg-body rounded-none border-0;
+
+        input {
+          @apply px-6;
+        }
+      }
     }
   }
 
@@ -339,17 +558,30 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
-  .c-side-nav {
-    flex: 0 0 260px;
+  @screen lg {
+    .view > .content,
+    .playground,
+    aside {
+      max-height: calc(100vh - 34px);
+    }
+
+    .view {
+      height: calc(100vh - 34px);
+    }
+
+    aside {
+      width: 383px;
+    }
+
+    .c-side-nav {
+      width: 260px;
+    }
   }
 
-  .content,
-  aside {
-    max-height: calc(100vh - 34px);
-  }
-
-  aside {
-    flex: 0 0 383px;
+  @screen xl2 {
+    .c-side-nav {
+      margin-right: 260px;
+    }
   }
 
   .nuxt-content-editor {

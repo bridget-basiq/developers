@@ -1,5 +1,11 @@
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
+  publicRuntimeConfig: {
+    GITHUB_URL: process.env.GITHUB_URL,
+    ALGOLIA_APP_ID: process.env.ALGOLIA_APP_ID,
+    ALGOLIA_API_PUBLIC_KEY: process.env.ALGOLIA_API_PUBLIC_KEY,
+  },
+  target: 'static',
   head: {
     title: 'dev-portal',
     meta: [
@@ -7,9 +13,30 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap',
+      },
+    ],
+    script: [
+      {
+        src: 'https://cdn.usefathom.com/script.js',
+        'data-site': process.env.FATHOM_ID,
+        spa: 'auto',
+        defer: true,
+        'data-spa': 'auto',
+      },
+      {
+        src: 'https://embed.small.chat/T33286SKGGSBRX0P8T.js',
+        defer: true,
+      },
+    ],
   },
   router: {
+    scrollBehavior: () => null,
     base:
       process.env.NODE_ENV === 'production' ? '/chargetrip-developers/' : '/',
     extendRoutes(routes) {
