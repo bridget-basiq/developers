@@ -1,9 +1,19 @@
 /* eslint-disable */
+const OfTypeKind = {
+  LIST: 'LIST',
+  OBJECT: 'OBJECT',
+  INPUT_OBJECT: 'INPUT_OBJECT',
+  ENUM: 'ENUM',
+}
+
+const path = require('path');
+const ofTypeKinds = Object.keys(OfTypeKind)
 const fetch = require('cross-fetch').fetch
 const fs = require('fs')
 const { getIntrospectionQuery } = require('graphql')
 require('dotenv').config()
 const axios = require('axios')
+let schemas = {};
 const tileFilter = {
   "name": "tileFilter",
   "description": "A set of filters that is available for the tile service.",
@@ -90,11 +100,15 @@ const tileFilter = {
   "deprecationReason": null
 }
 
-axios.post(process.env.CHARGETRIP_API_URL, {
-  variables: {},
+const mainTypes = ['Query', 'Mutation', 'Subscription'];
+
+const main = async () => {
+  const { data: { data: { __schema: { types } } } } = await axios.post(process.env.CHARGETRIP_API_URL, {
+    variables: {},
     query: getIntrospectionQuery({ descriptions: true })
-}).then(({ data: { data: { __schema: { types } } } }) => {
-  for (let type of types) {
+  });
+
+  schemas = types.reduce((schema, type) => {
     if(type.name === 'Query') {
       type = {
         ...type,
@@ -105,16 +119,100 @@ axios.post(process.env.CHARGETRIP_API_URL, {
       }
     }
 
-    fs.writeFile(
-      `static/schema/${type.name}.json`,
-      JSON.stringify(type, null, 2),
-      (err) => {
-        if (err) {
-          console.error(err)
-          return
-        }
-        console.log('Type file written!')
-      }
-    )
+
+    schema[type.name] = type;
+
+    return schema;
+  }, {})
+
+  mainTypes.forEach(mainType => {
+    schemas[mainType].fields.forEach(async schema => {
+      await fs.writeFileSync(path.join(process.cwd(), `static/schema/${mainType}-${schema.name}.json`), JSON.stringify(populateSchema(schema)))
+    })
+  })
+
+};
+
+const populateSchema = (schema) => {
+  const name = getOfTypeName(schema)
+
+  return {
+    ...schema,
+    args: appendOfType(schema?.args, true),
+    fields: appendOfType(schemas[name]?.fields || [])
   }
-})
+}
+
+const getOfTypeName = (item) =>  {
+  let type = item?.type
+  let name = item?.type?.name
+
+  while (type) {
+    type = type.ofType
+
+    if (type) {
+      name = type.name
+    }
+  }
+
+  return name
+}
+
+const appendOfType = (fields, allowRequired = false) => {
+  return fields?.map((field) => {
+    const returnField = {
+      ...field,
+      children: [],
+    }
+
+    if (!field.type) return returnField
+
+    const typeStr =
+      field.type.kind === 'SCALAR'
+        ? field.type?.name
+        : field.type?.kind === 'INPUT_OBJECT'
+        ? null
+        : field.type?.kind
+
+    const required = allowRequired && typeStr === 'NON_NULL'
+
+    if (
+      !(
+        field.type?.ofType?.name ||
+        field.type.kind === OfTypeKind.ENUM ||
+        field.type.kind === OfTypeKind.OBJECT ||
+        field.type.kind === OfTypeKind.INPUT_OBJECT
+      )
+    ) {
+      return {
+        ...returnField,
+        typeStr,
+        required,
+      }
+    }
+
+    const typeName = getOfTypeName(field)
+
+    const json = typeName ? schemas[typeName] : null
+
+    const normalizedTypeName = (typeName || '').replace('Query', '')
+    const showOfTypeKind = ofTypeKinds.includes(json?.kind)
+    const children = appendOfType(
+      json?.fields || json?.enumValues || json.inputFields || [],
+      allowRequired
+    )
+
+    return {
+      ...returnField,
+      showOfTypeKind,
+      typeStr,
+      typeName: normalizedTypeName,
+      required,
+      children,
+    }
+  })
+}
+
+
+main();
+
