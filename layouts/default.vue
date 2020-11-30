@@ -38,7 +38,6 @@
         :show-toggle-menu="true"
         :current-page="content.title"
         :spacing="6"
-        @toggleMenu="test"
         @changeDarkMode="setDarkMode"
       >
         <span class="icon-search ml-4" @click="showSearch = !showSearch" />
@@ -262,10 +261,6 @@ export default class Layout extends Mixins(Base) {
 
   get offset() {
     return window.innerWidth < 1024 ? 60 : 124
-  }
-
-  test(e) {
-    console.log(e)
   }
 
   triggerEdit() {
