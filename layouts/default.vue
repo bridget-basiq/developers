@@ -5,6 +5,7 @@
       'show-search': showSearch,
       'theme-dark': darkMode,
       'theme-light': !darkMode,
+      'menu-open': menuOpen,
       'no-transition': noTransition,
       'is-playground': isPlayground,
     }"
@@ -26,7 +27,7 @@
       </div>
     </Banner>
     <div
-      class="view flex bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden lg:rounded-t-xl"
+      class="view flex lg:bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden rounded-t-xl"
     >
       <SideNav
         v-if="sideNav"
@@ -34,7 +35,7 @@
         :class="{ 'show-search': showSearch }"
         :navs="normalizedSideNav"
         :dark-mode="darkMode"
-        :show-toggle-menu="!isHome"
+        :show-toggle-menu="true"
         :current-page="content.title"
         :spacing="6"
         @changeDarkMode="setDarkMode"
@@ -53,39 +54,40 @@
       <div
         ref="container"
         class="content flex-1 flex flex-col relative overflow-y-scroll mt-8 lg:mt-0"
-        @scroll="onScroll"
       >
-        <div class="sticky-header items-start lg:px-8 px-6 hidden lg:flex">
-          <template v-if="!isEditing">
-            <Search
-              :click-handler="onMenuItemClick"
-              icon="search"
-              :hotkey="{
-                icon: 'slash',
-                key: '/',
-                fn: (input) => input.focus(),
-              }"
-            />
-            <Button
-              v-if="isDev"
-              class="ml-auto lg-max:hidden"
-              size="sm"
-              color="accent"
-              @click="triggerEdit"
-              >Edit page
-            </Button>
-          </template>
-          <template v-else>
-            <h2>Edit {{ content.title }}</h2>
-            <div class="ml-auto flex">
-              <Button size="sm" class="mr-2" color="alt" @click="cancel"
-                >Cancel
+        <div class="sticky-header lg:px-8 px-6 hidden lg:block">
+          <div class="flex items-center">
+            <template v-if="!isEditing">
+              <Search
+                :click-handler="onMenuItemClick"
+                icon="search"
+                :hotkey="{
+                  icon: 'slash',
+                  key: '/',
+                  fn: (input) => input.focus(),
+                }"
+              />
+              <Button
+                v-if="isDev"
+                class="ml-auto lg-max:hidden"
+                size="sm"
+                color="accent"
+                @click="triggerEdit"
+                >Edit page
               </Button>
-              <Button size="sm" color="accent" @click="showSaveModal = true"
-                >Save edits
-              </Button>
-            </div>
-          </template>
+            </template>
+            <template v-else>
+              <h2>Edit {{ content.title }}</h2>
+              <div class="ml-auto flex">
+                <Button size="sm" class="mr-2" color="alt" @click="cancel"
+                  >Cancel
+                </Button>
+                <Button size="sm" color="accent" @click="showSaveModal = true"
+                  >Save edits
+                </Button>
+              </div>
+            </template>
+          </div>
         </div>
         <div class="lg:px-8 px-6 lg-max:overflow-x-hidden">
           <Nuxt class="page mb-8" />
@@ -109,7 +111,6 @@
         <RelatedActions v-else />
       </aside>
     </div>
-    <QuickNav class="lg:hidden z-50" :items="quickNavItems" />
     <Save v-if="showSaveModal" @save="onSave" @cancel="showSaveModal = false" />
     <img
       v-if="showKhaled"
@@ -122,12 +123,7 @@
 <script lang="ts">
 import { Component, Watch, Ref } from 'nuxt-property-decorator'
 import { Mixins } from 'vue-property-decorator'
-import {
-  Banner,
-  Button,
-  SideNav,
-  QuickNav,
-} from '@chargetrip/internal-vue-components'
+import { Banner, Button, SideNav } from '@chargetrip/internal-vue-components'
 
 import { Getter, Mutation } from 'vuex-class'
 import Table from '~/components/global/PropertyTable.vue'
@@ -150,7 +146,6 @@ import Save from '~/components/Save.vue'
     Table,
     Banner,
     Button,
-    QuickNav,
   },
 })
 export default class Layout extends Mixins(Base) {
@@ -159,6 +154,7 @@ export default class Layout extends Mixins(Base) {
   @Getter content
   @Getter isEditing
   showSaveModal = false
+  menuOpen = false
   showKhaled = false
   khaledPosition = { x: 0, y: 0 }
   @Ref('container') container
@@ -214,16 +210,6 @@ export default class Layout extends Mixins(Base) {
     this.submit()
   }
 
-  get quickNavItems() {
-    return this.sideNav.map((item) => {
-      return {
-        ...item,
-        to: item.to || this.findFirstChild(item.children)?.to,
-        icon: item.icon,
-      }
-    })
-  }
-
   submit() {
     this.$root.$emit('submitEditor')
   }
@@ -273,6 +259,10 @@ export default class Layout extends Mixins(Base) {
     return [sideNav.map(this.attachHandler.bind(this))]
   }
 
+  get offset() {
+    return window.innerWidth < 1024 ? 60 : 124
+  }
+
   triggerEdit() {
     this.$root.$emit('toggleEdit')
     this.setIsEditing(true)
@@ -281,11 +271,16 @@ export default class Layout extends Mixins(Base) {
       ?.dispatchEvent(new Event('dblclick'))
   }
 
+  scrollTo(args) {
+    window.scrollTo(args)
+    this.container.scrollTo(args)
+  }
+
   onMenuItemClick(item) {
     this.stopReplacing = true
 
     if (!item.hash?.length) {
-      this.container.scrollTo({
+      this.scrollTo({
         top: 0,
         behavior: 'smooth',
       })
@@ -308,8 +303,11 @@ export default class Layout extends Mixins(Base) {
         clearInterval(interval)
         const rect = el.getBoundingClientRect()
 
-        this.container.scrollTo({
-          top: this.container.scrollTop + rect.top - 124,
+        this.scrollTo({
+          top:
+            (this.container.scrollTop || window.scrollY) +
+            rect.top -
+            this.offset,
           behavior: 'smooth',
         })
 
@@ -328,9 +326,9 @@ export default class Layout extends Mixins(Base) {
     }, 50)
   }
 
-  // @Watch('$route.hash') onHashChange() {
-  //   this.hash = this.$route.hash.slice(1)
-  // }
+  @Watch('$route.hash') onHashChange() {
+    this.hash = this.$route.hash.slice(1)
+  }
 
   findInArray(arr, name) {
     let find = false
@@ -366,25 +364,25 @@ export default class Layout extends Mixins(Base) {
     if (!this.container) return
 
     if (!this.$route.hash?.length) {
-      this.container.scrollTo(0, 0)
+      this.scrollTo({ top: 0 })
     }
 
     this.stopReplacing = true
     setTimeout(() => {
       this.hElms = [
-        ...(this.container.querySelectorAll('h2, h3') || []),
+        ...(this.container.querySelectorAll('.page h2, .page h3') || []),
       ].filter((el) => el.id)
       this.stopReplacing = false
     }, 300)
   }
 
-  onScroll() {
+  @Listen('scroll') onScroll() {
     if (this.stopReplacing) return
 
     const h = this.hElms.reduce((current, h) => {
       const rect = h.getBoundingClientRect()
 
-      if (rect.top <= 124) {
+      if (rect.top <= this.offset) {
         current = h
       }
 
@@ -436,7 +434,6 @@ export default class Layout extends Mixins(Base) {
     @apply mt-8 mb-1;
   }
 
-  > ul,
   > ul:not(.errors),
   ol {
     @apply ml-6 my-4;
@@ -472,7 +469,7 @@ export default class Layout extends Mixins(Base) {
   }
 
   img {
-    @apply rounded overflow-hidden my-10;
+    @apply rounded overflow-hidden my-10 w-full;
   }
 
   h1 {
@@ -496,13 +493,12 @@ export default class Layout extends Mixins(Base) {
 
 .layout {
   @screen lg-max {
-    &:not(.show-search) {
-      .c-side-nav {
+    &.show-menu {
+      .c-banner {
+        @apply hidden;
       }
     }
     .c-side-nav {
-      @apply rounded-t-xl;
-
       &:not(.show-menu) {
         &:not(.show-search) {
           @apply overflow-hidden;

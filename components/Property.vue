@@ -2,7 +2,11 @@
   <li
     :id="normalizedSectionID"
     class="property list-none text-14 relative"
-    :class="{ 'is-child': depth, 'show-children': showChildren }"
+    :class="{
+      'is-child': depth,
+      'show-children': showChildren,
+      'is-deprecated': isDeprecated,
+    }"
   >
     <div
       v-if="showChildren"
@@ -47,7 +51,7 @@
     <ul
       v-if="children.length"
       v-show="showChildren"
-      class="children pl-5 lg:pl-10 border-t border-alt"
+      class="children pl-5 lg:pl-10"
     >
       <property
         v-for="(child, i) in children"
@@ -75,6 +79,7 @@ import PropertyToggleChildren from '~/components/PropertyToggleChildren.vue'
 })
 export default class Property extends Vue {
   @Prop() sectionId
+  @Prop() isDeprecated
   @Prop() name
   @Prop() last
   @Prop() showRequired
@@ -143,6 +148,9 @@ export default class Property extends Vue {
 }
 
 .property {
+  &.is-deprecated {
+    @apply opacity-50;
+  }
   &.is-child {
     .content,
     .bg,
@@ -174,6 +182,10 @@ export default class Property extends Vue {
 
     &:last-child {
       @apply border-b-0;
+    }
+
+    > .children {
+      @apply border-t border-alt;
     }
 
     @screen lg-max {

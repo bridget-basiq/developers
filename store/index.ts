@@ -25,8 +25,15 @@ const getH2Children = (page) => {
       child.tag === 'accordion'
     ) {
       arr.push({
+        ...(child.tag === 'release-note' && { inset: false }),
         title: child.props.title,
-        props: { id: slugify(child.props.title) },
+        props: {
+          id: slugify(
+            child.tag === 'release-note'
+              ? `release.${child.props.title}`
+              : child.props.title
+          ),
+        },
       })
     } else if (child.children) {
       arr.push(...getH2Children(child))
@@ -59,6 +66,8 @@ const getSideNav = (pages) => {
     (tree, page) => {
       const pathParts = page.path.split('/').slice(1)
 
+      let fullPath = ''
+
       let obj = tree
 
       pathParts.forEach((p, i) => {
@@ -66,6 +75,7 @@ const getSideNav = (pages) => {
 
         let [order, path] = p.split('+')
 
+        fullPath += `/${path}`
         path = path || p
 
         if (pathParts.length - 1 === i) {
@@ -79,10 +89,11 @@ const getSideNav = (pages) => {
             order: page.order,
             icon: page.icon,
             title: page.title,
-            hideChildren: page.slug === 'home',
+            ...(page.slug === 'home' && { hideChildren: true }),
             children: getH2Children(page.body).map((child) => ({
               to,
               hash: child.props.id,
+              inset: child.inset,
               title: child.title || child.children[1].value,
             })),
           })
@@ -90,6 +101,7 @@ const getSideNav = (pages) => {
           obj.children.push({
             order: parseInt(order),
             path,
+            fullPath,
             children: [],
             title: path.replace(new RegExp('-', 'g'), ' '),
           })

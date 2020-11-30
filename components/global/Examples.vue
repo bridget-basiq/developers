@@ -7,7 +7,7 @@
           v-for="(category, key) in categories"
           :key="key"
           class="cursor-pointer mr-4 last:mr-0"
-          :class="{ 'text-accent': key === index }"
+          :class="{ 'text-font-primary': key === index }"
           @click="index = key"
         >
           {{ category }}

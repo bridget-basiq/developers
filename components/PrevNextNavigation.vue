@@ -3,21 +3,25 @@
     v-if="prev || next"
     class="prev-next-navigation flex p-6 lg:p-8 border-t border-alt font-semibold"
   >
-    <router-link v-if="prev && prev.to" class="flex items-center" :to="prev.to">
+    <router-link
+      v-if="prev && prev.to"
+      class="w-1/2 flex items-center"
+      :to="prev.to"
+    >
       <span class="icon-chevron-left" />
-      <div class="mx-4">
+      <div class="mx-4 truncate">
         <div class="text-14 text-font-alt3">Previous</div>
-        <div>{{ prev.title }}</div>
+        {{ prev.title }}
       </div>
     </router-link>
     <router-link
       v-if="next && next.to"
-      class="flex ml-auto justify-end items-center"
+      class="w-1/2 flex ml-auto justify-end items-center"
       :to="next.to"
     >
-      <div class="mx-4">
+      <div class="mx-4 truncate">
         <div class="text-14 text-font-alt3">Next</div>
-        <div>{{ next.title }}</div>
+        {{ next.title }}
       </div>
       <span class="icon-chevron-right" />
     </router-link>
@@ -30,36 +34,46 @@ import { Component, Getter, Vue } from 'nuxt-property-decorator'
 export default class CodeBlock extends Vue {
   @Getter sideNav
 
-  get prev() {
-    return this.parent?.children?.[this.index - 1]
-  }
-
   get index() {
     return this.parent.children.indexOf(this.current)
   }
 
   get parent(): any {
-    return this.findParent(this.sideNav)
+    return this.findParent(this.sideNav, this.current.to)
   }
 
-  findParent(arr) {
-    let item = null
+  get parentIndex() {
+    return this.grandParent.children.indexOf(this.parent)
+  }
+
+  get grandParent(): any {
+    return this.findParent(
+      this.sideNav,
+      this.current.to.split('/').slice(0, -1).join('/')
+    )
+  }
+
+  findParent(arr, url) {
+    let parent = null
 
     arr.forEach((child) => {
-      const find = child?.children?.find(
-        (_child) => !_child?.hash?.length && _child.to === this.current.to
+      if (!child?.children) return
+
+      const find = child.children.find(
+        (_child) =>
+          !_child.hash?.length && (_child.to || _child.fullPath) === url
       )
 
       if (find) {
-        return (item = child)
+        return (parent = child)
       }
 
       if (child.children) {
-        item = this.findParent(child.children) || item
+        parent = this.findParent(child.children, url) || parent
       }
     })
 
-    return item
+    return parent
   }
 
   findRecursive(arr) {
@@ -82,8 +96,20 @@ export default class CodeBlock extends Vue {
     return this.findRecursive(this.sideNav) || {}
   }
 
+  get prev() {
+    return (
+      this.parent?.children?.[this.index - 1] ||
+      this.grandParent?.children?.[this.parentIndex - 1]?.children?.[
+        this.grandParent?.children?.[this.parentIndex - 1]?.children?.length - 1
+      ]
+    )
+  }
+
   get next() {
-    return this.parent?.children?.[this.index + 1]
+    return (
+      this.parent?.children?.[this.index + 1] ||
+      this.grandParent?.children?.[this.parentIndex + 1]?.children?.[0]
+    )
   }
 }
 </script>

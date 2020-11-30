@@ -180,11 +180,21 @@ export default class Search extends Mixins(Base) {
   scrollToView() {
     this.prevent = true
 
-    if (this.suggestionEls?.[this.totalIndex]?.$el?.offsetTop) {
+    const el = this.suggestionEls?.[this.totalIndex]?.$el
+    const offsetTop = el?.offsetTop
+
+    if (offsetTop - el?.offsetHeight < this.container.scrollTop) {
       this.container.scrollTo(
         0,
-        this.suggestionEls[this.totalIndex]?.$el.offsetTop -
-          (this.suggestionGroupKeys[this.groupIndex].length ? 40 : 0)
+        offsetTop - (this.suggestionGroupKeys[this.groupIndex].length ? 40 : 0)
+      )
+    } else if (
+      offsetTop + el?.offsetHeight >
+      this.container.scrollTop + this.container.offsetHeight
+    ) {
+      this.container.scrollTo(
+        0,
+        offsetTop - this.container.offsetHeight + el.offsetHeight + 4
       )
     }
 
@@ -205,12 +215,12 @@ export default class Search extends Mixins(Base) {
     const { hits } = await this.database.search(this.search, {
       attributesToHighlight: ['description'],
       attributesToSnippet: ['description:10'],
-      // ranking: ['title', 'h1', 'h2'', 'description'],
       snippetEllipsisText: '...',
       length: this.length,
       offset: 0,
     })
 
+    this.itemIndex = 0
     this.suggestions = hits
   }
 
@@ -275,7 +285,7 @@ export default class Search extends Mixins(Base) {
 
   @Watch('$route.path') onRouteChange() {
     this.showSuggestions = false
-    this.index = 0
+    this.itemIndex = 0
   }
 
   onClick({ url }) {

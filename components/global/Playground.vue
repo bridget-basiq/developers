@@ -2,7 +2,7 @@
   <div
     class="playground fixed border-l border-alt right-0 bg-body h-full z-40 hidden xl:block"
   >
-    <div class="sticky-header px-8 flex items-center">
+    <div class="py-8 flex px-8 flex items-center">
       <h2>Code Sample</h2>
       <a v-if="url" :href="url" target="_blank" rel="noopener" class="ml-auto">
         <Button size="sm" color="base" icon="arrow-up-right">
