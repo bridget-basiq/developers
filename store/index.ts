@@ -124,7 +124,7 @@ export default () =>
       async nuxtServerInit({ commit }, args) {
         const { $content, ssrContext } = args
 
-        const cookies = cookie.parse(ssrContext?.req?.headers?.cookie)
+        const cookies = cookie.parse(ssrContext?.req?.headers?.cookie || '')
         const darkMode = cookies.dark_mode
 
         commit('setDarkMode', darkMode ? darkMode === 'true' : true)
