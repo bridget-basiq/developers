@@ -5,6 +5,7 @@
       'show-search': showSearch,
       'theme-dark': darkMode,
       'theme-light': !darkMode,
+      'menu-open': menuOpen,
       'no-transition': noTransition,
       'is-playground': isPlayground,
     }"
@@ -26,7 +27,7 @@
       </div>
     </Banner>
     <div
-      class="view flex bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden rounded-t-xl"
+      class="view flex lg:bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden rounded-t-xl"
     >
       <SideNav
         v-if="sideNav"
@@ -37,6 +38,7 @@
         :show-toggle-menu="true"
         :current-page="content.title"
         :spacing="6"
+        @toggleMenu="test"
         @changeDarkMode="setDarkMode"
       >
         <span class="icon-search ml-4" @click="showSearch = !showSearch" />
@@ -153,6 +155,7 @@ export default class Layout extends Mixins(Base) {
   @Getter content
   @Getter isEditing
   showSaveModal = false
+  menuOpen = false
   showKhaled = false
   khaledPosition = { x: 0, y: 0 }
   @Ref('container') container
@@ -259,6 +262,10 @@ export default class Layout extends Mixins(Base) {
 
   get offset() {
     return window.innerWidth < 1024 ? 60 : 124
+  }
+
+  test(e) {
+    console.log(e)
   }
 
   triggerEdit() {
@@ -467,7 +474,7 @@ export default class Layout extends Mixins(Base) {
   }
 
   img {
-    @apply rounded overflow-hidden my-10;
+    @apply rounded overflow-hidden my-10 w-full;
   }
 
   h1 {
@@ -491,13 +498,12 @@ export default class Layout extends Mixins(Base) {
 
 .layout {
   @screen lg-max {
-    &:not(.show-search) {
-      .c-side-nav {
+    &.show-menu {
+      .c-banner {
+        @apply hidden;
       }
     }
     .c-side-nav {
-      @apply rounded-t-xl;
-
       &:not(.show-menu) {
         &:not(.show-search) {
           @apply overflow-hidden;

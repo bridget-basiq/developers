@@ -32,3 +32,12 @@ export default class AccordionItem extends Vue {
   active = false
 }
 </script>
+<style lang="scss">
+.accordion-item {
+  @screen lg-max {
+    width: calc(100% + 48px);
+
+    @apply relative -ml-6 px-6;
+  }
+}
+</style>

@@ -40,7 +40,7 @@ export default class RelatedActions extends Vue {
   }
 
   get githubUrl() {
-    return `https://github.com/chargetrip/chargetrip-developers/tree/main/content${this.content?.dir}/${this.content?.slug}${this.content?.extension}`
+    return `${this.$config.GITHUB_URL}/${this.content?.dir}/${this.content?.slug}${this.content?.extension}`
   }
 
   onClick() {}

@@ -64,7 +64,7 @@
           </div>
         </div>
       </div>
-      <div>
+      <div class="text-14">
         <slot />
       </div>
     </div>
@@ -101,6 +101,7 @@ export default class Steps extends Vue {
   @screen md-max {
     .image-wrapper {
       width: calc(100% + 48px);
+      min-height: 320px;
       @apply -ml-6;
 
       &::after {

@@ -53,7 +53,7 @@ export default class Table extends Vue {
 </script>
 <style lang="scss">
 .dev-portal-table {
-  @screen md-max {
+  @screen lg-max {
     tr,
     td {
       @apply block;

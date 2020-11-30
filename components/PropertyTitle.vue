@@ -1,32 +1,37 @@
 <template>
-  <div class="text-font-primary flex items-center">
-    <span class="font-mono title">
-      {{ name }}
-    </span>
-    <template v-if="typeStr">
-      <span class="mx-1 font-mono">•</span>
-      <span
-        class="type font-mono"
-        :class="{ lowercase: typeStr !== 'ID' }"
-        v-html="$options.filters.colorType(typeStr)"
-      />
-    </template>
-    <template v-if="showOfTypeKind">
-      <span class="mx-1 font-mono">•</span>
-      <span class="font-mono text-font-alt3">
-        <span v-if="typeStr === ofTypeKind.LIST">[</span>{{ typeName
-        }}<span v-if="typeStr === ofTypeKind.LIST">]</span>
+  <div class="property-title text-font-primary flex items-center">
+    <div class="truncate">
+      <span class="font-mono title">
+        {{ name }}
       </span>
-    </template>
-    <Tag v-if="required" class="ml-2" color="accent" type="secondary"
-      >Required
-    </Tag>
-    <Tag v-if="optional" class="ml-2" color="font-alt3" type="secondary"
-      >Optional
-    </Tag>
+      <template v-if="typeStr">
+        <span class="font-mono">•</span>
+        <span
+          class="type font-mono"
+          :class="{ lowercase: typeStr !== 'ID' }"
+          v-html="$options.filters.colorType(typeStr)"
+        />
+      </template>
+      <template v-if="showOfTypeKind">
+        <span class="font-mono">•</span>
+        <span class="font-mono text-font-alt3">
+          <span v-if="typeStr === ofTypeKind.LIST">[</span>{{ typeName
+          }}<span v-if="typeStr === ofTypeKind.LIST">]</span>
+        </span>
+      </template>
+      <Tag v-if="required" class="ml-2" color="accent" type="secondary"
+        >Required
+      </Tag>
+      <Tag v-if="optional" class="ml-2" color="font-alt3" type="secondary"
+        >Optional
+      </Tag>
+      <Tag v-if="isDeprecated" class="ml-2" color="font-alt3" type="secondary"
+        >Deprecated
+      </Tag>
+    </div>
     <span
       v-if="!depth && description && !forceActive"
-      class="ml-auto cursor-pointer lg-max:mr-6"
+      class="ml-auto cursor-pointer"
       :class="{
         'icon-chevron-right': !active,
         'icon-chevron-down': active,
@@ -42,6 +47,7 @@ import { OfTypeKind } from '~/utilities/constants'
 @Component({ components: { Tag } })
 export default class PropertyTitle extends Vue {
   @Prop() name
+  @Prop() isDeprecated
   @Prop() typeName
   @Prop() depth
   @Prop() active
@@ -54,3 +60,10 @@ export default class PropertyTitle extends Vue {
   ofTypeKind = OfTypeKind
 }
 </script>
+<style lang="scss">
+.property-title {
+  .c-tag {
+    @apply inline-block align-middle;
+  }
+}
+</style>

@@ -9,7 +9,7 @@ import Error from '~/components/global/Error.vue'
 @Component({
   components: { Error },
 })
-export default class Err0rs extends Vue {
+export default class Errors extends Vue {
   @Prop() name
   errors = []
 

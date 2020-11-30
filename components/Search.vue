@@ -215,7 +215,6 @@ export default class Search extends Mixins(Base) {
     const { hits } = await this.database.search(this.search, {
       attributesToHighlight: ['description'],
       attributesToSnippet: ['description:10'],
-      // ranking: ['title', 'h1', 'h2'', 'description'],
       snippetEllipsisText: '...',
       length: this.length,
       offset: 0,
