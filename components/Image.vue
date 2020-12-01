@@ -1,5 +1,14 @@
 <template>
-  <img :class="`max-w-${maxWidth}`" :src="normalizedSrc" :alt="alt" />
+  <img
+    :class="{
+      'max-w-sm': maxWidth === 'sm',
+      'max-w-md': maxWidth === 'md',
+      'max-w-lg': maxWidth === 'lg',
+      'max-w-full': maxWidth === 'full',
+    }"
+    :src="normalizedSrc"
+    :alt="alt"
+  />
 </template>
 <script lang="ts">
 import { Component, Vue, Prop, Getter } from 'nuxt-property-decorator'

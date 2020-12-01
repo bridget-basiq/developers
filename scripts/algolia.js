@@ -133,14 +133,16 @@ async function pagesToAlgolia() {
   const pages = (await getIndices(distPath).catch(console.log)) || []
 
   if (pages) {
-    index
-      .saveObjects(pages, {
-        autoGenerateObjectIDIfNotExist: true,
-      })
-      .then(({ objectIDs }) => {
-        console.log(objectIDs)
-      })
-      .catch(console.log)
+    console.log(pages)
+
+    // index
+    //   .saveObjects(pages, {
+    //     autoGenerateObjectIDIfNotExist: true,
+    //   })
+    //   .then(({ objectIDs }) => {
+    //     console.log(objectIDs)
+    //   })
+    //   .catch(console.log)
   }
 }
 

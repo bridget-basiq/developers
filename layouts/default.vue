@@ -116,7 +116,7 @@
       v-if="showKhaled"
       class="absolute max-w-screen-sm z-50 rounded shadow-down-xl transform -translate-x-1/2 -translate-y-full bottom-0 -mt-6"
       :style="{ top: `${khaledPosition.y}px`, left: `${khaledPosition.x}px` }"
-      src="/khaled.gif"
+      src="khaled.gif"
     />
   </div>
 </template>
