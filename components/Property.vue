@@ -23,6 +23,7 @@
       }"
       @click="active = !active || forceActive"
     >
+      <div class="bg absolute inset-0" />
       <PropertyToggleChildren v-model="showChildren" v-bind="$props" />
       <PropertyTitle v-bind="$props" :active="active" />
       <div
@@ -48,7 +49,11 @@
         {{ showChildren ? 'Collapse' : 'Expand' }} {{ typeName }} attributes
       </strong>
     </p>
-    <ul v-if="showChildren && children.length" class="children pl-5 lg:pl-10">
+    <ul
+      v-show="showChildren"
+      v-if="children.length"
+      class="children pl-5 lg:pl-10"
+    >
       <property
         v-for="(child, i) in children"
         :key="i"
@@ -145,10 +150,15 @@ export default class Property extends Vue {
 
 .property {
   &.is-deprecated {
-    @apply opacity-50;
+    > .content .truncate > *:not(.deprecated-tag),
+    > .children .truncate,
+    > .children .description,
+    > .children .content > .bg {
+      @apply opacity-50;
+    }
   }
   &.is-child {
-    .content,
+    .content .bg,
     .bg,
     .toggle-children {
       @apply bg-base;
@@ -172,6 +182,10 @@ export default class Property extends Vue {
         }
       }
     }
+  }
+
+  > .content > .bg {
+    z-index: -1;
   }
   &:not(.is-child) {
     @apply border-t border-alt;

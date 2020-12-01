@@ -76,16 +76,16 @@ export default class CodeBlock extends Vue {
     return parent
   }
 
-  findRecursive(arr) {
+  findRecursive(arr, path) {
     let item = null
 
     arr.forEach((child) => {
-      if (!child?.hash?.length && child.to === this.$route.path) {
+      if (!child?.hash?.length && child.to === path) {
         item = child
       }
 
       if (child.children) {
-        item = this.findRecursive(child.children) || item
+        item = this.findRecursive(child.children, path) || item
       }
     })
 
@@ -93,7 +93,7 @@ export default class CodeBlock extends Vue {
   }
 
   get current(): any {
-    return this.findRecursive(this.sideNav) || {}
+    return this.findRecursive(this.sideNav, this.$route.path) || {}
   }
 
   get prev() {

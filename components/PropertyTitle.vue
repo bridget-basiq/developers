@@ -25,7 +25,11 @@
       <Tag v-if="optional" class="ml-2" color="font-alt3" type="secondary"
         >Optional
       </Tag>
-      <Tag v-if="isDeprecated" class="ml-2" color="font-alt3" type="secondary"
+      <Tag
+        v-if="isDeprecated"
+        class="ml-2 deprecated-tag"
+        color="alt"
+        type="secondary"
         >Deprecated
       </Tag>
     </div>
@@ -63,7 +67,7 @@ export default class PropertyTitle extends Vue {
 <style lang="scss">
 .property-title {
   .c-tag {
-    @apply inline-block align-middle;
+    @apply inline-flex align-middle;
   }
 }
 </style>
