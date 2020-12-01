@@ -28,7 +28,7 @@ export default class Examples extends Vue {
   @Prop() title
   @Prop() examples
   categories: string[] = []
-  index: number | null = null
+  index: number | null = 0
 
   get slug() {
     return slugify(this.title)
@@ -54,7 +54,7 @@ export default class Examples extends Vue {
     )
   }
 
-  @Watch('index') onIndexChange() {
+  @Watch('index', { immediate: true }) onIndexChange() {
     this.setActiveExamples()
   }
 

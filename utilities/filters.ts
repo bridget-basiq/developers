@@ -18,10 +18,27 @@ Vue.filter('markdown', (value: string) => {
 })
 
 Vue.filter('colorType', (value: string = '') => {
-  try {
-    const lowerCase = value.toLowerCase()
-    return highlightjs.highlightAuto(lowerCase).value
-  } catch (e) {
-    return value
+  value = value.toLowerCase()
+
+  if (value === 'string') {
+    return `<span class="hljs-string">${value}</span>`
   }
+
+  if (value === 'non_null' || value === 'id') {
+    return `<span class="hljs-keyword">${value}</span>`
+  }
+
+  if (value === 'list' || value === 'json') {
+    return `<span class="hljs-attribute">${value}</span>`
+  }
+
+  if (value === 'object' || value === 'enum') {
+    return `<span class="hljs-literal">${value}</span>`
+  }
+
+  if (value === 'boolean' || value === 'int') {
+    return `<span class="hljs-number">${value}</span>`
+  }
+
+  return value
 })
