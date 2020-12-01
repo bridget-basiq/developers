@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-10 lg:w-20 flex absolute z-10 h-full left-0 top-0 transform -translate-x-1/2"
+    class="property-toggle-children w-10 lg:w-20 flex absolute z-10 h-full left-0 top-0 transform -translate-x-1/2"
   >
     <div class="flex-1 relative">
       <div
@@ -14,7 +14,7 @@
     >
       <template v-if="children.length">
         <span
-          class="z-20 text-accent center"
+          class="icon z-20 text-accent center"
           :class="{
             'lg-max:hidden': !depth,
             'icon-circle-plus': !value,
@@ -27,10 +27,10 @@
 
       <div
         v-if="depth"
-        class="h-px w-full transform -translate-x-1/2 bg-alt2 absolute top-1/2 -translate-y-1/2"
+        class="line-h h-px w-full transform -translate-x-1/2 bg-alt2 absolute top-1/2 -translate-y-1/2"
       >
         <div
-          class="w-1 h-1 rounded-full right-0 top-1/2 transform -translate-y-1/2 absolute bg-alt2 translate-x-full"
+          class="dot w-1 h-1 rounded-full right-0 top-1/2 transform -translate-y-1/2 absolute bg-alt2 translate-x-full"
         />
       </div>
     </div>

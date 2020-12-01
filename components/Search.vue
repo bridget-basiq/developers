@@ -89,7 +89,7 @@
           <div class="pl-20 ml-auto flex items-center">
             <img
               class="w-24 pl-8 h-auto object-contain flex-shrink-0 max-w-xs"
-              src="/algolia.png"
+              src="algolia.png"
               alt="algolia"
             />
           </div>
