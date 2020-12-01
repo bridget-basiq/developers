@@ -60,7 +60,7 @@ mutation newRoute {
   )
 }
 </code-block>
-<code-block>
+<code-block lang="json">
 {
   "data": {
     "newRoute": "5e300e71f7e26f726afd3d71"

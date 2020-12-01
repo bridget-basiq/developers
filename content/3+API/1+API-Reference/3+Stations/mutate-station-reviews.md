@@ -33,7 +33,7 @@ mutation addReview($stationId: String!, $carId: String) {
   }
 }
 </code-block>
-<code-block>
+<code-block lang="bash">
 # Currently Missing 
 </code-block>
 </playground>

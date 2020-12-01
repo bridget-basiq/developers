@@ -22,7 +22,7 @@ All GraphQL requests are sent to the same endpoint, which means that you can oft
 ## Primary operations
 GraphQL has three primary operations: `Queries`, `Mutations`, and `Subscriptions`. Below are examples of each one.
 
-<code-block prefix="GraphQL / Primary Operations" title="Query">
+<code-block lang="graphql" prefix="GraphQL / Primary Operations" title="Query">
 query {
   carList {
     id
@@ -31,7 +31,7 @@ query {
 }
 </code-block>
 
-<code-block prefix="GraphQL / Primary Operations" title="Mutation">
+<code-block lang="graphql" prefix="GraphQL / Primary Operations" title="Mutation">
 mutation {
   addReview(
     review: {
@@ -49,7 +49,7 @@ mutation {
 }
 </code-block>
 
-<code-block prefix="GraphQL / Primary Operations" title="Subscription">
+<code-block lang="graphql" prefix="GraphQL / Primary Operations" title="Subscription">
 subscription {
   routeUpdatedById(id: "5e4d4a8738ef04d2b4206d2a") {
     status

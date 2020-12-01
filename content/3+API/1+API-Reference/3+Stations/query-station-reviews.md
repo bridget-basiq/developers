@@ -39,7 +39,7 @@ query reviewList($stationId: ID!) {
   }
 }
 </code-block>
-<code-block>
+<code-block lang="json">
 {
   "data": {
     "reviewList": [

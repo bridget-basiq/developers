@@ -57,7 +57,7 @@ subscription routeUpdatedById {
   }
 }
 </code-block>
-<code-block>
+<code-block lang="json">
 {
   "data": {
     "route": {

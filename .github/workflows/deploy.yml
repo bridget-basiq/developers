@@ -7,6 +7,13 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+      - env:
+          CHARGETRIP_API_URL: ${{ secrets.CHARGETRIP_API_URL }}
+          ALGOLIA_API_SECRET_KEY: ${{ secrets.ALGOLIA_API_SECRET_KEY }}
+          ALGOLIA_API_PUBLIC_KEY: ${{ secrets.ALGOLIA_API_PUBLIC_KEY }}
+          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          FATHOM_ID: ${{ secrets.FATHOM_ID }}
+          EDIT_GITHUB_URL: ${{ secrets.EDIT_GITHUB_URL }}
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:

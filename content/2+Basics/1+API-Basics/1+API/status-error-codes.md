@@ -72,7 +72,7 @@ Apart from the response codes, unsuccessful responses return their generic Graph
 
 If we want to reflect this as a curl it would look like this;
 
-<code-block prefix="Error" title="Error objects">
+<code-block lang="json" prefix="Error" title="Error objects">
 {
   "errors": [
     {

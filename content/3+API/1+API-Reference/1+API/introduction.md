@@ -17,7 +17,7 @@ https://api.chargetrip.io/graphql
 ## Authorization
 In the example below we quickly show you the header you need to set to authorize with the Chargetrip API. 
 
-<code-block prefix="API Reference / Authorization" title="Headers">
+<code-block lang="bash" prefix="API Reference / Authorization" title="Headers">
 curl -X POST \
 -H "Content-Type: application/json" \
 -H "x-client-id: 5e8c22366f9c5f23ab0eff39" \
