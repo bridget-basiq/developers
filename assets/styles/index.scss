@@ -3,6 +3,9 @@
 @import "./typograhpy";
 @import "./theme";
 
+
+/*! purgecss start ignore */
+
 body {
   @screen lg {
     @apply overflow-hidden;
@@ -213,3 +216,5 @@ body {
     font-weight: bold;
   }
 }
+
+/*! purgecss end ignore */

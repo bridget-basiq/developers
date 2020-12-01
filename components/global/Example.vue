@@ -21,7 +21,7 @@ export default class Example extends Vue {
   @Prop() category
   @Prop() tagLine
   @Prop() href
-  active = true
+  active = false
 }
 </script>
 <style lang="scss">
