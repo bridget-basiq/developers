@@ -2,7 +2,6 @@
 require('dotenv').config()
 const fs = require('fs')
 const { join } = require('path')
-const { toSentenceCase } = require('js-convert-case')
 const algoliasearch = require('algoliasearch')
 const client = algoliasearch(
   process.env.ALGOLIA_APP_ID,
@@ -11,42 +10,14 @@ const client = algoliasearch(
 const index = client.initIndex('items')
 const distPath = join(process.cwd(), 'dist')
 const { JSDOM } = require('jsdom')
-const propertySections = [
-  'request_parameters',
-  'frequently_used_attributes',
-  'other_attributes',
-]
+const propertySections = ['arguments', 'frequently_used_fields', 'other_fields']
 
 async function getEntries(path) {
   const dom = new JSDOM(await fs.readFileSync(path, 'utf-8'))
   const url = path.replace(distPath, '').replace('/index.html', '')
   const h1 = dom.window.document.body.querySelector('h1')?.textContent
 
-  const entries = await Promise.all([
-    getPage({ url, dom, h1 }),
-    ...getProperties({ url, dom, h1 }),
-  ])
-
-  return await Promise.all(
-    entries.map(async (entry) => {
-      const response = await index
-        .findObject((hit) => hit.url === entry.url, {})
-        .catch(() => {
-          console.log(
-            `ObjectID for ${entry.url} not found. Will create new entry`
-          )
-        })
-
-      if (response?.object?.objectID) {
-        return {
-          ...entry,
-          objectID: response.object.objectID,
-        }
-      }
-
-      return entry
-    })
-  )
+  return [getPage({ url, dom, h1 }), ...getProperties({ url, dom })]
 }
 
 function getProperties({ dom, url }) {
@@ -54,12 +25,14 @@ function getProperties({ dom, url }) {
 
   propertySections.map((section) => {
     const sectionEl = dom.window.document.querySelector(`.${section}`)
-
     if (sectionEl) {
       sectionEl.querySelectorAll('.property').forEach((property) => {
+        const fullUrl = `${url}#${property.getAttribute('id')}`
+
         arr.push({
           type: 'property',
-          url: `${url}#${property.getAttribute('id')}`,
+          objectID: fullUrl,
+          url: fullUrl,
           title: property.querySelector('.title')?.textContent?.trim(),
           description: property
             .querySelector('.description')
@@ -87,22 +60,15 @@ function getPage({ url, dom, h1 }) {
     .querySelector("meta[name='og:description']")
     ?.getAttribute('content')
 
-  const splitPath = url.split('/')
-
-  const obj = {
+  return {
     title,
     description,
     type: 'page',
     h1,
     h2: h2.join(', '),
     url,
+    objectID: url,
   }
-
-  if (splitPath[splitPath.length - 3]) {
-    obj.parent = toSentenceCase(splitPath[splitPath.length - 3])
-  }
-
-  return obj
 }
 
 async function getIndices(path, ignore = true) {

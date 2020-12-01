@@ -24,7 +24,6 @@
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import { toSnakeCase } from 'js-convert-case/lib'
 import Property from '~/components/Property.vue'
-import { OfTypeKind } from '~/utilities/constants'
 
 @Component({
   components: { Property },
@@ -68,104 +67,19 @@ export default class Schema extends Vue {
     )
   }
 
-  get ofTypeKinds() {
-    return Object.keys(OfTypeKind)
-  }
-
-  appendOfType(fields, allowRequired = false) {
-    return Promise.all(
-      fields?.map(async (field) => {
-        const returnField = {
-          ...field,
-          children: [],
-        }
-
-        if (!field.type) return returnField
-
-        const typeStr =
-          field.type.kind === 'SCALAR'
-            ? field.type?.name
-            : field.type?.kind === 'INPUT_OBJECT'
-            ? null
-            : field.type?.kind
-
-        const required = allowRequired && typeStr === 'NON_NULL'
-
-        if (
-          !(
-            field.type?.ofType?.name ||
-            field.type.kind === OfTypeKind.ENUM ||
-            field.type.kind === OfTypeKind.OBJECT ||
-            field.type.kind === OfTypeKind.INPUT_OBJECT
-          )
-        ) {
-          return {
-            ...returnField,
-            typeStr,
-            required,
-          }
-        }
-
-        const typeName = this.getOfTypeName(field)
-
-        const json: any = typeName ? await this.getJson(typeName) : null
-
-        const normalizedTypeName = (typeName || '').replace('Query', '')
-        const showOfTypeKind = this.ofTypeKinds.includes(json?.kind)
-        const children = await this.appendOfType(
-          json?.fields || json?.enumValues || json.inputFields || [],
-          allowRequired
-        )
-
-        return {
-          ...returnField,
-          showOfTypeKind,
-          typeStr,
-          typeName: normalizedTypeName,
-          required,
-          children,
-        }
-      })
-    )
-  }
-
-  async getJson(name) {
-    const json = await import(`~/static/schema/${name}.json`).catch(console.log)
+  async getJson() {
+    const json = await import(
+      `~/static/schema/${this.type}-${this.name}.json`
+    ).catch(console.log)
 
     return json.default
   }
 
-  getOfTypeName(item) {
-    let type = item?.type
-    let name = item?.type?.name
-
-    while (type) {
-      type = type.ofType
-
-      if (type) {
-        name = type.name
-      }
-    }
-
-    return name
-  }
-
   async fetch() {
-    const { fields }: any = await this.getJson(this.type)
-    this.schema = fields.find((field) => field.name === this.name)
+    const schema: any = await this.getJson()
 
-    const name = this.getOfTypeName(this.schema)
-
-    const [requestParams, json] = await Promise.all([
-      this.appendOfType(this.schema?.args, true),
-      name ? this.getJson(name) : null,
-    ])
-
-    this.requestParameters = requestParams
-
-    if (json?.fields) {
-      this.returnFields = await this.appendOfType(json.fields)
-    }
+    this.requestParameters = schema.args
+    this.returnFields = schema?.fields || []
   }
 }
 </script>

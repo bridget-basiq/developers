@@ -45,19 +45,15 @@
         }"
       />
       <strong>
-        {{ showChildren ? 'Collapse' : 'Expand' }} {{ typeName }} attrributes
+        {{ showChildren ? 'Collapse' : 'Expand' }} {{ typeName }} attributes
       </strong>
     </p>
-    <ul
-      v-if="children.length"
-      v-show="showChildren"
-      class="children pl-5 lg:pl-10"
-    >
+    <ul v-if="showChildren && children.length" class="children pl-5 lg:pl-10">
       <property
         v-for="(child, i) in children"
         :key="i"
         :last="i === children.length - 1"
-        :section-i-d="normalizedSectionID"
+        :section-id="normalizedSectionID"
         :force-active="true"
         :initial-active="true"
         :depth="depth + 1"
