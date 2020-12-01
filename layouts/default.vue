@@ -377,30 +377,30 @@ export default class Layout extends Mixins(Base) {
   }
 
   @Listen('scroll') onScroll() {
-    if (this.stopReplacing) return
+    if (!this.stopReplacing) {
+      const h = this.hElms.reduce((current, h) => {
+        const rect = h.getBoundingClientRect()
 
-    const h = this.hElms.reduce((current, h) => {
-      const rect = h.getBoundingClientRect()
+        if (rect.top <= this.offset) {
+          current = h
+        }
 
-      if (rect.top <= this.offset) {
-        current = h
+        return current
+      }, null)
+
+      if (h?.id) {
+        const hash = h.id
+        if (hash !== this.hash) {
+          this.hash = hash
+          this.$router.replace(
+            `${this.$route.fullPath.replace(this.$route.hash, '')}#${hash}`
+          )
+        }
+      } else if (this.hash !== '') {
+        this.hash = ''
+
+        this.$router.replace(this.$route.fullPath.replace(this.$route.hash, ''))
       }
-
-      return current
-    }, null)
-
-    if (h?.id) {
-      const hash = h.id
-      if (hash !== this.hash) {
-        this.hash = hash
-        this.$router.replace(
-          `${this.$route.fullPath.replace(this.$route.hash, '')}#${hash}`
-        )
-      }
-    } else if (this.hash !== '') {
-      this.hash = ''
-
-      this.$router.replace(this.$route.fullPath.replace(this.$route.hash, ''))
     }
   }
 

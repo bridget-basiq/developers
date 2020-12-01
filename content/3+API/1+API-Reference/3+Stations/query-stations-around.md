@@ -61,7 +61,7 @@ query stationAround {
 }
 
 </code-block>
-<code-block>
+<code-block lang="json">
 {
   "data": {
     "stationAround": [

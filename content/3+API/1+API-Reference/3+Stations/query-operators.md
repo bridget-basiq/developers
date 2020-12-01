@@ -53,7 +53,7 @@ query operatorList {
   }
 }
 </code-block>
-<code-block>
+<code-block lang="json">
 {
   "data": {
     "operatorList": [

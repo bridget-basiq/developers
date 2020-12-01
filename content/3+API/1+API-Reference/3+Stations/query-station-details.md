@@ -198,7 +198,7 @@ query station($stationId: ID!) {
   }
 }
 </code-block>
-<code-block>
+<code-block lang="json">
 {
   "data": {
     "station": {

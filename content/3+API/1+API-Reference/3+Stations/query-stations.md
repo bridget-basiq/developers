@@ -205,7 +205,7 @@ query stationListAll {
   }
 }
 </code-block>
-<code-block>
+<code-block lang="json">
 {
   "data": {
     "stationList": [
