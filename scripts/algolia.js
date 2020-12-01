@@ -2,7 +2,6 @@
 require('dotenv').config()
 const fs = require('fs')
 const { join } = require('path')
-const { toSentenceCase } = require('js-convert-case')
 const algoliasearch = require('algoliasearch')
 const client = algoliasearch(
   process.env.ALGOLIA_APP_ID,
@@ -61,9 +60,7 @@ function getPage({ url, dom, h1 }) {
     .querySelector("meta[name='og:description']")
     ?.getAttribute('content')
 
-  const splitPath = url.split('/')
-
-  const obj = {
+  return {
     title,
     description,
     type: 'page',
@@ -72,12 +69,6 @@ function getPage({ url, dom, h1 }) {
     url,
     objectID: url,
   }
-
-  if (splitPath[splitPath.length - 3]) {
-    obj.parent = toSentenceCase(splitPath[splitPath.length - 3])
-  }
-
-  return obj
 }
 
 async function getIndices(path, ignore = true) {
