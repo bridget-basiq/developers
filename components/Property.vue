@@ -57,7 +57,7 @@
         v-for="(child, i) in children"
         :key="i"
         :last="i === children.length - 1"
-        :section-i-d="normalizedSectionID"
+        :section-id="normalizedSectionID"
         :force-active="true"
         :initial-active="true"
         :depth="depth + 1"

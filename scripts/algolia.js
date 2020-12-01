@@ -11,42 +11,14 @@ const client = algoliasearch(
 const index = client.initIndex('items')
 const distPath = join(process.cwd(), 'dist')
 const { JSDOM } = require('jsdom')
-const propertySections = [
-  'request_parameters',
-  'frequently_used_attributes',
-  'other_attributes',
-]
+const propertySections = ['arguments', 'frequently_used_fields', 'other_fields']
 
 async function getEntries(path) {
   const dom = new JSDOM(await fs.readFileSync(path, 'utf-8'))
   const url = path.replace(distPath, '').replace('/index.html', '')
   const h1 = dom.window.document.body.querySelector('h1')?.textContent
 
-  const entries = await Promise.all([
-    getPage({ url, dom, h1 }),
-    ...getProperties({ url, dom, h1 }),
-  ])
-
-  return await Promise.all(
-    entries.map(async (entry) => {
-      const response = await index
-        .findObject((hit) => hit.url === entry.url, {})
-        .catch(() => {
-          console.log(
-            `ObjectID for ${entry.url} not found. Will create new entry`
-          )
-        })
-
-      if (response?.object?.objectID) {
-        return {
-          ...entry,
-          objectID: response.object.objectID,
-        }
-      }
-
-      return entry
-    })
-  )
+  return [getPage({ url, dom, h1 }), ...getProperties({ url, dom })]
 }
 
 function getProperties({ dom, url }) {
@@ -54,12 +26,14 @@ function getProperties({ dom, url }) {
 
   propertySections.map((section) => {
     const sectionEl = dom.window.document.querySelector(`.${section}`)
-
     if (sectionEl) {
       sectionEl.querySelectorAll('.property').forEach((property) => {
+        const fullUrl = `${url}#${property.getAttribute('id')}`
+
         arr.push({
           type: 'property',
-          url: `${url}#${property.getAttribute('id')}`,
+          objectID: fullUrl,
+          url: fullUrl,
           title: property.querySelector('.title')?.textContent?.trim(),
           description: property
             .querySelector('.description')
@@ -96,6 +70,7 @@ function getPage({ url, dom, h1 }) {
     h1,
     h2: h2.join(', '),
     url,
+    objectID: url,
   }
 
   if (splitPath[splitPath.length - 3]) {
@@ -133,16 +108,14 @@ async function pagesToAlgolia() {
   const pages = (await getIndices(distPath).catch(console.log)) || []
 
   if (pages) {
-    console.log(pages)
-
-    // index
-    //   .saveObjects(pages, {
-    //     autoGenerateObjectIDIfNotExist: true,
-    //   })
-    //   .then(({ objectIDs }) => {
-    //     console.log(objectIDs)
-    //   })
-    //   .catch(console.log)
+    index
+      .saveObjects(pages, {
+        autoGenerateObjectIDIfNotExist: true,
+      })
+      .then(({ objectIDs }) => {
+        console.log(objectIDs)
+      })
+      .catch(console.log)
   }
 }
 
