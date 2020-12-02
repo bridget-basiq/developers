@@ -64,7 +64,7 @@
           </div>
         </div>
       </div>
-      <div class="text-14">
+      <div>
         <slot />
       </div>
     </div>
