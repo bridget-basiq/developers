@@ -1,11 +1,11 @@
 module.exports = {
   apps: [
     {
-      name: 'tracking',
+      name: 'dev-portal',
       env: {
         NODE_ENV: 'production',
       },
-      script: 'npm run dev',
+      script: 'npm install && npm run dev',
     },
   ],
   deploy: {
