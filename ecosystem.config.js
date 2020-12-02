@@ -5,7 +5,7 @@ module.exports = {
       env: {
         NODE_ENV: 'production',
       },
-      script: 'npm run dev -- --hostname 0.0.0.0',
+      script: '',
     },
   ],
   deploy: {
