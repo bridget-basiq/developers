@@ -5,13 +5,16 @@
   "scripts": {
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
-    "start": "nuxt-ts start",
+    "start": "nuxt-ts --hostname 0.0.0.0",
     "pages-to-algolia": "node scripts/algolia.js",
     "generate": "nuxt-ts generate && npm run pages-to-algolia",
     "lint:js": "eslint --ext .js,.vue,.ts --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "lint": "npm run lint:js && npm run lint:style",
     "test": "jest"
+  },
+  "engines": {
+    "node": "12.9.1"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint",
@@ -66,12 +69,14 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-nuxt": "^1.0.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "fibers": "^5.0.0",
     "husky": "^4.3.0",
     "jest": "^26.4.2",
     "lint-staged": "^10.5.2",
-    "node-sass": "^4.14.1",
     "nuxt-property-decorator": "^2.8.8",
+    "pm2": "^4.5.0",
     "prettier": "^2.2.0",
+    "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
     "stylelint": "^13.8.0",
     "stylelint-config-prettier": "^8.0.2",
