@@ -95,7 +95,6 @@ export default class CodeBlock extends Vue {
   }
 
   get current(): any {
-    console.log('got in')
     return this.findRecursive(this.sideNav, this.$route.path) || {}
   }
 
