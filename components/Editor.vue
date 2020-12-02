@@ -132,12 +132,17 @@ export default class Editor extends Mixins(Base) {
     }
   }
 
-  submit() {
+  submit(args) {
     if (!this.contentEl) return
 
     this.showHelper = false
+
     this.$emit('input', this.contentEl.textContent)
-    this.cancel()
+
+    setTimeout(async () => {
+      await this.$axios.post('http://localhost:3001', args)
+      this.cancel()
+    }, 1000)
   }
 
   beforeDestroy() {

@@ -205,13 +205,9 @@ export default class Layout extends Mixins(Base) {
     return this.findFirstChild(arr[0].children)
   }
 
-  onSave() {
+  onSave(args) {
     this.showSaveModal = false
-    this.submit()
-  }
-
-  submit() {
-    this.$root.$emit('submitEditor')
+    this.$root.$emit('submitEditor', args)
   }
 
   cancel() {
@@ -359,7 +355,9 @@ export default class Layout extends Mixins(Base) {
   }
 
   @Watch('$route.path') onRouteChange() {
-    window.fathom?.trackPageview()
+    if (process.env.NODE_ENV === 'production') {
+      window.fathom?.trackPageview()
+    }
 
     if (!this.container) return
 

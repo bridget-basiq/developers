@@ -5,6 +5,10 @@ export default {
     ALGOLIA_APP_ID: process.env.ALGOLIA_APP_ID,
     ALGOLIA_API_PUBLIC_KEY: process.env.ALGOLIA_API_PUBLIC_KEY,
   },
+  server: {
+    port: 3000, // default: 3000
+    host: '0.0.0.0', // default: localhost
+  },
   target: 'static',
   head: {
     title: 'dev-portal',

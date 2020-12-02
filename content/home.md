@@ -24,6 +24,7 @@ row2:
 - Make integrating with our API easier with our typescript types
 - Easily cluster data to improve render speeds
 ---
+
 # Documentation
 
 Get going with the **Chargetrip** API. Clone one of our examples as a boilerplate, build along with our guides or start by browsing through our API reference.

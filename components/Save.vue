@@ -7,13 +7,11 @@
         everyone has a clear overview of what has happened and why changes have
         been applied.
       </p>
-      <Input label="Name" class="mb-2" />
-      <Input label="Description" />
+      <Input v-model="name" label="Name" class="mb-2" />
+      <Input v-model="description" label="Description" />
       <div class="flex justify-between mt-8">
-        <Button size="md" color="base" @click="$emit('cancel')">
-          Cancel
-        </Button>
-        <Button size="md" color="accent" @click="$emit('save')"> Save </Button>
+        <Button size="md" color="alt" @click="$emit('cancel')"> Cancel </Button>
+        <Button size="md" color="accent" @click="save"> Save </Button>
       </div>
     </div>
   </Modal>
@@ -23,5 +21,14 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import { Modal, Input, Button } from '@chargetrip/internal-vue-components'
 
 @Component({ components: { Modal, Input, Button } })
-export default class CImage extends Vue {}
+export default class CImage extends Vue {
+  name = ''
+  description = ''
+
+  save() {
+    if (this.name.length && this.description.length) {
+      this.$emit('save', { name: this.name, description: this.description })
+    }
+  }
+}
 </script>
