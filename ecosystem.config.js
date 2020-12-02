@@ -5,7 +5,7 @@ module.exports = {
       env: {
         NODE_ENV: 'production',
       },
-      script: 'npm install && npm run dev',
+      script: 'npm run dev',
     },
   ],
   deploy: {
@@ -16,7 +16,7 @@ module.exports = {
       ref: 'origin/main',
       repo: 'git@github.com:chargetrip/chargetrip-developers.git',
       path: '/home/ubuntu/dev-portal',
-      'post-deploy': 'pm2 startOrRestart ecosystem.config.js',
+      'post-deploy': 'npm install',
     },
   },
 }
