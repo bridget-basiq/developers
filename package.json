@@ -10,6 +10,7 @@
     "generate": "nuxt-ts generate && npm run pages-to-algolia",
     "lint:js": "eslint --ext .js,.vue,.ts --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
+    "deploy": "pm2 deploy production update",
     "lint": "npm run lint:js && npm run lint:style",
     "test": "jest"
   },
