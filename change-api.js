@@ -8,7 +8,7 @@ app.use(express.json()) // to support JSON-encoded bodies
 app.use(cors())
 app.post('/', (req, res) => {
   exec(
-    `git add . && git commit -m "fix(dev-portal): ${req.body.name} edits: ${req.body.description}"`.toLowerCase(),
+    `git add . && git commit -m "fix(dev-portal): changes made by: ${req.body.name}\ndescription: ${req.body.description}"`.toLowerCase(),
     (error, stdout, stderr) => {
       if (error) {
         console.log(error)
