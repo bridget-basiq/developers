@@ -38,7 +38,9 @@ export default {
   router: {
     scrollBehavior: () => null,
     base:
-      process.env.NODE_ENV === 'production' ? '/chargetrip-developers/' : '/',
+      process.env.NODE_ENV === 'production'
+        ? '/chargetrip-developers/'
+        : '/chargetrip-developers/',
     extendRoutes(routes) {
       routes.unshift({
         path: '/',

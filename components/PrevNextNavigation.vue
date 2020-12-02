@@ -47,6 +47,8 @@ export default class CodeBlock extends Vue {
   }
 
   get grandParent(): any {
+    if (!this.current?.to) return null
+
     return this.findParent(
       this.sideNav,
       this.current.to.split('/').slice(0, -1).join('/')
@@ -93,6 +95,7 @@ export default class CodeBlock extends Vue {
   }
 
   get current(): any {
+    console.log('got in')
     return this.findRecursive(this.sideNav, this.$route.path) || {}
   }
 
