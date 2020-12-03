@@ -15,6 +15,8 @@ export default class Slug extends Vue {
   @Mutation setIsEditing
 
   head() {
+    if (!this.page) return
+
     return {
       title: this.page.title,
       meta: [

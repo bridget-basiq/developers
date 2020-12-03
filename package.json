@@ -10,6 +10,7 @@
     "generate": "nuxt-ts generate && npm run pages-to-algolia",
     "lint:js": "eslint --ext .js,.vue,.ts --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
+    "deploy": "pm2 deploy production update",
     "lint": "npm run lint:js && npm run lint:style",
     "test": "jest"
   },
@@ -28,13 +29,14 @@
   },
   "dependencies": {
     "@chargetrip/internal-vue-components": "0.0.116",
-    "@nuxt/content": "^1.11.0",
+    "@nuxt/content": "^1.11.1",
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/pwa": "^3.0.2",
     "algoliasearch": "^4.8.1",
     "cookie": "^0.4.1",
     "core-js": "^3.7.0",
+    "cors": "^2.8.5",
     "cross-fetch": "^3.0.6",
     "date-fns": "^2.16.1",
     "express": "^4.17.1",

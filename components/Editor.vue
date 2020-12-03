@@ -136,8 +136,10 @@ export default class Editor extends Mixins(Base) {
     if (!this.contentEl) return
 
     this.showHelper = false
+
     this.$emit('input', this.contentEl.textContent)
-    this.cancel()
+    this.$emit('endEdit')
+    this.setIsEditing(false)
   }
 
   beforeDestroy() {

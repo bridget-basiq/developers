@@ -16,7 +16,8 @@ module.exports = {
       ref: 'origin/main',
       repo: 'git@github.com:chargetrip/chargetrip-developers.git',
       path: '/home/ubuntu/dev-portal',
-      'post-deploy': 'npm install',
+      'post-deploy':
+        'git checkout -b fix/dev-portal/content-edit && npm install && pm2 restart all',
     },
   },
 }
