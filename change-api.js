@@ -9,7 +9,7 @@ app.use(express.json()) // to support JSON-encoded bodies
 app.use(cors())
 app.post('/api', (req, res) => {
   exec(
-    `git add . && git commit -m "fix(dev-portal): changes made by: ${req.body.name}\ndescription: ${req.body.description}" && git push origin fix/dev-portal/content-edit`.toLowerCase(),
+    `git add . && git commit -m "fix(dev-portal): changes made by: ${req.body.name}, description: ${req.body.description}" && git push origin fix/dev-portal/content-edit`.toLowerCase(),
     (error, stdout, stderr) => {
       if (error) {
         res.status(406).send(error)

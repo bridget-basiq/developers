@@ -37,10 +37,14 @@ export default class Save extends Vue {
             description: this.description,
           }
         )
-        .catch(console.log)
+        .catch((error) =>
+          alert(error?.response?.data?.message || 'Unknown error.')
+        )
 
       this.$emit('cancel')
-      console.log(response)
+      if (response) {
+        alert(`Commit(s) pushed to branch fix/dev-portal/content-edit`)
+      }
     }
   }
 }
