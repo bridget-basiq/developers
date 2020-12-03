@@ -27,7 +27,16 @@ export default class CImage extends Vue {
 
   save() {
     if (this.name.length && this.description.length) {
-      this.$emit('save', { name: this.name, description: this.description })
+      setTimeout(async () => {
+        const response = await this.$axios
+          .post(location.origin.replace(location.port, '3001'), {
+            name: this.name,
+            description: this.description,
+          })
+          .catch(console.log)
+
+        console.log(response)
+      }, 1000)
     }
   }
 }

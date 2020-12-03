@@ -131,7 +131,9 @@ export default () =>
 
         const pages = await $content('', { deep: true }).fetch()
 
-        commit('setDirs', $content.database.dirs)
+        if (process.server) {
+          commit('setDirs', $content.database.dirs)
+        }
 
         if (pages) {
           const sideNav = await getSideNav(pages)

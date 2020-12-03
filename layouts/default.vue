@@ -69,22 +69,27 @@
               />
               <Button
                 v-if="isDev"
-                class="ml-auto lg-max:hidden"
+                class="ml-auto mr-2 lg-max:hidden"
                 size="sm"
                 color="accent"
                 @click="triggerEdit"
                 >Edit page
               </Button>
+              <Button size="sm" color="note" @click="showSaveModal = true"
+                >Publish
+              </Button>
             </template>
             <template v-else>
               <h2>Edit {{ content.title }}</h2>
               <div class="ml-auto flex">
-                <Button size="sm" class="mr-2" color="alt" @click="cancel"
-                  >Cancel
-                </Button>
-                <Button size="sm" color="accent" @click="showSaveModal = true"
-                  >Save edits
-                </Button>
+                <Button size="sm" color="alt" @click="cancel">Cancel </Button>
+                <Button
+                  size="sm"
+                  class="ml-2"
+                  color="accent"
+                  @click="$root.$emit('submitEditor')"
+                  >Save edits</Button
+                >
               </div>
             </template>
           </div>
@@ -111,7 +116,7 @@
         <RelatedActions v-else />
       </aside>
     </div>
-    <Save v-if="showSaveModal" @save="onSave" @cancel="showSaveModal = false" />
+    <Save v-if="showSaveModal" @cancel="showSaveModal = false" />
     <img
       v-if="showKhaled"
       class="absolute max-w-screen-sm z-50 rounded shadow-down-xl transform -translate-x-1/2 -translate-y-full bottom-0 -mt-6"
@@ -203,11 +208,6 @@ export default class Layout extends Mixins(Base) {
     }
 
     return this.findFirstChild(arr[0].children)
-  }
-
-  onSave(args) {
-    this.showSaveModal = false
-    this.$root.$emit('submitEditor', args)
   }
 
   cancel() {
