@@ -21,22 +21,20 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import { Modal, Input, Button } from '@chargetrip/internal-vue-components'
 
 @Component({ components: { Modal, Input, Button } })
-export default class CImage extends Vue {
+export default class Save extends Vue {
   name = ''
   description = ''
 
   save() {
     if (this.name.length && this.description.length) {
-      setTimeout(async () => {
-        const response = await this.$axios
-          .post(location.origin.replace(location.port, '3001'), {
-            name: this.name,
-            description: this.description,
-          })
-          .catch(console.log)
+      const response = await this.$axios
+        .post(location.origin.replace(location.port, '3001'), {
+          name: this.name,
+          description: this.description,
+        })
+        .catch(console.log)
 
-        console.log(response)
-      }, 1000)
+      console.log(response)
     }
   }
 }

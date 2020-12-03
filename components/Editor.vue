@@ -135,7 +135,6 @@ export default class Editor extends Mixins(Base) {
   submit() {
     if (!this.contentEl) return
 
-    console.log('Submit content')
     this.showHelper = false
 
     this.$emit('input', this.contentEl.textContent)
