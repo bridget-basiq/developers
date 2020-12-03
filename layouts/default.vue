@@ -67,17 +67,18 @@
                   fn: (input) => input.focus(),
                 }"
               />
-              <Button
-                v-if="isDev"
-                class="ml-auto mr-2 lg-max:hidden"
-                size="sm"
-                color="accent"
-                @click="triggerEdit"
-                >Edit page
-              </Button>
-              <Button size="sm" color="note" @click="showSaveModal = true"
-                >Publish
-              </Button>
+              <template v-if="isDev">
+                <Button
+                  class="ml-auto mr-2 lg-max:hidden"
+                  size="sm"
+                  color="accent"
+                  @click="triggerEdit"
+                  >Edit page
+                </Button>
+                <Button size="sm" color="note" @click="showSaveModal = true"
+                  >Publish
+                </Button>
+              </template>
             </template>
             <template v-else>
               <h2>Edit {{ content.title }}</h2>

@@ -24,6 +24,10 @@ app.post('/', (req, res) => {
   )
 })
 
+app.get('/', (_, res) => {
+  res.send('API Functional')
+})
+
 app.listen(port, host, () => {
   console.log(`Change API listening at http://${host}:${port}`)
 })
