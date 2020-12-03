@@ -25,7 +25,7 @@ export default class Save extends Vue {
   name = ''
   description = ''
 
-  save() {
+  async save() {
     if (this.name.length && this.description.length) {
       const response = await this.$axios
         .post(location.origin.replace(location.port, '3001'), {
