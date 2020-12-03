@@ -27,7 +27,7 @@ jobs:
           BRANCH: gh-pages
           FOLDER: dist
       - name: executing remote ssh commands using password
-          uses: appleboy/ssh-action@master
+          uses: Laurensvdmaas/ssh-action@master
           with:
             host: ${{ secrets.HOST }}
             username: ${{ secrets.USERNAME }}
