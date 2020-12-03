@@ -7,7 +7,7 @@ const host = '0.0.0.0'
 
 app.use(express.json()) // to support JSON-encoded bodies
 app.use(cors())
-app.post('/', (req, res) => {
+app.post('/api', (req, res) => {
   exec(
     `git add . && git commit -m "fix(dev-portal): changes made by: ${req.body.name}\ndescription: ${req.body.description}" && git push origin fix/dev-portal/content-edit`.toLowerCase(),
     (error, stdout, stderr) => {
@@ -24,7 +24,7 @@ app.post('/', (req, res) => {
   )
 })
 
-app.get('/', (_, res) => {
+app.get('/api', (_, res) => {
   res.send('API Functional')
 })
 

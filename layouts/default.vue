@@ -67,7 +67,7 @@
                   fn: (input) => input.focus(),
                 }"
               />
-              <template v-if="isDev">
+              <template v-if="canEdit">
                 <Button
                   class="ml-auto mr-2 lg-max:hidden"
                   size="sm"
@@ -83,7 +83,7 @@
             <template v-else>
               <h2>Edit {{ content.title }}</h2>
               <div class="ml-auto flex">
-                <Button size="sm" color="alt" @click="cancel">Cancel </Button>
+                <Button size="sm" color="alt" @click="cancel">Cancel</Button>
                 <Button
                   size="sm"
                   class="ml-2"
@@ -164,7 +164,7 @@ export default class Layout extends Mixins(Base) {
   showKhaled = false
   khaledPosition = { x: 0, y: 0 }
   @Ref('container') container
-  isDev = process.env.NODE_ENV === 'development'
+  canEdit = process.env.NODE_ENV !== 'production'
   @Mutation setDarkMode
   @Mutation setIsEditing
   noTransition = false
