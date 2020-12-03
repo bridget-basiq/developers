@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
-    "start": "nuxt-ts --hostname 0.0.0.0",
+    "build:staging": "nuxt-ts build",
+    "start": "NODE_ENV=staging nuxt-ts --hostname 0.0.0.0",
     "pages-to-algolia": "node scripts/algolia.js",
     "generate": "nuxt-ts generate && npm run pages-to-algolia",
     "lint:js": "eslint --ext .js,.vue,.ts --ignore-path .gitignore .",

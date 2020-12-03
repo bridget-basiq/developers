@@ -29,9 +29,9 @@ export default class Save extends Vue {
     if (this.name.length && this.description.length) {
       const response = await this.$axios
         .post(
-          location.port.length
-            ? location.origin.replace(location.port, '3001')
-            : `${location.origin}:3001`,
+          process.env.NODE_ENV === 'staging'
+            ? '/api'
+            : 'http://localhost:3001/api',
           {
             name: this.name,
             description: this.description,
