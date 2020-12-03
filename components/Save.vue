@@ -28,12 +28,18 @@ export default class Save extends Vue {
   async save() {
     if (this.name.length && this.description.length) {
       const response = await this.$axios
-        .post(location.origin.replace(location.port, '3001'), {
-          name: this.name,
-          description: this.description,
-        })
+        .post(
+          location.port.length
+            ? location.origin.replace(location.port, '3001')
+            : `${location.origin}:3001`,
+          {
+            name: this.name,
+            description: this.description,
+          }
+        )
         .catch(console.log)
 
+      this.$emit('cancel')
       console.log(response)
     }
   }
