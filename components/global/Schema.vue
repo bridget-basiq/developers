@@ -33,6 +33,7 @@ export default class Schema extends Vue {
   @Prop() name
   schema: any = null
   @Prop({ default: () => [] }) frequent!: string[]
+  @Prop({ default: () => [] }) hidden!: number[]
   requestParameters: any[] = []
   returnFields: any = []
 

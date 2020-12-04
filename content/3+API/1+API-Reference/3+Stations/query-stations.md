@@ -10,6 +10,9 @@ frequently:
 - evses
 - operator
 - amenities
+
+hidden:
+- 1
 ---
 
 # Query stations
@@ -21,7 +24,7 @@ To query your stations you only need to call the `stationList` alongside some at
 ### Filters
 To filter your station list you can use the `query` argument. You can then use `name`, `id` or `external_id` to specify how you want to filter the list.
 
-<schema name="stationList" :frequent="frequently"></schema>
+<schema name="stationList" :frequent="frequently" :hidden="hidden"></schema>
 
 ## Response
 On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
