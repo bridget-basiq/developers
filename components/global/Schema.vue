@@ -18,7 +18,6 @@
           v-for="(item, c) in section.items"
           :key="`${i}-${c}`"
           :show-required="!i"
-          :initial-active="i < 2"
           v-bind="item"
         />
       </div>

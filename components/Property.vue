@@ -16,20 +16,13 @@
         class="line-v w-px h-full absolute transform left-1/2 -translate-x-1/2 bg-alt2"
       />
     </div>
-    <div
-      class="content pl-6 lg:pl-10 -ml-5 lg:-ml-10 py-4 relative"
-      :class="{
-        'cursor-pointer': !forceActive,
-      }"
-      @click="active = !active || forceActive"
-    >
+    <div class="content pl-6 lg:pl-10 -ml-5 lg:-ml-10 py-4 relative">
       <div class="bg absolute inset-0" />
       <PropertyToggleChildren v-model="showChildren" v-bind="$props" />
-      <PropertyTitle v-bind="$props" :active="active" />
+      <PropertyTitle v-bind="$props" />
       <div
         v-if="description"
-        v-show="active"
-        class="description text-font-alt3"
+        class="description text-font-alt3 lg:pr-6"
         v-html="$options.filters.markdown(description)"
       />
     </div>
@@ -54,8 +47,6 @@
         v-for="(child, i) in children"
         :key="i"
         :last="i === children.length - 1"
-        :force-active="true"
-        :initial-active="true"
         :depth="depth + 1"
         v-bind="child"
       />
@@ -63,7 +54,7 @@
   </li>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
+import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import { Tag } from '@chargetrip/internal-vue-components'
 import { OfTypeKind } from '~/utilities/constants'
 import PropertyTitle from '~/components/PropertyTitle.vue'
@@ -88,18 +79,11 @@ export default class Property extends Vue {
   @Prop() typeName
   @Prop() showOfTypeKind
   @Prop({ default: () => [] }) children
-  @Prop() initialActive
-  @Prop() forceActive
   showChildren = false
-  active = false
   ofTypeKind = OfTypeKind
 
   created() {
     this.showChildren = this.getShowChildren()
-  }
-
-  @Watch('initialActive', { immediate: true }) onActiveChange() {
-    this.active = this.initialActive || this.forceActive
   }
 
   getShowChildren() {
