@@ -1,6 +1,6 @@
 <template>
   <li
-    :id="normalizedSectionID"
+    :id="propertyId"
     class="property list-none text-14 relative"
     :class="{
       'is-child': depth,
@@ -54,7 +54,6 @@
         v-for="(child, i) in children"
         :key="i"
         :last="i === children.length - 1"
-        :section-id="normalizedSectionID"
         :force-active="true"
         :initial-active="true"
         :depth="depth + 1"
@@ -75,7 +74,7 @@ import PropertyToggleChildren from '~/components/PropertyToggleChildren.vue'
   components: { PropertyToggleChildren, PropertyTitle, Tag },
 })
 export default class Property extends Vue {
-  @Prop() sectionId
+  @Prop() propertyId
   @Prop() isDeprecated
   @Prop() name
   @Prop() last
@@ -103,10 +102,6 @@ export default class Property extends Vue {
     this.active = this.initialActive || this.forceActive
   }
 
-  get normalizedSectionID() {
-    return `${this.sectionId}-${this.name}`
-  }
-
   getShowChildren() {
     let currentHash = ''
     let showChildren = false
@@ -117,7 +112,7 @@ export default class Property extends Vue {
       .forEach((part) => {
         currentHash += part
 
-        if (currentHash === this.normalizedSectionID) {
+        if (currentHash === this.propertyId) {
           showChildren = true
         }
 

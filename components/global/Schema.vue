@@ -1,5 +1,11 @@
 <template>
-  <div class="schema my-12 lg:pl-10">
+  <div
+    class="schema my-12 lg:pl-10"
+    :data-type="type"
+    :data-name="name"
+    :data-hidden="hidden"
+    :data-frequent="frequent"
+  >
     <section
       v-for="(section, i) in sections"
       :key="i"
@@ -11,7 +17,6 @@
         <Property
           v-for="(item, c) in section.items"
           :key="`${i}-${c}`"
-          :section-id="section.id"
           :show-required="!i"
           :initial-active="i < 2"
           v-bind="item"
@@ -22,8 +27,12 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { toSnakeCase } from 'js-convert-case/lib'
 import Property from '~/components/Property.vue'
+import {
+  getAttributes,
+  getFrequentlyUsedAttributes,
+  getSections,
+} from '~/utilities/schema-utils'
 
 @Component({
   components: { Property },
@@ -38,34 +47,14 @@ export default class Schema extends Vue {
   returnFields: any = []
 
   get sections() {
-    return [
-      {
-        title: 'Arguments',
-        items: this.requestParameters,
-      },
-      {
-        title: 'Frequently used fields',
-        items: this.frequentlyUsedAttributes,
-      },
-      {
-        title: 'Other fields',
-        items: this.attributes,
-      },
-    ]
-      .filter((section) => section?.items?.length)
-      .map((section) => ({ ...section, id: toSnakeCase(section.title) }))
-  }
-
-  get frequentlyUsedAttributes() {
-    return this.returnFields?.filter((field) =>
-      this.frequent.includes(field.name)
-    )
-  }
-
-  get attributes() {
-    return this.returnFields?.filter(
-      (field) => !this.frequent.includes(field.name)
-    )
+    return getSections({
+      requestParameters: this.requestParameters,
+      frequentlyUsedAttributes: getFrequentlyUsedAttributes(
+        this.returnFields,
+        this.frequent
+      ),
+      attributes: getAttributes(this.returnFields, this.frequent),
+    })
   }
 
   async getJson() {

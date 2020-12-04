@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+
 require('dotenv').config()
 const fs = require('fs')
 const { join } = require('path')
@@ -10,36 +11,80 @@ const client = algoliasearch(
 const index = client.initIndex('items')
 const distPath = join(process.cwd(), 'dist')
 const { JSDOM } = require('jsdom')
-const propertySections = ['arguments', 'frequently_used_fields', 'other_fields']
+const {
+  getAttributes,
+  getFrequentlyUsedAttributes,
+  getSections,
+} = require('../utilities/schema-utils')
 
 async function getEntries(path) {
   const dom = new JSDOM(await fs.readFileSync(path, 'utf-8'))
   const url = path.replace(distPath, '').replace('/index.html', '')
   const h1 = dom.window.document.body.querySelector('h1')?.textContent
 
-  return [getPage({ url, dom, h1 }), ...getProperties({ url, dom })]
+  return [getPage({ url, dom, h1 }), ...(await getProperties({ url, dom }))]
 }
 
-function getProperties({ dom, url }) {
+async function getProperties({ dom, url }) {
   const arr = []
 
-  propertySections.map((section) => {
-    const sectionEl = dom.window.document.querySelector(`.${section}`)
-    if (sectionEl) {
-      sectionEl.querySelectorAll('.property').forEach((property) => {
-        const fullUrl = `${url}#${property.getAttribute('id')}`
+  const schemaEl = dom.window.document.querySelector('.schema')
 
-        arr.push({
+  if (!schemaEl) return arr
+
+  const schemaName = schemaEl.getAttribute('data-name')
+  const schemaType = schemaEl.getAttribute('data-type')
+  const frequent = schemaEl.getAttribute('data-frequent').split(',')
+
+  const schema = JSON.parse(
+    await fs.readFileSync(
+      join(
+        process.cwd(),
+        'static',
+        'schema',
+        `${schemaType}-${schemaName}.json`
+      ),
+      'utf8'
+    )
+  )
+
+  const requestParameters = schema.args
+  const returnFields = schema?.fields || []
+
+  const sections = getSections({
+    requestParameters,
+    frequentlyUsedAttributes: getFrequentlyUsedAttributes(
+      returnFields,
+      frequent
+    ),
+    attributes: getAttributes(returnFields, frequent),
+  })
+
+  const properties = sections
+    .map((section) =>
+      flatProperties(section.items).map((property) => {
+        const fullUrl = `${url}#${property.propertyId}`
+        return {
           type: 'property',
+          title: property.name,
           objectID: fullUrl,
+          description: property.description,
           url: fullUrl,
-          title: property.querySelector('.title')?.textContent?.trim(),
-          description: property
-            .querySelector('.description')
-            ?.textContent?.trim(),
-        })
+        }
       })
-    }
+    )
+    .flat()
+
+  return properties
+}
+
+const flatProperties = (items) => {
+  const arr = []
+
+  items.forEach((item) => {
+    arr.push(item)
+
+    arr.push(...flatProperties(item.children))
   })
 
   return arr

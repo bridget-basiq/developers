@@ -13,6 +13,7 @@ frequently:
 
 hidden:
 - 1
+- 2
 ---
 
 # Query stations
