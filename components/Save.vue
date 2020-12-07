@@ -27,16 +27,12 @@ export default class Save extends Vue {
 
   async save() {
     if (this.name.length && this.description.length) {
+      console.log(process.env.NODE_ENV)
       const response = await this.$axios
-        .post(
-          process.env.NODE_ENV === 'staging'
-            ? '/api'
-            : 'http://localhost:3001/api',
-          {
-            name: this.name,
-            description: this.description,
-          }
-        )
+        .post('/api', {
+          name: this.name,
+          description: this.description,
+        })
         .catch((error) =>
           alert(error?.response?.data?.message || 'Unknown error.')
         )
