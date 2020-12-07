@@ -360,10 +360,6 @@ export default class Layout extends Mixins(Base) {
   }
 
   @Watch('$route.path') onRouteChange() {
-    if (process.env.NODE_ENV === 'production') {
-      window.fathom?.trackPageview()
-    }
-
     if (!this.container) return
 
     if (!this.$route.hash?.length) {

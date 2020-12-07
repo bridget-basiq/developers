@@ -27,13 +27,6 @@ export default {
     ],
     script: [
       {
-        src: 'https://cdn.usefathom.com/script.js',
-        'data-site': process.env.FATHOM_ID,
-        spa: 'auto',
-        defer: true,
-        'data-spa': 'auto',
-      },
-      {
         src: 'https://embed.small.chat/T33286SKGGSBRX0P8T.js',
         defer: true,
       },
