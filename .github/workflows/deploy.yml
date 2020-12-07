@@ -25,7 +25,7 @@ jobs:
           HOST: ${{ secrets.HOST }}
           USERNAME: ${{ secrets.USERNAME }}
           PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
-          COMMAND: ls
+          COMMAND: cd /home/ubuntu/dev-portal/current && git checkout main && git pull origin main && git branch -D fix/dev-portal/content-edit && git checkout -b fix/dev-portal/content-edit && npm install && pm2 restart all
       - run: npm install
       - run: npm run generate
         env:
