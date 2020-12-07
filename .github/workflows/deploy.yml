@@ -33,7 +33,7 @@ jobs:
          ALGOLIA_API_SECRET_KEY: ${{ secrets.ALGOLIA_API_SECRET_KEY }}
          ALGOLIA_API_PUBLIC_KEY: ${{ secrets.ALGOLIA_API_PUBLIC_KEY }}
          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-         FATHOM_ID: ${{ secrets.FATHOM_ID }}
+         EDIT_API_URL: ${{ secrets.EDIT_API_URL }}
          EDIT_GITHUB_URL: ${{ secrets.EDIT_GITHUB_URL }}
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3

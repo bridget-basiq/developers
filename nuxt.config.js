@@ -1,8 +1,7 @@
-console.log('NODE ENV', process.env.NODE_ENV)
-
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   publicRuntimeConfig: {
+    EDIT_API_URL: process.env.EDIT_API_URL,
     EDIT_GITHUB_URL: process.env.EDIT_GITHUB_URL,
     ALGOLIA_APP_ID: process.env.ALGOLIA_APP_ID,
     ALGOLIA_API_PUBLIC_KEY: process.env.ALGOLIA_API_PUBLIC_KEY,

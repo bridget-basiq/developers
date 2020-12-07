@@ -28,7 +28,7 @@ export default class Save extends Vue {
   async save() {
     if (this.name.length && this.description.length) {
       const response = await this.$axios
-        .post('/api', {
+        .post(this.$config.EDIT_API_URL, {
           name: this.name,
           description: this.description,
         })
