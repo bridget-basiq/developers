@@ -4,6 +4,7 @@ import cookie from 'cookie'
 import Main from './modules/root'
 import { slugify } from '~/utilities/project.functions'
 
+const map = ['arguments', 'frequently', 'other']
 const getH2Children = (children, page) => {
   const arr: any = []
 
@@ -13,7 +14,11 @@ const getH2Children = (children, page) => {
     } else if (child.tag === 'schema') {
       arr.push(
         ...['Arguments', 'Frequently used fields', 'Other fields']
-          .filter((_, i) => !page[child.props[':hidden']]?.includes(i))
+          .filter(
+            (_, i) =>
+              page[child.props[':hidden']][i].toLowerCase() ===
+              map[i].toLowerCase()
+          )
           .map((title) => ({ title, props: { id: toSnakeCase(title) } }))
       )
     } else if (
