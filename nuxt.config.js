@@ -1,3 +1,5 @@
+console.log('NODE ENV', process.env.NODE_ENV)
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   publicRuntimeConfig: {
