@@ -3,7 +3,7 @@ module.exports = {
     {
       name: 'dev-portal',
       env: {
-        NODE_ENV: 'production',
+        NODE_ENV: 'staging',
       },
       script: '',
     },
