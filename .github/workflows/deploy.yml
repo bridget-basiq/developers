@@ -11,6 +11,19 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14.13.0
+      - name: Checkout GitHub Action Repo
+      uses: actions/checkout@v2
+      with:
+        repository: chargetrip/ssh-action
+        token: ${{ secrets.GITHUB_TOKEN }} # stored in GitHub secrets
+        path: .github/actions/ssh-action
+        - name: Run ssh-action
+          uses: ./.github/actions/ssh-action
+          with:
+            HOST: ${{ secrets.HOST }}
+            USERNAME: ${{ secrets.USERNAME }}
+            KEY: ${{ secrets.KEY }}
+            COMMAND: whoami
       - run: npm install
       - run: npm run generate
         env:
@@ -26,16 +39,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: dist
-      - name: Checkout GitHub Action Repo
-        uses: actions/checkout@v2
-        with:
-          repository: chargetrip/ssh-action
-          token: ${{ secrets.GIT_HUB_TOKEN }} # stored in GitHub secrets
-          path: .github/actions/ssh-action
-      - name: Run My Action
-        uses: ./.github/actions/ssh-action
-        with:
-          HOST: ${{ secrets.HOST }}
-          USERNAME: ${{ secrets.USERNAME }}
-          KEY: ${{ secrets.KEY }}
-          COMMAND: whoami
