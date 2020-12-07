@@ -17,13 +17,13 @@ jobs:
           repository: chargetrip/ssh-action
           token: ${{ secrets.GITHUB_TOKEN }} # stored in GitHub secrets
           path: .github/actions/ssh-action
-          - name: Run ssh-action
-            uses: ./.github/actions/ssh-action
-            with:
-              HOST: ${{ secrets.HOST }}
-              USERNAME: ${{ secrets.USERNAME }}
-              KEY: ${{ secrets.KEY }}
-              COMMAND: whoami
+      - name: Run ssh-action
+        uses: ./.github/actions/ssh-action
+        with:
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          KEY: ${{ secrets.KEY }}
+          COMMAND: whoami
       - run: npm install
       - run: npm run generate
         env:
