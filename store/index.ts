@@ -4,19 +4,22 @@ import cookie from 'cookie'
 import Main from './modules/root'
 import { slugify } from '~/utilities/project.functions'
 
-const getH2Children = (page) => {
+const map = ['arguments', 'frequently', 'other']
+const getH2Children = (children, page) => {
   const arr: any = []
 
-  page.children.forEach((child) => {
+  children.forEach((child) => {
     if (child.tag === 'h2') {
       arr.push(child)
     } else if (child.tag === 'schema') {
       arr.push(
-        ...[
-          'Arguments',
-          'Frequently used fields',
-          'Other fields',
-        ].map((title) => ({ title, props: { id: toSnakeCase(title) } }))
+        ...['Arguments', 'Frequently used fields', 'Other fields']
+          .filter(
+            (_, i) =>
+              page[child.props[':hidden']][i].toLowerCase() ===
+              map[i].toLowerCase()
+          )
+          .map((title) => ({ title, props: { id: toSnakeCase(title) } }))
       )
     } else if (
       child.tag === 'release-note' ||
@@ -36,7 +39,7 @@ const getH2Children = (page) => {
         },
       })
     } else if (child.children) {
-      arr.push(...getH2Children(child))
+      arr.push(...getH2Children(child.children, page))
     }
   })
   return arr
@@ -90,7 +93,7 @@ const getSideNav = (pages) => {
             icon: page.icon,
             title: page.title,
             ...(page.slug === 'home' && { hideChildren: true }),
-            children: getH2Children(page.body).map((child) => ({
+            children: getH2Children(page.body.children, page).map((child) => ({
               to,
               hash: child.props.id,
               inset: child.inset,

@@ -55,58 +55,62 @@
         ref="container"
         class="content flex-1 flex flex-col relative overflow-y-scroll mt-8 lg:mt-0"
       >
-        <div class="sticky-header lg:px-8 px-6 hidden lg:block">
-          <div class="flex items-center">
-            <template v-if="!isEditing">
-              <Search
-                :click-handler="onMenuItemClick"
-                icon="search"
-                :hotkey="{
-                  icon: 'slash',
-                  key: '/',
-                  fn: (input) => input.focus(),
-                }"
-              />
-              <template v-if="canEdit">
-                <Button
-                  class="ml-auto mr-2 lg-max:hidden"
-                  size="sm"
-                  color="accent"
-                  @click="triggerEdit"
-                  >Edit page
-                </Button>
-                <Button size="sm" color="note" @click="showSaveModal = true"
-                  >Publish
-                </Button>
+        <div class="max-w-xl h-full flex flex-col">
+          <div class="sticky-header lg:px-8 px-6 hidden lg:block">
+            <div class="flex items-center">
+              <template v-if="!isEditing">
+                <Search
+                  :click-handler="onMenuItemClick"
+                  icon="search"
+                  :hotkey="{
+                    icon: 'slash',
+                    key: '/',
+                    fn: (input) => input.focus(),
+                  }"
+                />
+                <template v-if="canEdit">
+                  <Button
+                    class="ml-auto mr-2 lg-max:hidden"
+                    size="sm"
+                    color="accent"
+                    @click="triggerEdit"
+                    >Edit page
+                  </Button>
+                  <Button size="sm" color="note" @click="showSaveModal = true"
+                    >Publish
+                  </Button>
+                </template>
               </template>
-            </template>
-            <template v-else>
-              <h2>Edit {{ content.title }}</h2>
-              <div class="ml-auto flex">
-                <Button size="sm" color="alt" @click="cancel">Cancel</Button>
-                <Button
-                  size="sm"
-                  class="ml-2"
-                  color="accent"
-                  @click="$root.$emit('submitEditor')"
-                  >Save edits</Button
-                >
-              </div>
-            </template>
+              <template v-else>
+                <h2>Edit {{ content.title }}</h2>
+                <div class="ml-auto flex">
+                  <Button size="sm" color="alt" @click="cancel">Cancel</Button>
+                  <Button
+                    size="sm"
+                    class="ml-2"
+                    color="accent"
+                    @click="$root.$emit('submitEditor')"
+                    >Save edits</Button
+                  >
+                </div>
+              </template>
+            </div>
           </div>
-        </div>
-        <div class="lg:px-8 px-6 lg-max:overflow-x-hidden">
-          <Nuxt class="page mb-8" />
-        </div>
-        <div class="mt-auto">
-          <PrevNextNavigation v-if="sideNav" />
-          <div class="p-6 lg:p-8 border-t flex items-center border-alt text-14">
-            <span class="icon icon-survey mr-3" />
-            <p>Was this section useful?</p>
-            <nav class="flex h-6 items-center font-semibold ml-auto">
-              <div class="underline">No</div>
-              <div class="underline ml-6 text-accent">Yes</div>
-            </nav>
+          <div class="lg:px-8 px-6 lg-max:overflow-x-hidden">
+            <Nuxt class="page mb-8" />
+          </div>
+          <div class="mt-auto">
+            <PrevNextNavigation v-if="sideNav" />
+            <div
+              class="p-6 lg:p-8 border-t flex items-center border-alt text-14"
+            >
+              <span class="icon icon-survey mr-3" />
+              <p>Was this section useful?</p>
+              <nav class="flex h-6 items-center font-semibold ml-auto">
+                <div class="underline">No</div>
+                <div class="underline ml-6 text-accent">Yes</div>
+              </nav>
+            </div>
           </div>
         </div>
       </div>
@@ -356,10 +360,6 @@ export default class Layout extends Mixins(Base) {
   }
 
   @Watch('$route.path') onRouteChange() {
-    if (process.env.NODE_ENV === 'production') {
-      window.fathom?.trackPageview()
-    }
-
     if (!this.container) return
 
     if (!this.$route.hash?.length) {
@@ -574,12 +574,6 @@ export default class Layout extends Mixins(Base) {
 
     .c-side-nav {
       width: 260px;
-    }
-  }
-
-  @screen xl2 {
-    .c-side-nav {
-      margin-right: 260px;
     }
   }
 

@@ -29,7 +29,7 @@
     }
   },
   "dependencies": {
-    "@chargetrip/internal-vue-components": "0.0.116",
+    "@chargetrip/internal-vue-components": "0.0.117",
     "@nuxt/content": "^1.11.1",
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/axios": "^5.12.2",
@@ -60,6 +60,7 @@
     "@nuxtjs/eslint-config": "^3.1.0",
     "@nuxtjs/eslint-config-typescript": "^3.0.0",
     "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@nuxtjs/tailwindcss": "^3.0.2",
     "@types/js-cookie": "^2.2.6",

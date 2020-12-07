@@ -26,11 +26,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
           FOLDER: dist
-      - name: executing remote ssh commands using password
-          uses: Laurensvdmaas/ssh-action@master
-          with:
-            host: ${{ secrets.HOST }}
-            username: ${{ secrets.USERNAME }}
-            key: ${{ secrets.KEY }}
-            port: ${{ secrets.PORT }}
-            script: whoami
+      - name: Checkout GitHub Action Repo
+        uses: actions/checkout@v2
+        with:
+          repository: chargetrip/ssh-action
+          token: ${{ secrets.GIT_HUB_TOKEN }} # stored in GitHub secrets
+          path: .github/actions/ssh-action
+      - name: Run My Action
+        uses: ./.github/actions/ssh-action
+        with:
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          KEY: ${{ secrets.KEY }}
+          COMMAND: whoami
