@@ -27,7 +27,6 @@ export default class Save extends Vue {
 
   async save() {
     if (this.name.length && this.description.length) {
-      console.log(process.env.NODE_ENV)
       const response = await this.$axios
         .post('/api', {
           name: this.name,
