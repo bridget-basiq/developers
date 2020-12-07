@@ -16,7 +16,7 @@ jobs:
         with:
           repository: chargetrip/ssh-action
           ref: main
-          token: ${{ secrets.GITHUB_TOKEN }} # stored in GitHub secrets
+          token: ${{ secrets.LAURENS_TOKEN }} # stored in GitHub secrets
           path: .github/actions/ssh-action
       - name: Run ssh-action
         uses: ./.github/actions/ssh-action
