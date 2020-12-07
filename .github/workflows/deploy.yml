@@ -18,6 +18,7 @@ jobs:
           ref: main
           token: ${{ secrets.LAURENS_TOKEN }} # stored in GitHub secrets
           path: .github/actions/ssh-action
+      - run: cd ./.github/actions/ssh-action && npm install
       - name: Run ssh-action
         uses: ./.github/actions/ssh-action
         with:
