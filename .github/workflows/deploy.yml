@@ -24,7 +24,7 @@ jobs:
         with:
           HOST: ${{ secrets.HOST }}
           USERNAME: ${{ secrets.USERNAME }}
-          KEY: ${{ secrets.KEY }}
+          PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
           COMMAND: whoami
       - run: npm install
       - run: npm run generate
