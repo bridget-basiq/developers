@@ -55,7 +55,7 @@
         ref="container"
         class="content flex-1 flex flex-col relative overflow-y-scroll mt-8 lg:mt-0"
       >
-        <div class="max-w-xl h-full flex flex-col">
+        <div class="max-w-xl flex flex-col">
           <div class="sticky-header lg:px-8 px-6 hidden lg:block">
             <div class="flex items-center">
               <template v-if="!isEditing">
@@ -76,20 +76,13 @@
                     @click="triggerEdit"
                     >Edit page
                   </Button>
-                  <Button size="sm" color="note" @click="showSaveModal = true"
-                    >Publish
-                  </Button>
                 </template>
               </template>
               <template v-else>
                 <h2>Edit {{ content.title }}</h2>
                 <div class="ml-auto flex">
                   <Button size="sm" color="alt" @click="cancel">Cancel</Button>
-                  <Button
-                    size="sm"
-                    class="ml-2"
-                    color="accent"
-                    @click="$root.$emit('submitEditor')"
+                  <Button size="sm" class="ml-2" color="accent" @click="save"
                     >Save edits</Button
                   >
                 </div>
@@ -99,18 +92,16 @@
           <div class="lg:px-8 px-6 lg-max:overflow-x-hidden">
             <Nuxt class="page mb-8" />
           </div>
-          <div class="mt-auto">
-            <PrevNextNavigation v-if="sideNav" />
-            <div
-              class="p-6 lg:p-8 border-t flex items-center border-alt text-14"
-            >
-              <span class="icon icon-survey mr-3" />
-              <p>Was this section useful?</p>
-              <nav class="flex h-6 items-center font-semibold ml-auto">
-                <div class="underline">No</div>
-                <div class="underline ml-6 text-accent">Yes</div>
-              </nav>
-            </div>
+        </div>
+        <div class="mt-auto">
+          <PrevNextNavigation v-if="sideNav" />
+          <div class="p-6 lg:p-8 border-t flex items-center border-alt text-14">
+            <span class="icon icon-survey mr-3" />
+            <p>Was this section useful?</p>
+            <nav class="flex h-6 items-center font-semibold ml-auto">
+              <div class="underline">No</div>
+              <div class="underline ml-6 text-accent">Yes</div>
+            </nav>
           </div>
         </div>
       </div>
@@ -121,7 +112,6 @@
         <RelatedActions v-else />
       </aside>
     </div>
-    <Save v-if="showSaveModal" @cancel="showSaveModal = false" />
     <img
       v-if="showKhaled"
       class="absolute max-w-screen-sm z-50 rounded shadow-down-xl transform -translate-x-1/2 -translate-y-full bottom-0 -mt-6"
@@ -143,11 +133,9 @@ import Base from '~/mixins/base'
 import MarkdownFormatting from '~/components/MarkdownFormatting.vue'
 import { Listen } from '~/utilities/decorators'
 import Search from '~/components/Search.vue'
-import Save from '~/components/Save.vue'
 
 @Component({
   components: {
-    Save,
     Search,
     MarkdownFormatting,
     PrevNextNavigation,
@@ -163,7 +151,6 @@ export default class Layout extends Mixins(Base) {
   @Getter sideNav
   @Getter content
   @Getter isEditing
-  showSaveModal = false
   menuOpen = false
   showKhaled = false
   khaledPosition = { x: 0, y: 0 }
@@ -270,6 +257,10 @@ export default class Layout extends Mixins(Base) {
     document
       .querySelector('.nuxt-content')
       ?.dispatchEvent(new Event('dblclick'))
+  }
+
+  save() {
+    this.$root.$emit('submitEditor')
   }
 
   scrollTo(args) {

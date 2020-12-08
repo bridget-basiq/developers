@@ -11,6 +11,7 @@ export default class extends VuexModule {
   _sideNav: null | object = null
   _isEditing = false
   _content: null | object = null
+  _user: object = { name: '', description: '' }
 
   @Mutation
   setDarkMode(darkMode: boolean) {
@@ -25,6 +26,11 @@ export default class extends VuexModule {
   @Mutation
   setSideNav(sideNav: object) {
     this._sideNav = sideNav
+  }
+
+  @Mutation
+  setUser(user: object) {
+    this._user = user
   }
 
   @Mutation
@@ -44,6 +50,10 @@ export default class extends VuexModule {
 
   get darkMode() {
     return this._darkMode
+  }
+
+  get user() {
+    return this._user
   }
 
   get querySchema() {

@@ -17,29 +17,33 @@
   </Modal>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import {
+  Component,
+  Getter,
+  Mutation,
+  Vue,
+  Watch,
+} from 'nuxt-property-decorator'
 import { Modal, Input, Button } from '@chargetrip/internal-vue-components'
 
 @Component({ components: { Modal, Input, Button } })
 export default class Save extends Vue {
   name = ''
   description = ''
+  @Getter user
+  @Mutation setUser
 
-  async save() {
+  @Watch('user', { immediate: true }) onUserChange() {
+    this.name = this.user.name
+    this.description = this.user.description
+  }
+
+  save() {
     if (this.name.length && this.description.length) {
-      const response = await this.$axios
-        .post(this.$config.EDIT_API_URL, {
-          name: this.name,
-          description: this.description,
-        })
-        .catch((error) =>
-          alert(error?.response?.data?.message || 'Unknown error.')
-        )
+      const user = { name: this.name, description: this.description }
 
-      this.$emit('cancel')
-      if (response) {
-        alert(`Commit(s) pushed to branch fix/dev-portal/content-edit`)
-      }
+      this.setUser(user)
+      this.$emit('submit', user)
     }
   }
 }

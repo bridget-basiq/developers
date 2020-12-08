@@ -11,21 +11,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14.13.0
-      - name: Checkout GitHub Action Repo
-        uses: actions/checkout@v2
-        with:
-          repository: chargetrip/ssh-action
-          ref: main
-          token: ${{ secrets.LAURENS_TOKEN }} # stored in GitHub secrets
-          path: .github/actions/ssh-action
-      - run: cd ./.github/actions/ssh-action && npm install
-      - name: Run ssh-action
-        uses: ./.github/actions/ssh-action
-        with:
-          HOST: ${{ secrets.HOST }}
-          USERNAME: ${{ secrets.USERNAME }}
-          PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
-          COMMAND: cd /home/ubuntu/dev-portal/current && git checkout main && git pull origin main && git branch -D fix/dev-portal/content-edit && git checkout -b fix/dev-portal/content-edit && npm install && pm2 restart all
       - run: npm install
       - run: npm run generate
         env:

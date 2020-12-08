@@ -1,12 +1,11 @@
 <template>
   <div class="editor relative">
-    <span
+    <textarea
       ref="contentEl"
-      class="whitespace-pre-line block outline-none"
-      contenteditable="true"
+      v-model="file"
+      class="whitespace-pre-line block bg-body font-primary outline-none w-full h-full"
       @mousedown="showHelper = false"
-      >{{ file }}</span
-    >
+    ></textarea>
     <div
       v-if="showHelper"
       class="helper transform -translate-x-1/2 -translate-y-full z-50 absolute bg-black flex shadow-down-m p-1 border border-alt2 rounded-md text-white"
@@ -21,6 +20,11 @@
         @mouseup.stop
       />
     </div>
+    <Save
+      v-if="showSaveModal"
+      @cancel="showSaveModal = false"
+      @submit="submit"
+    />
   </div>
 </template>
 
@@ -35,16 +39,19 @@ import {
 } from 'nuxt-property-decorator'
 import { Mixins } from 'vue-property-decorator'
 import { Getter } from 'vuex-class'
+import Save from '@/components/Save'
 import Base from '~/mixins/base'
 import { Listen } from '~/utilities/decorators'
-
-@Component
+@Component({
+  components: { Save },
+})
 export default class Editor extends Mixins(Base) {
   @Getter content
   @Prop() value
   @Prop() isEditing
   @Ref('contentEl') contentEl
   @Mutation setIsEditing
+  showSaveModal = false
   file = ''
   items = [
     { icon: 'bold', fn: this.makeBold.bind(this) },
@@ -61,7 +68,7 @@ export default class Editor extends Mixins(Base) {
   beforeMount() {
     this.submit = this.submit.bind(this)
     this.cancel = this.cancel.bind(this)
-    this.$root.$on('submitEditor', this.submit)
+    this.$root.$on('submitEditor', this.onSubmit)
     this.$root.$on('cancelEditor', this.cancel)
 
     this.toggleEdit = this.toggleEdit.bind(this)
@@ -132,14 +139,31 @@ export default class Editor extends Mixins(Base) {
     }
   }
 
-  submit() {
-    if (!this.contentEl) return
-
+  onSubmit() {
+    this.showSaveModal = true
     this.showHelper = false
+  }
 
-    this.$emit('input', this.contentEl.textContent)
+  async submit({ name, description }) {
+    this.showSaveModal = false
+    this.$emit('input', this.file)
     this.$emit('endEdit')
     this.setIsEditing(false)
+
+    const response = await this.$axios
+      .post(this.$config.EDIT_API_URL, {
+        name,
+        description,
+      })
+      .catch((error) => {
+        alert(error?.response?.data?.message || error || 'Unknown error.')
+      })
+
+    this.$emit('cancel')
+
+    if (response) {
+      alert(`Commit(s) pushed to branch fix/dev-portal/content-edit`)
+    }
   }
 
   beforeDestroy() {
@@ -152,6 +176,10 @@ export default class Editor extends Mixins(Base) {
 <style lang="scss">
 .editor {
   padding: 0 !important;
+
+  textarea {
+    height: calc(100vh - 260px);
+  }
 
   .helper {
     .divider {
