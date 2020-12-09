@@ -42,7 +42,7 @@ export default class Save extends Vue {
     if (this.name.length && this.description.length) {
       const user = { name: this.name, description: this.description }
 
-      this.setUser(user)
+      this.setUser({ ...user, description: '' })
       this.$emit('submit', user)
     }
   }
