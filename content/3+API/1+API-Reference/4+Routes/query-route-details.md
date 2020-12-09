@@ -13,7 +13,7 @@ After you received your `route ID` through the [route mutation](), you can query
 ## Query
 To query the route details you will need to configure it with the `route ID`. Be sure to include the status in your response and check it. If your route hasn't completed processing yet, then your route details will not be available. To prevent this from happening you can use the [subscription service]().
 
-If you also supported additional route options in the [route mutation]() you will now be able to collect the details with the following setup;
+If you also supported additional route options in the [route mutation]() you will now be able to collect the details. Below you can find instructions on how to do that.
 
 ### Support alternative stations along a route
 If your [route mutation]() included the `stationsAlongRouteRadius` with a valid distance, you can now request the station details in this query. To do so, you will need to add the `stationsAlongRoute` field with it's appropriate children.

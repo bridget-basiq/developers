@@ -21,6 +21,10 @@ You can add a station as a waypoint or as a destination. To do this, add `statio
 ## Response
 On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
 
+On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
+
+<errors name="newRoute"></errors>
+
 <playground url="https://playground.chargetrip.com/?page=newRoute">
 <code-block lang="graphql" query="newRoute">					
 mutation newRoute {

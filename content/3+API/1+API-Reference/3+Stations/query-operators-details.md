@@ -1,28 +1,25 @@
 ---
-title: Query station operators
-description: Query all the operators of your station database
-order: 7
+title: Query station operator details
+description: Query the details of a single station operator
+order: 8
 frequently:
 - id
 ---
 
-# Query station operators
-Charge stations are often exploited by various operators. To get an overview of your operators you can use the `operatorList` query. All operator details are available, but keep it as small as possible to improve performance.
+# Query station operator details
+-
 
 ## Query
-The entire operatorList can be accessed by using the `operatorList` query with the attributes you would like to use. Optionally you can use [pagination]() and `filters` to improve your results.
+-
 
-### Filters
-To filter your operator list you can use the `query` argument. You can then use `name`, `id`, `external_id` or `country` to specify how you want to filter the list.
-
-<schema name="operatorList" :frequent="frequently"></schema>
+<schema name="operator" :frequent="frequently"></schema>
 
 ## Response
 On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
 
 On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
 
-<errors name="operatorList"></errors>
+<errors name="operator"></errors>
 
 <playground>
 <code-block lang="graphql" query="operatorList">					

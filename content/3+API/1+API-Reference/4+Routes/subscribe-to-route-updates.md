@@ -41,7 +41,7 @@ If your [route mutation]() included stations in the `via` parameter, you will re
 <schema type="Subscription" name="routeUpdatedById" :frequent="frequently"></schema>
 
 ## Response
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested. The most important value here is the status field. This one will tell you what data is available. It can have any of the following states;
+On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested. The most important value here is the status field. This one will tell you what data is available. It can contain any of the following statuses;
 
 <status-table :statuses="statuses" :descriptions="statusDescriptions"></status-table>
 
