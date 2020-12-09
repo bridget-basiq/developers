@@ -427,11 +427,12 @@ export default class Layout extends Mixins(Base) {
   }
 
   > h2 {
-    @apply mt-14 mb-2;
+    width: calc(100% + 64px);
+    @apply pt-8 mt-8 border-t border-alt mb-2 -ml-8 px-8;
   }
 
   > h3 {
-    @apply mt-8 mb-1;
+    @apply mt-8 mb-3;
   }
 
   > ul:not(.errors),
@@ -478,15 +479,6 @@ export default class Layout extends Mixins(Base) {
     + p,
     + p + p {
       @apply text-18 text-font-alt3;
-
-      @screen md {
-        @apply pr-24;
-      }
-
-      img {
-        width: calc(100% + 96px);
-        max-width: unset;
-      }
     }
   }
 }
