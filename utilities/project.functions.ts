@@ -1,3 +1,48 @@
+import { toSnakeCase } from 'js-convert-case/lib'
+
+export const getHeadings = (children, page) => {
+  const arr: any = []
+
+  children.forEach((child) => {
+    if (child.tag === 'h2') {
+      arr.push(child)
+    } else if (child.tag === 'schema') {
+      arr.push(
+        ...[
+          { title: 'Arguments', id: 'arguments' },
+          { title: 'Frequently used fields', id: 'frequent' },
+          { title: 'Other fields', id: 'other' },
+        ]
+          .filter((item) => !page[child.props[':hidden']]?.includes(item.id))
+          .map(({ title }) => ({
+            title,
+            props: { id: toSnakeCase(title) },
+          }))
+      )
+    } else if (
+      child.tag === 'release-note' ||
+      child.tag === 'guides' ||
+      child.tag === 'examples' ||
+      child.tag === 'accordion'
+    ) {
+      arr.push({
+        ...(child.tag === 'release-note' && { inset: false }),
+        title: child.props.title,
+        props: {
+          id: slugify(
+            child.tag === 'release-note'
+              ? `release.${child.props.title}`
+              : child.props.title
+          ),
+        },
+      })
+    } else if (child.children) {
+      arr.push(...getHeadings(child.children, page))
+    }
+  })
+  return arr
+}
+
 export const slugify = (str) =>
   str
     .trim()

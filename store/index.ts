@@ -3,49 +3,8 @@ import { toSnakeCase } from 'js-convert-case/lib'
 import cookie from 'cookie'
 import Main from './modules/root'
 import { slugify } from '~/utilities/project.functions'
+import menuConfig from '~/utilities/menu-config'
 
-const getH2Children = (children, page) => {
-  const arr: any = []
-
-  children.forEach((child) => {
-    if (child.tag === 'h2') {
-      arr.push(child)
-    } else if (child.tag === 'schema') {
-      arr.push(
-        ...[
-          { title: 'Arguments', id: 'arguments' },
-          { title: 'Frequently used fields', id: 'frequent' },
-          { title: 'Other fields', id: 'other' },
-        ]
-          .filter((item) => !page[child.props[':hidden']]?.includes(item.id))
-          .map(({ title }) => ({
-            title,
-            props: { id: toSnakeCase(title) },
-          }))
-      )
-    } else if (
-      child.tag === 'release-note' ||
-      child.tag === 'guides' ||
-      child.tag === 'examples' ||
-      child.tag === 'accordion'
-    ) {
-      arr.push({
-        ...(child.tag === 'release-note' && { inset: false }),
-        title: child.props.title,
-        props: {
-          id: slugify(
-            child.tag === 'release-note'
-              ? `release.${child.props.title}`
-              : child.props.title
-          ),
-        },
-      })
-    } else if (child.children) {
-      arr.push(...getH2Children(child.children, page))
-    }
-  })
-  return arr
-}
 
 const getObj = (list, arr) => {
   arr.forEach((p) => {
@@ -55,12 +14,12 @@ const getObj = (list, arr) => {
   return list
 }
 
-const orderTree = (arr) => {
+const sortTree = (arr) => {
   arr?.sort((a, b) => a.order - b.order)
 
   arr?.forEach((child) => {
     if (child.children) {
-      orderTree(child.children)
+      sortTree(child.children)
     }
   })
 
@@ -80,7 +39,7 @@ const getSideNav = (pages) => {
 
         let [order, path] = p.split('+')
 
-        fullPath += `/${path}`
+        fullPath += `/${path || order}`
         path = path || p
 
         if (pathParts.length - 1 === i) {
@@ -95,12 +54,12 @@ const getSideNav = (pages) => {
             icon: page.icon,
             title: page.title,
             ...(page.slug === 'home' && { hideChildren: true }),
-            children: getH2Children(page.body.children, page).map((child) => ({
+            children: [] /* getH2Children(page.body.children, page).map((child) => ({
               to,
               hash: child.props.id,
               inset: child.inset,
               title: child.title || child.children[1].value,
-            })),
+            })) */,
           })
         } else if (!obj.children.find((child) => child.path === path)) {
           obj.children.push({
@@ -118,7 +77,24 @@ const getSideNav = (pages) => {
     { children: [] }
   ).children
 
-  return orderTree(sideNav)
+  const sortedTree = sortTree(sideNav)
+
+  return menuConfig.groups.reduce((groups: any, group) => {
+    groups.push(
+      group.map((to) => {
+        const find = sortedTree.find(
+          (item) => item.path === to || item.to === to
+        )
+
+        return {
+          ...find,
+          icon: find.icon || menuConfig.icons[find.path || find.to],
+        }
+      })
+    )
+
+    return groups
+  }, [])
 }
 
 export default () =>

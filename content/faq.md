@@ -1,6 +1,5 @@
 ---
-title: Integrator FAQ
-order: 6
+title: FAQ
 description: An extension on our features and functionalities where we answer the most frequently asked questions
 ---
 

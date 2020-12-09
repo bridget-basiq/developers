@@ -1,7 +1,6 @@
 ---
 title: Release notes
 description: Release notes
-order: 1
 ---
 
 # Release notes

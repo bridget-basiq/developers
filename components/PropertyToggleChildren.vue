@@ -1,12 +1,9 @@
 <template>
   <div
-    class="property-toggle-children w-10 lg:w-20 flex absolute z-10 h-full left-0 top-0 transform -translate-x-1/2"
+    class="property-toggle-children w-10 lg:w-14 flex absolute z-10 h-full left-0 top-0"
   >
-    <div class="flex-1 relative">
-      <div
-        v-if="last"
-        class="absolute w-full h-1/2 bottom-0 left-0 bg-base lg:bg-body"
-      />
+    <div v-if="depth" class="flex-1 relative">
+      <div v-if="last" class="absolute w-full h-1/2 bottom-0 left-0 bg-base" />
     </div>
     <div
       class="flex-1 relative cursor-pointer"
@@ -14,15 +11,14 @@
     >
       <template v-if="children.length">
         <span
-          class="icon z-20 text-accent center"
+          class="icon bg-base z-20 text-accent center"
           :class="{
             'lg-max:hidden': !depth,
             'icon-circle-plus': !value,
             'icon-circle-minus': value,
-            ...bg,
           }"
         />
-        <div class="absolute w-full h-1/2 top-0 left-0" :class="bg" />
+        <div class="absolute w-full h-1/2 top-0 left-0 bg-base" />
       </template>
 
       <div
@@ -45,9 +41,5 @@ export default class PropertyToggleChildren extends Vue {
   @Prop() children
   @Prop() value
   @Prop() last
-
-  get bg() {
-    return { 'bg-body': !this.depth, 'bg-base': this.depth }
-  }
 }
 </script>

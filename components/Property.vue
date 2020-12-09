@@ -4,19 +4,20 @@
     class="property list-none text-14 relative"
     :class="{
       'is-child': depth,
+      'has-children': children.length,
       'show-children': showChildren,
       'is-deprecated': isDeprecated,
     }"
   >
     <div
       v-if="showChildren"
-      class="main-line w-5 lg:w-10 absolute left-0 top-0 h-full z-10 transform -translate-x-full"
+      class="main-line w-5 lg:w-14 absolute left-0 top-0 h-full z-10"
     >
       <div
         class="line-v w-px h-full absolute transform left-1/2 -translate-x-1/2 bg-alt2"
       />
     </div>
-    <div class="content pl-6 lg:pl-10 -ml-5 lg:-ml-10 py-4 relative">
+    <div class="content pl-6 lg:pl-4 py-4 relative">
       <div class="bg absolute inset-0" />
       <PropertyToggleChildren v-model="showChildren" v-bind="$props" />
       <PropertyTitle v-bind="$props" />
@@ -124,6 +125,11 @@ export default class Property extends Vue {
 }
 
 .property {
+  &.has-children {
+    .content {
+      @apply pl-14;
+    }
+  }
   &.is-deprecated {
     > .content .truncate > *:not(.deprecated-tag),
     > .children .truncate,
@@ -163,10 +169,10 @@ export default class Property extends Vue {
     z-index: -1;
   }
   &:not(.is-child) {
-    @apply border-t border-alt;
+    @apply border border-alt bg-base rounded-md mb-2;
 
     &:last-child {
-      @apply border-b-0;
+      @apply mb-0;
     }
 
     > .children {
