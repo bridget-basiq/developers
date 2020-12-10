@@ -11,7 +11,7 @@
   >
     <div
       v-if="showChildren"
-      class="main-line w-14 absolute left-0 top-0 h-full z-10"
+      class="main-line w-10 lg:w-14 absolute left-0 top-0 h-full z-10"
     >
       <div
         class="line-v w-px h-full absolute transform left-1/2 -translate-x-1/2 bg-alt2"
@@ -27,7 +27,7 @@
         v-html="$options.filters.markdown(description)"
       />
     </div>
-    <ul v-if="showChildren && children.length" class="children pl-14">
+    <ul v-if="showChildren && children.length" class="children pl-10 lg:pl-14">
       <property
         v-for="(child, i) in children"
         :key="i"
@@ -98,6 +98,10 @@ export default class Property extends Vue {
   &.is-child {
     > .content {
       @apply pl-14;
+
+      @screen lg-max {
+        @apply pl-10;
+      }
     }
   }
   &.is-deprecated {
@@ -118,15 +122,14 @@ export default class Property extends Vue {
     .type {
       @apply text-font-primary;
     }
-  }
+    &:last-child {
+      > .children {
+        @apply relative;
 
-  &:last-child {
-    > .children {
-      @apply relative;
-
-      &::before {
-        content: '';
-        @apply w-10 transform z-10 -ml-10 bg-base h-full left-0 top-0 absolute bg-base;
+        &::before {
+          content: '';
+          @apply w-10 transform z-10 -ml-10 bg-base h-full left-0 top-0 absolute bg-base;
+        }
       }
     }
   }

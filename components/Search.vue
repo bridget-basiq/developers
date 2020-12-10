@@ -227,7 +227,7 @@ export default class Search extends Mixins(Base) {
   @Listen('keyup') onKeyUp(e) {
     if (!this.active) return
 
-    if (e.key === 'Escape' && !this.search.length) this.$emit('close')
+    if (e.key === 'Escape') this.$emit('close')
 
     if (!this.suggestions.length) return
 

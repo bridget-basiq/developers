@@ -24,7 +24,7 @@ row2:
 - Easily cluster data to improve render speeds
 ---
 
-# Documentation 1234 5
+# Documentation
 
 Get going with the **Chargetrip** API. Clone one of our examples as a boilerplate, build along with our guides or start by browsing through our API reference.
 

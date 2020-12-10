@@ -1,6 +1,6 @@
 <template>
   <div
-    class="property-toggle-children w-14 flex absolute z-10 h-full left-0 top-0"
+    class="property-toggle-children w-10 lg:w-14 flex absolute z-10 h-full left-0 top-0"
   >
     <!--    <div v-if="depth" class="flex-1 relative">-->
     <!--    </div>-->
