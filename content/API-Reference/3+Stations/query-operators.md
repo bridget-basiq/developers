@@ -4,10 +4,13 @@ description: Query all the operators of your station database
 order: 7
 frequently:
 - id
+- name
+- website
+- logo
 ---
 
 # Query station operators
-Charge stations are often exploited by various operators. To get an overview of your operators you can use the `operatorList` query. All operator details are available, but keep it as small as possible to improve performance.
+Charge stations are often exploited by various operators. To get an overview of the operators in your station database you can use the `operatorList` query. All operator details are available for you to query, but keep the number of attributes as low as possible for the better performance.
 
 ## Query
 The entire operatorList can be accessed by using the `operatorList` query with the attributes you would like to use. Optionally you can use [pagination]() and `filters` to improve your results.

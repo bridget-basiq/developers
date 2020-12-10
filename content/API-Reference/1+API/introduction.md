@@ -15,7 +15,7 @@ https://api.chargetrip.io/graphql
 </code-block>
 
 ## Authorization
-In the example below we quickly show you the header you need to set to authorize with the Chargetrip API. 
+In the example below we quickly show you the header you need to set to authorize with the Chargetrip API. For a more in depth guide around authorization and errors you can take a look [here]().
 
 <code-block lang="bash" prefix="API Reference / Authorization" title="Headers">
 curl -X POST \
@@ -24,8 +24,6 @@ curl -X POST \
 -d 'query { }' \
 http://api.chargetrip.io/graphql
 </code-block>
-
-For a more in depth guide around authorization and errors you can take a look [here]().
 
 ## Who is this API for?
 Whether you are a car manufacturer, charge point operator, utility provider, or fleet operator, you need EV-specific routing to remove adoption barriers, improve the electric driving and charging experience, and optimize your operation. Integrating the Chargetrip API into your end-user mobile or in-car products or telematics dashboard will give you instant access to intelligent route computations for Electric Vehicles and electric fleets.

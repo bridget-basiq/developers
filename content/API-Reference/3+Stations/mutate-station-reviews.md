@@ -1,14 +1,14 @@
 ---
-title: Mutate station reviews
-description: Write reviews for specific stations by using the station review mutation
+title: Mutate to create a station review
+description: Write a review for specific stations by using the station review mutation
 order: 6
 ---
 
-# Mutate station reviews
-To improve the user experience of routes you can include reviews as described in [query station reviews](). To able to collect reviews you will need to use the following mutation. 
+# Create a new station review
+To improve the user experience of routes you can include reviews as described in [query station reviews](). To collect reviews and allow users to write one, you will need to use the following mutation. 
 
 ## Mutation
-To be able to write a review you will need a stationId and carId. After that you can use various review arguments like `rating`, `message` and `tags` to collect the appropriate data.
+To be able to write a review you will need a `stationId` and `carId`. After that you can use various review arguments like `rating`, `message` and `tags` to collect the appropriate data. Keep in mind, the `stationId` and `rating` are both required when submitting a review.
 
 <schema name="addReview" type="Mutation"></schema>
 

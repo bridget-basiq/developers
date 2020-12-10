@@ -4,13 +4,16 @@ description: Query the details of a single station operator
 order: 8
 frequently:
 - id
+- name
+- website
+- logo
 ---
 
 # Query station operator details
--
+After you [queried a `station`]() you will be able to fetch the operator details through this `operator` query. It will provide you with a wide range of information such as the `name`, `website` and `logo` of the operator.
 
 ## Query
--
+To query the operator details you do need an operator `id`. You can get this `id` from the [`station`]() query that you just ran.
 
 <schema name="operator" :frequent="frequently"></schema>
 
@@ -23,71 +26,7 @@ On error the header status code is an error code and the response body contains 
 
 <playground>
 <code-block lang="graphql" query="operatorList">					
-query operatorList {
-  operatorList(
-    query: { name: "AeroVironment" }
-    size: 2
-    page: 0
-  ) {
-    id
-    external_id
-    name
-    website
-    logo {
-      url
-      thumbnail
-      type
-    }
-    country
-    contact {
-      phone
-      email
-      website
-      facebook
-      twitter
-      properties
-    }
-  }
-}
 </code-block>
 <code-block lang="json">
-{
-  "data": {
-    "operatorList": [
-      {
-        "id": "5dc3dff8c81f55a86f7197ac",
-        "external_id": "3377",
-        "name": " Etecnic",
-        "website": "http://www.etecnic.es",
-        "logo": null,
-        "country": "ES",
-        "contact": {
-          "phone": " (+34) 977 276 952",
-          "email": "etecnic@etecnic.es",
-          "website": "http://www.etecnic.es",
-          "facebook": null,
-          "twitter": null,
-          "properties": null
-        }
-      },
-      {
-        "id": "5dc3dff8c81f557fb27197ad",
-        "external_id": "45",
-        "name": "(Business Owner at Location)",
-        "website": "",
-        "logo": null,
-        "country": null,
-        "contact": {
-          "phone": "",
-          "email": "",
-          "website": "",
-          "facebook": null,
-          "twitter": null,
-          "properties": null
-        }
-      }
-    ]
-  }
-}
 </code-block>
 </playground>

@@ -1,10 +1,10 @@
 ---
-title: Mutate route
+title: Mutate to create a new route
 description: Mutate a route between 2 or more waypoints and support alternative stations along a route
 order: 2
 ---
 
-# Mutate route
+# Create a new route
 As described in the route introduction, the first thing you will need to do is fetch a `route ID`. This `route ID` can then be sent to subscribe to [route details]() and retrieve a polyline and other route data.
 
 ## Mutation
