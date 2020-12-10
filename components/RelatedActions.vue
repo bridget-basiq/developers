@@ -48,6 +48,10 @@ export default class RelatedActions extends Vue {
 </script>
 <style lang="scss">
 .related-actions {
+  nav {
+    width: calc(100% + 48px);
+    @apply -ml-6;
+  }
   .c-menu-item.has-icon {
     @apply h-10;
   }

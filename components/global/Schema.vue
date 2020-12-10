@@ -1,6 +1,6 @@
 <template>
   <div
-    class="schema my-12 lg:pl-10"
+    class="schema my-12"
     :data-type="type"
     :data-name="name"
     :data-hidden="hidden"

@@ -2,7 +2,6 @@
   <div
     class="layout flex flex-col antialiased font-body min-h-screen text-font-primary text-16 bg-body"
     :class="{
-      'show-search': showSearch,
       'theme-dark': darkMode,
       'theme-light': !darkMode,
       'menu-open': menuOpen,
@@ -42,7 +41,6 @@
       <SideNav
         v-if="sideNav"
         class="text-14 z-40 top-0"
-        :class="{ 'show-search': showSearch }"
         :navs="normalizedSideNav"
         :dark-mode="darkMode"
         :show-toggle-menu="true"
@@ -50,15 +48,22 @@
         :spacing="6"
         @changeDarkMode="setDarkMode"
       >
-        <span class="icon-search ml-4" @click="showSearch = !showSearch" />
-        <span
-          v-show="showSearch"
-          class="icon-close text-20 mr-6 absolute z-20 top-1/2 transform -translate-y-1/2 right-0"
-          @click="showSearch = false"
-        />
-        <Search
-          class="mobile-search absolute hidden left-0 bg-body top-0 z-10 w-full h-14"
-          :click-handler="onMenuItemClick"
+        <template v-slot:icons>
+          <span
+            class="icon-search lg:hidden ml-4"
+            @click="showSearch = !showSearch"
+          />
+        </template>
+        <Input
+          class="px-3 lg-max:hidden"
+          icon="search"
+          :hotkey="{
+            icon: 'slash',
+            key: '/',
+            fn: () => (showSearch = true),
+          }"
+          placeholder="Search.."
+          @focus="showSearch = true"
         />
       </SideNav>
       <div
@@ -69,15 +74,20 @@
           <div class="sticky-header lg:px-8 px-6 hidden lg:block">
             <div class="flex items-center">
               <template v-if="!isEditing">
-                <Search
-                  :click-handler="onMenuItemClick"
-                  icon="search"
-                  :hotkey="{
-                    icon: 'slash',
-                    key: '/',
-                    fn: (input) => input.focus(),
-                  }"
+                <Select
+                  v-model="value"
+                  :options="options"
+                  @input="onMenuItemClick({ hash: $event })"
                 />
+                <!--                <Search-->
+                <!--                  :click-handler="onMenuItemClick"-->
+                <!--                  icon="search"-->
+                <!--                  :hotkey="{-->
+                <!--                    icon: 'slash',-->
+                <!--                    key: '/',-->
+                <!--                    fn: (input) => input.focus(),-->
+                <!--                  }"-->
+                <!--                />-->
                 <template v-if="canEdit">
                   <Button
                     class="ml-auto mr-2 lg-max:hidden"
@@ -105,14 +115,14 @@
         </div>
         <div class="mt-auto">
           <PrevNextNavigation v-if="sideNav" />
-          <div class="p-6 lg:p-8 border-t flex items-center border-alt text-14">
-            <span class="icon icon-survey mr-3" />
-            <p>Was this section useful?</p>
-            <nav class="flex h-6 items-center font-semibold ml-auto">
-              <div class="underline">No</div>
-              <div class="underline ml-6 text-accent">Yes</div>
-            </nav>
-          </div>
+          <!--          <div class="p-6 lg:p-8 border-t flex items-center border-alt text-14">-->
+          <!--            <span class="icon icon-survey mr-3" />-->
+          <!--            <p>Was this section useful?</p>-->
+          <!--            <nav class="flex h-6 items-center font-semibold ml-auto">-->
+          <!--              <div class="underline">No</div>-->
+          <!--              <div class="underline ml-6 text-accent">Yes</div>-->
+          <!--            </nav>-->
+          <!--          </div>-->
         </div>
       </div>
       <aside
@@ -128,12 +138,24 @@
       :style="{ top: `${khaledPosition.y}px`, left: `${khaledPosition.x}px` }"
       src="khaled.gif"
     />
+    <Search
+      :active="showSearch"
+      :click-handler="onMenuItemClick"
+      icon="search"
+      @close="showSearch = false"
+    />
   </div>
 </template>
 <script lang="ts">
 import { Component, Watch, Ref } from 'nuxt-property-decorator'
 import { Mixins } from 'vue-property-decorator'
-import { Banner, Button, SideNav } from '@chargetrip/internal-vue-components'
+import {
+  Banner,
+  Button,
+  SideNav,
+  Input,
+  Select,
+} from '@chargetrip/internal-vue-components'
 
 import { Getter, Mutation } from 'vuex-class'
 import Table from '~/components/global/PropertyTable.vue'
@@ -147,6 +169,8 @@ import Search from '~/components/Search.vue'
 @Component({
   components: {
     Search,
+    Select,
+    Input,
     MarkdownFormatting,
     PrevNextNavigation,
     RelatedActions,
@@ -174,6 +198,8 @@ export default class Layout extends Mixins(Base) {
   hash = this.$route.hash.slice(1)
   stopReplacing = false
   showSearch = false
+  options: any = []
+  value: any = ''
 
   beforeMount() {
     this.openKhaled = this.openKhaled.bind(this)
@@ -181,6 +207,15 @@ export default class Layout extends Mixins(Base) {
 
     this.$root.$on('openKhaled', this.openKhaled)
     this.$root.$on('closeKhaled', this.closeKhaled)
+  }
+
+  @Watch('content', { immediate: true }) onContentChange() {
+    this.options = this.content.headings.map((heading) => ({
+      label: heading.title,
+      value: heading.hash,
+    }))
+
+    this.value = this.options[0]?.value || ''
   }
 
   mounted() {
@@ -225,36 +260,29 @@ export default class Layout extends Mixins(Base) {
   }
 
   get normalizedSideNav() {
-    const sideNav = [
+    return [
       ...this.sideNav,
-      {
-        title: 'Tools',
-        children: [
-          {
-            title: 'Playground',
-            href: 'https://playground.chargetrip.com/',
-            arrow: true,
-          },
-          {
-            title: 'Voyager',
-            href: 'https://voyager.chargetrip.com/',
-            arrow: true,
-          },
-          {
-            title: 'Dashboard',
-            href: 'https://account.chargetrip.com',
-            arrow: true,
-          },
-          {
-            title: 'Examples',
-            href: 'https://chargetrip.com/examples/',
-            arrow: true,
-          },
-        ],
-      },
+      [
+        {
+          title: 'Playground',
+          icon: 'playground',
+          href: 'https://playground.chargetrip.com/',
+          arrow: true,
+        },
+        {
+          title: 'Voyager',
+          icon: 'voyager-alt',
+          href: 'https://voyager.chargetrip.com/',
+          arrow: true,
+        },
+        {
+          title: 'Examples',
+          icon: 'code',
+          href: 'https://chargetrip.com/examples/',
+          arrow: true,
+        },
+      ],
     ]
-
-    return [sideNav.map(this.attachHandler.bind(this))]
   }
 
   get offset() {
@@ -361,6 +389,7 @@ export default class Layout extends Mixins(Base) {
   }
 
   @Watch('$route.path') onRouteChange() {
+    //
     if (!this.container) return
 
     if (!this.$route.hash?.length) {
@@ -427,8 +456,7 @@ export default class Layout extends Mixins(Base) {
   }
 
   > h2 {
-    width: calc(100% + 64px);
-    @apply pt-8 mt-8 border-t border-alt mb-2 -ml-8 px-8;
+    @apply mt-14 mb-2;
   }
 
   > h3 {
@@ -500,11 +528,6 @@ export default class Layout extends Mixins(Base) {
     .view {
       overflow: unset;
     }
-    &.show-search {
-      .mobile-search {
-        @apply block;
-      }
-    }
   }
   &.no-transition {
     .box,
@@ -519,20 +542,6 @@ export default class Layout extends Mixins(Base) {
   &.is-playground {
     .right-aside {
       width: 512px;
-    }
-  }
-
-  .mobile-search {
-    .c-form-control.has-focus,
-    .c-form-control.has-hover,
-    .c-form-control {
-      .box {
-        @apply h-14 bg-body rounded-none border-0;
-
-        input {
-          @apply px-6;
-        }
-      }
     }
   }
 

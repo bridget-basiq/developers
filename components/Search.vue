@@ -1,17 +1,29 @@
 <template>
-  <div class="search" :class="{ 'show-suggestions': showSuggestions }">
-    <div class="relative">
-      <Input
-        v-model="search"
-        type="search"
-        v-bind="$props"
-        placeholder="Search documentation"
-        @blur="showSuggestions = false"
-        @focus="showSuggestions = true"
-      />
+  <div
+    v-show="active"
+    class="search fixed inset-0 flex z-50"
+    @click="$emit('close')"
+  >
+    <div class="bg bg-body opacity-75 absolute inset-0" />
+    <div
+      class="relative m-auto w-screen max-w-screen-sm shadow-down-md rounded-sm overflow-hidden bg-body border border-alt"
+      @click.stop
+    >
+      <div class="flex h-16 items-center">
+        <label class="icon-search px-6" for="search" />
+        <input
+          id="search"
+          ref="input"
+          v-model="search"
+          type="text"
+          autocomplete="off"
+          name="do-not-auto-fill"
+          class="w-full h-full bg-transparent outline-none pr-6 font-semibold"
+        />
+      </div>
       <nav
-        v-show="showSuggestions && suggestions.length"
-        class="lg:rounded-sm text-font-alt3 lg:border-l border-t lg:border-r border-b border-alt overflow-hidden shadow-down-xl absolute left-0 top-full bg-body lg-max:max-w-full min-w-full lg:mt-2 text-14"
+        v-show="search.length && suggestions.length"
+        class="text-font-alt3 text-14 border-t border-alt"
       >
         <main
           ref="container"
@@ -44,9 +56,12 @@
                 >
                   <p class="whitespace-no-wrap">
                     <strong>
-                      <template v-if="suggestion.propertyPath">
+                      <span
+                        v-if="suggestion.propertyPath"
+                        class="lg-max:hidden"
+                      >
                         {{ suggestion.propertyPath }} /
-                      </template>
+                      </span>
                       <span class="text-font-primary">
                         {{ suggestion.title }}
                       </span>
@@ -100,21 +115,20 @@
 </template>
 <script lang="ts">
 import { Component, Watch, Prop, Ref } from 'nuxt-property-decorator'
-import { Input } from '@chargetrip/internal-vue-components'
 import algoliasearch from 'algoliasearch/lite'
 import { Mixins } from 'vue-property-decorator'
 import { toSentenceCase } from 'js-convert-case/lib'
 import Base from '~/mixins/base'
 import { Listen } from '~/utilities/decorators'
 
-@Component({ components: { Input } })
+@Component
 export default class Search extends Mixins(Base) {
   @Ref('suggestionEl') suggestionEls
   @Ref('container') container
+  @Ref('input') input
   @Prop() clickHandler
-  @Prop() hotkey
+  @Prop() active
   suggestions: any[] = []
-  showSuggestions = false
   itemIndex = 0
   groupIndex = 0
   prevent = false
@@ -186,7 +200,8 @@ export default class Search extends Mixins(Base) {
     if (offsetTop - el?.offsetHeight < this.container.scrollTop) {
       this.container.scrollTo(
         0,
-        offsetTop - (this.suggestionGroupKeys[this.groupIndex].length ? 40 : 0)
+        offsetTop -
+          (this.suggestionGroupKeys[this.groupIndex].length ? 104 : 64)
       )
     } else if (
       offsetTop + el?.offsetHeight >
@@ -203,8 +218,18 @@ export default class Search extends Mixins(Base) {
     }, 500)
   }
 
+  @Watch('active') onActiveChange() {
+    setTimeout(() => {
+      this.input.focus()
+    }, 50)
+  }
+
   @Listen('keyup') onKeyUp(e) {
-    if (!this.showSuggestions) return
+    if (!this.active) return
+
+    if (e.key === 'Escape' && !this.search.length) this.$emit('close')
+
+    if (!this.suggestions.length) return
 
     this.keys[e.key]?.()
 
@@ -240,9 +265,16 @@ export default class Search extends Mixins(Base) {
     const propertyParent = hash.split('-').slice(1)
     splitPath.splice(1, 1)
 
+    const withoutTitle = propertyParent.slice(0, -1)
+
+    const propertyPath =
+      withoutTitle.length > 4
+        ? [...withoutTitle.slice(0, 2), '...', ...withoutTitle.slice(-1)]
+        : withoutTitle
+
     return {
       path: splitPath.map((part) => toSentenceCase(part)).join(' / '),
-      propertyPath: propertyParent.slice(0, -1).join(' / '),
+      propertyPath: propertyPath.join(' / '),
     }
   }
 
@@ -284,7 +316,6 @@ export default class Search extends Mixins(Base) {
   }
 
   @Watch('$route.path') onRouteChange() {
-    this.showSuggestions = false
     this.itemIndex = 0
   }
 
@@ -295,15 +326,6 @@ export default class Search extends Mixins(Base) {
 </script>
 <style lang="scss">
 .search {
-  @screen lg-max {
-    &.show-suggestions {
-      &::after {
-        content: '';
-        z-index: -1;
-        @apply block w-screen h-screen absolute top-0 left-0 bg-body opacity-50 pointer-events-none;
-      }
-    }
-  }
   .suggestions {
     max-height: 400px;
   }
