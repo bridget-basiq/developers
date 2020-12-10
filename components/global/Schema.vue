@@ -12,7 +12,7 @@
       class="mb-12 last:mb-0"
       :class="section.id"
     >
-      <h3 :id="section.id">{{ section.title }}</h3>
+      <h2 :id="section.id">{{ section.title }}</h2>
       <div class="mt-3">
         <Property
           v-for="(item, c) in section.items"

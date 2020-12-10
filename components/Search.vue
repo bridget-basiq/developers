@@ -1,7 +1,7 @@
 <template>
   <div
     v-show="active"
-    class="search fixed inset-0 flex z-50"
+    class="search fixed inset-0 flex z-50 px-6"
     @click="$emit('close')"
   >
     <div class="bg bg-body opacity-75 absolute inset-0" />

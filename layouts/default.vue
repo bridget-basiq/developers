@@ -76,6 +76,7 @@
               <template v-if="!isEditing">
                 <Select
                   v-model="value"
+                  class="navigate-select"
                   :options="options"
                   @input="onMenuItemClick({ hash: $event })"
                 />
@@ -103,8 +104,8 @@
                 <div class="ml-auto flex">
                   <Button size="sm" color="alt" @click="cancel">Cancel</Button>
                   <Button size="sm" class="ml-2" color="accent" @click="save"
-                    >Save edits</Button
-                  >
+                    >Save edits
+                  </Button>
                 </div>
               </template>
             </div>
@@ -358,6 +359,7 @@ export default class Layout extends Mixins(Base) {
 
   @Watch('$route.hash') onHashChange() {
     this.hash = this.$route.hash.slice(1)
+    this.value = this.hash || this.options[0]?.value || ''
   }
 
   findInArray(arr, name) {
@@ -389,7 +391,9 @@ export default class Layout extends Mixins(Base) {
   }
 
   @Watch('$route.path') onRouteChange() {
-    //
+    if (process.env.NODE_ENV === 'production') {
+      window.fathom.trackPageview()
+    }
     if (!this.container) return
 
     if (!this.$route.hash?.length) {
@@ -399,10 +403,10 @@ export default class Layout extends Mixins(Base) {
     this.stopReplacing = true
     setTimeout(() => {
       this.hElms = [
-        ...(this.container.querySelectorAll('.page h2, .page h3') || []),
+        ...(this.container.querySelectorAll('.page h2') || []),
       ].filter((el) => el.id)
       this.stopReplacing = false
-    }, 300)
+    }, 1000)
   }
 
   @Listen('scroll') onScroll() {
@@ -459,7 +463,8 @@ export default class Layout extends Mixins(Base) {
     @apply mt-14 mb-2;
   }
 
-  > h3 {
+  > h3,
+  .schema .h2 {
     @apply mt-8 mb-3;
   }
 
@@ -518,6 +523,7 @@ export default class Layout extends Mixins(Base) {
         @apply hidden;
       }
     }
+
     .c-side-nav {
       &:not(.show-menu) {
         &:not(.show-search) {
@@ -525,6 +531,7 @@ export default class Layout extends Mixins(Base) {
         }
       }
     }
+
     .view {
       overflow: unset;
     }
@@ -581,6 +588,11 @@ export default class Layout extends Mixins(Base) {
 
   .nuxt-content-editor {
     @apply text-font-primary bg-body;
+  }
+
+  .navigate-select {
+    max-width: 164px;
+    @apply w-full;
   }
 }
 </style>
