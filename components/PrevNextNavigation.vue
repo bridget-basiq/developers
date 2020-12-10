@@ -39,7 +39,7 @@ export default class CodeBlock extends Vue {
   }
 
   get parent(): any {
-    return this.findParent(this.sideNav, this.current.to)
+    return this.findParent(this.sideNav.flat(), this.current.to)
   }
 
   get parentIndex() {
@@ -50,7 +50,7 @@ export default class CodeBlock extends Vue {
     if (!this.current?.to) return null
 
     return this.findParent(
-      this.sideNav,
+      this.sideNav.flat(),
       this.current.to.split('/').slice(0, -1).join('/')
     )
   }
@@ -95,7 +95,7 @@ export default class CodeBlock extends Vue {
   }
 
   get current(): any {
-    return this.findRecursive(this.sideNav, this.$route.path) || {}
+    return this.findRecursive(this.sideNav.flat(), this.$route.path) || {}
   }
 
   get prev() {
