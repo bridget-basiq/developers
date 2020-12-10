@@ -1,10 +1,10 @@
 ---
-title: Introduction
+title: Quick setup guide
 description: A quick introduction around the chargetrip API
 order: 1
 ---
 
-# Introduction
+# Quick setup guide
 The Chargetrip API gives you the ability to integrate smart, EV-specific routing into products built for drivers of electric cars. This API gives developers access to the same powerful EV routing engine that is already used and trusted by car manufacturers and e-mobility services around the world. Our GraphQL API and documentation are always on the latest stable version and fully backward compatible. For new features and bug-fixes, see the [release notes]().
 
 ## Integration

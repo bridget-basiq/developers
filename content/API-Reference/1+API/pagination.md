@@ -1,7 +1,7 @@
 ---
 title: Pagination
 description: A quick explanation of how pagination works on queries that support it
-order: 1
+order: 2
 
 arguments:
 - size
