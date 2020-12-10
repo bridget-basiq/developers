@@ -2,7 +2,6 @@
   <div
     v-show="active"
     class="search fixed inset-0 flex z-50"
-    :class="{ 'show-suggestions': showSuggestions }"
     @click="$emit('close')"
   >
     <div class="bg bg-body opacity-75 absolute inset-0" />
@@ -16,7 +15,9 @@
           id="search"
           ref="input"
           v-model="search"
-          type="search"
+          type="text"
+          autocomplete="off"
+          name="do-not-auto-fill"
           class="w-full h-full bg-transparent outline-none pr-6 font-semibold"
         />
       </div>
@@ -55,9 +56,12 @@
                 >
                   <p class="whitespace-no-wrap">
                     <strong>
-                      <template v-if="suggestion.propertyPath">
+                      <span
+                        v-if="suggestion.propertyPath"
+                        class="lg-max:hidden"
+                      >
                         {{ suggestion.propertyPath }} /
-                      </template>
+                      </span>
                       <span class="text-font-primary">
                         {{ suggestion.title }}
                       </span>
@@ -125,7 +129,6 @@ export default class Search extends Mixins(Base) {
   @Prop() clickHandler
   @Prop() active
   suggestions: any[] = []
-  showSuggestions = false
   itemIndex = 0
   groupIndex = 0
   prevent = false
@@ -197,7 +200,8 @@ export default class Search extends Mixins(Base) {
     if (offsetTop - el?.offsetHeight < this.container.scrollTop) {
       this.container.scrollTo(
         0,
-        offsetTop - (this.suggestionGroupKeys[this.groupIndex].length ? 40 : 0)
+        offsetTop -
+          (this.suggestionGroupKeys[this.groupIndex].length ? 104 : 64)
       )
     } else if (
       offsetTop + el?.offsetHeight >
@@ -221,9 +225,11 @@ export default class Search extends Mixins(Base) {
   }
 
   @Listen('keyup') onKeyUp(e) {
+    if (!this.active) return
+
     if (e.key === 'Escape' && !this.search.length) this.$emit('close')
 
-    if (!this.showSuggestions) return
+    if (!this.suggestions.length) return
 
     this.keys[e.key]?.()
 
@@ -259,9 +265,16 @@ export default class Search extends Mixins(Base) {
     const propertyParent = hash.split('-').slice(1)
     splitPath.splice(1, 1)
 
+    const withoutTitle = propertyParent.slice(0, -1)
+
+    const propertyPath =
+      withoutTitle.length > 4
+        ? [...withoutTitle.slice(0, 2), '...', ...withoutTitle.slice(-1)]
+        : withoutTitle
+
     return {
       path: splitPath.map((part) => toSentenceCase(part)).join(' / '),
-      propertyPath: propertyParent.slice(0, -1).join(' / '),
+      propertyPath: propertyPath.join(' / '),
     }
   }
 
@@ -303,7 +316,6 @@ export default class Search extends Mixins(Base) {
   }
 
   @Watch('$route.path') onRouteChange() {
-    this.showSuggestions = false
     this.itemIndex = 0
   }
 
@@ -314,15 +326,6 @@ export default class Search extends Mixins(Base) {
 </script>
 <style lang="scss">
 .search {
-  @screen lg-max {
-    &.show-suggestions {
-      &::after {
-        content: '';
-        z-index: -1;
-        @apply block w-screen h-screen absolute top-0 left-0 bg-body opacity-50 pointer-events-none;
-      }
-    }
-  }
   .suggestions {
     max-height: 400px;
   }

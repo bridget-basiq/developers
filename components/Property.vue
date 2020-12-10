@@ -11,39 +11,23 @@
   >
     <div
       v-if="showChildren"
-      class="main-line w-5 lg:w-14 absolute left-0 top-0 h-full z-10"
+      class="main-line w-14 absolute left-0 top-0 h-full z-10"
     >
       <div
         class="line-v w-px h-full absolute transform left-1/2 -translate-x-1/2 bg-alt2"
       />
     </div>
-    <div class="content pl-6 lg:pl-4 py-4 relative">
+    <div class="content p-4 relative">
       <div class="bg absolute inset-0" />
       <PropertyToggleChildren v-model="showChildren" v-bind="$props" />
       <PropertyTitle v-bind="$props" />
       <div
         v-if="description"
-        class="description text-font-alt3 lg:pr-6"
+        class="description text-font-alt3"
         v-html="$options.filters.markdown(description)"
       />
     </div>
-    <p
-      v-if="children.length && !depth"
-      class="py-3 mobile-toggle bg-body z-20 relative flex lg:hidden border-t border-alt cursor-pointer text-accent items-center"
-      @click="showChildren = !showChildren"
-    >
-      <span
-        class="icon mr-3"
-        :class="{
-          'icon-circle-cross': showChildren,
-          'icon-circle-plus': !showChildren,
-        }"
-      />
-      <strong>
-        {{ showChildren ? 'Collapse' : 'Expand' }} {{ typeName }} attributes
-      </strong>
-    </p>
-    <ul v-if="showChildren && children.length" class="children pl-5 lg:pl-10">
+    <ul v-if="showChildren && children.length" class="children pl-14">
       <property
         v-for="(child, i) in children"
         :key="i"
@@ -109,24 +93,10 @@ export default class Property extends Vue {
 }
 </script>
 <style lang="scss">
-.property:not(.is-child),
-.property:not(.is-child) > .children,
-.mobile-toggle {
-  @screen lg-max {
-    width: calc(100% + 48px);
-    @apply -ml-6 px-6;
-  }
-}
-
-.mobile-toggle {
-  @screen lg-max {
-    @apply px-6;
-  }
-}
-
 .property {
-  &.has-children {
-    .content {
+  &.has-children,
+  &.is-child {
+    > .content {
       @apply pl-14;
     }
   }
@@ -156,11 +126,7 @@ export default class Property extends Vue {
 
       &::before {
         content: '';
-        @apply w-10 transform z-10 -ml-10 bg-body h-full left-0 top-0 absolute -translate-x-full;
-
-        @screen lg-max {
-          @apply bg-base;
-        }
+        @apply w-10 transform z-10 -ml-10 bg-base h-full left-0 top-0 absolute bg-base;
       }
     }
   }
@@ -173,24 +139,6 @@ export default class Property extends Vue {
 
     &:last-child {
       @apply mb-0;
-    }
-
-    > .children {
-      @apply border-t border-alt;
-    }
-
-    @screen lg-max {
-      > .main-line .line-v {
-        height: calc(100% - 80px);
-        @apply ml-10 mt-20;
-      }
-      > .children {
-        @apply bg-base;
-
-        > .property {
-          @apply ml-9;
-        }
-      }
     }
   }
 }
