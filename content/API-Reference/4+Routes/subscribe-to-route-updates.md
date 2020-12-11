@@ -49,7 +49,7 @@ On success, the HTTP status code in the response header is `200` and the respons
 <errors name=""></errors>
 
 <playground url="https://playground.chargetrip.com/?page=routeUpdatedById">
-<code-block lang="graphql" query="routeUpdatedById">					
+<code-block lang="graphql" query="routeUpdatedById" query-type="subscription">					
 subscription routeUpdatedById {
   routeUpdatedById(id: "5e300e71f7e26f726afd3d71") {
     status

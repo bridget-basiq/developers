@@ -20,7 +20,7 @@ On error the header status code is an error code and the response body contains 
 <errors name="addReview"></errors>
 
 <playground url="https://playground.chargetrip.com/?page=reviewListLazyLoading">
-<code-block lang="graphql" query="addReview">					
+<code-block lang="graphql" query="addReview" query-type="mutation">					
 mutation addReview($stationId: String!, $carId: String) {
   addReview(
     review: {

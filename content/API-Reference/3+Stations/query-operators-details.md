@@ -1,7 +1,7 @@
 ---
 title: Query station operator details
 description: Query the details of a single station operator
-order: 8
+order: 9
 frequently:
 - id
 - name

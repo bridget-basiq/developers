@@ -1,9 +1,10 @@
 ---
 title: Query station statistics
-description: 
-order: 12
+description: Get the overall statistics of all stations in your station database
+order: 13
 frequently:
-- id
+- standards
+- amenities
 ---
 
 # Query station statistics
