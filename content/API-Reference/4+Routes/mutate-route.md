@@ -26,7 +26,7 @@ On error the header status code is an error code and the response body contains 
 <errors name="newRoute"></errors>
 
 <playground url="https://playground.chargetrip.com/?page=newRoute">
-<code-block lang="graphql" query="newRoute">					
+<code-block lang="graphql" query="newRoute" query-type="mutation">					
 mutation newRoute {
   newRoute(
     input: {

@@ -1,7 +1,7 @@
 ---
 title: Query station tariffs
-description: 
-order: 9
+description: Get a global overview of the tariffs and costs of all your stations
+order: 10
 frequently:
 - currency
 - min_price
@@ -10,7 +10,9 @@ frequently:
 ---
 
 # Query station tariff list
-To get an overview of the charging costs and optional setup fee you can run the query station tariff list. Within this list you will find all costs per station. The tariff list is part of our premium feature pack. Contact [sales]() to discuss the details.
+To get an overview of the charging costs and optional setup fee you can run the query station tariff list. Within this list you will find all costs per station.
+
+**Note**: the tariff data is not available when using OCM data. Therefor it also unavailable in our [playground](). Contact [sales]() for ecomovement data which holds tariff details.
 
 ## Query
 The `tariffList` query works out of the box and no additional information is required. However, you have the option to enable [pagination]() on the query to improve the performance as you can see below.
@@ -18,6 +20,7 @@ The `tariffList` query works out of the box and no additional information is req
 <schema name="tariffList" :frequent="frequently"></schema>
 
 ## Response
+On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
 
 <errors name="tariffList"></errors>
 

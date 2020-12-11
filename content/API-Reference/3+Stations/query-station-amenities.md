@@ -1,7 +1,7 @@
 ---
 title: Query station amenities
-description: 
-order: 11
+description: Query the amenities of a specific station
+order: 12
 frequently:
 - address
 - type

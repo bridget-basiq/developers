@@ -1,6 +1,6 @@
 ---
 title: Query station details
-description: Query all stations or stations at a specific location.
+description: Query all stations or stations at a specific location
 order: 3
 frequently:
 - id
