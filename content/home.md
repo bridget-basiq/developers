@@ -124,5 +124,3 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         <c-cell>Easily cluster data to improve render speeds</c-cell>
     </c-row>
 </c-table>
-
-

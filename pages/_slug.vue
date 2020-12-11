@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <nuxt-content :document="page" />
-  </div>
+  <nuxt-content v-if="page" :class="page.slug" :document="page" />
 </template>
 
 <script lang="ts">

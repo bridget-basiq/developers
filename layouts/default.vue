@@ -75,6 +75,7 @@
             <div class="flex items-center">
               <template v-if="!isEditing">
                 <Select
+                  v-if="options.length"
                   v-model="value"
                   class="navigate-select"
                   :options="options"
@@ -391,6 +392,25 @@ export default class Layout extends Mixins(Base) {
   }
 
   @Listen('scroll') onScroll() {
+    const smallchat: HTMLElement | null = document.querySelector('#Smallchat')
+
+    if (smallchat && window.innerWidth < 1280 && window.innerWidth >= 1024) {
+      if (
+        this.container.scrollTop >=
+        this.container.scrollHeight - window.innerHeight
+      ) {
+        smallchat.style.display = 'none'
+      } else {
+        smallchat.style.display = 'block'
+      }
+    } else if (smallchat && window.innerWidth < 1024) {
+      if (window.scrollY >= document.body.offsetHeight - window.innerHeight) {
+        smallchat.style.display = 'none'
+      } else {
+        smallchat.style.display = 'block'
+      }
+    }
+
     if (!this.stopReplacing) {
       const h = this.hElms.reduce((current, h) => {
         const rect = h.getBoundingClientRect()

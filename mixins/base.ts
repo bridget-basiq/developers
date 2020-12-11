@@ -14,7 +14,7 @@ export default class Base extends Vue {
     }
   }
 
-  destroyed() {
+  beforeDestroy() {
     this.subscriptions.forEach((sub: any) => sub())
   }
 }
