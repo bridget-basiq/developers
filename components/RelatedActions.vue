@@ -40,7 +40,9 @@ export default class RelatedActions extends Vue {
   }
 
   get githubUrl() {
-    return `${this.$config.EDIT_GITHUB_URL}/${this.content?.dir}/${this.content?.slug}${this.content?.extension}`
+    return `${this.$config.EDIT_GITHUB_URL}${
+      this.content?.dir.length > 1 ? this.content?.dir : ''
+    }/${this.content?.slug}${this.content?.extension}`
   }
 
   onClick() {}

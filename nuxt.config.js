@@ -30,7 +30,6 @@ export default {
       {
         src: 'https://cdn.usefathom.com/script.js',
         defer: true,
-        spa: 'auto',
         'data-site': 'OZCKUFXK',
       },
       {
