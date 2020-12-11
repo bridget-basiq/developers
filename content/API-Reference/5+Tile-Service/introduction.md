@@ -7,9 +7,6 @@ order: 1
 # Chargetrip Tile Service
 The Chargetrip Tile Service is a Vector Tile Server that offers a pre-rendered fully clustered charge station solution including filtering that supercharges your station map (pun intended). Traditionally you would load stations on the frontend within a visible bounding box and apply filters and clusters on the client side. This will result in long waiting times when you interact with the map. Our tile-service moves complex operations to the back-end. So filtering and clustering become nearly instant, and the map becomes much more responsive.
 
-## Mapbox / Cluster Buster Section here.
-Perhaps v1 / v2. And why we deprecated it.
-
 ## Configuration
 
 ### Using the tile service
