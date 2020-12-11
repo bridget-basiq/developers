@@ -10,7 +10,7 @@
     }"
   >
     <div
-      v-if="showChildren"
+      v-if="showChildren && children.length"
       class="main-line w-10 lg:w-14 absolute left-0 top-0 h-full z-10"
     >
       <div

@@ -1,6 +1,7 @@
 <template>
   <div
-    class="property-toggle-children w-10 lg:w-14 flex absolute z-10 h-full left-0 top-0 cursor-pointer"
+    class="property-toggle-children w-10 lg:w-14 flex absolute z-10 h-full left-0 top-0"
+    :class="{ 'cursor-pointer': children.length }"
     @click.stop="$emit('input', !value)"
   >
     <template v-if="children.length">
