@@ -80,18 +80,9 @@
                   :options="options"
                   @input="onMenuItemClick({ hash: $event })"
                 />
-                <!--                <Search-->
-                <!--                  :click-handler="onMenuItemClick"-->
-                <!--                  icon="search"-->
-                <!--                  :hotkey="{-->
-                <!--                    icon: 'slash',-->
-                <!--                    key: '/',-->
-                <!--                    fn: (input) => input.focus(),-->
-                <!--                  }"-->
-                <!--                />-->
                 <template v-if="canEdit">
                   <Button
-                    class="ml-auto mr-2 lg-max:hidden"
+                    class="ml-auto lg-max:hidden"
                     size="sm"
                     color="accent"
                     @click="triggerEdit"
@@ -114,20 +105,10 @@
             <Nuxt class="page mb-8" />
           </div>
         </div>
-        <div class="mt-auto">
-          <PrevNextNavigation v-if="sideNav" />
-          <!--          <div class="p-6 lg:p-8 border-t flex items-center border-alt text-14">-->
-          <!--            <span class="icon icon-survey mr-3" />-->
-          <!--            <p>Was this section useful?</p>-->
-          <!--            <nav class="flex h-6 items-center font-semibold ml-auto">-->
-          <!--              <div class="underline">No</div>-->
-          <!--              <div class="underline ml-6 text-accent">Yes</div>-->
-          <!--            </nav>-->
-          <!--          </div>-->
-        </div>
+        <PrevNextNavigation v-if="sideNav" class="mt-auto" />
       </div>
       <aside
-        class="right-aside border-l border-alt p-8 overflow-y-scroll hidden xl:block"
+        class="right-aside border-l border-alt py-8 px-6 overflow-y-scroll hidden xl:block"
       >
         <MarkdownFormatting v-if="isEditing" />
         <RelatedActions v-else />
@@ -199,8 +180,8 @@ export default class Layout extends Mixins(Base) {
   hash = this.$route.hash.slice(1)
   stopReplacing = false
   showSearch = false
-  options: any = []
-  value: any = ''
+  options: { label: string; value: string }[] = []
+  value: string = ''
 
   beforeMount() {
     this.openKhaled = this.openKhaled.bind(this)
