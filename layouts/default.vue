@@ -2,7 +2,6 @@
   <div
     class="layout flex flex-col antialiased font-body min-h-screen text-font-primary text-16 bg-body"
     :class="{
-      'show-search': showSearch,
       'theme-dark': darkMode,
       'theme-light': !darkMode,
       'menu-open': menuOpen,
@@ -21,8 +20,18 @@
           >Developers
         </router-link>
         /
-        <div class="ml-1" href="https://chargetrip.com" target="_blank">
+        <a class="ml-1" href="https://chargetrip.com" target="_blank">
           Dashboard
+        </a>
+        <div class="ml-auto flex items-center">
+          <a
+            href="https://account.chargetrip.com/profile"
+            target="_blank"
+            class="pr-3 border-r border-alt2"
+          >
+            Account
+          </a>
+          <div class="pl-3 text-font-primary">Sign out</div>
         </div>
       </div>
     </Banner>
@@ -32,7 +41,6 @@
       <SideNav
         v-if="sideNav"
         class="text-14 z-40 top-0"
-        :class="{ 'show-search': showSearch }"
         :navs="normalizedSideNav"
         :dark-mode="darkMode"
         :show-toggle-menu="true"
@@ -40,15 +48,22 @@
         :spacing="6"
         @changeDarkMode="setDarkMode"
       >
-        <span class="icon-search ml-4" @click="showSearch = !showSearch" />
-        <span
-          v-show="showSearch"
-          class="icon-close text-20 mr-6 absolute z-20 top-1/2 transform -translate-y-1/2 right-0"
-          @click="showSearch = false"
-        />
-        <Search
-          class="mobile-search absolute hidden left-0 bg-body top-0 z-10 w-full h-14"
-          :click-handler="onMenuItemClick"
+        <template v-slot:icons>
+          <span
+            class="icon-search lg:hidden ml-4"
+            @click="showSearch = !showSearch"
+          />
+        </template>
+        <Input
+          class="px-3 lg-max:hidden"
+          icon="search"
+          :hotkey="{
+            icon: 'slash',
+            key: '/',
+            fn: () => (showSearch = true),
+          }"
+          placeholder="Search.."
+          @focus="showSearch = true"
         />
       </SideNav>
       <div
@@ -59,18 +74,16 @@
           <div class="sticky-header lg:px-8 px-6 hidden lg:block">
             <div class="flex items-center">
               <template v-if="!isEditing">
-                <Search
-                  :click-handler="onMenuItemClick"
-                  icon="search"
-                  :hotkey="{
-                    icon: 'slash',
-                    key: '/',
-                    fn: (input) => input.focus(),
-                  }"
+                <Select
+                  v-if="options.length"
+                  v-model="value"
+                  class="navigate-select"
+                  :options="options"
+                  @input="onMenuItemClick({ hash: $event })"
                 />
                 <template v-if="canEdit">
                   <Button
-                    class="ml-auto mr-2 lg-max:hidden"
+                    class="ml-auto lg-max:hidden"
                     size="sm"
                     color="accent"
                     @click="triggerEdit"
@@ -83,8 +96,8 @@
                 <div class="ml-auto flex">
                   <Button size="sm" color="alt" @click="cancel">Cancel</Button>
                   <Button size="sm" class="ml-2" color="accent" @click="save"
-                    >Save edits</Button
-                  >
+                    >Save edits
+                  </Button>
                 </div>
               </template>
             </div>
@@ -93,20 +106,10 @@
             <Nuxt class="page mb-8" />
           </div>
         </div>
-        <div class="mt-auto">
-          <PrevNextNavigation v-if="sideNav" />
-          <div class="p-6 lg:p-8 border-t flex items-center border-alt text-14">
-            <span class="icon icon-survey mr-3" />
-            <p>Was this section useful?</p>
-            <nav class="flex h-6 items-center font-semibold ml-auto">
-              <div class="underline">No</div>
-              <div class="underline ml-6 text-accent">Yes</div>
-            </nav>
-          </div>
-        </div>
+        <PrevNextNavigation v-if="sideNav" class="mt-auto" />
       </div>
       <aside
-        class="right-aside border-l border-alt p-8 overflow-y-scroll hidden xl:block"
+        class="right-aside border-l border-alt py-8 px-6 overflow-y-scroll hidden xl:block"
       >
         <MarkdownFormatting v-if="isEditing" />
         <RelatedActions v-else />
@@ -118,12 +121,24 @@
       :style="{ top: `${khaledPosition.y}px`, left: `${khaledPosition.x}px` }"
       src="khaled.gif"
     />
+    <Search
+      :active="showSearch"
+      :click-handler="onMenuItemClick"
+      icon="search"
+      @close="showSearch = false"
+    />
   </div>
 </template>
 <script lang="ts">
 import { Component, Watch, Ref } from 'nuxt-property-decorator'
 import { Mixins } from 'vue-property-decorator'
-import { Banner, Button, SideNav } from '@chargetrip/internal-vue-components'
+import {
+  Banner,
+  Button,
+  SideNav,
+  Input,
+  Select,
+} from '@chargetrip/internal-vue-components'
 
 import { Getter, Mutation } from 'vuex-class'
 import Table from '~/components/global/PropertyTable.vue'
@@ -137,6 +152,8 @@ import Search from '~/components/Search.vue'
 @Component({
   components: {
     Search,
+    Select,
+    Input,
     MarkdownFormatting,
     PrevNextNavigation,
     RelatedActions,
@@ -164,6 +181,8 @@ export default class Layout extends Mixins(Base) {
   hash = this.$route.hash.slice(1)
   stopReplacing = false
   showSearch = false
+  options: { label: string; value: string }[] = []
+  value: string = ''
 
   beforeMount() {
     this.openKhaled = this.openKhaled.bind(this)
@@ -171,6 +190,15 @@ export default class Layout extends Mixins(Base) {
 
     this.$root.$on('openKhaled', this.openKhaled)
     this.$root.$on('closeKhaled', this.closeKhaled)
+  }
+
+  @Watch('content', { immediate: true }) onContentChange() {
+    this.options = this.content.headings.map((heading) => ({
+      label: heading.title,
+      value: heading.hash,
+    }))
+
+    this.value = this.options[0]?.value || ''
   }
 
   mounted() {
@@ -215,36 +243,29 @@ export default class Layout extends Mixins(Base) {
   }
 
   get normalizedSideNav() {
-    const sideNav = [
+    return [
       ...this.sideNav,
-      {
-        title: 'Tools',
-        children: [
-          {
-            title: 'Playground',
-            href: 'https://playground.chargetrip.com/',
-            arrow: true,
-          },
-          {
-            title: 'Voyager',
-            href: 'https://voyager.chargetrip.com/',
-            arrow: true,
-          },
-          {
-            title: 'Dashboard',
-            href: 'https://account.chargetrip.com',
-            arrow: true,
-          },
-          {
-            title: 'Examples',
-            href: 'https://chargetrip.com/examples/',
-            arrow: true,
-          },
-        ],
-      },
+      [
+        {
+          title: 'Playground',
+          icon: 'playground',
+          href: 'https://playground.chargetrip.com/',
+          arrow: true,
+        },
+        {
+          title: 'Voyager',
+          icon: 'voyager-alt',
+          href: 'https://voyager.chargetrip.com/',
+          arrow: true,
+        },
+        {
+          title: 'Examples',
+          icon: 'code',
+          href: 'https://chargetrip.com/examples/',
+          arrow: true,
+        },
+      ],
     ]
-
-    return [sideNav.map(this.attachHandler.bind(this))]
   }
 
   get offset() {
@@ -320,6 +341,7 @@ export default class Layout extends Mixins(Base) {
 
   @Watch('$route.hash') onHashChange() {
     this.hash = this.$route.hash.slice(1)
+    this.value = this.hash || this.options[0]?.value || ''
   }
 
   findInArray(arr, name) {
@@ -351,6 +373,9 @@ export default class Layout extends Mixins(Base) {
   }
 
   @Watch('$route.path') onRouteChange() {
+    if (process.env.NODE_ENV === 'production') {
+      window.fathom.trackPageview()
+    }
     if (!this.container) return
 
     if (!this.$route.hash?.length) {
@@ -360,13 +385,32 @@ export default class Layout extends Mixins(Base) {
     this.stopReplacing = true
     setTimeout(() => {
       this.hElms = [
-        ...(this.container.querySelectorAll('.page h2, .page h3') || []),
+        ...(this.container.querySelectorAll('.page h2') || []),
       ].filter((el) => el.id)
       this.stopReplacing = false
-    }, 300)
+    }, 1000)
   }
 
   @Listen('scroll') onScroll() {
+    const smallchat: HTMLElement | null = document.querySelector('#Smallchat')
+
+    if (smallchat && window.innerWidth < 1280 && window.innerWidth >= 1024) {
+      if (
+        this.container.scrollTop >=
+        this.container.scrollHeight - window.innerHeight
+      ) {
+        smallchat.style.display = 'none'
+      } else {
+        smallchat.style.display = 'block'
+      }
+    } else if (smallchat && window.innerWidth < 1024) {
+      if (window.scrollY >= document.body.offsetHeight - window.innerHeight) {
+        smallchat.style.display = 'none'
+      } else {
+        smallchat.style.display = 'block'
+      }
+    }
+
     if (!this.stopReplacing) {
       const h = this.hElms.reduce((current, h) => {
         const rect = h.getBoundingClientRect()
@@ -420,8 +464,9 @@ export default class Layout extends Mixins(Base) {
     @apply mt-14 mb-2;
   }
 
-  > h3 {
-    @apply mt-8 mb-1;
+  > h3,
+  .schema .h2 {
+    @apply mt-8 mb-3;
   }
 
   > ul:not(.errors),
@@ -468,15 +513,6 @@ export default class Layout extends Mixins(Base) {
     + p,
     + p + p {
       @apply text-18 text-font-alt3;
-
-      @screen md {
-        @apply pr-24;
-      }
-
-      img {
-        width: calc(100% + 96px);
-        max-width: unset;
-      }
     }
   }
 }
@@ -488,6 +524,7 @@ export default class Layout extends Mixins(Base) {
         @apply hidden;
       }
     }
+
     .c-side-nav {
       &:not(.show-menu) {
         &:not(.show-search) {
@@ -495,13 +532,9 @@ export default class Layout extends Mixins(Base) {
         }
       }
     }
+
     .view {
       overflow: unset;
-    }
-    &.show-search {
-      .mobile-search {
-        @apply block;
-      }
     }
   }
   &.no-transition {
@@ -517,20 +550,6 @@ export default class Layout extends Mixins(Base) {
   &.is-playground {
     .right-aside {
       width: 512px;
-    }
-  }
-
-  .mobile-search {
-    .c-form-control.has-focus,
-    .c-form-control.has-hover,
-    .c-form-control {
-      .box {
-        @apply h-14 bg-body rounded-none border-0;
-
-        input {
-          @apply px-6;
-        }
-      }
     }
   }
 
@@ -570,6 +589,11 @@ export default class Layout extends Mixins(Base) {
 
   .nuxt-content-editor {
     @apply text-font-primary bg-body;
+  }
+
+  .navigate-select {
+    max-width: 164px;
+    @apply w-full;
   }
 }
 </style>

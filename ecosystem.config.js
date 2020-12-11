@@ -1,9 +1,17 @@
+require('dotenv').config()
 module.exports = {
   apps: [
     {
       name: 'dev-portal',
       env: {
         NODE_ENV: 'staging',
+        CHARGETRIP_API_URL: process.env.CHARGETRIP_API_URL,
+        ALGOLIA_API_SECRET_KEY: process.env.ALGOLIA_API_SECRET_KEY,
+        ALGOLIA_API_PUBLIC_KEY: process.env.ALGOLIA_API_PUBLIC_KEY,
+        ALGOLIA_APP_ID: process.env.ALGOLIA_APP_ID,
+        FATHOM_ID: process.env.FATHOM_ID,
+        EDIT_GITHUB_URL: process.env.EDIT_GITHUB_URL,
+        EDIT_API_URL: process.env.EDIT_API_URL,
       },
       script: '',
     },

@@ -1,5 +1,5 @@
 ---
-title: Introduction
+title: EV Basics
 description: A short introduction on what electric vehicles are and how it impacts routing
 order: 1
 ---

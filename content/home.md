@@ -1,8 +1,7 @@
 ---
 title: Home
 description: A clear overview of our setup guides API reference and open source projects.
-icon: documentation
-order: 1
+icon: home
 
 package: 
 - Typescript Typings
@@ -25,7 +24,7 @@ row2:
 - Easily cluster data to improve render speeds
 ---
 
-# Documentation 1234 5
+# Documentation
 
 Get going with the **Chargetrip** API. Clone one of our examples as a boilerplate, build along with our guides or start by browsing through our API reference.
 
@@ -125,5 +124,3 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         <c-cell>Easily cluster data to improve render speeds</c-cell>
     </c-row>
 </c-table>
-
-

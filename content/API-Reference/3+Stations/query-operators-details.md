@@ -1,0 +1,32 @@
+---
+title: Query station operator details
+description: Query the details of a single station operator
+order: 9
+frequently:
+- id
+- name
+- website
+- logo
+---
+
+# Query station operator details
+After you [queried a `station`]() you will be able to fetch the operator details through this `operator` query. It will provide you with a wide range of information such as the `name`, `website` and `logo` of the operator.
+
+## Query
+To query the operator details you do need an operator `id`. You can get this `id` from the [`station`]() query that you just ran.
+
+<schema name="operator" :frequent="frequently"></schema>
+
+## Response
+On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
+
+On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
+
+<errors name="operator"></errors>
+
+<playground>
+<code-block lang="graphql" query="operatorList">					
+</code-block>
+<code-block lang="json">
+</code-block>
+</playground>

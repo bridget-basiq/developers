@@ -9,7 +9,7 @@
       class="flex h-10 px-6 font-semibold items-center border-b border-alt text-font-alt2"
     >
       <template v-if="query">
-        <Tag class="mr-2" type="secondary" color="note"> Query </Tag>
+        <Tag class="mr-2" type="secondary" color="note"> {{ queryType }} </Tag>
         <span class="font-normal text-font-primary font-mono">
           {{ query }}
         </span>
@@ -43,6 +43,7 @@ import highlightjs from '~/utilities/highlight'
 @Component({ components: { Snackbar, Tag } })
 export default class CodeBlock extends Vue {
   @Prop() title
+  @Prop({ default: 'Query' }) queryType
   @Prop() lang
   @Prop() query
   @Prop() prefix

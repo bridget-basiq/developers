@@ -28,6 +28,12 @@ export default {
     ],
     script: [
       {
+        src: 'https://cdn.usefathom.com/script.js',
+        defer: true,
+        spa: 'auto',
+        'data-site': 'OZCKUFXK',
+      },
+      {
         src: 'https://embed.small.chat/T33286SKGGSBRX0P8T.js',
         defer: true,
       },
@@ -76,12 +82,6 @@ export default {
   components: true,
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
-    [
-      '@nuxtjs/google-analytics',
-      {
-        id: 'UA-82148343-12',
-      },
-    ],
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/stylelint

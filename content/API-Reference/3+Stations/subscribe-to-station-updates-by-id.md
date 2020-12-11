@@ -1,7 +1,7 @@
 ---
-title: Query station details
-description: Query all stations or stations at a specific location.
-order: 3
+title: Subscribe to station updates
+description: Get updates whenever something on a station changes
+order: 7
 frequently:
 - id
 - name
@@ -12,25 +12,23 @@ frequently:
 - amenities
 ---
 
-# Query station details
-Specific station details can be useful when you want to display the type of chargers, the number of chargers, the location or any other detail that is currently available.  
+# Subscribe to station updates
+If a route is calculated and it includes several stations, you might want to receive status updates from these stations. To prevent you from making too much requests, you can make use of the `station updates` subscription. This service will let you know whenever a station's availability changed or when a review was added.
 
-## Query
-To get specific details of a station you need to provide a `stationId`. This `id` can be obtained by using the stations query described [here]().
+## Subscription
+To use the subscription service you will need a station `id` that can be get from queries like [stations] or [route details](). 
 
-<schema name="station" :frequent="frequently"></schema>
+<schema type="Subscription" name="stationUpdatedById" :frequent="frequently"></schema>
 
 ## Response
 On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
 
-On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
-
-<errors name="station"></errors>
+<errors name="stationUpdatedById"></errors>
 
 <playground url="https://playground.chargetrip.com/?page=station">
-<code-block lang="graphql" query="stationList">					
-query station($stationId: ID!) {
-  station(id: $stationId) {
+<code-block lang="graphql" query="stationUpdatedById" query-type="subscription">					
+subscription stationUpdatedById($stationId: ID!) {
+  stationUpdatedById(id: $stationId) {
     id
     external_id
     country_code

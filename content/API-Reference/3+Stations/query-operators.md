@@ -1,13 +1,16 @@
 ---
 title: Query station operators
 description: Query all the operators of your station database
-order: 7
+order: 8
 frequently:
 - id
+- name
+- website
+- logo
 ---
 
 # Query station operators
-Charge stations are often exploited by various operators. To get an overview of your operators you can use the `operatorList` query. All operator details are available, but keep it as small as possible to improve performance.
+Charge stations are often exploited by various operators. To get an overview of the operators in your station database you can use the `operatorList` query. All operator details are available for you to query, but keep the number of attributes as low as possible for the better performance.
 
 ## Query
 The entire operatorList can be accessed by using the `operatorList` query with the attributes you would like to use. Optionally you can use [pagination]() and `filters` to improve your results.
@@ -22,7 +25,7 @@ On success, the HTTP status code in the response header is `200` and the respons
 
 On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
 
-<errors name="operator"></errors>
+<errors name="operatorList"></errors>
 
 <playground>
 <code-block lang="graphql" query="operatorList">					

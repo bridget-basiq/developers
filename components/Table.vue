@@ -52,7 +52,7 @@ export default class Table extends Vue {
 }
 </script>
 <style lang="scss">
-.dev-portal-table {
+.home .dev-portal-table {
   @screen lg-max {
     tr,
     td {
@@ -60,21 +60,31 @@ export default class Table extends Vue {
     }
     tr {
       width: calc(100% + 48px);
-      @apply -ml-6;
+      @apply -ml-6 relative;
 
       &:first-child {
         @apply hidden;
       }
+
+      &::after {
+        content: '\e918';
+        font-family: icomoon;
+        @apply absolute right-0 top-1/2 transform -translate-y-1/2 mr-6;
+      }
     }
     td {
-      @apply block h-auto px-6;
+      @apply block h-auto pl-6 pr-12;
 
       &:first-child {
-        @apply pt-4;
+        @apply pt-4 pb-0;
+
+        .bg {
+          @apply border-0;
+        }
       }
 
       &:last-child {
-        @apply pb-4;
+        @apply pb-4 pt-0;
       }
     }
   }

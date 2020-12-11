@@ -17,7 +17,8 @@ export function Listen(name: string) {
         const fn = oldValue.bind(this)
 
         window.addEventListener(name, fn, true)
-        return () => window.removeEventListener(name, fn)
+
+        return () => window.removeEventListener(name, fn, true)
       } else {
         return oldValue.apply(this, args)
       }

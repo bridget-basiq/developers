@@ -1,10 +1,10 @@
 ---
-title: Mutate route
+title: Mutate to create a new route
 description: Mutate a route between 2 or more waypoints and support alternative stations along a route
 order: 2
 ---
 
-# Mutate route
+# Create a new route
 As described in the route introduction, the first thing you will need to do is fetch a `route ID`. This `route ID` can then be sent to subscribe to [route details]() and retrieve a polyline and other route data.
 
 ## Mutation
@@ -21,8 +21,12 @@ You can add a station as a waypoint or as a destination. To do this, add `statio
 ## Response
 On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
 
+On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
+
+<errors name="newRoute"></errors>
+
 <playground url="https://playground.chargetrip.com/?page=newRoute">
-<code-block lang="graphql" query="newRoute">					
+<code-block lang="graphql" query="newRoute" query-type="mutation">					
 mutation newRoute {
   newRoute(
     input: {
