@@ -54,12 +54,7 @@ const getSideNav = (pages) => {
             icon: page.icon,
             title: page.title,
             ...(page.slug === 'home' && { hideChildren: true }),
-            children: [] /* getH2Children(page.body.children, page).map((child) => ({
-              to,
-              hash: child.props.id,
-              inset: child.inset,
-              title: child.title || child.children[1].value,
-            })) */,
+            children: [],
           })
         } else if (!obj.children.find((child) => child.path === path)) {
           obj.children.push({

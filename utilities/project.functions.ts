@@ -26,7 +26,6 @@ export const getHeadings = (children, page) => {
       child.tag === 'accordion'
     ) {
       arr.push({
-        ...(child.tag === 'release-note' && { inset: false }),
         title: child.props.title,
         props: {
           id: slugify(

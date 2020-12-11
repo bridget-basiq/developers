@@ -94,8 +94,7 @@ export default class Property extends Vue {
 </script>
 <style lang="scss">
 .property {
-  &.has-children,
-  &.is-child {
+  &.has-children {
     > .content {
       @apply pl-14;
 
@@ -117,6 +116,14 @@ export default class Property extends Vue {
     .bg,
     .toggle-children {
       @apply bg-base;
+    }
+
+    > .content {
+      @apply pl-12;
+
+      @screen lg-max {
+        @apply pl-8;
+      }
     }
 
     .type {
