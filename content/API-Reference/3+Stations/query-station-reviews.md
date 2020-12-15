@@ -27,10 +27,12 @@ query reviewList($stationId: ID!) {
     locale
     ev {
       id
-      make
-      carModel
-      edition
-      version
+      naming {
+        make
+        model
+        edition
+        version
+      }
     }
     plugType
     tags {
@@ -50,12 +52,14 @@ query reviewList($stationId: ID!) {
         "rating": 5,
         "message": "My review message",
         "locale": "en-US",
-        "ev": {
+        " "ev": {
           "id": "5d161be5c9eef46132d9d20a",
-          "make": "Tesla",
-          "carModel": "Model S",
-          "edition": "75D",
-          "version": null
+          "naming": {
+            "make": "Tesla",
+            "model": "Model S",
+            "edition": null,
+            "version": "75D"
+          }
         },
         "plugType": "CHADEMO",
         "tags": {
@@ -71,10 +75,12 @@ query reviewList($stationId: ID!) {
         "locale": "en-US",
         "ev": {
           "id": "5d161be5c9eef46132d9d20a",
-          "make": "Tesla",
-          "carModel": "Model S",
-          "edition": "75D",
-          "version": null
+          "naming": {
+            "make": "Tesla",
+            "model": "Model S",
+            "edition": null,
+            "version": "75D"
+          }
         },
         "plugType": "CHADEMO",
         "tags": {

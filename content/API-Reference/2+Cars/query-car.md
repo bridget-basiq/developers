@@ -13,14 +13,16 @@ frequently:
 ---
 ---
 
-### Getting all details of a car
+# Query car details
 
 You can access the data of a specific car using the `car` or `carPremium` query. Please contact us for more information or to get access to premium data. You can see a live example with all available output parameters [here](https://playground.chargetrip.com/?page=car).
 
 ## Query
 To get specific details of a car you need to provide a `carId`. This `id` can be obtained by using the carList query.
 
-<schema name="station" :frequent="frequently"></schema>
+<schema name="car" :frequent="frequently"></schema>
+
+<errors name="carList"></errors>
 
 <playground url="https://playground.chargetrip.com/?page=car">
 <code-block lang="graphql" query="car">	
