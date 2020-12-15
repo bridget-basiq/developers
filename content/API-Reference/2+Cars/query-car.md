@@ -14,13 +14,17 @@ frequently:
 ---
 
 # Query car details
-
-You can access the data of a specific car using the `car` or `carPremium` query. Please [contact us](#) for more information on how to get access to our premium data set. You can see a live example with all available output parameters [here](https://playground.chargetrip.com/?page=car).
+Car data can be usefull when you want to display more  information about the car. You can access data using the `car` query or get even more data with`carPremium`. Please [contact us](#) for more information on how to get access to our premium data set. You can see a live example with all available output parameters [here](https://playground.chargetrip.com/?page=car).
 
 ## Query
 To get specific details of a car you need to provide a `carId`. This `id` can be obtained by using the `carList` query.
 
 <schema name="car" :frequent="frequently"></schema>
+
+## Response
+On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
+
+On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
 
 <errors name="carList"></errors>
 
@@ -103,3 +107,4 @@ query car{
   },
 }
 </code-block>
+</playground>
