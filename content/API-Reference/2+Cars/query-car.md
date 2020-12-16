@@ -11,7 +11,6 @@ frequently:
 - usable_kwh
 - fast_charging_support
 ---
----
 
 # Query car details
 Car data can be usefull when you want to display more  information about the car. You can access data using the `car` query or get even more data with`carPremium`. Please [contact us](#) for more information on how to get access to our premium data set. You can see a live example with all available output parameters [here](https://playground.chargetrip.com/?page=car).
