@@ -1,5 +1,5 @@
 ---
-title: Cars
+title: Introduction
 description: An introduction on the chargetrip car database and car queries
 order: 1
 ---

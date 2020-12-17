@@ -157,7 +157,7 @@ export default class Search extends Mixins(Base) {
     Enter: this.onEnter.bind(this),
   }
 
-  database = this.client.initIndex('items')
+  database = this.client.initIndex('prod_DeveloperPortalContent')
 
   onArrowDown() {
     if (this.itemIndex < this.currentGroup.length - 1) {
