@@ -66,6 +66,54 @@ query tariffList {
 }			
 </code-block>
 <code-block lang="json">
-# Currently missing
+{
+    "data": {
+        "tariffList": [
+            {
+                "id": "#",
+                "country_code": null,
+                "party_id": null,
+                "currency": "EUR",
+                "type": null,
+                "tariff_alt_url": "",
+                "tariff_alt_text": [
+                    {
+                        "text": "PNB"
+                    }
+                ],
+                "min_price": null,
+                "max_price": null,
+                "elements": [
+                    {
+                        "price_components": [
+                            {
+                                "price": 0.5,
+                                "vat": 0
+                            }
+                        ],
+                        "restrictions": []
+                    },
+                    {
+                        "price_components": [
+                            {
+                                "price": 0.29,
+                                "vat": 0
+                            }
+                        ],
+                        "restrictions": [
+                            {
+                                "day_of_week": null
+                            }
+                        ]
+                    }
+                ],
+                "start_date_time": null,
+                "end_date_time": null,
+                "energy_mix": null,
+                "last_updated": "2018-09-25T23:10:04.000Z"
+            }
+        ]
+    }
+}
 </code-block>
 </playground>
