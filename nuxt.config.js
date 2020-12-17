@@ -19,7 +19,6 @@ export default {
       { hid: 'description', name: 'description', property: '', content: '' },
       {
         hid: 'og:image',
-        name: 'og:image',
         property: 'og:image',
         content: '/OG-image.png',
       },
