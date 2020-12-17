@@ -1,6 +1,6 @@
 ---
-title: query car details
-description: Query data of a single car
+title: Query car details
+description: Query the data of a single car
 order: 3
 frequently:
 - id
