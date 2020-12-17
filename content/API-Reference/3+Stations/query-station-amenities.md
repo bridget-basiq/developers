@@ -27,8 +27,103 @@ On error the header status code is an error code and the response body contains 
 <errors name="amenityList"></errors>
 
 <playground>
-<code-block lang="graphql" query="operatorList">					
+<code-block lang="graphql" query="amenityList">					
+query amenityList($stationId: ID!) {
+  amenityList(stationId: $stationId) {
+    id
+    externalId
+    name
+    location {
+      type
+      coordinates
+    }
+    address {
+      continent
+      country
+      county
+      city
+      street
+      number
+      postalCode
+      what3Words
+      formattedAddress
+    }
+    type
+    distance
+    foursquareUrl
+  }
+}
 </code-block>
 <code-block lang="json">
+{
+  "data": {
+    "amenityList": [
+      {
+        "id": "5cf87262532717b6e7a510df",
+        "externalId": "4a270706f964a520bd8c1fe3",
+        "name": "Rijksmuseum",
+        "location": {
+          "type": "Point",
+          "coordinates": [
+            4.885132584180236,
+            52.3601351663482
+          ]
+        },
+        "address": {
+          "continent": "EU",
+          "country": "NL",
+          "county": "Noord-Holland",
+          "city": "Amsterdam",
+          "street": "Museumstraat 1",
+          "number": null,
+          "postalCode": "1071 XX",
+          "what3Words": null,
+          "formattedAddress": [
+            "Museumstraat 1, 1071 XX",
+            "Amsterdam, Noord-Holland",
+            "Netherlands"
+          ]
+        },
+        "type": [
+          "museum"
+        ],
+        "distance": 198,
+        "foursquareUrl": "https://foursquare.com/v/rijksmuseum/4a270706f964a520bd8c1fe3"
+      },
+      {
+        "id": "5ee8fab85d7d79001c8fdaa9",
+        "externalId": "4b8d3f6ef964a520b9ef32e3",
+        "name": "Amsterdam Marriott Hotel",
+        "location": {
+          "type": "Point",
+          "coordinates": [
+            4.880108247650469,
+            52.362570809114246
+          ]
+        },
+        "address": {
+          "continent": "EU",
+          "country": "NL",
+          "county": "Noord-Holland",
+          "city": "Amsterdam",
+          "street": "Stadhouderskade 12",
+          "number": null,
+          "postalCode": "1054 ES",
+          "what3Words": null,
+          "formattedAddress": [
+            "Stadhouderskade 12, 1054 ES",
+            "Amsterdam, Noord-Holland",
+            "Netherlands"
+          ]
+        },
+        "type": [
+          "hotel"
+        ],
+        "distance": 250,
+        "foursquareUrl": "https://foursquare.com/v/amsterdam%20marriott%20hotel/4b8d3f6ef964a520b9ef32e3"
+      }
+    ]
+  }
+}
 </code-block>
 </playground>
