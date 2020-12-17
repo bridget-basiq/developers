@@ -25,8 +25,42 @@ On error the header status code is an error code and the response body contains 
 <errors name="operator"></errors>
 
 <playground>
-<code-block lang="graphql" query="operatorList">					
+<code-block lang="graphql" query="operator">
+query operator($id: ID!) {
+  operator(id: $id) {
+    id
+    external_id
+    name
+    country
+    contact {
+      phone
+      email
+      website
+      facebook
+      twitter
+      properties
+    }
+  }
+}
 </code-block>
 <code-block lang="json">
+{
+  "data": {
+    "operator": {
+      "id": "5e947c83e337015769770512",
+      "external_id": "3383",
+      "name": "AlterBase - Sorégies (FR)",
+      "country": null,
+      "contact": {
+        "phone": "",
+        "email": "service-recharge@soregies.fr",
+        "website": "http://www.alterbase86.soregies.fr/portal/#/",
+        "facebook": null,
+        "twitter": null,
+        "properties": null
+      }
+    }
+  }
+}
 </code-block>
 </playground>
