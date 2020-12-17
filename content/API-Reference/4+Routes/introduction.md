@@ -1,5 +1,5 @@
 ---
-title: Routes
+title: Introduction
 description: Start building routes with the chargetrip routing queries, mutations and subscriptions.
 order: 1
 ---
