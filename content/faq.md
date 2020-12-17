@@ -67,7 +67,7 @@ You can find a list of all connectors in our schema, under `OCPIConnectorType`. 
 
 <accordion-item title="Do you have different levels of preferred operators?">
 
-Currently, we have one level of preferred operators. All operators added here are equally preferred. Please contact us to mark certain operators as preferred. 
+Currently, we have one level of preferred operators. All operators added here are equally preferred. Please <cta action='smallchat'>contact us</cta> to mark certain operators as preferred. 
 
 </accordion-item>
 
