@@ -21,16 +21,19 @@ export default class Slug extends Vue {
         {
           hid: 'description',
           name: 'description',
+          property: 'description',
           content: this.page.description,
         },
         {
           hid: 'og:description',
-          name: 'og:description',
+          name: 'oog:description',
+          property: 'oog:description',
           content: this.page.description,
         },
         {
           hid: 'og:title',
           name: 'og:title',
+          property: 'og:title',
           content: this.page.description,
         },
       ],

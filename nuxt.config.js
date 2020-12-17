@@ -16,8 +16,13 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { hid: 'og:image', name: 'og:image', content: '/OG-image.png' },
+      { hid: 'description', name: 'description', property: '', content: '' },
+      {
+        hid: 'og:image',
+        name: 'og:image',
+        property: 'og:image',
+        content: '/OG-image.png',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
