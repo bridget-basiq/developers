@@ -12,8 +12,7 @@ app.post('/api', (req, res) => {
     `git add . && git commit -m "fix(dev-portal): changes made by: ${req.body.name}, description: ${req.body.description}" && git push origin fix/dev-portal/content-edit --force`.toLowerCase(),
     (error, stdout, stderr) => {
       if (error) {
-        res.status(406).send(error)
-        return
+        return res.status(406).send(error)
       }
       if (stderr) {
         return res.status(406).send({ message: stderr })

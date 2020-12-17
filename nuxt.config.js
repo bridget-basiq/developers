@@ -40,8 +40,7 @@ export default {
   },
   router: {
     scrollBehavior: () => null,
-    base:
-      process.env.NODE_ENV === 'production' ? '/chargetrip-developers/' : '/',
+    base: '/',
     extendRoutes(routes) {
       routes.unshift({
         path: '/',
