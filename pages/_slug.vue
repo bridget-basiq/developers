@@ -1,12 +1,5 @@
 <template>
-  <div v-if="page">
-    <div v-if="alternate" class="animate" v-animate>
-      <nuxt-content :class="page.slug" :document="page" />
-    </div>
-    <div v-else class="animate" v-animate>
-      <nuxt-content :class="page.slug" :document="page" />
-    </div>
-  </div>
+  <nuxt-content v-if="page" :class="page.slug" :document="page" />
 </template>
 
 <script lang="ts">

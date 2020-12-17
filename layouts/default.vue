@@ -177,6 +177,7 @@ export default class Layout extends Mixins(Base) {
   @Mutation setIsEditing
   noTransition = false
   timeout = 0
+  pageTransitionDuration = 100
   hElms: any[] = []
   hash = this.$route.hash.slice(1)
   stopReplacing = false
@@ -292,43 +293,45 @@ export default class Layout extends Mixins(Base) {
   onMenuItemClick(item) {
     this.stopReplacing = true
 
-    if (!item.hash?.length) {
-      this.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      })
-    } else {
-      let times = 0
-
-      const interval = setInterval(() => {
-        times++
-
-        if (times > 100) {
-          // eslint-disable-next-line no-console
-          console.log(`Didn't find ${item.hash}`)
-          this.stopReplacing = false
-          clearInterval(interval)
-        }
-
-        const el = this.container.querySelector(`#${item.hash}`)
-
-        if (!el) return
-        clearInterval(interval)
-        const rect = el.getBoundingClientRect()
-
+    setTimeout(() => {
+      if (!item.hash?.length) {
         this.scrollTo({
-          top:
-            (this.container.scrollTop || window.scrollY) +
-            rect.top -
-            this.offset,
+          top: 0,
           behavior: 'smooth',
         })
+      } else {
+        let times = 0
 
-        setTimeout(() => {
-          this.stopReplacing = false
-        }, 1000)
-      }, 10)
-    }
+        const interval = setInterval(() => {
+          times++
+
+          if (times > 100) {
+            // eslint-disable-next-line no-console
+            console.log(`Didn't find ${item.hash}`)
+            this.stopReplacing = false
+            clearInterval(interval)
+          }
+
+          const el = this.container.querySelector(`#${item.hash}`)
+
+          if (!el) return
+          clearInterval(interval)
+          const rect = el.getBoundingClientRect()
+
+          this.scrollTo({
+            top:
+              (this.container.scrollTop || window.scrollY) +
+              rect.top -
+              this.offset,
+            behavior: 'smooth',
+          })
+
+          setTimeout(() => {
+            this.stopReplacing = false
+          }, 1000)
+        }, 10)
+      }
+    }, this.pageTransitionDuration)
   }
 
   @Watch('darkMode') onDarkModeChange() {
@@ -379,7 +382,9 @@ export default class Layout extends Mixins(Base) {
     if (!this.container) return
 
     if (!this.$route.hash?.length) {
-      this.scrollTo({ top: 0 })
+      setTimeout(() => {
+        this.scrollTo({ top: 0 })
+      }, this.pageTransitionDuration)
     }
 
     this.stopReplacing = true
