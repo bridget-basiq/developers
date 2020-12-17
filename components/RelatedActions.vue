@@ -29,7 +29,7 @@ export default class RelatedActions extends Vue {
       {
         title: 'View API reference',
         icon: 'terminal',
-        to: '/API/API-Reference/Stations/introduction',
+        to: '/API-Reference/API/introduction',
       },
       {
         title: 'Contact sales',
