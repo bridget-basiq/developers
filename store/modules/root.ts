@@ -10,7 +10,6 @@ export default class extends VuexModule {
   _querySchema: null | object = null
   _sideNav: null | object = null
   _isEditing = false
-  _alternate = false
   _content: null | object = null
   _user: object = { name: '', description: '' }
 
@@ -22,10 +21,6 @@ export default class extends VuexModule {
 
   @Mutation setIsEditing(val: boolean) {
     this._isEditing = val
-  }
-
-  @Mutation setAlternate(val: boolean) {
-    this._alternate = val
   }
 
   @Mutation
@@ -61,9 +56,6 @@ export default class extends VuexModule {
     return this._user
   }
 
-  get alternate() {
-    return this._alternate
-  }
 
   get querySchema() {
     return this._querySchema

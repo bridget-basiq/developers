@@ -3,13 +3,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Getter } from 'nuxt-property-decorator'
+import { Vue, Component } from 'nuxt-property-decorator'
 import { Mutation } from 'vuex-class'
 import { getFileByPath, getHeadings } from '~/utilities/project.functions'
 
 @Component
 export default class Slug extends Vue {
-  @Getter alternate
   page: any = null
   @Mutation setIsEditing
 
@@ -55,7 +54,6 @@ export default class Slug extends Vue {
     }
 
     store.commit('setContent', normalizedPage)
-    store.commit('setAlternate', !store.getters.alternate)
 
     return {
       page: normalizedPage,
