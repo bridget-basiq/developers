@@ -33,7 +33,7 @@
     "@nuxt/content": "^1.11.1",
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/axios": "^5.12.2",
-    "@nuxtjs/pwa": "^3.0.2",
+    "@nuxtjs/pwa": "^3.3.2",
     "algoliasearch": "^4.8.1",
     "cookie": "^0.4.1",
     "core-js": "^3.7.0",
