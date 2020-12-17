@@ -5,6 +5,7 @@
       'theme-dark': darkMode,
       'theme-light': !darkMode,
       'menu-open': menuOpen,
+      'is-editing': isEditing,
       'no-transition': noTransition,
       'is-playground': isPlayground,
     }"
@@ -19,20 +20,20 @@
         <router-link class="mx-1 text-font-primary" to="/"
           >Developers
         </router-link>
-        /
-        <a class="ml-1" href="https://chargetrip.com" target="_blank">
-          Dashboard
-        </a>
-        <div class="ml-auto flex items-center">
-          <a
-            href="https://account.chargetrip.com/profile"
-            target="_blank"
-            class="pr-3 border-r border-alt2"
-          >
-            Account
-          </a>
-          <div class="pl-3 text-font-primary">Sign out</div>
-        </div>
+        <!--        /-->
+        <!--        <a class="ml-1" href="https://chargetrip.com" target="_blank">-->
+        <!--          Dashboard-->
+        <!--        </a>-->
+        <!--        <div class="ml-auto flex items-center">-->
+        <!--          <a-->
+        <!--            href="https://account.chargetrip.com/profile"-->
+        <!--            target="_blank"-->
+        <!--            class="pr-3 border-r border-alt2"-->
+        <!--          >-->
+        <!--            Account-->
+        <!--          </a>-->
+        <!--          <div class="pl-3 text-font-primary">Sign out</div>-->
+        <!--        </div>-->
       </div>
     </Banner>
     <div
@@ -86,7 +87,7 @@
                     class="ml-auto lg-max:hidden"
                     size="sm"
                     color="accent"
-                    @click="triggerEdit"
+                    @click.native="triggerEdit"
                     >Edit page
                   </Button>
                 </template>
@@ -94,8 +95,14 @@
               <template v-else>
                 <h2>Edit {{ content.title }}</h2>
                 <div class="ml-auto flex">
-                  <Button size="sm" color="alt" @click="cancel">Cancel</Button>
-                  <Button size="sm" class="ml-2" color="accent" @click="save"
+                  <Button size="sm" color="alt" @click.native="cancel"
+                    >Cancel</Button
+                  >
+                  <Button
+                    size="sm"
+                    class="ml-2"
+                    color="accent"
+                    @click.native="save"
                     >Save edits
                   </Button>
                 </div>
@@ -177,6 +184,7 @@ export default class Layout extends Mixins(Base) {
   @Mutation setIsEditing
   noTransition = false
   timeout = 0
+  pageTransitionDuration = 100
   hElms: any[] = []
   hash = this.$route.hash.slice(1)
   stopReplacing = false
@@ -292,43 +300,45 @@ export default class Layout extends Mixins(Base) {
   onMenuItemClick(item) {
     this.stopReplacing = true
 
-    if (!item.hash?.length) {
-      this.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      })
-    } else {
-      let times = 0
-
-      const interval = setInterval(() => {
-        times++
-
-        if (times > 100) {
-          // eslint-disable-next-line no-console
-          console.log(`Didn't find ${item.hash}`)
-          this.stopReplacing = false
-          clearInterval(interval)
-        }
-
-        const el = this.container.querySelector(`#${item.hash}`)
-
-        if (!el) return
-        clearInterval(interval)
-        const rect = el.getBoundingClientRect()
-
+    setTimeout(() => {
+      if (!item.hash?.length) {
         this.scrollTo({
-          top:
-            (this.container.scrollTop || window.scrollY) +
-            rect.top -
-            this.offset,
+          top: 0,
           behavior: 'smooth',
         })
+      } else {
+        let times = 0
 
-        setTimeout(() => {
-          this.stopReplacing = false
-        }, 1000)
-      }, 10)
-    }
+        const interval = setInterval(() => {
+          times++
+
+          if (times > 100) {
+            // eslint-disable-next-line no-console
+            console.log(`Didn't find ${item.hash}`)
+            this.stopReplacing = false
+            clearInterval(interval)
+          }
+
+          const el = this.container.querySelector(`#${item.hash}`)
+
+          if (!el) return
+          clearInterval(interval)
+          const rect = el.getBoundingClientRect()
+
+          this.scrollTo({
+            top:
+              (this.container.scrollTop || window.scrollY) +
+              rect.top -
+              this.offset,
+            behavior: 'smooth',
+          })
+
+          setTimeout(() => {
+            this.stopReplacing = false
+          }, 1000)
+        }, 10)
+      }
+    }, this.pageTransitionDuration)
   }
 
   @Watch('darkMode') onDarkModeChange() {
@@ -379,7 +389,9 @@ export default class Layout extends Mixins(Base) {
     if (!this.container) return
 
     if (!this.$route.hash?.length) {
-      this.scrollTo({ top: 0 })
+      setTimeout(() => {
+        this.scrollTo({ top: 0 })
+      }, this.pageTransitionDuration)
     }
 
     this.stopReplacing = true
@@ -548,6 +560,13 @@ export default class Layout extends Mixins(Base) {
   }
 
   &.is-playground {
+    &:not(.is-editing) {
+      .right-aside {
+        > * {
+          @apply opacity-0;
+        }
+      }
+    }
     .right-aside {
       width: 512px;
     }

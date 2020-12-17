@@ -39,13 +39,6 @@ p a, label a, a.link, td a {
   @apply text-accent underline;
 }
 
-.cta {
-  @apply font-semibold text-font-alt3;
-
-  &:hover, &.active {
-    @apply text-accent;
-  }
-}
 
 p {
   @apply m-0;

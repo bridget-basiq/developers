@@ -17,6 +17,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
+      { hid: 'og:image', name: 'og:image', content: '/OG-image.png' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -85,6 +86,7 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/tailwindcss
+    '@nuxtjs/pwa',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/axios',
     '@nuxt/content',

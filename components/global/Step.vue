@@ -133,7 +133,7 @@ export default class Steps extends Vue {
   }
 
   .c-button {
-    @apply mt-6 inline-block;
+    @apply mt-6 inline-flex;
 
     &:nth-of-type(1) {
       @apply mr-4;

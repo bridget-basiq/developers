@@ -13,7 +13,7 @@ frequently:
 ---
 
 # Query premium car details <premium />
-Car premium data allows you to get even more data about your car, the tire pressure, prices, data about your drivetrain, and more. Please contact us to get access to premium data. 
+Car premium data allows you to get even more data about your car, the tire pressure, prices, data about your drivetrain, and more. Please <cta action='smallchat'>contact us</cta> to get access to premium data. 
 
 ## Query
 To get premium data of a car you need to provide a `carId`. This `id` can be obtained by using the `carList` query.

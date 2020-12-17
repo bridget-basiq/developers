@@ -10,10 +10,10 @@ frequently:
 ---
 
 # Query station operator details
-After you [queried a `station`]() you will be able to fetch the operator details through this `operator` query. It will provide you with a wide range of information such as the `name`, `website` and `logo` of the operator.
+After you [queried a `station`](/API-Reference/Stations/query-station-details) you will be able to fetch the operator details through this `operator` query. It will provide you with a wide range of information such as the `name`, `website` and `logo` of the operator.
 
 ## Query
-To query the operator details you do need an operator `id`. You can get this `id` from the [`station`]() query that you just ran.
+To query the operator details you do need an operator `id`. You can get this `id` from the [`station`](/API-Reference/Stations/query-station-details) query that you just executed.
 
 <schema name="operator" :frequent="frequently"></schema>
 

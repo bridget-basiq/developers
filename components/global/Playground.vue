@@ -4,11 +4,15 @@
   >
     <div class="py-8 flex px-6 flex items-center">
       <h2>Code Sample</h2>
-      <a v-if="url" :href="url" target="_blank" rel="noopener" class="ml-auto">
-        <Button size="sm" color="base" icon="arrow-up-right">
-          View in Playground
-        </Button>
-      </a>
+      <Button
+        size="sm"
+        :href="url"
+        color="base"
+        icon="arrow-up-right"
+        class="ml-auto"
+      >
+        View in Playground
+      </Button>
     </div>
     <div class="container flex flex-col">
       <slot />

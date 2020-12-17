@@ -9,10 +9,10 @@ frequently:
 - elements
 ---
 
-# Query station tariff details
+# Query station tariff details <premium />
 The `tariff` query will provide you with the costs to use a specific charging station. It will include the charging costs and optional setup fee.
 
-**Note**: the tariff data is not available when using OCM data. Therefor it also unavailable in our [playground](). Contact [sales]() for ecomovement data which holds tariff details.
+**Note**: the tariff data is not available when using OCM data. Therefor it also unavailable in our [playground](). <cta action='smallchat'>Contact us</cta> for premium ecomovement data which holds tariff details.
 
 ## Query
 The `tariff` query requires a tariff `id` to work. This tariff `id` can be found inside the attributes of a [station]().
@@ -67,6 +67,39 @@ query tarrif($id: ID!) {
 }
 </code-block>
 <code-block lang="json">
-# Currently missing
+{
+    "data": {
+        "tariff": {
+            "id": "#",
+            "country_code": null,
+            "party_id": null,
+            "currency": "EUR",
+            "type": null,
+            "tariff_alt_url": "",
+            "tariff_alt_text": [],
+            "min_price": null,
+            "max_price": null,
+            "elements": [
+                {
+                    "price_components": [
+                        {
+                            "price": 0.21,
+                            "vat": 0
+                        },
+                        {
+                            "price": 0.57,
+                            "vat": 0
+                        }
+                    ],
+                    "restrictions": []
+                }
+            ],
+            "start_date_time": null,
+            "end_date_time": null,
+            "energy_mix": null,
+            "last_updated": "2020-05-22T00:00:00.000Z"
+        }
+    }
+}
 </code-block>
 </playground>

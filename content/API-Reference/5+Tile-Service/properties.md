@@ -34,7 +34,7 @@ descriptions:
 - This indicates the power of a station. It can vary between `slow`, `fast` or `turbo`. If the feature is a cluster, it will indicate the power of the first station in that cluster. All stations below 43 kWh are considered slow, between 43 kWh and 150 kWh - fast, and above 150 kWh - turbo.
 - This indicates the availability status of a station. It can vary between `free`, `busy`, `unknown` or `error`. If the feature is a cluster, it will indicate the availability status of the first station in that cluster. Free means that at least one connector is available to charge a car; busy means that there are no free connectors; error means that the station is inoperational and cannot be used; unknown means that we don't know the exact status of all connectors.
 - Deprecated in favor of `preferredOperator`.
-- This flag indicates if the operator of a particular station is marked as a preferred operator. Please contact us to mark certain operators as preferred operators.
+- This flag indicates if the operator of a particular station is marked as a preferred operator. Please <cta action='smallchat'>contact us</cta> to mark certain operators as preferred operators.
 ---
 
 # Properties
