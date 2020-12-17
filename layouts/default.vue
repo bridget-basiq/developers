@@ -19,20 +19,20 @@
         <router-link class="mx-1 text-font-primary" to="/"
           >Developers
         </router-link>
-        /
-        <a class="ml-1" href="https://chargetrip.com" target="_blank">
-          Dashboard
-        </a>
-        <div class="ml-auto flex items-center">
-          <a
-            href="https://account.chargetrip.com/profile"
-            target="_blank"
-            class="pr-3 border-r border-alt2"
-          >
-            Account
-          </a>
-          <div class="pl-3 text-font-primary">Sign out</div>
-        </div>
+        <!--        /-->
+        <!--        <a class="ml-1" href="https://chargetrip.com" target="_blank">-->
+        <!--          Dashboard-->
+        <!--        </a>-->
+        <!--        <div class="ml-auto flex items-center">-->
+        <!--          <a-->
+        <!--            href="https://account.chargetrip.com/profile"-->
+        <!--            target="_blank"-->
+        <!--            class="pr-3 border-r border-alt2"-->
+        <!--          >-->
+        <!--            Account-->
+        <!--          </a>-->
+        <!--          <div class="pl-3 text-font-primary">Sign out</div>-->
+        <!--        </div>-->
       </div>
     </Banner>
     <div
