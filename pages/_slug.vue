@@ -1,14 +1,22 @@
 <template>
-  <nuxt-content v-if="page" :class="page.slug" :document="page" />
+  <div v-if="page">
+    <div v-if="alternate" class="animate" v-animate>
+      <nuxt-content :class="page.slug" :document="page" />
+    </div>
+    <div v-else class="animate" v-animate>
+      <nuxt-content :class="page.slug" :document="page" />
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
+import { Vue, Component, Getter } from 'nuxt-property-decorator'
 import { Mutation } from 'vuex-class'
 import { getFileByPath, getHeadings } from '~/utilities/project.functions'
 
 @Component
 export default class Slug extends Vue {
+  @Getter alternate
   page: any = null
   @Mutation setIsEditing
 
@@ -54,6 +62,7 @@ export default class Slug extends Vue {
     }
 
     store.commit('setContent', normalizedPage)
+    store.commit('setAlternate', !store.getters.alternate)
 
     return {
       page: normalizedPage,

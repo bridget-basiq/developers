@@ -5,9 +5,10 @@ order: 5
 frequently: 
 - route
 - status
+premium: true
 ---
 
-# Query route path
+# Query route path <premium/>
 Whenever you need more information about your route or a certain section of it, you can use the `routePath` query. It knows all about `temperatures`, `speeds`, `elevation` and more. 
 
 ## Query
