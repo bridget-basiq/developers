@@ -47,11 +47,6 @@ export default {
     scrollBehavior: () => null,
     base: '/',
     extendRoutes(routes) {
-      routes.unshift({
-        path: '/',
-        redirect: '/home',
-      })
-
       routes.push({
         path: '*',
         name: `catch-all`,
