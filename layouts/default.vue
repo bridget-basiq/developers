@@ -550,6 +550,10 @@ export default class Layout extends Mixins(Base) {
   &.is-playground {
     .right-aside {
       width: 512px;
+
+      > * {
+        @apply opacity-0;
+      }
     }
   }
 
