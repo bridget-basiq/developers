@@ -1,5 +1,5 @@
 ---
-title: query car details
+title: query premium car details
 description: Query data of a single car
 order: 4
 frequently:
