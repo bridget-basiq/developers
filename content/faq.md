@@ -20,8 +20,11 @@ Both WLTP and chargetripRange are estimates. WLTP is a testing cycle that car ma
 </accordion-item>
 
 <accordion title="Stations" description="8 Frequently Asked Questions">
+
 <accordion-item title="Can I see alternative stations along a planned route?">
-Yes. While our route calculates the best charging stations for you and your car — you can also view alternative stations. Simply add the stationsAlongRouteRadius flag to your `newRoute` mutation, and set the search radius in meters (the max is 5 km). Make sure to also add StationsAlongRoute to your `route` query. For more information, please see our documentation and examples.
+
+Yes. While our route calculates the best charging stations for you and your car — you can also view alternative stations. Simply add the stationsAlongRouteRadius flag to your `newRoute` mutation, and set the search radius in meters (the max is 5 km). Make sure to also add StationsAlongRoute to your `route` query. For more information, please see our [documentation](/API-Reference/Routes/query-route-details) and [examples](https://chargetrip.github.io/examples/stations-along-route/).
+
 </accordion-item>
 
 <accordion-item title="Do you also show the station ID from the station database provider?">
@@ -56,8 +59,11 @@ Charging station names flow from our station database. They receive these names 
 </accordion>
 
 <accordion title="Routes" description="6 Frequently Asked Questions">
+
 <accordion-item title="Can I show alternative routes?">
-Definitely. Just add alternatives to your `route` query, with all the parameters you want from your alternative routes. For more information, please visit our [examples](). 
+
+Definitely. Just add alternatives to your `route` query, with all the parameters you want from your alternative routes. For more information, please visit our [examples](https://chargetrip.github.io/examples/alternative-routes/). 
+
 </accordion-item>
 
 <accordion-item title="How do I share a route calculated with the Chargetrip API to a navigation application?">
@@ -69,11 +75,15 @@ No, this isn’t supported yet. But we’re working on it!
 </accordion-item>
 
 <accordion-item title="Can I add a waypoint to my route?">
-You can add waypoints to your route by adding the `via` property to your route request. For more information, please take a look at our [documentation](). 
+
+You can add waypoints to your route by adding the `via` property to your route request. For more information, please take a look at our [documentation](/API-Reference/Routes/mutate-route).
+
 </accordion-item>
 
 <accordion-item title="Do you recommend using a subscription or a query for routes?">
-We recommend that you subscribe to route updates, and unsubscribe when a route has reached a final status. Be aware that if a route is computed before you subscribe to it, you will not receive any updates. To prevent this, query the route once immediately after the subscription. If the route is already calculated, unsubscribe. For more information, consult our [documentation]() and [examples]().  
+
+We recommend that you subscribe to route updates, and unsubscribe when a route has reached a final status. Be aware that if a route is computed before you subscribe to it, you will not receive any updates. To prevent this, query the route once immediately after the subscription. If the route is already calculated, unsubscribe. For more information, consult our [documentation](/API-Reference/Routes/subscribe-to-route-updates) and [examples](https://chargetrip.github.io/examples/route/).  
+
 </accordion-item>
 
 <accordion-item title="Do you account for traffic in your route calculations?">
@@ -82,12 +92,15 @@ We do not take traffic into account when calculating routes. The impact of traff
 </accordion>
 
 <accordion title="Tile Service" description="2 Frequently Asked Questions">
+
 <accordion-item title="Can I build an MVP without using Chargetrip’s Tile Server? We don’t want to use Mapbox.">
-Yes, this is possible! However, we strongly advise you use our Tile Server. We’re not legally allowed to expose large datasets from our partner EcoMovement, because it would let users of our API scrape the station data. So premium data like address and plug type isn’t exposed unless you query a single station with the station ID.
+Yes, this is possible! However, we strongly advise you use our Tile Server. We’re not legally allowed to expose large datasets from our partner EcoMovement, because it would let users of our API scrape the station data. So premium data like address and plug type isn’t exposed unless you query a single station with the station ID. 
 </accordion-item>
 
 <accordion-item title="How do I filter stations?">
-You can add a set of filters to the tile request. These filters are sent as query parameters. To request a tile you must have a combination of connectors and powers. For more information, refer to our [examples]() and [documentation](). 
+
+You can add a set of filters to the tile request. These filters are sent as query parameters. To request a tile you must have a combination of connectors and powers. For more information, refer to our [examples](https://chargetrip.github.io/examples/tile-server/?provider=eco#eco) and [documentation](/API-Reference/Tile-Service/filters). 
+
 </accordion-item>
 </accordion>
 
