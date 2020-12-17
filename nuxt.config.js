@@ -85,7 +85,7 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/pwa',
+    // '@nuxtjs/pwa',
     '@nuxtjs/tailwindcss',
     '@nuxtjs/axios',
     '@nuxt/content',
