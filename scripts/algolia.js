@@ -8,7 +8,7 @@ const client = algoliasearch(
   process.env.ALGOLIA_APP_ID,
   process.env.ALGOLIA_API_SECRET_KEY
 )
-const index = client.initIndex('items')
+const index = client.initIndex('prod_DeveloperPortalContent')
 const distPath = join(process.cwd(), 'dist')
 const { JSDOM } = require('jsdom')
 const {
