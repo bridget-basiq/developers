@@ -1,5 +1,5 @@
 <template>
-  <Tag class="premium" type="secondary" color="premium">Primary</Tag>
+  <Tag class="premium" type="secondary" color="premium">Premium</Tag>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
