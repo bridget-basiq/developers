@@ -5,6 +5,7 @@
       'theme-dark': darkMode,
       'theme-light': !darkMode,
       'menu-open': menuOpen,
+      'is-editing': isEditing,
       'no-transition': noTransition,
       'is-playground': isPlayground,
     }"
@@ -86,7 +87,7 @@
                     class="ml-auto lg-max:hidden"
                     size="sm"
                     color="accent"
-                    @click="triggerEdit"
+                    @click.native="triggerEdit"
                     >Edit page
                   </Button>
                 </template>
@@ -94,8 +95,14 @@
               <template v-else>
                 <h2>Edit {{ content.title }}</h2>
                 <div class="ml-auto flex">
-                  <Button size="sm" color="alt" @click="cancel">Cancel</Button>
-                  <Button size="sm" class="ml-2" color="accent" @click="save"
+                  <Button size="sm" color="alt" @click.native="cancel"
+                    >Cancel</Button
+                  >
+                  <Button
+                    size="sm"
+                    class="ml-2"
+                    color="accent"
+                    @click.native="save"
                     >Save edits
                   </Button>
                 </div>
@@ -553,12 +560,15 @@ export default class Layout extends Mixins(Base) {
   }
 
   &.is-playground {
+    &:not(.is-editing) {
+      .right-aside {
+        > * {
+          @apply opacity-0;
+        }
+      }
+    }
     .right-aside {
       width: 512px;
-
-      > * {
-        @apply opacity-0;
-      }
     }
   }
 
