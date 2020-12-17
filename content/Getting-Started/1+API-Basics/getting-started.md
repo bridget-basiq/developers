@@ -17,8 +17,8 @@ The Chargetrip API can be used to render electric vehicles, plot stations and ca
 
 To get started with the chargetrip API you need to create an account and collect your own keys. Once you have done that you can start making requests.
 
-<c-button size="md" color="accent" title="Sign up"></c-button>
-<c-button size="md" color="body" title="Sign in"></c-button>
+<c-button href="https://dashboard.chargetrip.com/sign-up" size="md" color="accent" title="Sign up"></c-button>
+<c-button href="https://dashboard.chargetrip.com/" size="md" color="body" title="Sign in"></c-button>
 
 </step>
 <step :images="images">
