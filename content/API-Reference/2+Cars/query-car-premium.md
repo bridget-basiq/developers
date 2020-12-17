@@ -1,5 +1,5 @@
 ---
-title: query premium car details
+title: Query premium car details
 description: Query data of a single car
 order: 4
 frequently:
@@ -12,7 +12,7 @@ frequently:
 - fast_charging_support
 ---
 
-# Query car details premium
+# Query premium car details <premium />
 Car premium data allows you to get even more data about your car, the tire pressure, prices, data about your drivetrain, and more. Please contact us to get access to premium data. 
 
 ## Query
