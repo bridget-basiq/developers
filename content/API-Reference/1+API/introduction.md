@@ -5,17 +5,17 @@ order: 1
 ---
 
 # Quick setup guide
-The Chargetrip API gives you the ability to integrate smart, EV-specific routing into products built for drivers of electric cars. This API gives developers access to the same powerful EV routing engine that is already used and trusted by car manufacturers and e-mobility services around the world. Our GraphQL API and documentation are always on the latest stable version and fully backward compatible. For new features and bug-fixes, see the [release notes]().
+The Chargetrip API gives you the ability to integrate smart, EV-specific routing into products built for drivers of electric cars. This API gives developers access to the same powerful EV routing engine that is already used and trusted by car manufacturers and e-mobility services around the world. Our GraphQL API and documentation are always on the latest stable version and fully backward compatible. For new features and bug-fixes, see the [release notes](/release-notes).
 
 ## Integration
-To start integrating the Chargetrip API you can read our [getting started guide](). If you already have your keys ready and know a thing or two about graphQL you can continue here by copying the base URL.
+To start integrating the Chargetrip API you can read our [getting started guide](/Getting-Started/API-Basics/getting-started). If you already have your keys ready and know a thing or two about graphQL you can continue here by copying the base URL.
 
 <code-block lang="html" prefix="API Reference / Integration" title="Base URL">
 https://api.chargetrip.io/graphql
 </code-block>
 
 ## Authorization
-In the example below we quickly show you the header you need to set to authorize with the Chargetrip API. For a more in depth guide around authorization and errors you can take a look [here]().
+In the example below we quickly show you the header you need to set to authorize with the Chargetrip API. For a more in depth guide around authorization and errors you can take a look [here](/Getting-Started/API-Basics/status-error-codes).
 
 <code-block lang="bash" prefix="API Reference / Authorization" title="Headers">
 curl -X POST \

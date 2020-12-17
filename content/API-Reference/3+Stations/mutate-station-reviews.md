@@ -5,7 +5,7 @@ order: 6
 ---
 
 # Create a new station review
-To improve the user experience of routes you can include reviews as described in [query station reviews](). To collect reviews and allow users to write one, you will need to use the following mutation. 
+To improve the user experience of routes you can include reviews as described in [query station reviews](/API-Reference/Stations/query-station-reviews). To collect reviews and allow users to write one, you will need to use the following mutation. 
 
 ## Mutation
 To be able to write a review you will need a `stationId` and `carId`. After that you can use various review arguments like `rating`, `message` and `tags` to collect the appropriate data. Keep in mind, the `stationId` and `rating` are both required when submitting a review.
@@ -33,11 +33,33 @@ mutation addReview($stationId: String!, $carId: String) {
       plugType: CHADEMO
     }
   ) {
-    id
+    id,
+    createdAt,
+    rating,
+    ev {
+      make,
+      carModel,
+      edition
+    }
+    message,
   }
 }
 </code-block>
-<code-block lang="bash">
-# Currently Missing 
+<code-block lang="json">
+{
+  "data": {
+    "addReview": {
+      "id": "5fdb43041ab1f53275e1401d",
+      "createdAt": "2020-12-17T11:37:40Z",
+      "rating": 5,
+      "ev": {
+        "make": null,
+        "carModel": null,
+        "edition": null
+      },
+      "message": "My review message"
+    }
+  }
+}
 </code-block>
 </playground>

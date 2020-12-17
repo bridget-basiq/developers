@@ -11,7 +11,7 @@ frequently:
 Whenever you need more information about your route or a certain section of it, you can use the `routePath` query. It knows all about `temperatures`, `speeds`, `elevation` and more. 
 
 ## Query
-To use the `routePath` query you will need to configure two things. The route `id` needs to be present and the `location` as a GeoJSON point of the route path segment. The route `id` is the one you collect when executing a new route mutation as described [here]().
+To use the `routePath` query you will need to configure two things. The route `id` needs to be present and the `location` as a GeoJSON point of the route path segment. The route `id` is the one you collect when executing a new route mutation as described [here](/API-Reference/Routes/mutate-route).
 
 <schema name="routePath" :frequent="frequently"></schema>
 

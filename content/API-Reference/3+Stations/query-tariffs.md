@@ -9,10 +9,10 @@ frequently:
 - elements
 ---
 
-# Query station tariff list
+# Query station tariff list <premium />
 To get an overview of the charging costs and optional setup fee you can run the query station tariff list. Within this list you will find all costs per station.
 
-**Note**: the tariff data is not available when using OCM data. Therefor it also unavailable in our [playground](). Contact [sales]() for ecomovement data which holds tariff details.
+**Note**: the tariff data is not available when using OCM data. Therefore it also unavailable in our [playground](). <cta action='smallchat'>Contact us</cta> for premium ecomovement data which holds tariff details.
 
 ## Query
 The `tariffList` query works out of the box and no additional information is required. However, you have the option to enable [pagination]() on the query to improve the performance as you can see below.

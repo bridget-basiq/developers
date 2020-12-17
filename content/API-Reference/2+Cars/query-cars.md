@@ -1,5 +1,5 @@
 ---
-title: Query a list of cars
+title: Query cars
 description: Query all cars from the database
 order: 2
 frequently:
@@ -14,7 +14,7 @@ frequently:
 In order to see all cars in yur car databse you can use the `carList` query. You can see a live example of this query including all available output parameters [here](https://playground.chargetrip.com/?page=carListAll).
 
 ## Query
-To query your cars you only need to call the `carList` alongside some attributes. Optionally you can add [pagination]() and `filters`.
+To query your cars you only need to call the `carList` alongside some attributes. Optionally you can add [pagination](/API-Reference/API/pagination) and `filters`.
 
 ### Filters
 To filter your car list you can use the `query` argument. You can use the `make` to filter on a specific make, Tesla for example. Or filter on size, to specify the amount of cars you would like to receive. The default is 10. 

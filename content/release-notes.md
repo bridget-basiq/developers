@@ -38,7 +38,7 @@ We've added support for the latest version of OCPI. More information about the O
 ### ⚡️ New features
 
 **Exclusive Eco-Movement integration**
-Chargetrip includes an exclusive Eco-Movement integration. Next to our free Open Charge Map stations, your account can be pre-loaded with over 100.000 highly curated premium charge stations across Europe. Our premium station data includes real-time availability, pricing<sup>1</sup>, and charging history<sup>1</sup>. You no longer need to connect several costly charge station database providers to get European coverage. See eco-movement.com for more details about regional limitations. Contact us for pricing. 
+Chargetrip includes an exclusive Eco-Movement integration. Next to our free Open Charge Map stations, your account can be pre-loaded with over 100.000 highly curated premium charge stations across Europe. Our premium station data includes real-time availability, pricing<sup>1</sup>, and charging history<sup>1</sup>. You no longer need to connect several costly charge station database providers to get European coverage. See eco-movement.com for more details about regional limitations. <cta action='smallchat'>Contact us</cta> for pricing. 
 
 **OCPI 2.1.1 support**
 We've added support for the OCPI Tarrif module. More information about the OCPI 2.1.1 specifications can be found [here](https://github.com/ocpi/ocpi). The full specifications can be found [here](https://github.com/ocpi/ocpi/releases/download/2.1.1/OCPI_2.1.1.pdf).

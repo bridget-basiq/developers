@@ -1,7 +1,7 @@
 ---
 title: Authorization
 description: Configure your project so it can authorize with the Chargetrip API
-order: 3
+order: 2
 
 keys:
 - x-client-id

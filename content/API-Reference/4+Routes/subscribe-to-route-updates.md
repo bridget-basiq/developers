@@ -23,20 +23,20 @@ statusDescriptions:
 ---
 
 # Subscribe to route updates
-When you have obtained a `route ID` through the [route mutation](), you can start a route calculation to obtain your polyline and other route details. Because longer routes take some time to finish you can use a [GraphQL subscription](https://graphql.org/blog/subscriptions-in-graphql-and-relay/) as described in the [introduction](). 
+When you have obtained a `route ID` through the [route mutation](/API-Reference/Routes/mutate-route), you can start a route calculation to obtain your polyline and other route details. Because longer routes take some time to finish you can use a [GraphQL subscription](https://graphql.org/blog/subscriptions-in-graphql-and-relay/) as described in the [introduction](/API-Reference/Routes/introduction). 
 
 ## Subscription
-The subscription service needs to be initiated with a `route ID`. From there on it will start calculating and based on your interval provide you with a route status. For all possible statuses, see the [response section]() of this chapter. 
+The subscription service needs to be initiated with a `route ID`. From there on it will start calculating and based on your interval provide you with a route status. For all possible statuses, see the [response section](/API-Reference/Routes/subscribe-to-route-updates#response) of this chapter. 
 
-**Be aware** that if the route is computed before you subscribe to it, you will **not** receive any updates. This could happen when you create a short route. To prevent that scenario, [query the route details]() once right after you have set up the subscription. If the route is already calculated, `unsubscribe`.
+**Be aware** that if the route is computed before you subscribe to it, you will **not** receive any updates. This could happen when you create a short route. To prevent that scenario, [query the route details](/API-Reference/Routes/query-route-details) once right after you have set up the subscription. If the route is already calculated, `unsubscribe`.
 
 Last but not least, if your route supported any additional options you can now request them on the subscription response, as described here;
 
 ### Support alternative stations along a route
-If your [route mutation]() included the `stationsAlongRouteRadius` with a valid distance, you can now request the station details. To do so, you will need to add the `stationsAlongRoute` field with it's appropriate children.
+If your [route mutation](/API-Reference/Routes/mutate-route) included the `stationsAlongRouteRadius` with a valid distance, you can now request the station details. To do so, you will need to add the `stationsAlongRoute` field with it's appropriate children.
 
 ### Support stations as waypoint
-If your [route mutation]() included stations in the `via` parameter, you will receive a route with additional stations as waypoints. These station as waypoints can be found inside the `route.leg`. 
+If your [route mutation](/API-Reference/Routes/mutate-route) included stations in the `via` parameter, you will receive a route with additional stations as waypoints. These station as waypoints can be found inside the `route.leg`. 
 
 <schema type="Subscription" name="routeUpdatedById" :frequent="frequently"></schema>
 
@@ -62,22 +62,6 @@ subscription routeUpdatedById {
   "data": {
     "route": {
       "status": "pending"
-    }
-  }
-}
-
-{
-  "data": {
-    "route": {
-      "status": "processing"
-    }
-  }
-}
-
-{
-  "data": {
-    "route": {
-      "status": "done"
     }
   }
 }

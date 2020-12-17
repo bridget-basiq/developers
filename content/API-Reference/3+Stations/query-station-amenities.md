@@ -12,7 +12,7 @@ frequently:
 # Query station amenities
 A charge session often takes a bit longer than a regular fueling round. Therefore it might be interesting to list the amenities around a certain charging station. Most of them also support a link towards foursquare for more information.
 
-Last but not least, the available amenities can also be used as [filters]() on our [tile service](). To show the amenity count you can use the [station statistics]() query. 
+Last but not least, the available amenities can also be used as [filters](/API-Reference/Tile-Service/filters) on our [tile service](/API-Reference/Tile-Service/introduction). To show the amenity count you can use the [station statistics](/API-Reference/Stations/query-station-stats) query. 
 
 ## Query
 To use the `amenityList` query you will need a station `id`. This `id` can be fetched by using our `stationList` query. After passing in this `id` you have access to anything from `address` to `rating`.

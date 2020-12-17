@@ -8,7 +8,7 @@ order: 5
 Since station quality can vary, it's always nice to have a second opinion. That's why every station in your station database can be accompanied by a user review. Reviews are stored per station database and can't be used across different projects.
 
 ## Query
-To get the reviews of a specific station you will need to provide a `stationId`. Optionally you can add [pagination]() to lazy load the reviews.
+To get the reviews of a specific station you will need to provide a `stationId`. Optionally you can add [pagination](/API-Reference/API/pagination) to lazy load the reviews.
 
 <schema name="reviewList"></schema>
 
