@@ -67,6 +67,39 @@ query tarrif($id: ID!) {
 }
 </code-block>
 <code-block lang="json">
-# Currently missing
+{
+    "data": {
+        "tariff": {
+            "id": "#",
+            "country_code": null,
+            "party_id": null,
+            "currency": "EUR",
+            "type": null,
+            "tariff_alt_url": "",
+            "tariff_alt_text": [],
+            "min_price": null,
+            "max_price": null,
+            "elements": [
+                {
+                    "price_components": [
+                        {
+                            "price": 0.21,
+                            "vat": 0
+                        },
+                        {
+                            "price": 0.57,
+                            "vat": 0
+                        }
+                    ],
+                    "restrictions": []
+                }
+            ],
+            "start_date_time": null,
+            "end_date_time": null,
+            "energy_mix": null,
+            "last_updated": "2020-05-22T00:00:00.000Z"
+        }
+    }
+}
 </code-block>
 </playground>
