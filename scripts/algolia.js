@@ -98,11 +98,11 @@ function getPage({ url, dom, h1 }) {
   })
 
   const title = dom.window.document
-    .querySelector("meta[name='og:title']")
+    .querySelector("meta[property='og:title']")
     ?.getAttribute('content')
 
   const description = dom.window.document
-    .querySelector("meta[name='og:description']")
+    .querySelector("meta[property='og:description']")
     ?.getAttribute('content')
 
   return {
