@@ -296,7 +296,7 @@ export default class Search extends Mixins(Base) {
   }
 
   get suggestionGroups() {
-    const groups = this.suggestions
+    return this.suggestions
       .map((item) => ({
         ...item,
         ...this.getParentByItem(item),
@@ -308,10 +308,6 @@ export default class Search extends Mixins(Base) {
 
         return obj
       }, {})
-
-    console.log(groups)
-
-    return groups
   }
 
   get suggestionGroupKeys() {
@@ -326,6 +322,7 @@ export default class Search extends Mixins(Base) {
   @Watch('$route.path')
   onRouteChange() {
     this.showSuggestions = false
+
     this.$emit('close')
   }
 

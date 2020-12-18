@@ -69,7 +69,7 @@ export default class Property extends Vue {
 
   @Watch('$route.hash', { immediate: true })
   onHashChange() {
-    this.showChildren = this.getShowChildren()
+    this.showChildren = this.showChildren || this.getShowChildren()
   }
 
   getShowChildren() {
