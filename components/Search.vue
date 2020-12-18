@@ -248,6 +248,7 @@ export default class Search extends Mixins(Base) {
     })
 
     this.itemIndex = 0
+    this.groupIndex = 0
     this.suggestions = hits
   }
 
@@ -295,7 +296,7 @@ export default class Search extends Mixins(Base) {
   }
 
   get suggestionGroups() {
-    return this.suggestions
+    const groups = this.suggestions
       .map((item) => ({
         ...item,
         ...this.getParentByItem(item),
@@ -307,6 +308,9 @@ export default class Search extends Mixins(Base) {
 
         return obj
       }, {})
+
+
+    return groups
   }
 
   get suggestionGroupKeys() {

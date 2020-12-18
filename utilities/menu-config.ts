@@ -1,10 +1,10 @@
 export default {
   groups: [
-    ['/home', 'Getting-Started', 'API-Reference'],
+    ['/', 'Getting-Started', 'API-Reference'],
     ['/release-notes', '/faq'],
   ],
   icons: {
-    '/home': 'home',
+    '/': 'home',
     'Getting-Started': 'building-blocks',
     'API-Reference': 'squared-terminal',
     '/release-notes': 'notifications',

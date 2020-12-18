@@ -1,10 +1,7 @@
 import Vuex from 'vuex'
-import { toSnakeCase } from 'js-convert-case/lib'
 import cookie from 'cookie'
 import Main from './modules/root'
-import { slugify } from '~/utilities/project.functions'
 import menuConfig from '~/utilities/menu-config'
-
 
 const getObj = (list, arr) => {
   arr.forEach((p) => {
@@ -43,10 +40,13 @@ const getSideNav = (pages) => {
         path = path || p
 
         if (pathParts.length - 1 === i) {
-          const to = page.path
-            .split('/')
-            .map((part) => part.split('+').pop())
-            .join('/')
+          const to =
+            page.path === '/home'
+              ? '/'
+              : page.path
+                  .split('/')
+                  .map((part) => part.split('+').pop())
+                  .join('/')
 
           obj.children.push({
             to,
