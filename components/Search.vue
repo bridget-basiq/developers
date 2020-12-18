@@ -309,7 +309,6 @@ export default class Search extends Mixins(Base) {
         return obj
       }, {})
 
-    console.log(groups)
 
     return groups
   }
