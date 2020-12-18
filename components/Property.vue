@@ -39,7 +39,7 @@
   </li>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
 import { Tag } from '@chargetrip/internal-vue-components'
 import { OfTypeKind } from '~/utilities/constants'
 import PropertyTitle from '~/components/PropertyTitle.vue'
@@ -67,7 +67,8 @@ export default class Property extends Vue {
   showChildren = false
   ofTypeKind = OfTypeKind
 
-  created() {
+  @Watch('$route.hash', { immediate: true })
+  onHashChange() {
     this.showChildren = this.getShowChildren()
   }
 

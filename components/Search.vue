@@ -16,13 +16,14 @@
           ref="input"
           v-model="search"
           type="text"
-          autocomplete="off"
+          autocomplete="do-not-auto-fill"
           name="do-not-auto-fill"
           class="w-full h-full bg-transparent outline-none pr-6 font-semibold"
+          @focus="showSuggestions = true"
         />
       </div>
       <nav
-        v-show="search.length && suggestions.length"
+        v-show="showSuggestions && suggestions.length"
         class="text-font-alt3 text-14 border-t border-alt"
       >
         <main
@@ -52,7 +53,7 @@
                   :class="{ 'bg-base': itemIndex === s && groupIndex === i }"
                   :to="suggestion.url"
                   @mouseenter.native="onMouseEnter(i, s)"
-                  @mousedown.prevent.native="onClick(suggestion)"
+                  @mousedown.native="onClick(suggestion)"
                 >
                   <p class="whitespace-no-wrap">
                     <strong>
@@ -131,6 +132,7 @@ export default class Search extends Mixins(Base) {
   suggestions: any[] = []
   itemIndex = 0
   groupIndex = 0
+  showSuggestions = false
   prevent = false
   search = ''
   hotKeys = [
@@ -315,8 +317,11 @@ export default class Search extends Mixins(Base) {
     return this.suggestionGroups[this.suggestionGroupKeys[this.groupIndex]]
   }
 
-  @Watch('$route.path') onRouteChange() {
-    this.itemIndex = 0
+  @Watch('$route.hash')
+  @Watch('$route.path')
+  onRouteChange() {
+    this.showSuggestions = false
+    this.$emit('close')
   }
 
   onClick({ url }) {

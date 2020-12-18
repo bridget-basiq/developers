@@ -38,7 +38,8 @@ export default class Slug extends Vue {
   }
 
   async asyncData({ $content, route: { path }, store }) {
-    const actualPath = getFileByPath(path, store.getters.dirs)
+    const actualPath =
+      path === '/' ? '/home' : getFileByPath(path, store.getters.dirs)
 
     const page = await $content(actualPath, {
       deep: true,
