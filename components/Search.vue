@@ -7,11 +7,11 @@
   >
     <div class="bg bg-body opacity-75 absolute inset-0" />
     <div
-      class="relative mx-auto search-box w-screen max-w-screen-sm shadow-down-md"
+      class="relative mx-auto search-box w-screen max-w-screen-sm"
       @click.stop
     >
       <div
-        class="flex h-16 items-center bg-body border border-alt wrapper rounded-sm"
+        class="flex h-16 items-center bg-body border border-alt wrapper rounded-sm shadow-down-md"
       >
         <label class="icon-search px-6" for="do-not-auto-fill" />
         <input
@@ -205,6 +205,12 @@ export default class Search extends Mixins(Base) {
   }
 
   @Watch('search') async onSearchChange() {
+    if (!this.search.length) {
+      this.suggestions = []
+
+      return
+    }
+
     const { hits } = await this.database.search(this.search, {
       attributesToHighlight: ['description'],
       attributesToSnippet: ['description:10'],
