@@ -1,7 +1,7 @@
 <template>
   <div
     v-show="active"
-    class="search fixed inset-0 justify-start flex z-50 px-6"
+    class="search fixed inset-0 items-start justify-start flex z-50 px-6"
     :class="{ 'show-suggestions': showSuggestions && suggestions.length }"
     @click="$emit('close')"
   >
@@ -34,33 +34,31 @@
           class="flex flex-col suggestions overflow-y-scroll"
         >
           <ul class="p-3 lg:p-2">
-            <li v-for="(suggestion, i) in normalizedSuggestions" :key="i">
-              <router-link
-                ref="suggestionEl"
-                class="block py-2 px-3 cursor-pointer rounded-sm"
-                :class="{ 'bg-base': index === i }"
-                :to="suggestion.url"
-                @mouseenter.native="index = i"
-                @mousedown.native="onClick(suggestion)"
-              >
-                <p class="whitespace-no-wrap">
-                  <strong>
-                    <span v-if="suggestion.propertyPath" class="lg-max:hidden">
-                      {{ suggestion.propertyPath }} /
-                    </span>
-                    <span class="text-font-primary">
-                      {{ suggestion.title }}
-                    </span>
-                  </strong>
-                </p>
-                <p
-                  v-html="
-                    suggestion._snippetResult
-                      ? suggestion._snippetResult.description.value
-                      : suggestion.description
-                  "
-                />
-              </router-link>
+            <li
+              v-for="(suggestion, i) in normalizedSuggestions"
+              :key="i"
+              class="block py-2 px-3 cursor-pointer rounded-sm"
+              :class="{ 'bg-base': index === i }"
+              @mouseenter="index = i"
+              @mousedown="onClick(suggestion)"
+            >
+              <p class="whitespace-no-wrap">
+                <strong>
+                  <span v-if="suggestion.propertyPath" class="lg-max:hidden">
+                    {{ suggestion.propertyPath }} /
+                  </span>
+                  <span class="text-font-primary">
+                    {{ suggestion.title }}
+                  </span>
+                </strong>
+              </p>
+              <p
+                v-html="
+                  suggestion._snippetResult
+                    ? suggestion._snippetResult.description.value
+                    : suggestion.description
+                "
+              />
             </li>
           </ul>
         </main>
@@ -251,11 +249,11 @@ export default class Search extends Mixins(Base) {
   @Watch('$route.path')
   onRouteChange() {
     this.showSuggestions = false
-
-    this.$emit('close')
   }
 
-  onClick({ url }) {
+  async onClick({ url }) {
+    await this.$router.push(url)
+    this.$emit('close')
     this.clickHandler({ hash: url.split('#')?.[1] })
   }
 }

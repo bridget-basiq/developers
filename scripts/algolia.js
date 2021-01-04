@@ -19,7 +19,8 @@ const {
 
 async function getEntries(path) {
   const dom = new JSDOM(await fs.readFileSync(path, 'utf-8'))
-  const url = path.replace(distPath, '').replace('/index.html', '')
+  const _url = path.replace(distPath, '').replace('/index.html', '')
+  const url = _url.length ? _url : '/'
   const h1 = dom.window.document.body.querySelector('h1')?.textContent
 
   return [getPage({ url, dom, h1 }), ...(await getProperties({ url, dom }))]
@@ -116,7 +117,7 @@ function getPage({ url, dom, h1 }) {
   }
 }
 
-async function getIndices(path, ignore = true) {
+async function getIndices(path) {
   const arr = []
   const dir = await fs.readdirSync(path)
 
@@ -125,12 +126,12 @@ async function getIndices(path, ignore = true) {
       const url = join(path, fileOrDir)
       const isDir = fs.lstatSync(url).isDirectory()
 
-      if (fileOrDir === 'index.html' && !ignore) {
+      if (fileOrDir === 'index.html') {
         arr.push(...(await getEntries(url)))
       }
 
       if (isDir) {
-        arr.push(...(await getIndices(url, false).catch(console.log)))
+        arr.push(...(await getIndices(url).catch(console.log)))
       }
 
       return null
