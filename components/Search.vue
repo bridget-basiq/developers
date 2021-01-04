@@ -1,16 +1,18 @@
 <template>
   <div
     v-show="active"
-    class="search fixed inset-0 flex z-50 px-6"
+    class="search fixed inset-0 justify-start flex z-50 px-6"
     :class="{ 'show-suggestions': showSuggestions && suggestions.length }"
     @click="$emit('close')"
   >
     <div class="bg bg-body opacity-75 absolute inset-0" />
     <div
-      class="relative m-auto w-screen max-w-screen-sm shadow-down-md bg-body"
+      class="relative mx-auto search-box w-screen max-w-screen-sm shadow-down-md"
       @click.stop
     >
-      <div class="flex h-16 items-center border border-alt wrapper rounded-sm">
+      <div
+        class="flex h-16 items-center bg-body border border-alt wrapper rounded-sm"
+      >
         <label class="icon-search px-6" for="do-not-auto-fill" />
         <input
           id="do-not-auto-fill"
@@ -25,7 +27,7 @@
       </div>
       <nav
         v-show="showSuggestions && suggestions.length"
-        class="text-font-alt3 text-14 border rounded-b-sm border-alt absolute top-full left-0 w-full bg-body"
+        class="text-font-alt3 text-14 border rounded-b-sm border-alt absolute top-0 mt-16 left-0 w-full bg-body"
       >
         <main
           ref="container"
@@ -265,8 +267,12 @@ export default class Search extends Mixins(Base) {
       @apply border-b-0 rounded-b-none;
     }
   }
+
+  .search-box {
+    margin-top: 33vh;
+  }
   .suggestions {
-    max-height: calc(50vh - 124px);
+    max-height: 33vh;
   }
   em {
     @apply not-italic text-warning;
