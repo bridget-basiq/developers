@@ -2,17 +2,14 @@
   <div
     v-show="active"
     class="search fixed inset-0 items-start justify-start flex z-50 px-6"
-    :class="{ 'show-suggestions': showSuggestions && suggestions.length }"
     @click="$emit('close')"
   >
     <div class="bg bg-body opacity-75 absolute inset-0" />
     <div
-      class="relative mx-auto search-box w-screen max-w-screen-sm"
+      class="relative mx-auto search-box w-screen max-w-screen-sm bg-body bg-body border border-alt rounded-sm shadow-down-md"
       @click.stop
     >
-      <div
-        class="flex h-16 items-center bg-body border border-alt wrapper rounded-sm shadow-down-md"
-      >
+      <div class="flex h-16 items-center wrapper">
         <label class="icon-search px-6" for="do-not-auto-fill" />
         <input
           id="do-not-auto-fill"
@@ -27,7 +24,7 @@
       </div>
       <nav
         v-show="showSuggestions && suggestions.length"
-        class="text-font-alt3 text-14 shadow-down-md border rounded-b-sm border-alt absolute top-0 mt-16 left-0 w-full bg-body"
+        class="text-font-alt3 text-14"
       >
         <main
           ref="container"
@@ -48,9 +45,14 @@
                   <span v-if="suggestion.propertyPath" class="lg-max:hidden">
                     {{ suggestion.propertyPath }} /
                   </span>
-                  <span class="text-font-primary">
-                    {{ suggestion.title }}
-                  </span>
+                  <span
+                    class="text-font-primary"
+                    v-html="
+                      suggestion._highlightResult
+                        ? suggestion._highlightResult.title.value
+                        : suggestion.title
+                    "
+                  />
                 </strong>
               </p>
               <p
@@ -212,7 +214,7 @@ export default class Search extends Mixins(Base) {
     }
 
     const { hits } = await this.database.search(this.search, {
-      attributesToHighlight: ['description'],
+      attributesToHighlight: ['description', 'title'],
       attributesToSnippet: ['description:10'],
       snippetEllipsisText: '...',
       length: this.length,
@@ -267,12 +269,6 @@ export default class Search extends Mixins(Base) {
 </script>
 <style lang="scss">
 .search {
-  &.show-suggestions {
-    .wrapper {
-      @apply border-b-0 rounded-b-none;
-    }
-  }
-
   .search-box {
     margin-top: 33vh;
   }
