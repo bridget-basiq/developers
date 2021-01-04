@@ -269,7 +269,7 @@ export default class Search extends Mixins(Base) {
 .search {
   &.show-suggestions {
     .wrapper {
-      @apply border-b-0 rounded-b-none shadow-none;
+      @apply border-b-0 rounded-b-none;
     }
   }
 
