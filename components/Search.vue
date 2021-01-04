@@ -258,6 +258,7 @@ export default class Search extends Mixins(Base) {
   @Watch('$route.path')
   onRouteChange() {
     this.showSuggestions = false
+    this.$emit('close')
   }
 
   async onClick({ url }) {
