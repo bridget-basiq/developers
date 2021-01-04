@@ -458,7 +458,8 @@ export default class Layout extends Mixins(Base) {
 </script>
 <style lang="scss">
 .highlighted-code code,
-.page p > code {
+.page p > code,
+.page p > strong > code {
   @apply rounded-2xs bg-base border border-alt px-1 leading-none text-font-primary;
 }
 
@@ -611,7 +612,7 @@ export default class Layout extends Mixins(Base) {
   }
 
   .navigate-select {
-    max-width: 164px;
+    max-width: 204px;
     @apply w-full;
   }
 }

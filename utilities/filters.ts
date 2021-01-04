@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import { format } from 'date-fns'
 import marked from 'marked'
-import highlightjs from 'highlight.js'
 
 Vue.filter('date', (value: Date | string, formatStr: string) => {
   return format(value instanceof Date ? value : new Date(value), formatStr)
@@ -36,7 +35,7 @@ Vue.filter('colorType', (value: string = '') => {
     return `<span class="hljs-literal">${value}</span>`
   }
 
-  if (value === 'boolean' || value === 'int') {
+  if (value === 'boolean' || value === 'int' || value === 'float') {
     return `<span class="hljs-number">${value}</span>`
   }
 
