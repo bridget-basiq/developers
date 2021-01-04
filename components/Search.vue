@@ -24,7 +24,7 @@
       </div>
       <nav
         v-show="showSuggestions && suggestions.length"
-        class="text-font-alt3 text-14"
+        class="text-font-alt3 text-14 border-t border-alt"
       >
         <main
           ref="container"
