@@ -19,7 +19,7 @@
           ref="input"
           v-model="search"
           type="text"
-          autocomplete="do-not-auto-fill"
+          autocomplete="off"
           name="do-not-auto-fill"
           class="w-full h-full bg-transparent outline-none pr-6 font-semibold"
           @focus="showSuggestions = true"
@@ -27,7 +27,7 @@
       </div>
       <nav
         v-show="showSuggestions && suggestions.length"
-        class="text-font-alt3 text-14 border rounded-b-sm border-alt absolute top-0 mt-16 left-0 w-full bg-body"
+        class="text-font-alt3 text-14 shadow-down-md border rounded-b-sm border-alt absolute top-0 mt-16 left-0 w-full bg-body"
       >
         <main
           ref="container"
@@ -37,6 +37,7 @@
             <li
               v-for="(suggestion, i) in normalizedSuggestions"
               :key="i"
+              ref="suggestionEl"
               class="block py-2 px-3 cursor-pointer rounded-sm"
               :class="{ 'bg-base': index === i }"
               @mouseenter="index = i"
@@ -165,7 +166,7 @@ export default class Search extends Mixins(Base) {
   scrollToView() {
     this.prevent = true
 
-    const el = this.suggestionEls?.[this.index]?.$el
+    const el = this.suggestionEls?.[this.index]
     const offsetTop = el?.offsetTop
 
     if (offsetTop - el?.offsetHeight < this.container.scrollTop) {
@@ -262,7 +263,7 @@ export default class Search extends Mixins(Base) {
 .search {
   &.show-suggestions {
     .wrapper {
-      @apply border-b-0 rounded-b-none;
+      @apply border-b-0 rounded-b-none shadow-none;
     }
   }
 
