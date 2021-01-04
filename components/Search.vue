@@ -2,17 +2,18 @@
   <div
     v-show="active"
     class="search fixed inset-0 flex z-50 px-6"
+    :class="{ 'show-suggestions': showSuggestions && suggestions.length }"
     @click="$emit('close')"
   >
     <div class="bg bg-body opacity-75 absolute inset-0" />
     <div
-      class="relative m-auto w-screen max-w-screen-sm shadow-down-md rounded-sm overflow-hidden bg-body border border-alt"
+      class="relative m-auto w-screen max-w-screen-sm shadow-down-md bg-body"
       @click.stop
     >
-      <div class="flex h-16 items-center">
-        <label class="icon-search px-6" for="search" />
+      <div class="flex h-16 items-center border border-alt wrapper rounded-sm">
+        <label class="icon-search px-6" for="do-not-auto-fill" />
         <input
-          id="search"
+          id="do-not-auto-fill"
           ref="input"
           v-model="search"
           type="text"
@@ -24,61 +25,42 @@
       </div>
       <nav
         v-show="showSuggestions && suggestions.length"
-        class="text-font-alt3 text-14 border-t border-alt"
+        class="text-font-alt3 text-14 border rounded-b-sm border-alt absolute top-full left-0 w-full bg-body"
       >
         <main
           ref="container"
           class="flex flex-col suggestions overflow-y-scroll"
         >
-          <div
-            v-for="(suggestionGroup, key, i) in suggestionGroups"
-            :key="key"
-            class="group"
-          >
-            <template v-if="key.length">
-              <div class="h-px w-full bg-alt" />
-              <header
-                class="h-10 flex items-center top-0 sticky bg-body border-b border-alt px-5 text-12 uppercase text-font-alt3"
+          <ul class="p-3 lg:p-2">
+            <li v-for="(suggestion, i) in normalizedSuggestions" :key="i">
+              <router-link
+                ref="suggestionEl"
+                class="block py-2 px-3 cursor-pointer rounded-sm"
+                :class="{ 'bg-base': index === i }"
+                :to="suggestion.url"
+                @mouseenter.native="index = i"
+                @mousedown.native="onClick(suggestion)"
               >
-                <strong>
-                  {{ key }}
-                </strong>
-              </header>
-            </template>
-            <ul class="p-3 lg:p-2">
-              <li v-for="(suggestion, s) in suggestionGroup" :key="`${i}-${s}`">
-                <router-link
-                  ref="suggestionEl"
-                  class="block py-2 px-3 cursor-pointer rounded-sm"
-                  :class="{ 'bg-base': itemIndex === s && groupIndex === i }"
-                  :to="suggestion.url"
-                  @mouseenter.native="onMouseEnter(i, s)"
-                  @mousedown.native="onClick(suggestion)"
-                >
-                  <p class="whitespace-no-wrap">
-                    <strong>
-                      <span
-                        v-if="suggestion.propertyPath"
-                        class="lg-max:hidden"
-                      >
-                        {{ suggestion.propertyPath }} /
-                      </span>
-                      <span class="text-font-primary">
-                        {{ suggestion.title }}
-                      </span>
-                    </strong>
-                  </p>
-                  <p
-                    v-html="
-                      suggestion._snippetResult
-                        ? suggestion._snippetResult.description.value
-                        : suggestion.description
-                    "
-                  />
-                </router-link>
-              </li>
-            </ul>
-          </div>
+                <p class="whitespace-no-wrap">
+                  <strong>
+                    <span v-if="suggestion.propertyPath" class="lg-max:hidden">
+                      {{ suggestion.propertyPath }} /
+                    </span>
+                    <span class="text-font-primary">
+                      {{ suggestion.title }}
+                    </span>
+                  </strong>
+                </p>
+                <p
+                  v-html="
+                    suggestion._snippetResult
+                      ? suggestion._snippetResult.description.value
+                      : suggestion.description
+                  "
+                />
+              </router-link>
+            </li>
+          </ul>
         </main>
         <footer
           class="border-t lg-max:hidden border-alt py-1 px-3 flex whitespace-no-wrap"
@@ -130,8 +112,7 @@ export default class Search extends Mixins(Base) {
   @Prop() clickHandler
   @Prop() active
   suggestions: any[] = []
-  itemIndex = 0
-  groupIndex = 0
+  index = 0
   showSuggestions = false
   prevent = false
   search = ''
@@ -162,49 +143,33 @@ export default class Search extends Mixins(Base) {
   database = this.client.initIndex('prod_DeveloperPortalContent')
 
   onArrowDown() {
-    if (this.itemIndex < this.currentGroup.length - 1) {
-      this.itemIndex++
+    if (this.index < this.normalizedSuggestions.length - 1) {
+      this.index++
     } else {
-      this.itemIndex = 0
-
-      if (this.groupIndex < this.suggestionGroupKeys.length - 1) {
-        this.groupIndex++
-      } else {
-        this.groupIndex = 0
-      }
+      this.index = 0
     }
   }
 
   onEnter() {
-    this.$router.push(this.currentGroup[this.itemIndex]?.url)
+    this.$router.push(this.normalizedSuggestions[this.index]?.url)
   }
 
   onArrowUp() {
-    if (this.itemIndex > 0) {
-      this.itemIndex--
+    if (this.index > 0) {
+      this.index--
     } else {
-      if (this.groupIndex > 0) {
-        this.groupIndex--
-      } else {
-        this.groupIndex = this.suggestionGroupKeys.length - 1
-      }
-
-      this.itemIndex = this.currentGroup.length - 1
+      this.index = this.normalizedSuggestions.length - 1
     }
   }
 
   scrollToView() {
     this.prevent = true
 
-    const el = this.suggestionEls?.[this.totalIndex]?.$el
+    const el = this.suggestionEls?.[this.index]?.$el
     const offsetTop = el?.offsetTop
 
     if (offsetTop - el?.offsetHeight < this.container.scrollTop) {
-      this.container.scrollTo(
-        0,
-        offsetTop -
-          (this.suggestionGroupKeys[this.groupIndex].length ? 104 : 64)
-      )
+      this.container.scrollTo(0, offsetTop)
     } else if (
       offsetTop + el?.offsetHeight >
       this.container.scrollTop + this.container.offsetHeight
@@ -247,16 +212,8 @@ export default class Search extends Mixins(Base) {
       offset: 0,
     })
 
-    this.itemIndex = 0
-    this.groupIndex = 0
+    this.index = 0
     this.suggestions = hits
-  }
-
-  onMouseEnter(groupIndex, itemIndex) {
-    if (this.prevent) return
-
-    this.groupIndex = groupIndex
-    this.itemIndex = itemIndex
   }
 
   getParentByItem({ url, type }) {
@@ -281,41 +238,11 @@ export default class Search extends Mixins(Base) {
     }
   }
 
-  get totalIndex() {
-    return this.suggestionGroupKeys
-      .slice(0, this.groupIndex + 1)
-      .reduce((num, key) => {
-        if (key === this.suggestionGroupKeys[this.groupIndex]) {
-          num += this.itemIndex
-        } else {
-          num += this.suggestionGroups[key].length
-        }
-
-        return num
-      }, 0)
-  }
-
-  get suggestionGroups() {
-    return this.suggestions
-      .map((item) => ({
-        ...item,
-        ...this.getParentByItem(item),
-      }))
-      .reduce((obj: any, item) => {
-        if (!obj[item.path]) obj[item.path] = []
-
-        obj[item.path].push(item)
-
-        return obj
-      }, {})
-  }
-
-  get suggestionGroupKeys() {
-    return Object.keys(this.suggestionGroups)
-  }
-
-  get currentGroup() {
-    return this.suggestionGroups[this.suggestionGroupKeys[this.groupIndex]]
+  get normalizedSuggestions() {
+    return this.suggestions.map((item) => ({
+      ...item,
+      ...this.getParentByItem(item),
+    }))
   }
 
   @Watch('$route.hash')
@@ -333,8 +260,13 @@ export default class Search extends Mixins(Base) {
 </script>
 <style lang="scss">
 .search {
+  &.show-suggestions {
+    .wrapper {
+      @apply border-b-0 rounded-b-none;
+    }
+  }
   .suggestions {
-    max-height: 400px;
+    max-height: calc(50vh - 124px);
   }
   em {
     @apply not-italic text-warning;
