@@ -67,7 +67,6 @@ export default class Schema extends Vue {
   async fetch() {
     const schema: any = await this.getJson()
 
-    console.log(schema)
     this.requestParameters = schema.args
     this.returnFields = schema?.fields || []
   }
