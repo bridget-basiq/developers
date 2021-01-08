@@ -54,7 +54,7 @@ descriptions:
 
 # Status & Error Codes
 
-To ensure you can respond appropriate when our API outputs something you didn’t expect we maintain a consistent set of API response and error codes. The general design of the response and error codes will be discussed inside this chapter.
+To ensure you can respond appropriate when our API gives uexpected output, we maintain a consistent set of API response and error codes. The general design of the response and error codes will be discussed inside this chapter.
 
 <c-image alt="Authorization image" src="status-and-error-codes.png" max-width="lg"></c-image>
 
@@ -66,7 +66,7 @@ Our API uses the following response status codes, as defined in the [RFC 2616](h
 
 ## API Error Objects
 
-Apart from the response codes, unsuccessful responses return their generic GraphQL error described here alongside some additional fields . The additional fields can be found inside the  extensions object. The most important one here is the  exception  object. This one contains all the information about the error and looks like this;
+Apart from the response codes, unsuccessful responses return their generic GraphQL error described here alongside some additional fields. The additional fields can be found inside the extensions object. The most important one here is the exception object. This contains all the information about the error and looks as follows;
 
 <property-table :keys="keys" :types="types" :descriptions="descriptions"></property-table>
 

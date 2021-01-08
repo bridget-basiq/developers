@@ -13,10 +13,10 @@ frequently:
 ---
 
 # Subscribe to station updates
-If a route is calculated and it includes several stations, you might want to receive status updates from these stations. To prevent you from making too much requests, you can make use of the `station updates` subscription. This service will let you know whenever a station's availability changed or when a review was added.
+If a route is calculated and it includes several stations, you might want to receive status updates from these stations. To prevent you from making too much requests, you can make use of the `station updates` subscription. This service will let you know whenever a station's availability has changed or when a review was added.
 
 ## Subscription
-To use the subscription service you will need a station `id` that can be get from queries like [stations] or [route details](). 
+To use the subscription service you will need a station `id` that can be obtained from queries like [stations] or [route details](). 
 
 <schema type="Subscription" name="stationUpdatedById" :frequent="frequently"></schema>
 

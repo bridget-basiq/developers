@@ -33,9 +33,9 @@ http://api.chargetrip.io/graphql
 </code-block>
 
 ## Authorization process
-To communicate with the chargetrip API, we require authorization on our endpoints as well as our websocket. Authentication can be done on one or two levels. If you only provide us only with your `x-client-id` we will use this project configuration and the default `x-app-id` associated with it.
+To communicate with the chargetrip API, we require authorization on our endpoints as well as our websocket. Authentication can be done on one or two levels. If you provide us only with your `x-client-id` we will use this project configuration and the default `x-app-id` associated with it.
 
-  If you would like to split up your analytics per platform you can provide an additional `x-app-id`. This way your requests will be categorised on this level.
+If you would like to split up your analytics per platform you can provide an additional `x-app-id`. This way your requests will be categorised on this level.
 
 <property-table :keys="keys" :types="types" :descriptions="descriptions" :required="required"></property-table>
 

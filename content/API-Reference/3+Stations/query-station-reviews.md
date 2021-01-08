@@ -5,10 +5,10 @@ order: 5
 ---
 
 # Query station reviews
-Since station quality can vary, it's always nice to have a second opinion. That's why every station in your station database can be accompanied by a user review. Reviews are stored per station database and can't be used across different projects.
+Every station in your database can be accompanied by a user review. you can query for properties such as `rating` and `message` but also recieve data about the EV that was used. Reviews are stored per station database and can't be used across different projects.
 
 ## Query
-To get the reviews of a specific station you will need to provide a `stationId`. Optionally you can add [pagination](/API-Reference/API/pagination) to lazy load the reviews.
+To get the reviews of a specific station you will need to provide a `stationId` as an argument. Optionally you can use [pagination](/API-Reference/API/pagination) to your query.
 
 <schema name="reviewList"></schema>
 
