@@ -1,13 +1,17 @@
 <template>
-  <a v-show="active" class="example" :href="href" target="_blank">
-    <c-image :src="img" :alt="title" />
-    <pre class="text-14 text-font-alt3">{{ tagLine }}</pre>
-    <h6 class="my-1">
-      {{ title }}
-    </h6>
-    <p>
-      {{ description }}
-    </p>
+  <a class="example flex items-center text-14" :href="href" target="_blank">
+    <c-image class="w-1/3 mr-4" :src="img" :alt="title" />
+    <div class="w-2/3">
+      <strong>
+        <span class="text-font-alt3">
+          {{ category }}
+        </span>
+        • {{ title }}
+      </strong>
+      <p>
+        {{ description }}
+      </p>
+    </div>
   </a>
 </template>
 <script lang="ts">
@@ -21,13 +25,5 @@ export default class Example extends Vue {
   @Prop() category
   @Prop() tagLine
   @Prop() href
-  active = false
 }
 </script>
-<style lang="scss">
-.example {
-  img {
-    @apply mt-0 mb-4;
-  }
-}
-</style>

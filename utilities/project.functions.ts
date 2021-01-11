@@ -21,8 +21,8 @@ export const getHeadings = (children, page) => {
       )
     } else if (
       child.tag === 'release-note' ||
+      child.tag === 'article-teaser-section' ||
       child.tag === 'guides' ||
-      child.tag === 'examples' ||
       child.tag === 'accordion'
     ) {
       arr.push({

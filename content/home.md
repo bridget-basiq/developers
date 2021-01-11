@@ -30,6 +30,34 @@ Get going with the **Chargetrip** API. Clone one of our examples as a boilerplat
 
 Need some information about EV-routing, EVs or graphQL first? No worries we got you covered with our blog over [here](https://medium.com/chargetrip).
 
+<article-teaser-section title="Latest technology article">
+
+<article-teaser href="https://medium.com/chargetrip/chargetrip-tile-service-with-react-native-and-mapbox-228dae36a574">
+
+### Chargetrip Tile Service with React Native and Mapbox
+
+</article-teaser>
+
+</article-teaser-section>
+
+## Open source
+<c-table>
+    <c-row>
+        <c-cell tag="th">Package</c-cell>
+        <c-cell tag="th">Description</c-cell>
+    </c-row>
+    <c-row url="https://github.com/chargetrip/types">
+        <c-cell font-weight="semibold">Typescript Typings</c-cell>
+        <c-cell>Make integrating with our API easier with our typescript types</c-cell>
+    </c-row>
+    <c-row url="https://github.com/chargetrip/clusterbuster">
+        <c-cell font-weight="semibold">Clusterbuster</c-cell>
+        <c-cell>Easily cluster data to improve render speeds</c-cell>
+    </c-row>
+</c-table>
+
+<right-aside>
+
 <examples title="Clone an example">
     <!-- Cars -->
     <example 
@@ -109,18 +137,4 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
     </example>
 </examples>
 
-## Open source
-<c-table>
-    <c-row>
-        <c-cell tag="th">Package</c-cell>
-        <c-cell tag="th">Description</c-cell>
-    </c-row>
-    <c-row url="https://github.com/chargetrip/types">
-        <c-cell font-weight="semibold">Typescript Typings</c-cell>
-        <c-cell>Make integrating with our API easier with our typescript types</c-cell>
-    </c-row>
-    <c-row url="https://github.com/chargetrip/clusterbuster">
-        <c-cell font-weight="semibold">Clusterbuster</c-cell>
-        <c-cell>Easily cluster data to improve render speeds</c-cell>
-    </c-row>
-</c-table>
+</right-aside>

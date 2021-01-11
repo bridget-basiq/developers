@@ -7,7 +7,8 @@
       'menu-open': menuOpen,
       'is-editing': isEditing,
       'no-transition': noTransition,
-      'is-playground': isPlayground,
+      'has-aside': aside,
+      'is-large-aside': isLargeAside,
     }"
     @click="closeKhaled"
   >
@@ -115,12 +116,6 @@
         </div>
         <PrevNextNavigation v-if="sideNav" class="mt-auto" />
       </div>
-      <aside
-        class="right-aside border-l border-alt py-8 px-6 overflow-y-scroll hidden xl:block"
-      >
-        <MarkdownFormatting v-if="isEditing" />
-        <RelatedActions v-else />
-      </aside>
     </div>
     <img
       v-if="showKhaled"
@@ -354,24 +349,31 @@ export default class Layout extends Mixins(Base) {
     this.value = this.hash || this.options[0]?.value || ''
   }
 
-  findInArray(arr, name) {
-    let find = false
+  findInArray(arr, compareFn): any {
+    let find = null
 
     arr.forEach((item) => {
-      if (item.tag === name) {
-        find = true
+      if (compareFn(item)) {
+        find = item
       }
 
       if (item.children) {
-        find = this.findInArray(item.children, name) || find
+        find = this.findInArray(item.children, compareFn) || find
       }
     })
 
     return find
   }
 
-  get isPlayground() {
-    return this.findInArray(this.content?.body?.children || [], 'playground')
+  get aside() {
+    return this.findInArray(
+      this.content?.body?.children || [],
+      (item) => item.tag === 'playground' || item.tag === 'right-aside'
+    )
+  }
+
+  get isLargeAside() {
+    return this.aside?.tag === 'playground' || this.aside?.props?.large
   }
 
   @Listen('dblclick') onDblClick(e) {
@@ -516,7 +518,7 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
-  img {
+  > img {
     @apply rounded overflow-hidden my-10 w-full;
   }
 
@@ -560,16 +562,14 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
-  &.is-playground {
-    &:not(.is-editing) {
-      .right-aside {
-        > * {
-          @apply opacity-0;
-        }
+  &.has-aside {
+    &.is-large-aside {
+      .view > .content {
+        padding-right: 512px;
       }
     }
-    .right-aside {
-      width: 512px;
+    .view > .content {
+      padding-right: 480px;
     }
   }
 

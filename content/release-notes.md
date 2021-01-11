@@ -1,6 +1,7 @@
 ---
 title: Release notes
 description: Release notes
+releasePage: true
 ---
 
 # Release notes
