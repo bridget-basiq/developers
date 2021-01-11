@@ -1,82 +1,22 @@
 <template>
-  <div :id="slug" class="examples my-14">
-    <div class="flex mb-4 items-center flex-wrap justify-between">
-      <h2>{{ title }}</h2>
-      <nav class="text-font-alt3 mt-2 lg:mt-0 flex font-semibold">
-        <div
-          v-for="(category, key) in categories"
-          :key="key"
-          class="cursor-pointer mr-4 last:mr-0"
-          :class="{ 'text-font-primary': key === index }"
-          @click="index = key"
-        >
-          {{ category }}
-        </div>
-      </nav>
+  <div class="examples px-8 flex flex-col overflow-y-scroll">
+    <div class="sticky-header">
+      <h2>Examples</h2>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <slot />
-    </div>
+    <slot />
   </div>
 </template>
-<script lang="ts">
-import { Component, Vue, Prop, Watch } from 'nuxt-property-decorator'
-import { slugify } from '~/utilities/project.functions'
-
-@Component
-export default class Examples extends Vue {
-  @Prop() title
-  @Prop() examples
-  categories: string[] = []
-  index: number | null = 0
-
-  get slug() {
-    return slugify(this.title)
-  }
-
-  mounted() {
-    this.index = 0
-    this.setActiveExamples()
-  }
-
-  created() {
-    this.categories = Array.from(
-      new Set(
-        this.$slots?.default
-          ?.map(
-            (child: any) =>
-              child?.asyncMeta?.data?.attrs?.category ||
-              child?.componentOptions?.propsData?.category
-          )
-          ?.filter((category) => category)
-          ?.sort() || []
-      )
-    )
-  }
-
-  @Watch('index', { immediate: true }) onIndexChange() {
-    this.setActiveExamples()
-  }
-
-  setActiveExamples() {
-    this.$slots?.default?.forEach((child) => {
-      if (child?.componentInstance?.$data) {
-        if (this.index === null) {
-          child.componentInstance.$data.active = true
-        } else {
-          child.componentInstance.$data.active =
-            child.componentInstance.$props.category ===
-            this.categories[this.index]
-        }
-      }
-    })
-  }
-}
-</script>
 <style lang="scss">
 .examples {
-  h2 {
-    @apply m-0;
+  height: calc(100vh - 34px);
+
+  .example {
+    &:last-child {
+      @apply mb-8;
+    }
+    &:not(:last-child) {
+      @apply mb-4;
+    }
   }
 }
 </style>

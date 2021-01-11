@@ -36,7 +36,7 @@ a {
 }
 
 p a, label a, a.link, td a {
-  @apply text-accent underline;
+  @apply text-accent font-semibold;
 }
 
 

@@ -44,7 +44,6 @@ export default {
     ],
   },
   router: {
-    scrollBehavior: () => null,
     base: '/',
     extendRoutes(routes) {
       routes.unshift({

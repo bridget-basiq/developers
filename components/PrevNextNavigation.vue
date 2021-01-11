@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="prev || next"
+    v-if="content.quickNav && (prev || next)"
     class="prev-next-navigation flex p-6 lg:p-8 border-t border-alt font-semibold"
   >
     <router-link
@@ -8,7 +8,9 @@
       class="w-1/2 flex items-center"
       :to="prev.to"
     >
-      <span class="icon-chevron-left" />
+      <span
+        class="w-10 h-10 flex items-center justify-center border border-alt2 rounded-full icon-chevron-left"
+      />
       <div class="mx-4 truncate">
         <div class="text-14 text-font-alt3">Previous</div>
         {{ prev.title }}
@@ -23,7 +25,9 @@
         <div class="text-14 text-font-alt3">Next</div>
         {{ next.title }}
       </div>
-      <span class="icon-chevron-right" />
+      <span
+        class="w-10 h-10 flex items-center justify-center border border-alt2 rounded-full icon-chevron-right"
+      />
     </router-link>
   </div>
 </template>
@@ -33,6 +37,7 @@ import { Component, Getter, Vue } from 'nuxt-property-decorator'
 @Component
 export default class CodeBlock extends Vue {
   @Getter sideNav
+  @Getter content
 
   get index() {
     return this.parent.children.indexOf(this.current)

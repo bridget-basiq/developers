@@ -2,7 +2,7 @@
 title: Getting started
 description: Get started by setting up your chargetrip API project
 order: 1
-
+quickNav: true
 images:
 - configuring-your-project-1.png
 - configuring-your-project-2.png
@@ -46,3 +46,16 @@ Want to use the same configuration in a different app? Create additional app key
 </step-note>
 </step>
 </steps>
+
+<right-aside large="true">
+
+<article-teaser href="https://medium.com/chargetrip/chargetrip-tile-service-with-react-native-and-mapbox-228dae36a574">
+
+## Chargetrip Tile Service with React Native and Mapbox
+An introduction to the Chargetrip Tile Service and the caveats of integrating it into a React Native mobile application.
+
+</article-teaser>
+
+<latest-updates></latest-updates>
+
+</right-aside>

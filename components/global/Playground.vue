@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="playground fixed border-l border-alt right-0 bg-body h-full z-40 hidden xl:block"
-  >
+  <RightAside class="playground" :large="true">
     <div class="py-8 flex px-6 flex items-center">
       <h2>Code Sample</h2>
       <Button
@@ -17,7 +15,7 @@
     <div class="container flex flex-col">
       <slot />
     </div>
-  </div>
+  </RightAside>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
@@ -44,6 +42,7 @@ export default class Playground extends Vue {
       }
     }
   }
+
   .code-block {
     @apply m-0 rounded-none border-l-0 border-b-0;
 

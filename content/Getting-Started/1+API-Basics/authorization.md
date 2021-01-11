@@ -2,6 +2,7 @@
 title: Authorization
 description: Configure your project so it can authorize with the Chargetrip API
 order: 2
+quickNav: true
 
 keys:
 - x-client-id
@@ -50,4 +51,16 @@ curl -X POST \
 http://api.chargetrip.io/graphql
 </code-block>
 
+<right-aside large="true">
+
+<article-teaser href="https://medium.com/chargetrip/chargetrip-tile-service-with-react-native-and-mapbox-228dae36a574">
+
+## Chargetrip Tile Service with React Native and Mapbox
+An introduction to the Chargetrip Tile Service and the caveats of integrating it into a React Native mobile application.
+
+</article-teaser>
+
+<latest-updates></latest-updates>
+
+</right-aside>
 		
