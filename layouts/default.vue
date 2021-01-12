@@ -12,6 +12,16 @@
     }"
     @click="closeKhaled"
   >
+    <!--    <div class="flex text-24 grid gap-4 grid-cols-3 m-4 max-w-sm">-->
+    <!--      <span class="icon-filled-home" />-->
+    <!--      <span class="icon-filled-lightning" />-->
+    <!--      <span class="icon-filled-notification" />-->
+    <!--      <span class="icon-filled-playground" />-->
+    <!--      <span class="icon-filled-question" />-->
+    <!--      <span class="icon-filled-squared-terminal" />-->
+    <!--      <span class="icon-filled-voyager-alt" />-->
+
+    <!--    </div>-->
     <Banner type="switcher">
       <div class="flex w-full text-font-alt3 text-12 font-semibold">
         <a class="mr-1" href="https://chargetrip.com" target="_blank"
@@ -143,7 +153,7 @@ import {
 } from '@chargetrip/internal-vue-components'
 
 import { Getter, Mutation } from 'vuex-class'
-import Table from '~/components/global/PropertyTable.vue'
+import Table from '~/components/globals/PropertyTable.vue'
 import RelatedActions from '~/components/RelatedActions.vue'
 import PrevNextNavigation from '~/components/PrevNextNavigation.vue'
 import Base from '~/mixins/base'
@@ -462,11 +472,11 @@ export default class Layout extends Mixins(Base) {
 .highlighted-code code,
 .page p > code,
 .page p > strong > code {
-  @apply rounded-2xs bg-base border border-alt px-1 leading-none text-font-primary;
+  @apply rounded-2xs bg-base border border-alt px-1 leading-none text-font-primary font-medium;
 }
 
 .nuxt-content {
-  .code-block {
+  > .code-block {
     @apply my-4;
   }
 
@@ -479,9 +489,8 @@ export default class Layout extends Mixins(Base) {
     @apply mt-14 mb-2;
   }
 
-  > h3,
-  .schema .h2 {
-    @apply mt-8 mb-3;
+  > h3 {
+    @apply mt-12 mb-3;
   }
 
   > ul:not(.errors),
@@ -493,10 +502,11 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
-  > ul:not(.errors) {
+  > ul:not(.errors),
+  .release-note ul {
     li {
       &::before {
-        content: '•';
+        content: '- ';
       }
     }
   }
@@ -563,13 +573,15 @@ export default class Layout extends Mixins(Base) {
   }
 
   &.has-aside {
-    &.is-large-aside {
-      .view > .content {
-        padding-right: 512px;
+    @screen xl {
+      &.is-large-aside {
+        .view > .content {
+          padding-right: 512px;
+        }
       }
-    }
-    .view > .content {
-      padding-right: 480px;
+      .view > .content {
+        padding-right: 480px;
+      }
     }
   }
 
@@ -603,7 +615,7 @@ export default class Layout extends Mixins(Base) {
     }
 
     .c-side-nav {
-      width: 260px;
+      width: 240px;
     }
   }
 

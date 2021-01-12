@@ -2,23 +2,38 @@
   <div
     v-if="!hide"
     class="code-block text-font-primary rounded border border-alt text-14"
-    :class="{ 'bg-base': query || title }"
+    :class="{ 'bg-base': query || title, 'has-type': codeType }"
   >
     <header
-      v-if="query || title"
+      v-if="codeType || title"
       class="flex h-10 px-6 font-semibold items-center border-b border-alt text-font-alt2"
     >
-      <template v-if="query">
-        <Tag class="mr-2" type="secondary" color="note"> {{ queryType }} </Tag>
-        <span class="font-normal text-font-primary font-mono">
-          {{ query }}
-        </span>
-      </template>
-      <template v-else>
-        <span class="text-font-alt3 mr-1">{{ prefix }} / </span>
+      <Tag v-if="codeType" class="mr-2" v-bind="codeType.tag" />
+      <div v-if="title" class="title">
+        <span v-if="prefix" class="text-font-alt3 mr-1">{{ prefix }} / </span>
         {{ title }}
-      </template>
-      <span class="icon icon-clipboard ml-auto cursor-pointer" @click="copy" />
+      </div>
+      <div class="ml-auto flex">
+        <template v-if="type === 'query'">
+          <Button
+            :href="editUrl"
+            title="Edit"
+            size="xs"
+            class="bg-body border border-alt2 text-font-primary mr-1"
+          />
+          <Button
+            title="Copy"
+            size="xs"
+            class="bg-body border border-alt2 text-font-primary"
+            @click.native="copy"
+          />
+        </template>
+        <span
+          v-else-if="!type"
+          class="icon icon-clipboard cursor-pointer"
+          @click="copy"
+        />
+      </div>
     </header>
     <div class="wrapper">
       <pre
@@ -36,19 +51,43 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { Snackbar, Tag } from '@chargetrip/internal-vue-components'
+import { Snackbar, Tag, Button } from '@chargetrip/internal-vue-components'
 import { copy } from '~/utilities/project.functions'
 import highlightjs from '~/utilities/highlight'
 
-@Component({ components: { Snackbar, Tag } })
+@Component({ components: { Snackbar, Tag, Button } })
 export default class CodeBlock extends Vue {
   @Prop() title
   @Prop({ default: 'Query' }) queryType
   @Prop() lang
+  @Prop() type
   @Prop() query
+  @Prop() editUrl
+  @Prop() tag
   @Prop() prefix
   showSnackbar = false
   hide = false
+
+  types = {
+    query: {
+      tag: {
+        title: 'Query',
+        type: 'secondary',
+        color: 'alt4',
+      },
+    },
+    response: {
+      tag: {
+        title: 'Response',
+        type: 'secondary',
+        class: 'border border-font-alt3 bg-body text-font-alt3',
+      },
+    },
+  }
+
+  get codeType() {
+    return this.types[this.type]
+  }
 
   get codeLines() {
     try {

@@ -28,8 +28,8 @@ On success, the HTTP status code in the response header is `200` and the respons
 
 <errors name="stationList"></errors>
 
-<playground url="https://playground.chargetrip.com/?page=stationListAll">
-<code-block lang="graphql" query="stationList">					
+<playground>
+<code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/?page=stationListAll">					
 query stationListAll {
   stationList(
     query: { name: "Townley Road (2)" }
@@ -203,7 +203,7 @@ query stationListAll {
   }
 }
 </code-block>
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "data": {
     "stationList": [
