@@ -130,7 +130,7 @@ export default class Property extends Vue {
 
         &::before {
           content: '';
-          @apply w-10 transform z-10 -ml-10 h-full left-0 top-0 absolute;
+          @apply w-10 transform z-10 -ml-10 h-full left-0 top-0 absolute bg-body;
         }
       }
     }
