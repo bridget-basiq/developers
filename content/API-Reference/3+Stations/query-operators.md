@@ -28,7 +28,7 @@ On error the header status code is an error code and the response body contains 
 <errors name="operatorList"></errors>
 
 <playground>
-<code-block lang="graphql" query="operatorList">					
+<code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/?page=stationListAll">					
 query operatorList {
   operatorList(
     query: { name: "AeroVironment" }
@@ -56,7 +56,7 @@ query operatorList {
   }
 }
 </code-block>
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "data": {
     "operatorList": [

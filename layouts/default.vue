@@ -22,31 +22,21 @@
     <!--      <span class="icon-filled-voyager-alt" />-->
 
     <!--    </div>-->
-    <Banner type="switcher">
-      <div class="flex w-full text-font-alt3 text-12 font-semibold">
-        <a class="mr-1" href="https://chargetrip.com" target="_blank"
-          >Website</a
-        >
-        /
-        <router-link class="mx-1 text-font-primary" to="/"
-          >Developers
-        </router-link>
-        <!--        /-->
-        <!--        <a class="ml-1" href="https://chargetrip.com" target="_blank">-->
-        <!--          Dashboard-->
-        <!--        </a>-->
-        <!--        <div class="ml-auto flex items-center">-->
-        <!--          <a-->
-        <!--            href="https://account.chargetrip.com/profile"-->
-        <!--            target="_blank"-->
-        <!--            class="pr-3 border-r border-alt2"-->
-        <!--          >-->
-        <!--            Account-->
-        <!--          </a>-->
-        <!--          <div class="pl-3 text-font-primary">Sign out</div>-->
-        <!--        </div>-->
+    <TopNav>
+      <div
+        class="text-font-alt3 flex items-center cursor-pointer font-semibold"
+        @click="showSearch = true"
+      >
+        <span class="icon-search mr-3" />
+        Search documentation...
       </div>
-    </Banner>
+      <Search
+        :active="showSearch"
+        :click-handler="onMenuItemClick"
+        icon="search"
+        @close="showSearch = false"
+      />
+    </TopNav>
     <div
       class="view flex lg:bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden rounded-t-xl"
     >
@@ -59,25 +49,7 @@
         :current-page="content.title"
         :spacing="6"
         @changeDarkMode="setDarkMode"
-      >
-        <template v-slot:icons>
-          <span
-            class="icon-search lg:hidden ml-4"
-            @click="showSearch = !showSearch"
-          />
-        </template>
-        <Input
-          class="px-3 lg-max:hidden"
-          icon="search"
-          :hotkey="{
-            icon: 'slash',
-            key: '/',
-            fn: () => (showSearch = true),
-          }"
-          placeholder="Search.."
-          @focus="showSearch = true"
-        />
-      </SideNav>
+      />
       <div
         ref="container"
         class="content flex-1 flex flex-col relative overflow-y-scroll mt-8 lg:mt-0"
@@ -133,12 +105,6 @@
       :style="{ top: `${khaledPosition.y}px`, left: `${khaledPosition.x}px` }"
       src="khaled.gif"
     />
-    <Search
-      :active="showSearch"
-      :click-handler="onMenuItemClick"
-      icon="search"
-      @close="showSearch = false"
-    />
   </div>
 </template>
 <script lang="ts">
@@ -148,6 +114,7 @@ import {
   Banner,
   Button,
   SideNav,
+  TopNav,
   Input,
   Select,
 } from '@chargetrip/internal-vue-components'
@@ -170,6 +137,7 @@ import Search from '~/components/Search.vue'
     PrevNextNavigation,
     RelatedActions,
     SideNav,
+    TopNav,
     Table,
     Banner,
     Button,
@@ -275,6 +243,12 @@ export default class Layout extends Mixins(Base) {
           title: 'Examples',
           icon: 'code',
           href: 'https://chargetrip.com/examples/',
+          arrow: true,
+        },
+        {
+          title: 'Github',
+          icon: 'github',
+          href: 'https://github.com/chargetrip',
           arrow: true,
         },
       ],
@@ -603,11 +577,11 @@ export default class Layout extends Mixins(Base) {
     .view > .content,
     .playground,
     aside {
-      max-height: calc(100vh - 34px);
+      max-height: calc(100vh - 64px);
     }
 
     .view {
-      height: calc(100vh - 34px);
+      height: calc(100vh - 64px);
     }
 
     aside {

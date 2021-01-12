@@ -26,8 +26,8 @@ On success, the HTTP status code in the response header is `200` and the respons
 
 <errors name="carList"></errors>
 
-<playground url="https://playground.chargetrip.com/?page=carList">
-<code-block lang="graphql" query="carList">	
+<playground>
+<code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/?page=carList">	
 query carListAll {
   carList {
     id
@@ -44,7 +44,7 @@ query carListAll {
 }
 </code-block>
 
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "data": {
     "carList": [

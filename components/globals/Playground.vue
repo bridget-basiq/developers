@@ -11,7 +11,7 @@
   width: 512px;
 
   .container {
-    height: calc(100vh - 34px);
+    height: calc(100vh - 64px);
 
     > * {
       @apply flex-1 overflow-scroll;
