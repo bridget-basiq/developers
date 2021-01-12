@@ -52,7 +52,7 @@ const getSideNav = (pages) => {
             to,
             order: page.order,
             icon: page.icon,
-            title: i ? `# ${page.title}` : page.title,
+            title: page.title,
             ...(page.slug === 'home' && { hideChildren: true }),
             children: [],
           })

@@ -113,12 +113,6 @@ export default class Property extends Vue {
     }
   }
   &.is-child {
-    .content .bg,
-    .bg,
-    .toggle-children {
-      @apply bg-base;
-    }
-
     > .content {
       @apply pl-12;
 
@@ -136,7 +130,7 @@ export default class Property extends Vue {
 
         &::before {
           content: '';
-          @apply w-10 transform z-10 -ml-10 bg-base h-full left-0 top-0 absolute bg-base;
+          @apply w-10 transform z-10 -ml-10 h-full left-0 top-0 absolute;
         }
       }
     }
@@ -146,7 +140,7 @@ export default class Property extends Vue {
     z-index: -1;
   }
   &:not(.is-child) {
-    @apply border border-alt bg-base rounded-md mb-2;
+    @apply border border-alt rounded-md mb-2;
 
     &:last-child {
       @apply mb-0;

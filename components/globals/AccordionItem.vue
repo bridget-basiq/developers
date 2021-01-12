@@ -1,5 +1,5 @@
 <template>
-  <div class="accordion-item py-4 border-b border-alt text-14">
+  <div class="accordion-item py-4 border-b border-alt">
     <div
       class="flex items-center justify-between cursor-pointer"
       @click="active = !active"

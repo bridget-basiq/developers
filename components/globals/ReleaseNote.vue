@@ -33,7 +33,7 @@ export default class ReleaseNote extends Vue {
   }
   .content {
     h3 {
-      @apply mt-8;
+      @apply mt-8 mb-2;
 
       &:not(:first-child) {
         @apply mt-12;

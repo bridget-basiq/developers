@@ -12,11 +12,8 @@ With every update we write release notes. This way you know what has been fixed 
 
 ### ⚡️ New features
 
-**Powers filter for the Tile Service**
-We've added support for selecting different power filters.
-
-**Connectors filter for the Tile Service**
-We've added support for selecting all the connectors from the database. 
+- We've added support for selecting different power filters.
+- We've added support for selecting all the connectors from the database. 
 
 
 ### 🐞️ Bug fixes

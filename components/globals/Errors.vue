@@ -5,7 +5,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import Error from '~/components/global/Error.vue'
+import Error from '~/components/globals/Error.vue'
 @Component({
   components: { Error },
 })
