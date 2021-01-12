@@ -39,383 +39,392 @@ $fonts: (
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-ecomovement::before {
+.icon-Ecomovement::before {
   content: "\e97b";
 }
-.icon-ocm::before {
+.icon-OCM::before {
   content: "\e97c";
 }
-.icon-italic::before {
-  content: "\e97d";
-}
-.icon-lightning::before {
-  content: "\e97e";
-}
-.icon-filled-home::before {
+.icon-slashes-1::before {
   content: "\e900";
 }
-.icon-filled-voyager-alt::before {
+.icon-lightning::before {
   content: "\e901";
 }
-.icon-filled-playground::before {
+.icon-Ecomovement1::before {
   content: "\e902";
 }
-.icon-filled-lightning::before {
+.icon-OCM1::before {
   content: "\e903";
 }
-.icon-filled-squared-terminal::before {
+.icon-DEFAULT::before {
   content: "\e904";
 }
-.icon-filled-notification::before {
+.icon-CHADEMO::before {
   content: "\e905";
 }
-.icon-filled-question::before {
+.icon-IEC_62196_T3A_C::before {
   content: "\e906";
 }
-.icon-projects::before {
+.icon-TESLA_R::before {
   content: "\e907";
 }
-.icon-add-project::before {
+.icon-TESLA_S::before {
   content: "\e908";
 }
-.icon-graph-line::before {
+.icon-IEC_62196_T1::before {
   content: "\e909";
 }
-.icon-graph-bars::before {
+.icon-IEC_62196_T2::before {
   content: "\e90a";
 }
-.icon-reports::before {
+.icon-IEC_62196_T1_COMBO::before {
   content: "\e90b";
 }
-.icon-receipt::before {
+.icon-IEC_62196_T2_COMBO::before {
   content: "\e90c";
 }
-.icon-terminal::before {
+.icon-DOMESTIC_L::before {
   content: "\e90d";
 }
-.icon-contact::before {
+.icon-DOMESTIC_K::before {
   content: "\e90e";
 }
-.icon-profile::before {
+.icon-DOMESTIC_J::before {
   content: "\e90f";
 }
-.icon-location-center::before {
+.icon-DOMESTIC_I::before {
   content: "\e910";
 }
-.icon-log-in::before {
+.icon-DOMESTIC_H::before {
   content: "\e911";
 }
-.icon-log-out::before {
+.icon-DOMESTIC_G::before {
   content: "\e912";
 }
-.icon-import::before {
+.icon-DOMESTIC_F::before {
   content: "\e913";
 }
-.icon-export::before {
+.icon-DOMESTIC_E::before {
   content: "\e914";
 }
-.icon-filter::before {
+.icon-DOMESTIC_D::before {
   content: "\e915";
 }
-.icon-filter-alt::before {
+.icon-DOMESTIC_C::before {
   content: "\e916";
 }
-.icon-info::before {
+.icon-DOMESTIC_B::before {
   content: "\e917";
 }
-.icon-warning-circle::before {
+.icon-DOMESTIC_A::before {
   content: "\e918";
 }
-.icon-warning-triangle::before {
+.icon-Italic::before {
   content: "\e919";
 }
-.icon-map-marker::before {
+.icon-bold::before {
   content: "\e91a";
 }
-.icon-side-panel-left::before {
+.icon-h3::before {
   content: "\e91b";
 }
-.icon-side-panel-right::before {
+.icon-h2::before {
   content: "\e91c";
 }
-.icon-side-panel-top::before {
+.icon-h1::before {
   content: "\e91d";
 }
-.icon-side-panel-bottom::before {
+.icon-next::before {
   content: "\e91e";
 }
-.icon-circle-arrow-up::before {
+.icon-survey::before {
   content: "\e91f";
 }
-.icon-circle-arrow-down::before {
+.icon-code::before {
   content: "\e920";
 }
-.icon-delete::before {
+.icon-arrow-up::before {
   content: "\e921";
 }
-.icon-edit::before {
+.icon-arrow-down::before {
   content: "\e922";
 }
-.icon-clipboard::before {
+.icon-off-indicator::before {
   content: "\e923";
 }
-.icon-eye-visible::before {
+.icon-on-indicator::before {
   content: "\e924";
 }
-.icon-eye-invisible::before {
+.icon-slash::before {
   content: "\e925";
 }
-.icon-person-circle::before {
+.icon-enter::before {
   content: "\e926";
 }
-.icon-charge-stations::before {
+.icon-minus::before {
   content: "\e927";
 }
-.icon-car::before {
+.icon-chevron-down::before {
   content: "\e928";
 }
-.icon-brand::before {
+.icon-chevron-up::before {
   content: "\e929";
 }
-.icon-search::before {
+.icon-chevron-right::before {
   content: "\e92a";
 }
-.icon-circle-plus::before {
+.icon-chevron-left::before {
   content: "\e92b";
 }
-.icon-circle-minus::before {
+.icon-arrow-left::before {
   content: "\e92c";
 }
-.icon-image::before {
+.icon-arrow-right::before {
   content: "\e92d";
 }
-.icon-route::before {
+.icon-arrow-up-left::before {
   content: "\e92e";
 }
-.icon-dark-mode::before {
+.icon-arrow-up-right::before {
   content: "\e92f";
 }
-.icon-menu::before {
+.icon-add::before {
   content: "\e930";
 }
-.icon-globe::before {
+.icon-close-1::before {
   content: "\e931";
 }
-.icon-documentation::before {
+.icon-checkmark::before {
   content: "\e932";
 }
-.icon-slashes::before {
+.icon-playground::before {
   content: "\e933";
 }
-.icon-squared-terminal::before {
+.icon-dashboard-alt::before {
   content: "\e934";
 }
-.icon-building-blocks::before {
+.icon-dashboard::before {
   content: "\e935";
 }
-.icon-heart::before {
+.icon-faq-alt-2::before {
   content: "\e936";
 }
-.icon-circle-checkmark::before {
+.icon-faq-alt::before {
   content: "\e937";
 }
-.icon-circle-pending::before {
+.icon-question::before {
   content: "\e938";
 }
-.icon-circle-cross::before {
+.icon-voyager-alt::before {
   content: "\e939";
 }
-.icon-circle-chevron-down::before {
+.icon-voyager::before {
   content: "\e93a";
 }
-.icon-qr-code::before {
+.icon-home::before {
   content: "\e93b";
 }
-.icon-location::before {
+.icon-new-app::before {
   content: "\e93c";
 }
-.icon-wrench::before {
+.icon-close::before {
   content: "\e93d";
 }
-.icon-components::before {
+.icon-bullets::before {
   content: "\e93e";
 }
 .icon-notifications::before {
   content: "\e93f";
 }
-.icon-bullets::before {
+.icon-components::before {
   content: "\e940";
 }
-.icon-close::before {
+.icon-wrench::before {
   content: "\e941";
 }
-.icon-new-app::before {
+.icon-location::before {
   content: "\e942";
 }
-.icon-home::before {
+.icon-qr-code::before {
   content: "\e943";
 }
-.icon-voyager::before {
+.icon-circle-chevron-down::before {
   content: "\e944";
 }
-.icon-voyager-alt::before {
+.icon-circle-cross::before {
   content: "\e945";
 }
-.icon-question::before {
+.icon-circle-pending::before {
   content: "\e946";
 }
-.icon-faq-alt::before {
+.icon-circle-checkmark::before {
   content: "\e947";
 }
-.icon-faq-alt-2::before {
+.icon-heart::before {
   content: "\e948";
 }
-.icon-dashboard::before {
+.icon-building-blocks::before {
   content: "\e949";
 }
-.icon-dashboard-alt::before {
+.icon-squared-terminal::before {
   content: "\e94a";
 }
-.icon-playground::before {
+.icon-slashes::before {
   content: "\e94b";
 }
-.icon-checkmark::before {
+.icon-documentation::before {
   content: "\e94c";
 }
-.icon-close-1::before {
+.icon-globe::before {
   content: "\e94d";
 }
-.icon-add::before {
+.icon-menu::before {
   content: "\e94e";
 }
-.icon-arrow-up-right::before {
+.icon-dark-mode::before {
   content: "\e94f";
 }
-.icon-arrow-up-left::before {
+.icon-route::before {
   content: "\e950";
 }
-.icon-arrow-right::before {
+.icon-image::before {
   content: "\e951";
 }
-.icon-arrow-left::before {
+.icon-circle-minus::before {
   content: "\e952";
 }
-.icon-chevron-left::before {
+.icon-circle-plus::before {
   content: "\e953";
 }
-.icon-chevron-right::before {
+.icon-search::before {
   content: "\e954";
 }
-.icon-chevron-up::before {
+.icon-brand::before {
   content: "\e955";
 }
-.icon-chevron-down::before {
+.icon-car::before {
   content: "\e956";
 }
-.icon-minus::before {
+.icon-charge-stations::before {
   content: "\e957";
 }
-.icon-enter::before {
+.icon-person-circle::before {
   content: "\e958";
 }
-.icon-slash::before {
+.icon-eye-invisible::before {
   content: "\e959";
 }
-.icon-on-indicator::before {
+.icon-eye-visible::before {
   content: "\e95a";
 }
-.icon-off-indicator::before {
+.icon-clipboard::before {
   content: "\e95b";
 }
-.icon-arrow-down::before {
+.icon-edit::before {
   content: "\e95c";
 }
-.icon-arrow-up::before {
+.icon-delete::before {
   content: "\e95d";
 }
-.icon-code::before {
+.icon-circle-arrow-down::before {
   content: "\e95e";
 }
-.icon-survey::before {
+.icon-circle-arrow-up::before {
   content: "\e95f";
 }
-.icon-next::before {
+.icon-side-panel-bottom::before {
   content: "\e960";
 }
-.icon-h1::before {
+.icon-side-panel-top::before {
   content: "\e961";
 }
-.icon-h2::before {
+.icon-side-panel-right::before {
   content: "\e962";
 }
-.icon-h3::before {
+.icon-side-panel-left::before {
   content: "\e963";
 }
-.icon-bold::before {
+.icon-map-marker::before {
   content: "\e964";
 }
-.icon-domestic_a::before {
+.icon-warning-triangle::before {
+  content: "\e965";
+}
+.icon-warning-circle::before {
   content: "\e966";
 }
-.icon-domestic_b::before {
+.icon-info::before {
   content: "\e967";
 }
-.icon-domestic_c::before {
+.icon-filter-alt::before {
   content: "\e968";
 }
-.icon-domestic_d::before {
+.icon-filter::before {
   content: "\e969";
 }
-.icon-domestic_e::before {
+.icon-export::before {
   content: "\e96a";
 }
-.icon-domestic_f::before {
+.icon-import::before {
   content: "\e96b";
 }
-.icon-domestic_g::before {
+.icon-log-out::before {
   content: "\e96c";
 }
-.icon-domestic_h::before {
+.icon-log-in::before {
   content: "\e96d";
 }
-.icon-domestic_i::before {
+.icon-location-center::before {
   content: "\e96e";
 }
-.icon-domestic_j::before {
+.icon-profile::before {
   content: "\e96f";
 }
-.icon-domestic_k::before {
+.icon-contact::before {
   content: "\e970";
 }
-.icon-domestic_l::before {
+.icon-terminal::before {
   content: "\e971";
 }
-.icon-iec_62196_t2_combo::before {
+.icon-receipt::before {
   content: "\e972";
 }
-.icon-iec_62196_t1_combo::before {
+.icon-reports::before {
   content: "\e973";
 }
-.icon-iec_62196_t2::before {
+.icon-graph-bars::before {
   content: "\e974";
 }
-.icon-iec_62196_t1::before {
+.icon-graph-line::before {
   content: "\e975";
 }
-.icon-tesla_s::before {
+.icon-add-project::before {
   content: "\e976";
 }
-.icon-tesla_r::before {
+.icon-projects::before {
   content: "\e977";
 }
-.icon-iec_62196_t3a_c::before {
+.icon-filled-question::before {
   content: "\e978";
 }
-.icon-chademo::before {
+.icon-filled-notifications::before {
   content: "\e979";
 }
-.icon-default::before {
+.icon-filled-squared-terminal::before {
   content: "\e97a";
+}
+.icon-filled-lightning::before {
+  content: "\e97d";
+}
+.icon-filled-playground::before {
+  content: "\e97e";
+}
+.icon-filled-voyager-alt::before {
+  content: "\e97f";
+}
+.icon-filled-home::before {
+  content: "\e980";
 }
 
 /*! purgecss end ignore */

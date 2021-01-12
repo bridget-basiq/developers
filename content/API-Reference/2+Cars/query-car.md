@@ -27,8 +27,8 @@ On error the header status code is an error code and the response body contains 
 
 <errors name="carList"></errors>
 
-<playground url="https://playground.chargetrip.com/?page=car">
-<code-block lang="graphql" query="car">	
+<playground>
+<code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/?page=car">	
 query car{
   car(id: "5d161be5c9eef46132d9d20a") {
     id
@@ -63,7 +63,7 @@ query car{
 }
 </code-block>
 
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "data": {
     "car": {

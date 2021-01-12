@@ -1,6 +1,6 @@
 <template>
   <div
-    class="right-aside fixed border-l border-alt right-0 bg-body h-full z-40 hidden xl:block"
+    class="right-aside fixed border-l border-alt right-0 bg-body z-40 hidden xl:block"
     :class="{ large: large }"
   >
     <slot />
@@ -16,8 +16,9 @@ export default class RightAside extends Vue {
 </script>
 <style lang="scss">
 .right-aside {
-  top: 34px;
+  top: 64px;
   width: 480px;
+  height: calc(100% - 64px);
 
   &.large {
     width: 512px;

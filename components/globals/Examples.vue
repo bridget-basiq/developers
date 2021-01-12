@@ -8,7 +8,7 @@
 </template>
 <style lang="scss">
 .examples {
-  height: calc(100vh - 34px);
+  height: calc(100vh - 64px);
 
   .example {
     &:last-child {

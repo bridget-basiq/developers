@@ -28,7 +28,7 @@ On error the header status code is an error code and the response body contains 
 <errors name="carPremium"></errors>
 
 <playground>
-<code-block lang="graphql" query="carPremium">	
+<code-block lang="graphql" type="query">	
 query car{
   car(id: "5d161be5c9eef46132d9d20a") {
     id
@@ -81,7 +81,7 @@ query car{
 }
 </code-block>
 
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "errors": [
     {
