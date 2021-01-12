@@ -114,6 +114,7 @@ module.exports = {
       },
       fontFamily: {
         mono: [
+          "'Roboto Mono', monospace",
           'Consolas',
           'Courier New Bold',
           'Menlo',
