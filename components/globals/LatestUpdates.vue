@@ -13,7 +13,7 @@
       <li v-for="(item, key) in items" :key="key" class="mb-6 last:mb-0">
         <div>
           {{ item.props.title }}
-        </span>
+        </div>
         <span class="text-font-alt3">
           {{ item.props.date }}
         </span>
