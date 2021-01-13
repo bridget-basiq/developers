@@ -2,12 +2,12 @@
   <a class="example flex items-center text-14" :href="href" target="_blank">
     <c-image class="w-1/3 mr-4" :src="img" :alt="title" />
     <div class="w-2/3">
-      <span class="text-font-semibold">
+      <strong>
         <span class="text-font-alt3">
           {{ category }}
         </span>
         • {{ title }}
-      </span>
+      </strong>
       <p>
         {{ description }}
       </p>

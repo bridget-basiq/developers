@@ -11,9 +11,9 @@
     </div>
     <ul class="mt-8">
       <li v-for="(item, key) in items" :key="key" class="mb-6 last:mb-0">
-        <span class="block">
+        <div>
           {{ item.props.title }}
-        </span>
+        </div>
         <span class="text-font-alt3">
           {{ item.props.date }}
         </span>

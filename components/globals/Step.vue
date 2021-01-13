@@ -116,7 +116,6 @@ export default class Steps extends Vue {
   }
 
   h2 {
-    margin-top: 0 !important;
     @apply mb-2;
   }
 
