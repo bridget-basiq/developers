@@ -18,7 +18,7 @@
     </router-link>
     <router-link
       v-if="next && next.to"
-      class="w-1/2 flex ml-auto justify-end items-center"
+      class="w-1/2 flex ml-auto justify-end items-center text-right"
       :to="next.to"
     >
       <div class="mx-4 truncate">

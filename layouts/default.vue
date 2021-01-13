@@ -28,6 +28,22 @@
           @close="showSearch = false"
         />
       </div>
+      <template v-if="canEdit" v-slot:cta>
+        <Button
+          v-if="!isEditing"
+          class="ml-auto mr-4 lg-max:hidden"
+          size="sm"
+          color="accent"
+          @click.native="triggerEdit"
+          >Edit page
+        </Button>
+        <div v-else class="flex">
+          <Button size="sm" color="alt" @click.native="cancel">Cancel</Button>
+          <Button size="sm" class="mx-4" color="accent" @click.native="save"
+            >Save edits
+          </Button>
+        </div>
+      </template>
     </TopNav>
     <div
       class="view flex lg:bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden rounded-t-xl"
@@ -38,9 +54,8 @@
         :navs="normalizedSideNav"
         :dark-mode="darkMode"
         :show-toggle-menu="true"
-        :current-page="content.title"
         :spacing="6"
-        @changeDarkMode="setDarkMode"
+        @setDarkMode="setDarkMode"
       />
       <div
         ref="container"
@@ -57,31 +72,8 @@
                   :options="options"
                   @input="onMenuItemClick({ hash: $event })"
                 />
-                <template v-if="canEdit">
-                  <Button
-                    class="ml-auto lg-max:hidden"
-                    size="sm"
-                    color="accent"
-                    @click.native="triggerEdit"
-                    >Edit page
-                  </Button>
-                </template>
               </template>
-              <template v-else>
-                <h2>Edit {{ content.title }}</h2>
-                <div class="ml-auto flex">
-                  <Button size="sm" color="alt" @click.native="cancel"
-                    >Cancel</Button
-                  >
-                  <Button
-                    size="sm"
-                    class="ml-2"
-                    color="accent"
-                    @click.native="save"
-                    >Save edits
-                  </Button>
-                </div>
-              </template>
+              <h2 v-else>Edit {{ content.title }}</h2>
             </div>
           </div>
           <div class="lg:px-12 px-6 lg-max:overflow-x-hidden">
