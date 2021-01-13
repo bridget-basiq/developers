@@ -5,7 +5,7 @@
       @click="active = !active"
     >
       <p class="pr-4">
-        <span class="font-semibold">
+        <strong>
           {{ title }}
         </strong>
       </p>
