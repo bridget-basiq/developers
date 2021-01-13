@@ -35,6 +35,10 @@ p {
   @apply m-0;
 }
 
+strong {
+  @apply font-semibold;
+}
+
 .text-14 {
   @apply leading-normal;
 }
