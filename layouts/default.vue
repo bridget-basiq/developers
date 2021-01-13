@@ -7,8 +7,8 @@
       'menu-open': menuOpen,
       'is-editing': isEditing,
       'no-transition': noTransition,
-      'has-aside': aside,
-      'is-large-aside': isLargeAside,
+      'has-aside': aside || isEditing,
+      'is-large-aside': isLargeAside && !isEditing,
     }"
     @click="closeKhaled"
   >
@@ -31,17 +31,21 @@
       <template v-if="canEdit" v-slot:cta>
         <Button
           v-if="!isEditing"
-          class="ml-auto mr-4 lg-max:hidden"
+          class="ml-auto lg-max:hidden"
           size="sm"
           color="accent"
+          icon="edit"
           @click.native="triggerEdit"
-          >Edit page
-        </Button>
+        />
         <div v-else class="flex">
-          <Button size="sm" color="alt" @click.native="cancel">Cancel</Button>
-          <Button size="sm" class="mx-4" color="accent" @click.native="save"
-            >Save edits
-          </Button>
+          <Button size="sm" color="alt" icon="close" @click.native="cancel" />
+          <Button
+            size="sm"
+            class="ml-4"
+            color="accent"
+            icon="checkmark"
+            @click.native="save"
+          />
         </div>
       </template>
     </TopNav>
@@ -61,28 +65,13 @@
         ref="container"
         class="content flex-1 flex flex-col relative overflow-y-scroll mt-8 lg:mt-0"
       >
-        <div class="max-w-container flex flex-col">
-          <div class="sticky-header lg:px-12 px-6 hidden lg:block">
-            <div class="flex items-center">
-              <template v-if="!isEditing">
-                <Select
-                  v-if="options.length"
-                  v-model="value"
-                  class="navigate-select"
-                  :options="options"
-                  @input="onMenuItemClick({ hash: $event })"
-                />
-              </template>
-              <h2 v-else>Edit {{ content.title }}</h2>
-            </div>
-          </div>
-          <div class="lg:px-12 px-6 lg-max:overflow-x-hidden">
-            <Nuxt class="page mb-8" />
-          </div>
-        </div>
-        <PrevNextNavigation v-if="sideNav" class="mt-auto" />
+        <Nuxt
+          class="max-w-container flex flex-col lg:px-12 pt-8 px-6 lg-max:overflow-x-hidden page"
+        />
+        <PrevNextNavigation v-if="sideNav && !isEditing" class="mt-auto" />
       </div>
     </div>
+    <MarkdownFormatting v-if="isEditing" />
     <img
       v-if="showKhaled"
       class="absolute max-w-screen-sm z-50 rounded shadow-down-xl transform -translate-x-1/2 -translate-y-full bottom-0 -mt-6"
