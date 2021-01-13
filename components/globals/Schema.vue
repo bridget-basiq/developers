@@ -1,6 +1,6 @@
 <template>
   <div
-    class="schema my-12"
+    class="schema my-14"
     :data-type="type"
     :data-name="name"
     :data-hidden="hidden"

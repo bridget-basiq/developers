@@ -1,6 +1,5 @@
 <template>
   <div class="steps relative my-14">
-    <div class="dashed w-px absolute h-full" />
     <slot />
   </div>
 </template>
@@ -35,16 +34,8 @@ export default class Steps extends Vue {}
         }
       }
 
-      &:nth-child(2) .side {
-        &::before {
-          height: calc(100% + 30px);
-        }
-      }
-      &:last-child .number-wrapper {
-        &::before {
-          top: 14px;
-          height: calc(100% - 14px);
-        }
+      &:last-child {
+        @apply mb-0;
       }
 
       .number {

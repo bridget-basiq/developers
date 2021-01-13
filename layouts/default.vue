@@ -12,16 +12,6 @@
     }"
     @click="closeKhaled"
   >
-    <!--    <div class="flex text-24 grid gap-4 grid-cols-3 m-4 max-w-sm">-->
-    <!--      <span class="icon-filled-home" />-->
-    <!--      <span class="icon-filled-lightning" />-->
-    <!--      <span class="icon-filled-notification" />-->
-    <!--      <span class="icon-filled-playground" />-->
-    <!--      <span class="icon-filled-question" />-->
-    <!--      <span class="icon-filled-squared-terminal" />-->
-    <!--      <span class="icon-filled-voyager-alt" />-->
-
-    <!--    </div>-->
     <TopNav>
       <div
         class="text-font-alt3 flex items-center cursor-pointer font-semibold"
@@ -54,8 +44,8 @@
         ref="container"
         class="content flex-1 flex flex-col relative overflow-y-scroll mt-8 lg:mt-0"
       >
-        <div class="max-w-xl flex flex-col">
-          <div class="sticky-header lg:px-8 px-6 hidden lg:block">
+        <div class="max-w-lg flex flex-col">
+          <div class="sticky-header lg:px-12 px-6 hidden lg:block">
             <div class="flex items-center">
               <template v-if="!isEditing">
                 <Select
@@ -92,7 +82,7 @@
               </template>
             </div>
           </div>
-          <div class="lg:px-8 px-6 lg-max:overflow-x-hidden">
+          <div class="lg:px-12 px-6 lg-max:overflow-x-hidden">
             <Nuxt class="page mb-8" />
           </div>
         </div>
@@ -446,7 +436,7 @@ export default class Layout extends Mixins(Base) {
 .highlighted-code code,
 .page p > code,
 .page p > strong > code {
-  @apply rounded-2xs bg-base border border-alt px-1 leading-none text-font-primary font-medium;
+  @apply rounded-2xs bg-base border border-alt px-1 leading-none text-14 text-font-primary font-medium;
 }
 
 .nuxt-content {
@@ -464,7 +454,8 @@ export default class Layout extends Mixins(Base) {
   }
 
   > h3 {
-    @apply mt-12 mb-3;
+    margin-bottom: 0.125rem;
+    @apply mt-12;
   }
 
   > ul:not(.errors),
@@ -498,7 +489,7 @@ export default class Layout extends Mixins(Base) {
 
   > p {
     & + p {
-      @apply mt-4;
+      @apply mt-10;
     }
   }
 
@@ -507,11 +498,11 @@ export default class Layout extends Mixins(Base) {
   }
 
   h1 {
-    @apply mb-3;
+    @apply mb-2;
 
     + p,
     + p + p {
-      @apply text-18 text-font-alt3;
+      @apply text-font-alt3;
     }
   }
 }
