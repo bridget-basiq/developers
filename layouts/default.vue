@@ -12,20 +12,22 @@
     }"
     @click="closeKhaled"
   >
-    <TopNav>
-      <div
-        class="text-font-alt3 flex items-center cursor-pointer font-semibold"
-        @click="showSearch = true"
-      >
-        <span class="icon-search mr-3" />
-        Search documentation...
+    <TopNav class="z-50">
+      <div class="relative h-16 flex items-center">
+        <div
+          class="text-font-alt3 flex items-center cursor-pointer font-semibold"
+          @click="showSearch = true"
+        >
+          <span class="icon-search mr-3" />
+          Search documentation...
+        </div>
+        <Search
+          :active="showSearch"
+          :click-handler="onMenuItemClick"
+          icon="search"
+          @close="showSearch = false"
+        />
       </div>
-      <Search
-        :active="showSearch"
-        :click-handler="onMenuItemClick"
-        icon="search"
-        @close="showSearch = false"
-      />
     </TopNav>
     <div
       class="view flex lg:bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden rounded-t-xl"
