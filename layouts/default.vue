@@ -15,11 +15,11 @@
     <TopNav class="z-50">
       <div class="relative h-16 flex items-center">
         <div
-          class="text-font-alt3 flex items-center cursor-pointer font-semibold"
+          class="text-font-alt3 flex items-center cursor-pointer"
           @click="showSearch = true"
         >
           <span class="icon-search mr-3" />
-          Search documentation...
+          <strong class="text-14"> Search documentation... </strong>
         </div>
         <Search
           :active="showSearch"

@@ -15,7 +15,7 @@
           type="text"
           autocomplete="off"
           name="do-not-auto-fill"
-          class="w-full h-full bg-transparent outline-none pr-6 font-semibold"
+          class="w-full h-full text-14 bg-transparent outline-none pr-6 font-semibold placeholder-text-font-alt3"
           @focus="showSuggestions = true"
         />
       </div>
@@ -283,6 +283,12 @@ export default class Search extends Mixins(Base) {
   }
   .suggestions {
     max-height: 33vh;
+  }
+
+  input {
+    &::placeholder {
+      @apply text-font-alt3;
+    }
   }
   em {
     @apply not-italic text-warning;

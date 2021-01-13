@@ -12,7 +12,7 @@
 
   .example {
     &:last-child {
-      @apply mb-8;
+      @apply pb-8;
     }
     &:not(:last-child) {
       @apply mb-4;

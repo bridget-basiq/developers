@@ -1,7 +1,7 @@
 <template>
   <a class="example flex items-center text-14" :href="href" target="_blank">
-    <c-image class="w-1/3 mr-4" :src="img" :alt="title" />
-    <div class="w-2/3">
+    <c-image class="w-2/5 mr-4" :src="img" :alt="title" />
+    <div class="w-3/5">
       <strong>
         <span class="text-font-alt3">
           {{ category }}

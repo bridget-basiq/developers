@@ -17,11 +17,11 @@
       @apply flex-1 overflow-scroll;
 
       &:first-child {
-        @apply bg-off-white;
-      }
+        @apply bg-off-body;
 
-      header {
-        @apply sticky top-0;
+        header {
+          @apply top-0;
+        }
       }
     }
   }
