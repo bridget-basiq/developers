@@ -7,7 +7,7 @@
       <p class="pr-4">
         <span class="font-semibold">
           {{ title }}
-        </span>
+        </strong>
       </p>
       <span
         class="text-accent"
