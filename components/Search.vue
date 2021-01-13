@@ -1,20 +1,17 @@
 <template>
-  <div
-    v-show="active"
-    class="search fixed inset-0 items-start justify-start flex z-50 px-6"
-    @click="$emit('close')"
-  >
-    <div class="bg bg-body opacity-75 absolute inset-0" />
+  <div v-show="active" class="search absolute top-0 left-0 -ml-6 w-full">
+    <div class="bg fixed inset-0 bg-black opacity-50" />
     <div
-      class="relative mx-auto search-box w-screen max-w-screen-sm bg-body bg-body border border-alt rounded-sm shadow-down-md"
+      class="relative search-box w-screen bg-body bg-body border border-alt rounded-sm shadow-down-md"
       @click.stop
     >
-      <div class="flex h-16 items-center wrapper">
-        <label class="icon-search px-6" for="do-not-auto-fill" />
+      <div class="flex h-15 items-center wrapper text-font-alt3">
+        <label class="icon-search pr-3 pl-6" for="do-not-auto-fill" />
         <input
           id="do-not-auto-fill"
           ref="input"
           v-model="search"
+          placeholder="Search documentation..."
           type="text"
           autocomplete="off"
           name="do-not-auto-fill"
@@ -188,6 +185,10 @@ export default class Search extends Mixins(Base) {
     }, 500)
   }
 
+  @Listen('click') onWindowClick() {
+    this.$emit('close')
+  }
+
   @Watch('active') onActiveChange() {
     setTimeout(() => {
       this.input.focus()
@@ -270,8 +271,15 @@ export default class Search extends Mixins(Base) {
 </script>
 <style lang="scss">
 .search {
+  .bg {
+    z-index: -1;
+    height: calc(100vh - 64px);
+
+    @apply mt-16;
+  }
   .search-box {
-    margin-top: 33vh;
+    max-width: calc(100vh - 426px);
+    top: 2px;
   }
   .suggestions {
     max-height: 33vh;

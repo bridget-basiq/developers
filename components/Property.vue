@@ -17,9 +17,13 @@
         class="line-v w-px h-full absolute transform left-1/2 -translate-x-1/2 bg-alt2"
       />
     </div>
-    <div class="content p-4 relative">
+    <div
+      class="content p-4 relative"
+      :class="{ 'cursor-pointer': children.length }"
+      @click="showChildren = !showChildren"
+    >
       <div class="bg absolute inset-0" />
-      <PropertyToggleChildren v-model="showChildren" v-bind="$props" />
+      <PropertyToggleChildren v-bind="$props" />
       <PropertyTitle v-bind="$props" />
       <div
         v-if="description"

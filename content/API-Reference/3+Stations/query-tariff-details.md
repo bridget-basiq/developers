@@ -27,7 +27,7 @@ On error the header status code is an error code and the response body contains 
 <errors name="tariff"></errors>
 
 <playground>
-<code-block lang="graphql" query="tariff">	
+<code-block lang="graphql" type="query">	
 query tarrif($id: ID!) {
   tariff (
 	id: $id
@@ -66,7 +66,7 @@ query tarrif($id: ID!) {
   }
 }
 </code-block>
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
     "data": {
         "tariff": {

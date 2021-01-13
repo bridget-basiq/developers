@@ -21,7 +21,7 @@ On success, the HTTP status code in the response header is `200` and the respons
 <errors name="stationStats"></errors>
 
 <playground>
-<code-block lang="graphql" query="stationStats">
+<code-block lang="graphql" type="query">
 query stationStats {
   stationStats {
     standards {
@@ -38,7 +38,7 @@ query stationStats {
   }
 }				
 </code-block>
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "data": {
     "stationStats": {

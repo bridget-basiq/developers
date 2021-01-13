@@ -39,11 +39,14 @@ $fonts: (
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-Ecomovement::before {
+.icon-ecomovement::before {
   content: "\e97b";
 }
-.icon-OCM::before {
+.icon-ocm::before {
   content: "\e97c";
+}
+.icon-github::before {
+  content: "\e981";
 }
 .icon-slashes-1::before {
   content: "\e900";
@@ -51,76 +54,76 @@ $fonts: (
 .icon-lightning::before {
   content: "\e901";
 }
-.icon-Ecomovement1::before {
+.icon-ecomovement1::before {
   content: "\e902";
 }
-.icon-OCM1::before {
+.icon-ocm1::before {
   content: "\e903";
 }
-.icon-DEFAULT::before {
+.icon-default::before {
   content: "\e904";
 }
-.icon-CHADEMO::before {
+.icon-chademo::before {
   content: "\e905";
 }
-.icon-IEC_62196_T3A_C::before {
+.icon-iec_62196_t3a_c::before {
   content: "\e906";
 }
-.icon-TESLA_R::before {
+.icon-tesla_r::before {
   content: "\e907";
 }
-.icon-TESLA_S::before {
+.icon-tesla_s::before {
   content: "\e908";
 }
-.icon-IEC_62196_T1::before {
+.icon-iec_62196_t1::before {
   content: "\e909";
 }
-.icon-IEC_62196_T2::before {
+.icon-iec_62196_t2::before {
   content: "\e90a";
 }
-.icon-IEC_62196_T1_COMBO::before {
+.icon-iec_62196_t1_combo::before {
   content: "\e90b";
 }
-.icon-IEC_62196_T2_COMBO::before {
+.icon-iec_62196_t2_combo::before {
   content: "\e90c";
 }
-.icon-DOMESTIC_L::before {
+.icon-domestic_l::before {
   content: "\e90d";
 }
-.icon-DOMESTIC_K::before {
+.icon-domestic_k::before {
   content: "\e90e";
 }
-.icon-DOMESTIC_J::before {
+.icon-domestic_j::before {
   content: "\e90f";
 }
-.icon-DOMESTIC_I::before {
+.icon-domestic_i::before {
   content: "\e910";
 }
-.icon-DOMESTIC_H::before {
+.icon-domestic_h::before {
   content: "\e911";
 }
-.icon-DOMESTIC_G::before {
+.icon-domestic_g::before {
   content: "\e912";
 }
-.icon-DOMESTIC_F::before {
+.icon-domestic_f::before {
   content: "\e913";
 }
-.icon-DOMESTIC_E::before {
+.icon-domestic_e::before {
   content: "\e914";
 }
-.icon-DOMESTIC_D::before {
+.icon-domestic_d::before {
   content: "\e915";
 }
-.icon-DOMESTIC_C::before {
+.icon-domestic_c::before {
   content: "\e916";
 }
-.icon-DOMESTIC_B::before {
+.icon-domestic_b::before {
   content: "\e917";
 }
-.icon-DOMESTIC_A::before {
+.icon-domestic_a::before {
   content: "\e918";
 }
-.icon-Italic::before {
+.icon-italic::before {
   content: "\e919";
 }
 .icon-bold::before {
@@ -411,6 +414,7 @@ $fonts: (
 .icon-filled-notifications::before {
   content: "\e979";
 }
+
 .icon-filled-squared-terminal::before {
   content: "\e97a";
 }

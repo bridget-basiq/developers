@@ -12,20 +12,22 @@
     }"
     @click="closeKhaled"
   >
-    <TopNav>
-      <div
-        class="text-font-alt3 flex items-center cursor-pointer font-semibold"
-        @click="showSearch = true"
-      >
-        <span class="icon-search mr-3" />
-        Search documentation...
+    <TopNav class="z-50">
+      <div class="relative h-16 flex items-center">
+        <div
+          class="text-font-alt3 flex items-center cursor-pointer font-semibold"
+          @click="showSearch = true"
+        >
+          <span class="icon-search mr-3" />
+          Search documentation...
+        </div>
+        <Search
+          :active="showSearch"
+          :click-handler="onMenuItemClick"
+          icon="search"
+          @close="showSearch = false"
+        />
       </div>
-      <Search
-        :active="showSearch"
-        :click-handler="onMenuItemClick"
-        icon="search"
-        @close="showSearch = false"
-      />
     </TopNav>
     <div
       class="view flex lg:bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden rounded-t-xl"
@@ -44,7 +46,7 @@
         ref="container"
         class="content flex-1 flex flex-col relative overflow-y-scroll mt-8 lg:mt-0"
       >
-        <div class="max-w-lg flex flex-col">
+        <div class="max-w-container flex flex-col">
           <div class="sticky-header lg:px-12 px-6 hidden lg:block">
             <div class="flex items-center">
               <template v-if="!isEditing">
@@ -584,6 +586,9 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
+  .max-w-container {
+    max-width: 736px;
+  }
   .nuxt-content-editor {
     @apply text-font-primary bg-body;
   }

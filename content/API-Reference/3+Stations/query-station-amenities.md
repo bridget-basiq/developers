@@ -27,7 +27,7 @@ On error the header status code is an error code and the response body contains 
 <errors name="amenityList"></errors>
 
 <playground>
-<code-block lang="graphql" query="amenityList">					
+<code-block lang="graphql" type="query">					
 query amenityList($stationId: ID!) {
   amenityList(stationId: $stationId) {
     id
@@ -54,7 +54,7 @@ query amenityList($stationId: ID!) {
   }
 }
 </code-block>
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "data": {
     "amenityList": [

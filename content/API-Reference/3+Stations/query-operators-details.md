@@ -25,7 +25,7 @@ On error the header status code is an error code and the response body contains 
 <errors name="operator"></errors>
 
 <playground>
-<code-block lang="graphql" query="operator">
+<code-block lang="graphql" type="query">
 query operator($id: ID!) {
   operator(id: $id) {
     id
@@ -43,7 +43,7 @@ query operator($id: ID!) {
   }
 }
 </code-block>
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "data": {
     "operator": {

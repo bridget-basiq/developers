@@ -25,8 +25,8 @@ On success, the HTTP status code in the response header is `200` and the respons
 
 <errors name="stationUpdatedById"></errors>
 
-<playground url="https://playground.chargetrip.com/?page=station">
-<code-block lang="graphql" query="stationUpdatedById" query-type="subscription">					
+<playground>
+<code-block lang="graphql" type="subscription" edit-url="https://playground.chargetrip.com/?page=station">					
 subscription stationUpdatedById($stationId: ID!) {
   stationUpdatedById(id: $stationId) {
     id
@@ -196,7 +196,7 @@ subscription stationUpdatedById($stationId: ID!) {
   }
 }
 </code-block>
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "data": {
     "station": {
