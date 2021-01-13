@@ -4,10 +4,10 @@
       class="flex items-center justify-between cursor-pointer"
       @click="active = !active"
     >
-      <p>
-        <strong>
+      <p class="pr-4">
+        <span class="font-semibold">
           {{ title }}
-        </strong>
+        </span>
       </p>
       <span
         class="text-accent"
