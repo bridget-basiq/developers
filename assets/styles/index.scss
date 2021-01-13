@@ -23,6 +23,8 @@
 }
 
 body {
+  @apply leading-7;
+
   @screen lg {
     @apply overflow-hidden;
   }
