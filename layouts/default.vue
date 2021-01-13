@@ -13,20 +13,8 @@
     @click="closeKhaled"
   >
     <TopNav class="z-50">
-      <div class="relative h-16 flex items-center">
-        <div
-          class="text-font-alt3 flex items-center cursor-pointer"
-          @click="showSearch = true"
-        >
-          <span class="icon-search mr-3" />
-          <strong class="text-14"> Search documentation... </strong>
-        </div>
-        <Search
-          :active="showSearch"
-          :click-handler="onMenuItemClick"
-          icon="search"
-          @close="showSearch = false"
-        />
+      <div class="relative flex-1 h-16 flex items-center">
+        <Search :click-handler="onMenuItemClick" icon="search" class="flex-1" />
       </div>
       <template v-if="canEdit" v-slot:cta>
         <Button
@@ -66,7 +54,7 @@
         class="content flex-1 flex flex-col relative overflow-y-scroll mt-8 lg:mt-0"
       >
         <Nuxt
-          class="max-w-container flex flex-col lg:px-12 pt-8 px-6 lg-max:overflow-x-hidden page"
+          class="max-w-container pb-8 flex flex-col lg:px-12 pt-8 px-6 lg-max:overflow-x-hidden page"
         />
         <PrevNextNavigation v-if="sideNav && !isEditing" class="mt-auto" />
       </div>
@@ -134,7 +122,6 @@ export default class Layout extends Mixins(Base) {
   hElms: any[] = []
   hash = this.$route.hash.slice(1)
   stopReplacing = false
-  showSearch = false
   options: { label: string; value: string }[] = []
   value: string = ''
 

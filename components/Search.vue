@@ -1,99 +1,95 @@
 <template>
-  <div v-show="active" class="search absolute top-0 left-0 -ml-6 w-full">
-    <div class="bg fixed inset-0 bg-black opacity-50" />
+  <div class="search relative">
     <div
-      class="relative search-box w-screen bg-body bg-body border border-alt rounded-sm shadow-down-md"
-      @click.stop
+      v-show="showSuggestions"
+      class="bg fixed inset-0 bg-black opacity-50"
+    />
+    <div class="flex items-center wrapper text-font-alt3 h-16">
+      <label class="icon-search pr-3" for="do-not-auto-fill" />
+      <input
+        id="do-not-auto-fill"
+        ref="input"
+        v-model="search"
+        placeholder="Search documentation..."
+        type="text"
+        autocomplete="off"
+        name="do-not-auto-fill"
+        class="w-full h-full text-14 bg-transparent outline-none pr-6 font-semibold placeholder-text-font-alt3"
+        @blur="showSuggestions = false"
+        @focus.stop="showSuggestions = true"
+      />
+    </div>
+    <nav
+      v-show="showSuggestions && suggestions.length"
+      class="text-font-alt3 text-14 border-t w-screen rounded border-alt absolute w-full top-full mt-1 bg-body"
     >
-      <div class="flex h-15 items-center wrapper text-font-alt3">
-        <label class="icon-search pr-3 pl-6" for="do-not-auto-fill" />
-        <input
-          id="do-not-auto-fill"
-          ref="input"
-          v-model="search"
-          placeholder="Search documentation..."
-          type="text"
-          autocomplete="off"
-          name="do-not-auto-fill"
-          class="w-full h-full text-14 bg-transparent outline-none pr-6 font-semibold placeholder-text-font-alt3"
-          @focus="showSuggestions = true"
-        />
-      </div>
-      <nav
-        v-show="showSuggestions && suggestions.length"
-        class="text-font-alt3 text-14 border-t border-alt"
-      >
-        <main
-          ref="container"
-          class="flex flex-col suggestions overflow-y-scroll"
-        >
-          <ul class="p-3 lg:p-2">
-            <li
-              v-for="(suggestion, i) in normalizedSuggestions"
-              :key="i"
-              ref="suggestionEl"
-              class="block py-2 px-3 cursor-pointer rounded-sm"
-              :class="{ 'bg-base': index === i }"
-              @mouseenter="index = i"
-              @mousedown="onClick(suggestion)"
-            >
-              <p class="whitespace-no-wrap">
-                <strong>
-                  <span v-if="suggestion.propertyPath" class="lg-max:hidden">
-                    {{ suggestion.propertyPath }} /
-                  </span>
-                  <span
-                    class="text-font-primary"
-                    v-html="
-                      suggestion._highlightResult
-                        ? suggestion._highlightResult.title.value
-                        : suggestion.title
-                    "
-                  />
-                </strong>
-              </p>
-              <p
-                v-html="
-                  suggestion._snippetResult
-                    ? suggestion._snippetResult.description.value
-                    : suggestion.description
-                "
-              />
-            </li>
-          </ul>
-        </main>
-        <footer
-          class="border-t lg-max:hidden border-alt py-1 px-3 flex whitespace-no-wrap"
-        >
-          <div
-            v-for="(hotKey, i) in hotKeys"
+      <main ref="container" class="flex flex-col suggestions overflow-y-scroll">
+        <ul class="p-3 lg:p-2">
+          <li
+            v-for="(suggestion, i) in normalizedSuggestions"
             :key="i"
-            class="hotkey flex mr-6 items-center"
+            ref="suggestionEl"
+            class="block py-2 px-3 cursor-pointer rounded-sm"
+            :class="{ 'bg-base': index === i }"
+            @mouseenter="index = i"
+            @mousedown="onClick(suggestion)"
           >
-            <div class="flex">
-              <span
-                v-for="(key, c) in hotKey.keys"
-                :key="`${i}-${c}`"
-                class="w-5 h-5 first:border-l border-r border-t border-b border-alt2 first:rounded-l-xs last:rounded-r-xs text-alt2 flex items-center justify-center"
-                :class="`icon-${key}`"
-              />
-            </div>
-            <p class="ml-2 text-12">
+            <p class="whitespace-no-wrap">
               <strong>
-                {{ hotKey.title }}
+                <span v-if="suggestion.propertyPath" class="lg-max:hidden">
+                  {{ suggestion.propertyPath }} /
+                </span>
+                <span
+                  class="text-font-primary"
+                  v-html="
+                    suggestion._highlightResult
+                      ? suggestion._highlightResult.title.value
+                      : suggestion.title
+                  "
+                />
               </strong>
             </p>
-          </div>
-          <div class="pl-20 ml-auto flex items-center">
-            <img
-              class="w-24 pl-8 h-auto object-contain flex-shrink-0 max-w-xs"
-              src="algolia.png"
-              alt="algolia"
+            <p
+              v-html="
+                suggestion._snippetResult
+                  ? suggestion._snippetResult.description.value
+                  : suggestion.description
+              "
+            />
+          </li>
+        </ul>
+      </main>
+      <footer
+        class="border-t lg-max:hidden border-alt py-1 px-3 flex whitespace-no-wrap"
+      >
+        <div
+          v-for="(hotKey, i) in hotKeys"
+          :key="i"
+          class="hotkey flex mr-6 items-center"
+        >
+          <div class="flex">
+            <span
+              v-for="(key, c) in hotKey.keys"
+              :key="`${i}-${c}`"
+              class="w-5 h-5 first:border-l border-r border-t border-b border-alt2 first:rounded-l-xs last:rounded-r-xs text-alt2 flex items-center justify-center"
+              :class="`icon-${key}`"
             />
           </div>
-        </footer>
-      </nav>
-    </div>
+          <p class="ml-2 text-12">
+            <strong>
+              {{ hotKey.title }}
+            </strong>
+          </p>
+        </div>
+        <div class="pl-20 ml-auto flex items-center">
+          <img
+            class="w-24 pl-8 h-auto object-contain flex-shrink-0 max-w-xs"
+            src="algolia.png"
+            alt="algolia"
+          />
+        </div>
+      </footer>
+    </nav>
   </div>
 </template>
 <script lang="ts">
@@ -111,9 +107,9 @@ export default class Search extends Mixins(Base) {
   @Ref('input') input
   @Prop() clickHandler
   @Prop() active
+  showSuggestions = false
   suggestions: any[] = []
   index = 0
-  showSuggestions = false
   prevent = false
   search = ''
   hotKeys = [
@@ -207,7 +203,8 @@ export default class Search extends Mixins(Base) {
     this.scrollToView()
   }
 
-  @Watch('search') async onSearchChange() {
+  @Watch('search')
+  async onSearchChange() {
     if (!this.search.length) {
       this.suggestions = []
 
@@ -277,10 +274,11 @@ export default class Search extends Mixins(Base) {
 
     @apply mt-16;
   }
-  .search-box {
+
+  nav {
     max-width: calc(100vh - 426px);
-    top: 2px;
   }
+
   .suggestions {
     max-height: 33vh;
   }
@@ -290,6 +288,7 @@ export default class Search extends Mixins(Base) {
       @apply text-font-alt3;
     }
   }
+
   em {
     @apply not-italic text-warning;
   }
