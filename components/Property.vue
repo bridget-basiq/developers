@@ -23,7 +23,7 @@
       @click="showChildren = !showChildren"
     >
       <div class="bg absolute inset-0" />
-      <PropertyToggleChildren v-bind="$props" />
+      <PropertyToggleChildren v-bind="$props" :value="showChildren" />
       <PropertyTitle v-bind="$props" />
       <div
         v-if="description"
