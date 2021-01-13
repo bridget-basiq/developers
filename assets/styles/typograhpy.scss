@@ -1,5 +1,5 @@
 h1 {
-  @apply text-32;
+  @apply text-32 font-bold;
 
   @screen md {
     @apply text-32;
@@ -18,10 +18,9 @@ h6 {
   @apply text-16;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  @apply leading-tight font-bold;
+h2, h3, h4, h5, h6 {
+  @apply leading-tight font-semibold;
 }
-
 
 small {
   @apply text-14;
@@ -41,5 +40,10 @@ p a, label a, a.link, td a {
 
 
 p {
+  line-height: 1.75rem;
   @apply m-0;
+}
+
+.text-14 {
+  line-height: 1.375rem !important;
 }

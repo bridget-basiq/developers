@@ -1,6 +1,6 @@
 <template>
   <div class="release-note my-16">
-    <div class="title-wrapper pb-4 border-b border-alt px-8 relative">
+    <div class="title-wrapper pb-4 px-8 relative">
       <h2 :id="id" class="mb-1">
         {{ title }}
       </h2>

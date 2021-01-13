@@ -12,6 +12,7 @@
     }"
     @click="closeKhaled"
   >
+<<<<<<< HEAD
     <TopNav class="z-50">
       <div class="relative h-16 flex items-center">
         <div
@@ -27,6 +28,15 @@
           icon="search"
           @close="showSearch = false"
         />
+=======
+    <TopNav>
+      <div
+        class="text-font-alt3 flex items-center cursor-pointer font-semibold"
+        @click="showSearch = true"
+      >
+        <span class="icon-search mr-3" />
+        Search documentation...
+>>>>>>> fix: resolved various spacing and font issues
       </div>
     </TopNav>
     <div
@@ -438,7 +448,7 @@ export default class Layout extends Mixins(Base) {
 .highlighted-code code,
 .page p > code,
 .page p > strong > code {
-  @apply rounded-2xs bg-base border border-alt px-1 leading-none text-font-primary font-medium;
+  @apply rounded-2xs bg-base border border-alt px-1 leading-none text-14 text-font-primary font-medium;
 }
 
 .nuxt-content {
@@ -456,7 +466,8 @@ export default class Layout extends Mixins(Base) {
   }
 
   > h3 {
-    @apply mt-12 mb-3;
+    margin-bottom: 0.125rem;
+    @apply mt-12;
   }
 
   > ul:not(.errors),
@@ -490,7 +501,7 @@ export default class Layout extends Mixins(Base) {
 
   > p {
     & + p {
-      @apply mt-4;
+      @apply mt-10;
     }
   }
 
@@ -499,11 +510,11 @@ export default class Layout extends Mixins(Base) {
   }
 
   h1 {
-    @apply mb-3;
+    @apply mb-2;
 
     + p,
     + p + p {
-      @apply text-18 text-font-alt3;
+      @apply text-font-alt3;
     }
   }
 }
