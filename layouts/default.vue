@@ -427,6 +427,17 @@ export default class Layout extends Mixins(Base) {
     @apply my-4;
   }
 
+  &.authorization,
+  &.status-error-codes {
+    h2 {
+      @apply mt-20;
+    }
+  }
+
+  .right-aside h2 {
+    @apply mt-0;
+  }
+
   .table,
   .property-table {
     @apply mt-6 mb-10;

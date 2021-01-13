@@ -7,7 +7,7 @@
 </template>
 <style lang="scss">
 .playground {
-  top: 34px;
+  top: 64px;
   width: 512px;
 
   .container {
