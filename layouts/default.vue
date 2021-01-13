@@ -12,7 +12,6 @@
     }"
     @click="closeKhaled"
   >
-<<<<<<< HEAD
     <TopNav class="z-50">
       <div class="relative h-16 flex items-center">
         <div
@@ -28,15 +27,6 @@
           icon="search"
           @close="showSearch = false"
         />
-=======
-    <TopNav>
-      <div
-        class="text-font-alt3 flex items-center cursor-pointer font-semibold"
-        @click="showSearch = true"
-      >
-        <span class="icon-search mr-3" />
-        Search documentation...
->>>>>>> fix: resolved various spacing and font issues
       </div>
     </TopNav>
     <div
