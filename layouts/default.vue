@@ -46,7 +46,7 @@
         ref="container"
         class="content flex-1 flex flex-col relative overflow-y-scroll mt-8 lg:mt-0"
       >
-        <div class="max-w-xl flex flex-col">
+        <div class="max-w-container flex flex-col">
           <div class="sticky-header lg:px-12 px-6 hidden lg:block">
             <div class="flex items-center">
               <template v-if="!isEditing">
@@ -585,6 +585,9 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
+  .max-w-container {
+    max-width: 736px;
+  }
   .nuxt-content-editor {
     @apply text-font-primary bg-body;
   }
