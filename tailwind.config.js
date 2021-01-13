@@ -144,5 +144,6 @@ module.exports = {
     borderRadius: ['responsive', 'first', 'last'],
     borderWidth: ['responsive', 'first', 'last'],
     margin: ['responsive', 'last', 'first'],
+    padding: ['responsive', 'last', 'first'],
   },
 }

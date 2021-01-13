@@ -1,5 +1,5 @@
 <template>
-  <ul class="errors mt-6">
+  <ul v-if="errors.length" class="errors mt-6">
     <Error v-for="(error, key) in errors" :key="key" v-bind="error" />
   </ul>
 </template>

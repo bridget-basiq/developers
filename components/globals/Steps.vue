@@ -1,5 +1,5 @@
 <template>
-  <div class="steps relative my-14">
+  <div class="steps relative mt-14">
     <slot />
   </div>
 </template>

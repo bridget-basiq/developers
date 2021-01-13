@@ -12,7 +12,7 @@
     }"
     @click="closeKhaled"
   >
-    <TopNav class="z-50">
+    <TopNav class="z-50" :show-items="!canEdit">
       <div class="relative flex-1 h-16 flex items-center">
         <Search :click-handler="onMenuItemClick" icon="search" class="flex-1" />
       </div>
@@ -411,7 +411,11 @@ export default class Layout extends Mixins(Base) {
 
 .nuxt-content {
   > .code-block {
-    @apply my-4;
+    @apply mt-4;
+
+    &:last-child {
+      @apply mb-0;
+    }
   }
 
   &.authorization,
@@ -469,6 +473,8 @@ export default class Layout extends Mixins(Base) {
   }
 
   > p {
+    @apply my-3;
+
     & + p {
       @apply mt-10;
     }

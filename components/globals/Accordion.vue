@@ -1,5 +1,5 @@
 <template>
-  <div class="accordion my-14">
+  <div class="accordion my-14 last:mb-0">
     <h2 :id="id">
       {{ title }}
     </h2>

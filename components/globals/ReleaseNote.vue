@@ -1,5 +1,7 @@
 <template>
-  <div class="release-note py-16 border-b border-alt last:border-0 relative">
+  <div
+    class="release-note py-16 border-b border-alt last:border-0 relative last:pb-0"
+  >
     <div class="title-wrapper">
       <h2 :id="id" class="mb-1">
         {{ title }}
