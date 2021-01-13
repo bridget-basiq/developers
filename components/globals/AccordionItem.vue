@@ -4,7 +4,7 @@
       class="flex items-center justify-between cursor-pointer"
       @click="active = !active"
     >
-      <p>
+      <p class="pr-4">
         <strong>
           {{ title }}
         </strong>
