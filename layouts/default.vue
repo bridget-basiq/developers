@@ -12,16 +12,6 @@
     }"
     @click="closeKhaled"
   >
-    <!--    <div class="flex text-24 grid gap-4 grid-cols-3 m-4 max-w-sm">-->
-    <!--      <span class="icon-filled-home" />-->
-    <!--      <span class="icon-filled-lightning" />-->
-    <!--      <span class="icon-filled-notification" />-->
-    <!--      <span class="icon-filled-playground" />-->
-    <!--      <span class="icon-filled-question" />-->
-    <!--      <span class="icon-filled-squared-terminal" />-->
-    <!--      <span class="icon-filled-voyager-alt" />-->
-
-    <!--    </div>-->
     <TopNav>
       <div
         class="text-font-alt3 flex items-center cursor-pointer font-semibold"
@@ -55,7 +45,7 @@
         class="content flex-1 flex flex-col relative overflow-y-scroll mt-8 lg:mt-0"
       >
         <div class="max-w-xl flex flex-col">
-          <div class="sticky-header lg:px-8 px-6 hidden lg:block">
+          <div class="sticky-header lg:px-12 px-6 hidden lg:block">
             <div class="flex items-center">
               <template v-if="!isEditing">
                 <Select
@@ -92,7 +82,7 @@
               </template>
             </div>
           </div>
-          <div class="lg:px-8 px-6 lg-max:overflow-x-hidden">
+          <div class="lg:px-12 px-6 lg-max:overflow-x-hidden">
             <Nuxt class="page mb-8" />
           </div>
         </div>

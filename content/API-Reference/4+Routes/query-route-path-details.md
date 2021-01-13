@@ -22,8 +22,8 @@ On error the header status code is an error code and the response body contains 
 
 <errors name="routePath"></errors>
 
-<playground url="https://playground.chargetrip.com/page=getRoute">
-<code-block lang="graphql" query="routePath">
+<playground>
+<code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/page=getRoute">
 query routePath {
   routePath(
     id: "5fd25d01cb36454e2666f988", 
@@ -42,7 +42,7 @@ query routePath {
   }
 }
 </code-block>
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "data": {
     "routePath": {

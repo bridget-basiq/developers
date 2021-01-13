@@ -19,8 +19,8 @@ On error the header status code is an error code and the response body contains 
 
 <errors name="addReview"></errors>
 
-<playground url="https://playground.chargetrip.com/?page=reviewListLazyLoading">
-<code-block lang="graphql" query="addReview" query-type="mutation">					
+<playground>
+<code-block lang="graphql" type="mutation" edit-url="https://playground.chargetrip.com/?page=reviewListLazyLoading">					
 mutation addReview($stationId: String!, $carId: String) {
   addReview(
     review: {
@@ -45,7 +45,7 @@ mutation addReview($stationId: String!, $carId: String) {
   }
 }
 </code-block>
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "data": {
     "addReview": {

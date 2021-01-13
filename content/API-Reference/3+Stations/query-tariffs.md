@@ -25,7 +25,7 @@ On success, the HTTP status code in the response header is `200` and the respons
 <errors name="tariffList"></errors>
 
 <playground>
-<code-block lang="graphql" query="tariffList">
+<code-block lang="graphql" type="query">
 query tariffList {
   tariffList (
     size: 5, 
@@ -65,7 +65,7 @@ query tariffList {
   }
 }			
 </code-block>
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
     "data": {
         "tariffList": [

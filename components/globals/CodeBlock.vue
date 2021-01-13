@@ -2,7 +2,7 @@
   <div
     v-if="!hide"
     class="code-block text-font-primary rounded border border-alt text-14"
-    :class="{ 'bg-base': query || title, 'has-type': codeType }"
+    :class="{ 'bg-base': title, 'has-type': codeType }"
   >
     <header
       v-if="codeType || title"
@@ -14,8 +14,13 @@
         {{ title }}
       </div>
       <div class="ml-auto flex">
-        <template v-if="type === 'query'">
+        <template
+          v-if="
+            type === 'query' || type === 'mutation' || type === 'subscription'
+          "
+        >
           <Button
+            v-if="editUrl"
             :href="editUrl"
             title="Edit"
             size="xs"
@@ -58,7 +63,6 @@ import highlightjs from '~/utilities/highlight'
 @Component({ components: { Snackbar, Tag, Button } })
 export default class CodeBlock extends Vue {
   @Prop() title
-  @Prop({ default: 'Query' }) queryType
   @Prop() lang
   @Prop() type
   @Prop() query
@@ -69,6 +73,20 @@ export default class CodeBlock extends Vue {
   hide = false
 
   types = {
+    subscription: {
+      tag: {
+        title: 'Subscription',
+        type: 'secondary',
+        color: 'alt4',
+      },
+    },
+    mutation: {
+      tag: {
+        title: 'Mutation',
+        type: 'secondary',
+        color: 'alt4',
+      },
+    },
     query: {
       tag: {
         title: 'Query',
