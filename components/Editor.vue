@@ -3,7 +3,7 @@
     <textarea
       ref="contentEl"
       v-model="file"
-      class="whitespace-pre-line block bg-body font-primary outline-none w-full h-full"
+      class="whitespace-pre-line resize-none block bg-body font-primary outline-none w-full h-full"
       @mousedown="showHelper = false"
     ></textarea>
     <div
@@ -178,7 +178,7 @@ export default class Editor extends Mixins(Base) {
   padding: 0 !important;
 
   textarea {
-    height: calc(100vh - 260px);
+    height: calc(100vh - 96px);
   }
 
   .helper {

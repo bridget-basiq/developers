@@ -1,11 +1,11 @@
 <template>
-  <div class="markdown-formatting">
+  <RightAside class="markdown-formatting px-8 pt-8 overflow-y-scroll">
     <h2 class="mb-8">Markdown Formatting</h2>
     <p class="mb-7 text-font-alt3">
       Below we listing the most common shortcuts. Still got stuck? Ask an
       engineer for help or drop your question in the #general slack channel.
     </p>
-    <ul>
+    <ul class="mb-8">
       <li v-for="(item, key) in items" :key="key" class="mb-10 last:mb-0">
         <h3 class="mb-3">
           {{ item.title }}
@@ -40,7 +40,7 @@
         </ul>
       </li>
     </ul>
-  </div>
+  </RightAside>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
