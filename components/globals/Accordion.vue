@@ -3,11 +3,6 @@
     <h2 :id="id">
       {{ title }}
     </h2>
-    <p class="text-14 text-font-alt3">
-      <strong>
-        {{ description }}
-      </strong>
-    </p>
     <div class="mt-2">
       <slot />
     </div>
