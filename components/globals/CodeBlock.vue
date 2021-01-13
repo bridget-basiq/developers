@@ -5,36 +5,37 @@
     :class="{ 'bg-base': query || title, 'has-type': codeType }"
   >
     <header
-      v-if="codeType || title"
+      v-if="title || codeType"
       class="flex h-10 px-6 font-semibold items-center border-b border-alt text-font-alt2"
     >
       <Tag v-if="codeType" class="mr-2" v-bind="codeType.tag" />
-      <div v-if="title" class="title">
+      <div v-else class="title">
         <span v-if="prefix" class="text-font-alt3 mr-1">{{ prefix }} / </span>
         {{ title }}
       </div>
-      <div class="ml-auto flex">
-        <template v-if="type === 'query'">
-          <Button
-            :href="editUrl"
-            title="Edit"
-            size="xs"
-            class="bg-body border border-alt2 text-font-primary mr-1"
-          />
-          <Button
-            title="Copy"
-            size="xs"
-            class="bg-body border border-alt2 text-font-primary"
-            @click.native="copy"
-          />
-        </template>
-        <span
-          v-else-if="!type"
-          class="icon icon-clipboard cursor-pointer"
-          @click="copy"
-        />
-      </div>
+      <span
+        v-if="!codeType"
+        class="icon icon-clipboard cursor-pointer ml-auto"
+        @click="copy"
+      />
     </header>
+    <div
+      v-if="type === 'query' || type === 'mutation' || type === 'subscription'"
+      class="flex px-6 h-10 pt-6 justify-end items-center sticky ctas -mt-12 top-0"
+    >
+      <Button
+        :href="editUrl"
+        title="Edit"
+        size="xs"
+        class="bg-body border border-alt2 text-font-primary mr-1"
+      />
+      <Button
+        title="Copy"
+        size="xs"
+        class="bg-body border border-alt2 text-font-primary"
+        @click.native="copy"
+      />
+    </div>
     <div class="wrapper">
       <pre
         class="font-mono px-6 py-4 font-base overflow-x-scroll"
@@ -69,6 +70,20 @@ export default class CodeBlock extends Vue {
   hide = false
 
   types = {
+    mutation: {
+      tag: {
+        title: 'Mutation',
+        type: 'secondary',
+        color: 'alt4',
+      },
+    },
+    subscription: {
+      tag: {
+        title: 'Subscription',
+        type: 'secondary',
+        color: 'alt4',
+      },
+    },
     query: {
       tag: {
         title: 'Query',

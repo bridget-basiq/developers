@@ -1,6 +1,6 @@
 <template>
   <li
-    class="error flex items-start py-4 border rounded-md border-alt items-center text-14 bg-base p-4 mb-2 last:mb-0"
+    class="error flex items-start py-4 border rounded-md border-alt items-center text-14 p-4 mb-2 last:mb-0"
   >
     <Tag color="error" type="secondary">Error</Tag>
     <div class="ml-4">

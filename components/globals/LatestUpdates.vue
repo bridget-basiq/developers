@@ -9,20 +9,26 @@
         View all
       </router-link>
     </div>
-    <ul class="mt-8">
-      <li v-for="(item, key) in items" :key="key" class="mb-6 last:mb-0">
+    <nav class="mt-8">
+      <router-link
+        v-for="(item, key) in items"
+        :key="key"
+        :to="`/${item.to}`"
+        class="mb-6 last:mb-0 block"
+      >
         <div>
           {{ item.props.title }}
         </div>
         <span class="text-font-alt3">
           {{ item.props.date }}
         </span>
-      </li>
-    </ul>
+      </router-link>
+    </nav>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import { slugify } from '~/utilities/project.functions'
 
 @Component
 export default class LatestUpdates extends Vue {
@@ -39,6 +45,10 @@ export default class LatestUpdates extends Vue {
       this.items = releasePage.body.children
         .filter((child) => child.tag === 'release-note')
         .slice(0, 2)
+        .map((item) => ({
+          ...item,
+          to: `${releasePage.slug}#release-${slugify(item.props.title)}`,
+        }))
     }
   }
 }

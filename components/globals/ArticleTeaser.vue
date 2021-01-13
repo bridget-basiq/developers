@@ -1,26 +1,25 @@
 <template>
   <article
-    class="article-teaser pl-8 py-8 block relative border-b border-alt pr-20 overflow-hidden"
+    class="article-teaser pl-8 py-8 block relative border-b border-alt pr-20 overflow-hidden relative"
   >
-    <h3 v-if="title">
+    <h3 v-if="title" class="title">
       {{ title }}
     </h3>
     <p v-if="description">
       {{ description }}
     </p>
     <slot />
-    <a
-      :href="href"
-      class="text-accent mt-3 block"
-      target="_blank"
-      rel="noopener"
-    >
-      <strong> Read more </strong>
-    </a>
+    <strong class="text-accent mt-3 block"> Read more </strong>
     <img
       class="absolute h-full w-auto right-0 top-0"
       src="globe.svg"
       alt="Globe"
+    />
+    <a
+      :href="href"
+      class="text-accent absolute inset-0 mt-3 block"
+      target="_blank"
+      rel="noopener"
     />
   </article>
 </template>

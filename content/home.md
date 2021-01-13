@@ -64,7 +64,6 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         href="https://chargetrip.github.io/examples/car/" 
         img="cars-example.png" 
         title="Query cars" 
-        tag-line="Web" 
         description="Quickly fetch a list of cars with additional data." 
         category="Cars">
     </example>
@@ -72,7 +71,6 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         href="https://chargetrip.github.io/examples/state-of-charge/" 
         img="state-of-charge-example.png" 
         title="State of Charge" 
-        tag-line="Web" 
         description="Mutate the state of charge and reroute the journey" 
         category="Cars">
     </example>
@@ -81,7 +79,6 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         href="https://chargetrip.github.io/examples/stations/" 
         img="stations-example.png" 
         title="Query stations" 
-        tag-line="Web" 
         description="Query the 20 closest stations and show them on a map." 
         category="Stations">
     </example>
@@ -89,7 +86,6 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         href="https://chargetrip.github.io/examples/station-info/" 
         img="stations-info-example.png" 
         title="Query specific station" 
-        tag-line="Web" 
         description="Query and parse a complete set of station data" 
         category="Stations">
     </example>
@@ -97,7 +93,6 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         href="https://chargetrip.github.io/examples/stations-along-route/" 
         img="alternative-stations-example.png" 
         title="Stations along the route" 
-        tag-line="Web" 
         description="Query and display alternative stations along a route" 
         category="Stations">
     </example>
@@ -106,7 +101,6 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         href="https://chargetrip.github.io/examples/route/" 
         img="route-example.png" 
         title="Build a route" 
-        tag-line="Web" 
         description="Query and mutate route information and plot it on a map" 
         category="Routes">
     </example>
@@ -114,7 +108,6 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         href="https://chargetrip.github.io/examples/elevation-plot/" 
         img="elevation-example.png" 
         title="Elevation Plot" 
-        tag-line="Web" 
         description="Grab the elevation profile from a route and plot it on a graph" 
         category="Routes">
     </example>
@@ -122,7 +115,6 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         href="https://chargetrip.github.io/examples/alternative-routes/" 
         img="alternative-routes-example.png" 
         title="Alternative routes" 
-        tag-line="Web" 
         description="Query and render alternative routes" 
         category="Routes">
     </example>
@@ -131,7 +123,6 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         href="https://chargetrip.github.io/examples/tile-server/?provider=eco#eco" 
         img="tile-service-example.png" 
         title="Vector tile service" 
-        tag-line="Web" 
         description="Show stations on a map using our Vector Tile Server" 
         category="Tiles">
     </example>

@@ -27,8 +27,10 @@ export default class ArticleTeaserSection extends Vue {
       @apply top-1/2 w-1/3 h-auto;
     }
 
-    .title {
-      @apply max-w-md;
+    .title,
+    h2,
+    h3 {
+      max-width: 224px;
     }
   }
 }
