@@ -4,24 +4,24 @@
       v-show="showSuggestions"
       class="bg fixed inset-0 bg-black opacity-50"
     />
-    <div class="flex items-center wrapper text-font-alt3 h-16">
-      <label class="icon-search pr-3" for="do-not-auto-fill" />
-      <input
-        id="do-not-auto-fill"
-        ref="input"
-        v-model="search"
-        placeholder="Search documentation..."
-        type="text"
-        autocomplete="off"
-        name="do-not-auto-fill"
-        class="w-full h-full text-14 bg-transparent outline-none pr-6 font-semibold placeholder-text-font-alt3"
-        @blur="showSuggestions = false"
-        @focus.stop="showSuggestions = true"
-      />
-    </div>
+    <CInput
+      id="do-not-auto-fill"
+      ref="input"
+      v-model="search"
+      class="w-full"
+      icon="search"
+      :hotkey="{
+        key: '/',
+        icon: 'slash',
+        fn: (el) => el.focus(),
+      }"
+      placeholder="Search documentation..."
+      @blur="showSuggestions = false"
+      @focus="showSuggestions = true"
+    />
     <nav
       v-show="showSuggestions && suggestions.length"
-      class="text-font-alt3 text-14 border-t w-screen rounded border-alt absolute w-full top-full mt-1 bg-body"
+      class="text-font-alt3 text-14 border-t rounded border-alt absolute w-full top-full mt-1 bg-body"
     >
       <main ref="container" class="flex flex-col suggestions overflow-y-scroll">
         <ul class="p-3 lg:p-2">
@@ -97,16 +97,16 @@ import { Component, Watch, Prop, Ref } from 'nuxt-property-decorator'
 import algoliasearch from 'algoliasearch/lite'
 import { Mixins } from 'vue-property-decorator'
 import { toSentenceCase } from 'js-convert-case/lib'
+import { Input as CInput } from '@chargetrip/internal-vue-components'
 import Base from '~/mixins/base'
 import { Listen } from '~/utilities/decorators'
 
-@Component
+@Component({ components: { CInput } })
 export default class Search extends Mixins(Base) {
   @Ref('suggestionEl') suggestionEls
   @Ref('container') container
   @Ref('input') input
   @Prop() clickHandler
-  @Prop() active
   showSuggestions = false
   suggestions: any[] = []
   index = 0
@@ -192,8 +192,7 @@ export default class Search extends Mixins(Base) {
   }
 
   @Listen('keyup') onKeyUp(e) {
-    if (!this.active) return
-
+    console.log(e)
     if (e.key === 'Escape') this.$emit('close')
 
     if (!this.suggestions.length) return
@@ -268,6 +267,7 @@ export default class Search extends Mixins(Base) {
 </script>
 <style lang="scss">
 .search {
+  max-width: calc(100vh - 458px);
   .bg {
     z-index: -1;
     height: calc(100vh - 64px);
@@ -275,14 +275,27 @@ export default class Search extends Mixins(Base) {
     @apply mt-16;
   }
 
-  nav {
-    max-width: calc(100vh - 426px);
-  }
-
   .suggestions {
     max-height: 33vh;
   }
 
+  .c-input,
+  .c-input.has-focus,
+  .c-input.has-hover {
+    @apply h-16 flex items-center;
+
+    .box {
+      @apply bg-transparent border-0 w-full;
+
+      .icon {
+        @apply pl-0;
+      }
+
+      .hotkey {
+        @apply bg-transparent mr-0;
+      }
+    }
+  }
   input {
     &::placeholder {
       @apply text-font-alt3;
