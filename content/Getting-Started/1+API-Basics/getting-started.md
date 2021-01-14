@@ -27,7 +27,7 @@ To get started with the chargetrip API you need to create an account and collect
 
 When logged in to the dashboard, go to projects and click on create new project. When saving your configuration you will be returned to the project overview with your new key.
 
-<step-note color="accent" title="Chargetrip">
+<step-note color="accent" title="Chargetip">
 
 Want to use the same configuration in a different app? Create additional app keys inside your project and add them to your header as explained [here](http://localhost:3000/setup-&-integration/API-Basics/setup/authorization#authorization-process).
 
@@ -41,7 +41,7 @@ After you configured your project you need to click save. You will then be redir
 
 <step-note color="note" title="Key alert" :khaled="true">
 
-Want to use the same configuration in a different app? Create additional app keys inside your project and add them to your header as explained here.
+These keys can’t be regenerated so keep them safe by using environment variables or a secure password manager.
 
 </step-note>
 </step>
