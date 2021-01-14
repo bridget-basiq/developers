@@ -1,7 +1,7 @@
 <template>
   <div
     class="step-image md:rounded overflow-hidden"
-    :class="{ 'bg-accent': !darkMode, 'bg-base': darkMode }"
+    :class="{ 'bg-alt': !darkMode, 'bg-base': darkMode }"
   >
     <c-image class="shadow-down-md" :alt="title" :src="src" />
   </div>
