@@ -41,7 +41,7 @@ module.exports = {
       colors: {
         body: 'var(--body)',
         base: 'var(--base)',
-        'off-body': 'var(--off-body)',
+        subdued: 'var(--subdued)',
         alt: 'var(--alt)',
         alt2: 'var(--alt2)',
         alt3: 'var(--alt3)',

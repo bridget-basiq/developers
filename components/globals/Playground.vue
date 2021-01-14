@@ -17,7 +17,7 @@
       @apply flex-1 overflow-scroll;
 
       &:first-child {
-        @apply bg-off-body;
+        @apply bg-subdued;
 
         header {
           @apply top-0;

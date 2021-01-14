@@ -1,6 +1,6 @@
 <template>
-  <div class="property-title text-font-primary truncate flex items-center">
-    <div class="font-medium truncate">
+  <div class="property-title text-font-primary flex items-center">
+    <div class="font-medium">
       <span class="font-mono title">
         {{ name }}
       </span>
