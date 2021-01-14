@@ -269,7 +269,11 @@ export default class Search extends Mixins(Base) {
 </script>
 <style lang="scss">
 .search {
-  max-width: calc(100vw - 814px);
+  max-width: 640px;
+
+  @screen xl {
+    max-width: min(640px, calc(100vw - 814px));
+  }
 
   @screen lg-max {
     @apply w-full max-w-full h-full absolute top-0 left-0 bg-body px-6;
