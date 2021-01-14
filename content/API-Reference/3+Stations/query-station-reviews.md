@@ -12,10 +12,7 @@ To get the reviews of a specific station you will need to provide a `stationId`.
 
 <schema name="reviewList"></schema>
 
-## Response
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-<errors name="reviewList"></errors>
+<response error="reviewList"></response>
 
 <playground>
 <code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/?page=reviewListLazyLoading">					

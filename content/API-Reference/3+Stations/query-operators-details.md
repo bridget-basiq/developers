@@ -17,12 +17,7 @@ To query the operator details you do need an operator `id`. You can get this `id
 
 <schema name="operator" :frequent="frequently"></schema>
 
-## Response
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
-
-<errors name="operator"></errors>
+<response error="operator"></response>
 
 <playground>
 <code-block lang="graphql" type="query">

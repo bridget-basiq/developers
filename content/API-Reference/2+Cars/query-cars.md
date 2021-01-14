@@ -11,7 +11,7 @@ frequently:
 ---
 
 # Querying cars
-In order to see all cars in yur car databse you can use the `carList` query. You can see a live example of this query including all available output parameters [here](https://playground.chargetrip.com/?page=carListAll).
+In order to see all cars in yur car database you can use the `carList` query. You can see a live example of this query including all available output parameters [here](https://playground.chargetrip.com/?page=carListAll).
 
 ## Query
 To query your cars you only need to call the `carList` alongside some attributes. Optionally you can add [pagination](/API-Reference/API/pagination) and `filters`.
@@ -21,10 +21,7 @@ To filter your car list you can use the `query` argument. You can use the `make`
 
 <schema name="carList" :frequent="frequently"></schema>
 
-## Response
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-<errors name="carList"></errors>
+<response error="carList"></response>
 
 <playground>
 <code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/?page=carList">	

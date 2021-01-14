@@ -12,12 +12,7 @@ To be able to write a review you will need a `stationId` and `carId`. After that
 
 <schema name="addReview" type="Mutation"></schema>
 
-## Response
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
-
-<errors name="addReview"></errors>
+<response error="addReview"></response>
 
 <playground>
 <code-block lang="graphql" type="mutation" edit-url="https://playground.chargetrip.com/?page=reviewListLazyLoading">					

@@ -19,12 +19,7 @@ To use the `amenityList` query you will need a station `id`. This `id` can be fe
 
 <schema name="amenityList" :frequent="frequently"></schema>
 
-## Response
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
-
-<errors name="amenityList"></errors>
+<response error="amenityList"></response>
 
 <playground>
 <code-block lang="graphql" type="query">					

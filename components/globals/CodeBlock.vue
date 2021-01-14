@@ -13,11 +13,16 @@
         <span v-if="prefix" class="text-font-alt3 mr-1">{{ prefix }} / </span>
         {{ title }}
       </div>
-      <span
-        v-if="!codeType"
-        class="icon icon-clipboard cursor-pointer ml-auto"
-        @click="copy"
-      />
+      <div v-if="!codeType" class="ml-auto">
+        <span
+          v-if="!copied"
+          class="icon icon-clipboard cursor-pointer"
+          @click="copy"
+        />
+        <strong v-else class="text-accent flex items-center">
+          Copied <span class="icon-circle-checkmark ml-2"
+        /></strong>
+      </div>
     </header>
     <div
       v-if="type === 'query' || type === 'mutation' || type === 'subscription'"
@@ -30,9 +35,9 @@
         class="bg-body border border-alt2 text-font-primary mr-1"
       />
       <Button
-        title="Copy"
         size="xs"
         class="bg-body border border-alt2 text-font-primary"
+        :title="copied ? 'Copied' : 'Copy'"
         @click.native="copy"
       />
     </div>
@@ -41,22 +46,15 @@
         class="font-mono px-6 py-4 font-base overflow-x-scroll"
       ><code v-for="(line, key) in codeLines" :key="key" v-html="line"/></pre>
     </div>
-    <Snackbar
-      class="z-40"
-      :class="{ active: showSnackbar }"
-      type="success"
-      icon="circle-checkmark"
-      title="Copied!"
-    ></Snackbar>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { Snackbar, Tag, Button } from '@chargetrip/internal-vue-components'
+import { Tag, Button } from '@chargetrip/internal-vue-components'
 import { copy } from '~/utilities/project.functions'
 import highlightjs from '~/utilities/highlight'
 
-@Component({ components: { Snackbar, Tag, Button } })
+@Component({ components: { Tag, Button } })
 export default class CodeBlock extends Vue {
   @Prop() title
   @Prop({ default: 'Query' }) queryType
@@ -66,7 +64,7 @@ export default class CodeBlock extends Vue {
   @Prop() editUrl
   @Prop() tag
   @Prop() prefix
-  showSnackbar = false
+  copied = false
   hide = false
 
   types = {
@@ -118,11 +116,11 @@ export default class CodeBlock extends Vue {
 
   copy() {
     copy(this.$slots?.default?.[0]?.text || '')
-    this.showSnackbar = true
+    this.copied = true
 
     setTimeout(() => {
-      this.showSnackbar = false
-    }, 3000)
+      this.copied = false
+    }, 5000)
   }
 }
 </script>

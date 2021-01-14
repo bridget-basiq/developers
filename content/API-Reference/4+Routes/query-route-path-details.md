@@ -15,12 +15,7 @@ To use the `routePath` query you will need to configure two things. The route `i
 
 <schema name="routePath" :frequent="frequently"></schema>
 
-## Response
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
-
-<errors name="routePath"></errors>
+<response error="routePath"></response>
 
 <playground>
 <code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/page=getRoute">

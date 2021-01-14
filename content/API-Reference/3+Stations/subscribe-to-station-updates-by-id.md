@@ -20,10 +20,7 @@ To use the subscription service you will need a station `id` that can be get fro
 
 <schema type="Subscription" name="stationUpdatedById" :frequent="frequently"></schema>
 
-## Response
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-<errors name="stationUpdatedById"></errors>
+<response error="stationUpdatedById"></response>
 
 <playground>
 <code-block lang="graphql" type="subscription" edit-url="https://playground.chargetrip.com/?page=station">					

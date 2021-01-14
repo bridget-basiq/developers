@@ -19,10 +19,7 @@ The `tariffList` query works out of the box and no additional information is req
 
 <schema name="tariffList" :frequent="frequently"></schema>
 
-## Response
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-<errors name="tariffList"></errors>
+<response error="tariffList"></response>
 
 <playground>
 <code-block lang="graphql" type="query">

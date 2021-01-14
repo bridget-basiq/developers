@@ -530,6 +530,12 @@ export default class Layout extends Mixins(Base) {
         .view > .content {
           padding-right: 512px;
         }
+        .search {
+          max-width: calc(100vh - 492px);
+        }
+      }
+      .search {
+        max-width: calc(100vh - 458px);
       }
       .view > .content {
         padding-right: 480px;

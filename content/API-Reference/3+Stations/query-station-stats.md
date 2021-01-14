@@ -15,10 +15,7 @@ The query is pretty straight-forward and doesn't require any setup. Just select 
 
 <schema name="stationStats" :frequent="frequently"></schema>
 
-## Response
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-<errors name="stationStats"></errors>
+<response error="stationStats"></response>
 
 <playground>
 <code-block lang="graphql" type="query">

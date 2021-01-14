@@ -19,6 +19,7 @@ import Playground from '~/components/globals/Playground.vue'
 import Premium from '~/components/globals/Premium.vue'
 import PropertyTable from '~/components/globals/PropertyTable.vue'
 import ReleaseNote from '~/components/globals/ReleaseNote.vue'
+import Response from '~/components/globals/Response.vue'
 import RightAside from '~/components/globals/RightAside.vue'
 import Schema from '~/components/globals/Schema.vue'
 import StatusTable from '~/components/globals/StatusTable.vue'
@@ -48,6 +49,7 @@ Vue.component('playground', Playground)
 Vue.component('premium', Premium)
 Vue.component('property-table', PropertyTable)
 Vue.component('release-note', ReleaseNote)
+Vue.component('response', Response)
 Vue.component('right-aside', RightAside)
 Vue.component('schema', Schema)
 Vue.component('status-table', StatusTable)

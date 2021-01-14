@@ -267,7 +267,6 @@ export default class Search extends Mixins(Base) {
 </script>
 <style lang="scss">
 .search {
-  max-width: calc(100vh - 458px);
   .bg {
     z-index: -1;
     height: calc(100vh - 64px);
