@@ -12,15 +12,10 @@ To be able to write a review you will need a `stationId` and `carId`. After that
 
 <schema name="addReview" type="Mutation"></schema>
 
-## Response
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
+<response error="addReview"></response>
 
-On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
-
-<errors name="addReview"></errors>
-
-<playground url="https://playground.chargetrip.com/?page=reviewListLazyLoading">
-<code-block lang="graphql" query="addReview" query-type="mutation">					
+<playground>
+<code-block lang="graphql" type="mutation" edit-url="https://playground.chargetrip.com/?page=reviewListLazyLoading">					
 mutation addReview($stationId: String!, $carId: String) {
   addReview(
     review: {
@@ -45,7 +40,7 @@ mutation addReview($stationId: String!, $carId: String) {
   }
 }
 </code-block>
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "data": {
     "addReview": {

@@ -19,15 +19,10 @@ The `tariff` query requires a tariff `id` to work. This tariff `id` can be found
 
 <schema name="tariff" :frequent="frequently"></schema>
 
-## Response
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
-
-<errors name="tariff"></errors>
+<response error="tariff"></response>
 
 <playground>
-<code-block lang="graphql" query="tariff">	
+<code-block lang="graphql" type="query">	
 query tarrif($id: ID!) {
   tariff (
 	id: $id
@@ -66,7 +61,7 @@ query tarrif($id: ID!) {
   }
 }
 </code-block>
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
     "data": {
         "tariff": {

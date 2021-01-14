@@ -1,6 +1,8 @@
 <template>
-  <div class="release-note my-16">
-    <div class="title-wrapper pb-4 border-b border-alt px-8 relative">
+  <div
+    class="release-note py-16 border-b border-alt last:border-0 relative last:pb-0"
+  >
+    <div class="title-wrapper">
       <h2 :id="id" class="mb-1">
         {{ title }}
       </h2>
@@ -27,17 +29,9 @@ export default class ReleaseNote extends Vue {
 </script>
 <style lang="scss">
 .release-note {
-  .title-wrapper {
-    width: calc(100% + 64px);
-    left: -32px;
-  }
   .content {
     h3 {
-      @apply mt-8;
-
-      &:not(:first-child) {
-        @apply mt-12;
-      }
+      @apply mt-6 mb-2;
     }
 
     p {

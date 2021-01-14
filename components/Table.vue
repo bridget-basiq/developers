@@ -53,6 +53,9 @@ export default class Table extends Vue {
 </script>
 <style lang="scss">
 .home .dev-portal-table {
+  table {
+    @apply mb-0;
+  }
   @screen lg-max {
     tr,
     td {
@@ -67,7 +70,7 @@ export default class Table extends Vue {
       }
 
       &::after {
-        content: '\e918';
+        content: '\e92f';
         font-family: icomoon;
         @apply absolute right-0 top-1/2 transform -translate-y-1/2 mr-6;
       }

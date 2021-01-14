@@ -5,9 +5,9 @@ export default {
   ],
   icons: {
     '/': 'home',
-    'Getting-Started': 'building-blocks',
+    'Getting-Started': 'lightning',
     'API-Reference': 'squared-terminal',
     '/release-notes': 'notifications',
-    '/faq': 'faq-alt-2',
+    '/faq': 'question',
   },
 }

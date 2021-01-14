@@ -1,19 +1,17 @@
 <template>
   <div
     class="property-toggle-children w-10 lg:w-14 flex absolute z-10 h-full left-0 top-0"
-    :class="{ 'cursor-pointer': children.length }"
-    @click.stop="$emit('input', !value)"
   >
     <template v-if="children.length">
       <span
-        class="icon bg-base z-20 text-accent center"
+        class="icon bg-body z-20 text-accent center"
         :class="{
           'icon-circle-plus': !value,
           'icon-circle-minus': value,
         }"
       />
       <div
-        class="absolute w-3 h-1/2 top-0 left-1/2 transform -translate-x-1/2 bg-base"
+        class="absolute w-3 h-1/2 top-0 left-1/2 transform -translate-x-1/2 bg-body"
       />
     </template>
 
@@ -27,7 +25,7 @@
     </div>
     <div
       v-if="last"
-      class="absolute w-full h-1/2 bottom-0 left-0 bg-base transform -translate-x-full"
+      class="absolute w-full h-1/2 bottom-0 left-0 bg-body transform -translate-x-full"
     />
   </div>
 </template>

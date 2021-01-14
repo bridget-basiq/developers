@@ -1,117 +1,96 @@
 <template>
-  <div
-    v-show="active"
-    class="search fixed inset-0 flex z-50 px-6"
-    @click="$emit('close')"
-  >
-    <div class="bg bg-body opacity-75 absolute inset-0" />
+  <div class="search lg:relative">
     <div
-      class="relative m-auto w-screen max-w-screen-sm shadow-down-md rounded-sm overflow-hidden bg-body border border-alt"
-      @click.stop
+      v-show="showSuggestions"
+      class="bg fixed inset-0 bg-black opacity-50"
+    />
+    <CInput
+      id="do-not-auto-fill"
+      ref="input"
+      v-model="search"
+      name="do-not-auto-fill"
+      class="w-full"
+      icon="search"
+      :hotkey="{
+        key: '/',
+        icon: 'slash',
+        fn: (el) => el.focus(),
+      }"
+      placeholder="Search documentation..."
+      @blur="showSuggestions = false"
+      @focus="showSuggestions = true"
+    />
+    <nav
+      v-show="showSuggestions && suggestions.length"
+      class="text-font-alt3 text-14 border rounded border-alt absolute w-full top-full mt-1 bg-body"
     >
-      <div class="flex h-16 items-center">
-        <label class="icon-search px-6" for="search" />
-        <input
-          id="search"
-          ref="input"
-          v-model="search"
-          type="text"
-          autocomplete="do-not-auto-fill"
-          name="do-not-auto-fill"
-          class="w-full h-full bg-transparent outline-none pr-6 font-semibold"
-          @focus="showSuggestions = true"
-        />
-      </div>
-      <nav
-        v-show="showSuggestions && suggestions.length"
-        class="text-font-alt3 text-14 border-t border-alt"
-      >
-        <main
-          ref="container"
-          class="flex flex-col suggestions overflow-y-scroll"
-        >
-          <div
-            v-for="(suggestionGroup, key, i) in suggestionGroups"
-            :key="key"
-            class="group"
-          >
-            <template v-if="key.length">
-              <div class="h-px w-full bg-alt" />
-              <header
-                class="h-10 flex items-center top-0 sticky bg-body border-b border-alt px-5 text-12 uppercase text-font-alt3"
-              >
-                <strong>
-                  {{ key }}
-                </strong>
-              </header>
-            </template>
-            <ul class="p-3 lg:p-2">
-              <li v-for="(suggestion, s) in suggestionGroup" :key="`${i}-${s}`">
-                <router-link
-                  ref="suggestionEl"
-                  class="block py-2 px-3 cursor-pointer rounded-sm"
-                  :class="{ 'bg-base': itemIndex === s && groupIndex === i }"
-                  :to="suggestion.url"
-                  @mouseenter.native="onMouseEnter(i, s)"
-                  @mousedown.native="onClick(suggestion)"
-                >
-                  <p class="whitespace-no-wrap">
-                    <strong>
-                      <span
-                        v-if="suggestion.propertyPath"
-                        class="lg-max:hidden"
-                      >
-                        {{ suggestion.propertyPath }} /
-                      </span>
-                      <span class="text-font-primary">
-                        {{ suggestion.title }}
-                      </span>
-                    </strong>
-                  </p>
-                  <p
-                    v-html="
-                      suggestion._snippetResult
-                        ? suggestion._snippetResult.description.value
-                        : suggestion.description
-                    "
-                  />
-                </router-link>
-              </li>
-            </ul>
-          </div>
-        </main>
-        <footer
-          class="border-t lg-max:hidden border-alt py-1 px-3 flex whitespace-no-wrap"
-        >
-          <div
-            v-for="(hotKey, i) in hotKeys"
+      <main ref="container" class="flex flex-col suggestions overflow-y-scroll">
+        <ul class="p-3 lg:p-2">
+          <li
+            v-for="(suggestion, i) in normalizedSuggestions"
             :key="i"
-            class="hotkey flex mr-6 items-center"
+            ref="suggestionEl"
+            class="block py-2 px-3 cursor-pointer rounded-sm"
+            :class="{ 'bg-base': index === i }"
+            @mouseenter="index = i"
+            @mousedown="onClick(suggestion)"
           >
-            <div class="flex">
-              <span
-                v-for="(key, c) in hotKey.keys"
-                :key="`${i}-${c}`"
-                class="w-5 h-5 first:border-l border-r border-t border-b border-alt2 first:rounded-l-xs last:rounded-r-xs text-alt2 flex items-center justify-center"
-                :class="`icon-${key}`"
-              />
-            </div>
-            <p class="ml-2 text-12">
+            <p class="whitespace-no-wrap">
               <strong>
-                {{ hotKey.title }}
+                <span v-if="suggestion.propertyPath" class="lg-max:hidden">
+                  {{ suggestion.propertyPath }} /
+                </span>
+                <span
+                  class="text-font-primary"
+                  v-html="
+                    suggestion._highlightResult
+                      ? suggestion._highlightResult.title.value
+                      : suggestion.title
+                  "
+                />
               </strong>
             </p>
-          </div>
-          <div class="pl-20 ml-auto flex items-center">
-            <img
-              class="w-24 pl-8 h-auto object-contain flex-shrink-0 max-w-xs"
-              src="algolia.png"
-              alt="algolia"
+            <p
+              v-html="
+                suggestion._snippetResult
+                  ? suggestion._snippetResult.description.value
+                  : suggestion.description
+              "
+            />
+          </li>
+        </ul>
+      </main>
+      <footer
+        class="border-t lg-max:hidden border-alt py-1 px-3 flex whitespace-no-wrap"
+      >
+        <div
+          v-for="(hotKey, i) in hotKeys"
+          :key="i"
+          class="hotkey flex mr-6 items-center"
+        >
+          <div class="flex">
+            <span
+              v-for="(key, c) in hotKey.keys"
+              :key="`${i}-${c}`"
+              class="w-5 h-5 first:border-l border-r border-t border-b border-alt2 first:rounded-l-xs last:rounded-r-xs text-alt2 flex items-center justify-center"
+              :class="`icon-${key}`"
             />
           </div>
-        </footer>
-      </nav>
-    </div>
+          <p class="ml-2 text-12">
+            <strong>
+              {{ hotKey.title }}
+            </strong>
+          </p>
+        </div>
+        <div class="pl-20 ml-auto flex items-center">
+          <img
+            class="w-24 pl-8 h-auto object-contain flex-shrink-0 max-w-xs"
+            src="algolia.png"
+            alt="algolia"
+          />
+        </div>
+      </footer>
+    </nav>
   </div>
 </template>
 <script lang="ts">
@@ -119,20 +98,19 @@ import { Component, Watch, Prop, Ref } from 'nuxt-property-decorator'
 import algoliasearch from 'algoliasearch/lite'
 import { Mixins } from 'vue-property-decorator'
 import { toSentenceCase } from 'js-convert-case/lib'
+import { Input as CInput } from '@chargetrip/internal-vue-components'
 import Base from '~/mixins/base'
 import { Listen } from '~/utilities/decorators'
 
-@Component
+@Component({ components: { CInput } })
 export default class Search extends Mixins(Base) {
   @Ref('suggestionEl') suggestionEls
   @Ref('container') container
   @Ref('input') input
   @Prop() clickHandler
-  @Prop() active
-  suggestions: any[] = []
-  itemIndex = 0
-  groupIndex = 0
   showSuggestions = false
+  suggestions: any[] = []
+  index = 0
   prevent = false
   search = ''
   hotKeys = [
@@ -162,49 +140,33 @@ export default class Search extends Mixins(Base) {
   database = this.client.initIndex('prod_DeveloperPortalContent')
 
   onArrowDown() {
-    if (this.itemIndex < this.currentGroup.length - 1) {
-      this.itemIndex++
+    if (this.index < this.normalizedSuggestions.length - 1) {
+      this.index++
     } else {
-      this.itemIndex = 0
-
-      if (this.groupIndex < this.suggestionGroupKeys.length - 1) {
-        this.groupIndex++
-      } else {
-        this.groupIndex = 0
-      }
+      this.index = 0
     }
   }
 
   onEnter() {
-    this.$router.push(this.currentGroup[this.itemIndex]?.url)
+    this.$router.push(this.normalizedSuggestions[this.index]?.url)
   }
 
   onArrowUp() {
-    if (this.itemIndex > 0) {
-      this.itemIndex--
+    if (this.index > 0) {
+      this.index--
     } else {
-      if (this.groupIndex > 0) {
-        this.groupIndex--
-      } else {
-        this.groupIndex = this.suggestionGroupKeys.length - 1
-      }
-
-      this.itemIndex = this.currentGroup.length - 1
+      this.index = this.normalizedSuggestions.length - 1
     }
   }
 
   scrollToView() {
     this.prevent = true
 
-    const el = this.suggestionEls?.[this.totalIndex]?.$el
+    const el = this.suggestionEls?.[this.index]
     const offsetTop = el?.offsetTop
 
     if (offsetTop - el?.offsetHeight < this.container.scrollTop) {
-      this.container.scrollTo(
-        0,
-        offsetTop -
-          (this.suggestionGroupKeys[this.groupIndex].length ? 104 : 64)
-      )
+      this.container.scrollTo(0, offsetTop)
     } else if (
       offsetTop + el?.offsetHeight >
       this.container.scrollTop + this.container.offsetHeight
@@ -227,9 +189,7 @@ export default class Search extends Mixins(Base) {
   }
 
   @Listen('keyup') onKeyUp(e) {
-    if (!this.active) return
-
-    if (e.key === 'Escape') this.$emit('close')
+    if (e.key === 'Escape') this.input.input.blur()
 
     if (!this.suggestions.length) return
 
@@ -238,25 +198,24 @@ export default class Search extends Mixins(Base) {
     this.scrollToView()
   }
 
-  @Watch('search') async onSearchChange() {
+  @Watch('search')
+  async onSearchChange() {
+    if (!this.search.length) {
+      this.suggestions = []
+
+      return
+    }
+
     const { hits } = await this.database.search(this.search, {
-      attributesToHighlight: ['description'],
+      attributesToHighlight: ['description', 'title'],
       attributesToSnippet: ['description:10'],
       snippetEllipsisText: '...',
       length: this.length,
       offset: 0,
     })
 
-    this.itemIndex = 0
-    this.groupIndex = 0
+    this.index = 0
     this.suggestions = hits
-  }
-
-  onMouseEnter(groupIndex, itemIndex) {
-    if (this.prevent) return
-
-    this.groupIndex = groupIndex
-    this.itemIndex = itemIndex
   }
 
   getParentByItem({ url, type }) {
@@ -281,61 +240,87 @@ export default class Search extends Mixins(Base) {
     }
   }
 
-  get totalIndex() {
-    return this.suggestionGroupKeys
-      .slice(0, this.groupIndex + 1)
-      .reduce((num, key) => {
-        if (key === this.suggestionGroupKeys[this.groupIndex]) {
-          num += this.itemIndex
-        } else {
-          num += this.suggestionGroups[key].length
-        }
-
-        return num
-      }, 0)
+  get normalizedSuggestions() {
+    return this.suggestions.map((item) => ({
+      ...item,
+      ...this.getParentByItem(item),
+    }))
   }
 
-  get suggestionGroups() {
-    return this.suggestions
-      .map((item) => ({
-        ...item,
-        ...this.getParentByItem(item),
-      }))
-      .reduce((obj: any, item) => {
-        if (!obj[item.path]) obj[item.path] = []
-
-        obj[item.path].push(item)
-
-        return obj
-      }, {})
-  }
-
-  get suggestionGroupKeys() {
-    return Object.keys(this.suggestionGroups)
-  }
-
-  get currentGroup() {
-    return this.suggestionGroups[this.suggestionGroupKeys[this.groupIndex]]
+  @Watch('showSuggestions') onShowSuggestionsChange() {
+    if (!this.showSuggestions) {
+      this.$emit('setShowSearch', false)
+    }
   }
 
   @Watch('$route.hash')
   @Watch('$route.path')
   onRouteChange() {
     this.showSuggestions = false
-
     this.$emit('close')
   }
 
-  onClick({ url }) {
+  async onClick({ url }) {
+    await this.$router.push(url)
+    this.$emit('close')
     this.clickHandler({ hash: url.split('#')?.[1] })
   }
 }
 </script>
 <style lang="scss">
 .search {
-  .suggestions {
-    max-height: 400px;
+  max-width: 640px;
+
+  @screen xl {
+    max-width: min(640px, calc(100vw - 814px));
   }
+
+  @screen lg-max {
+    @apply w-full max-w-full h-full absolute top-0 left-0 bg-body px-6;
+
+    .hotkey {
+      @apply hidden;
+    }
+
+    nav {
+      @apply -ml-6 rounded-none border-l-0 border-r-0 mt-0;
+    }
+  }
+
+  .bg {
+    z-index: -1;
+    height: calc(100vh - 64px);
+
+    @apply mt-16;
+  }
+
+  .suggestions {
+    max-height: 33vh;
+  }
+
+  .c-input,
+  .c-input.has-focus,
+  .c-input.has-hover {
+    @apply h-16 flex items-center;
+
+    .box {
+      @apply bg-transparent border-0 w-full;
+
+      .icon {
+        @apply pl-0;
+      }
+
+      .hotkey {
+        @apply bg-transparent mr-0;
+      }
+    }
+  }
+  input {
+    &::placeholder {
+      @apply text-font-alt3;
+    }
+  }
+
   em {
     @apply not-italic text-warning;
   }

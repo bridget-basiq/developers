@@ -41,6 +41,7 @@ module.exports = {
       colors: {
         body: 'var(--body)',
         base: 'var(--base)',
+        subdued: 'var(--subdued)',
         alt: 'var(--alt)',
         alt2: 'var(--alt2)',
         alt3: 'var(--alt3)',
@@ -73,6 +74,7 @@ module.exports = {
         9: '2.25rem',
         13: '3.25rem',
         14: '3.5rem',
+        15: '3.75rem',
         17: '4.25rem',
         30: '7.5rem',
       },
@@ -114,6 +116,7 @@ module.exports = {
       },
       fontFamily: {
         mono: [
+          "'Roboto Mono', monospace",
           'Consolas',
           'Courier New Bold',
           'Menlo',
@@ -137,9 +140,13 @@ module.exports = {
       },
     },
   },
+  corePlugins: {
+    container: false,
+  },
   variants: {
     borderRadius: ['responsive', 'first', 'last'],
     borderWidth: ['responsive', 'first', 'last'],
     margin: ['responsive', 'last', 'first'],
+    padding: ['responsive', 'last', 'first'],
   },
 }

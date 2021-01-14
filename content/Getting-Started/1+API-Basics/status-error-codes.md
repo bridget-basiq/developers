@@ -2,7 +2,7 @@
 title: Status & Error Codes
 description: Get a clear overview of how to handle chargetrip's API status & error codes
 order: 3
-
+quickNav: true
 statuses:
 - 200
 - 201
@@ -101,3 +101,16 @@ If we want to reflect this as a curl it would look like this;
 </code-block>
 
 Navigate to our API reference to get a more detailed look at the possible errors per request.
+
+<right-aside large="true">
+
+<article-teaser href="https://medium.com/chargetrip/chargetrip-tile-service-with-react-native-and-mapbox-228dae36a574">
+
+## Chargetrip Tile Service with React Native and Mapbox
+An introduction to the Chargetrip Tile Service and the caveats of integrating it into a React Native mobile application.
+
+</article-teaser>
+
+<latest-updates></latest-updates>
+
+</right-aside>

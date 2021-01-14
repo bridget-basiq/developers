@@ -1,5 +1,16 @@
 import { toSnakeCase } from 'js-convert-case/lib'
 
+const getTitle = (child) => {
+  if (child.tag === 'release-note') {
+    return `release.${child.props.title}`
+  }
+
+  if (child.tag === 'response') {
+    return 'Response'
+  }
+
+  return child.props.title
+}
 export const getHeadings = (children, page) => {
   const arr: any = []
 
@@ -21,18 +32,17 @@ export const getHeadings = (children, page) => {
       )
     } else if (
       child.tag === 'release-note' ||
+      child.tag === 'response' ||
+      child.tag === 'article-teaser-section' ||
       child.tag === 'guides' ||
-      child.tag === 'examples' ||
       child.tag === 'accordion'
     ) {
+      const title = getTitle(child)
+
       arr.push({
-        title: child.props.title,
+        title,
         props: {
-          id: slugify(
-            child.tag === 'release-note'
-              ? `release.${child.props.title}`
-              : child.props.title
-          ),
+          id: slugify(title),
         },
       })
     } else if (child.children) {

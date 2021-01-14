@@ -14,3 +14,28 @@ If you do not have a commercial agreement in place with a charge station provide
 
 ## Importing your own database
 Importing your own station data, both static and dynamic, into Chargetrip is a breeze. <cta action='smallchat'>Contact us</cta> to discuss the possibilities. 
+
+<examples title="Clone an example">
+    <!-- Stations -->
+    <example 
+        href="https://chargetrip.github.io/examples/stations/" 
+        img="stations-example.png" 
+        title="Query stations" 
+        description="Query the 20 closest stations and show them on a map." 
+        category="Stations">
+    </example>
+    <example 
+        href="https://chargetrip.github.io/examples/station-info/" 
+        img="stations-info-example.png" 
+        title="Query specific station" 
+        description="Query and parse a complete set of station data" 
+        category="Stations">
+    </example>
+    <example 
+        href="https://chargetrip.github.io/examples/stations-along-route/" 
+        img="alternative-stations-example.png" 
+        title="Stations along the route" 
+        description="Query and display alternative stations along a route" 
+        category="Stations">
+    </example>
+</examples>

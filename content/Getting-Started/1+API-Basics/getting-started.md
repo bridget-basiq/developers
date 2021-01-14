@@ -2,7 +2,7 @@
 title: Getting started
 description: Get started by setting up your chargetrip API project
 order: 1
-
+quickNav: true
 images:
 - configuring-your-project-1.png
 - configuring-your-project-2.png
@@ -27,7 +27,7 @@ To get started with the chargetrip API you need to create an account and collect
 
 When logged in to the dashboard, go to projects and click on create new project. When saving your configuration you will be returned to the project overview with your new key.
 
-<step-note color="accent" title="Chargetrip">
+<step-note color="accent" title="Chargetip">
 
 Want to use the same configuration in a different app? Create additional app keys inside your project and add them to your header as explained [here](http://localhost:3000/setup-&-integration/API-Basics/setup/authorization#authorization-process).
 
@@ -41,8 +41,21 @@ After you configured your project you need to click save. You will then be redir
 
 <step-note color="note" title="Key alert" :khaled="true">
 
-Want to use the same configuration in a different app? Create additional app keys inside your project and add them to your header as explained here.
+These keys can’t be regenerated so keep them safe by using environment variables or a secure password manager.
 
 </step-note>
 </step>
 </steps>
+
+<right-aside large="true">
+
+<article-teaser href="https://medium.com/chargetrip/chargetrip-tile-service-with-react-native-and-mapbox-228dae36a574">
+
+## Chargetrip Tile Service with React Native and Mapbox
+An introduction to the Chargetrip Tile Service and the caveats of integrating it into a React Native mobile application.
+
+</article-teaser>
+
+<latest-updates></latest-updates>
+
+</right-aside>
