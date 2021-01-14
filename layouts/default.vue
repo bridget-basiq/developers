@@ -484,10 +484,10 @@ export default class Layout extends Mixins(Base) {
   }
 
   > p {
-    @apply my-3;
+    @apply mb-3;
 
     & + p {
-      @apply mt-10;
+      @apply mt-8;
     }
   }
 

@@ -29,7 +29,7 @@
     }
   },
   "dependencies": {
-    "@chargetrip/internal-vue-components": "^0.0.176",
+    "@chargetrip/internal-vue-components": "^0.0.177",
     "@nuxt/content": "^1.11.1",
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/axios": "^5.12.2",

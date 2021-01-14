@@ -1,5 +1,5 @@
 <template>
-  <section class="article-teaser-section my-14">
+  <section class="article-teaser-section mt-14 mb-0">
     <div class="flex mb-4">
       <h2 class="title">
         {{ title }}
