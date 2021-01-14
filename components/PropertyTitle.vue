@@ -20,7 +20,7 @@
         </span>
       </template>
     </div>
-    <div class="ml-auto">
+    <div class="ml-auto tag-wrapper">
       <Tag v-if="required" class="ml-2" color="accent" type="secondary"
         >Required
       </Tag>

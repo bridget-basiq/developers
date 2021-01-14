@@ -87,7 +87,6 @@ export default class Steps extends Vue {
   @screen md-max {
     .image-wrapper {
       width: calc(100% + 48px);
-      min-height: 320px;
       @apply -ml-6;
 
       &::after {
@@ -95,7 +94,7 @@ export default class Steps extends Vue {
       }
     }
     .step-image {
-      @apply overflow-hidden;
+      @apply overflow-hidden translate-x-0;
 
       img {
         @apply origin-top-left transform scale-150;

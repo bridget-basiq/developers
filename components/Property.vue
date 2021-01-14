@@ -109,8 +109,8 @@ export default class Property extends Vue {
     }
   }
   &.is-deprecated {
-    > .content .truncate > *:not(.deprecated-tag),
-    > .children .truncate,
+    > .content .property-title > *:not(.tag-wrapper),
+    > .children .property-title > *:not(.tag-wrapper),
     > .children .description,
     > .children .content > .bg {
       @apply opacity-50;
