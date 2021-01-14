@@ -1,5 +1,5 @@
 <template>
-  <div class="search relative">
+  <div class="search lg:relative">
     <div
       v-show="showSuggestions"
       class="bg fixed inset-0 bg-black opacity-50"
@@ -8,6 +8,7 @@
       id="do-not-auto-fill"
       ref="input"
       v-model="search"
+      name="do-not-auto-fill"
       class="w-full"
       icon="search"
       :hotkey="{
@@ -21,7 +22,7 @@
     />
     <nav
       v-show="showSuggestions && suggestions.length"
-      class="text-font-alt3 text-14 border-t rounded border-alt absolute w-full top-full mt-1 bg-body"
+      class="text-font-alt3 text-14 border rounded border-alt absolute w-full top-full mt-1 bg-body"
     >
       <main ref="container" class="flex flex-col suggestions overflow-y-scroll">
         <ul class="p-3 lg:p-2">
@@ -181,10 +182,6 @@ export default class Search extends Mixins(Base) {
     }, 500)
   }
 
-  @Listen('click') onWindowClick() {
-    this.$emit('close')
-  }
-
   @Watch('active') onActiveChange() {
     setTimeout(() => {
       this.input.focus()
@@ -192,7 +189,6 @@ export default class Search extends Mixins(Base) {
   }
 
   @Listen('keyup') onKeyUp(e) {
-    console.log(e)
     if (e.key === 'Escape') this.$emit('close')
 
     if (!this.suggestions.length) return
@@ -251,6 +247,12 @@ export default class Search extends Mixins(Base) {
     }))
   }
 
+  @Watch('showSuggestions') onShowSuggestionsChange() {
+    if (!this.showSuggestions) {
+      this.$emit('setShowSearch', false)
+    }
+  }
+
   @Watch('$route.hash')
   @Watch('$route.path')
   onRouteChange() {
@@ -267,6 +269,20 @@ export default class Search extends Mixins(Base) {
 </script>
 <style lang="scss">
 .search {
+  max-width: calc(100vw - 814px);
+
+  @screen lg-max {
+    @apply w-full max-w-full h-full absolute top-0 left-0 bg-body px-6;
+
+    .hotkey {
+      @apply hidden;
+    }
+
+    nav {
+      @apply -ml-6 rounded-none border-l-0 border-r-0 mt-0;
+    }
+  }
+
   .bg {
     z-index: -1;
     height: calc(100vh - 64px);

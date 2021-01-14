@@ -4,7 +4,7 @@
     :class="{
       'theme-dark': darkMode,
       'theme-light': !darkMode,
-      'menu-open': menuOpen,
+      'menu-open': showMenu,
       'is-editing': isEditing,
       'no-transition': noTransition,
       'has-aside': aside || isEditing,
@@ -13,8 +13,33 @@
     @click="closeKhaled"
   >
     <TopNav class="z-50" :show-items="!canEdit">
-      <div class="relative flex-1 h-16 flex items-center">
-        <Search :click-handler="onMenuItemClick" icon="search" class="flex-1" />
+      <div
+        class="lg:relative flex-1 h-16 flex items-center"
+        :class="{ 'lg-max:hidden': !showSearch }"
+      >
+        <Search
+          ref="search"
+          :click-handler="onMenuItemClick"
+          icon="search"
+          class="flex-1"
+          @setShowSearch="showSearch = $event"
+        />
+      </div>
+      <div class="flex ml-auto lg:hidden">
+        <Button
+          v-if="!showMenu"
+          size="sm"
+          color="alt"
+          icon="search"
+          @click.native="showSearch = !showSearch"
+        />
+        <Button
+          class="ml-4"
+          size="sm"
+          color="alt"
+          :icon="showMenu ? 'close' : 'menu'"
+          @click.native="showMenu = !showMenu"
+        />
       </div>
       <template v-if="canEdit" v-slot:cta>
         <Button
@@ -43,10 +68,11 @@
       <SideNav
         v-if="sideNav"
         class="text-14 z-40 top-0"
-        :navs="normalizedSideNav"
+        :navs="sideNav"
         :dark-mode="darkMode"
-        :show-toggle-menu="true"
         :spacing="6"
+        :show-menu="showMenu"
+        @setShowMenu="showMenu = false"
         @setDarkMode="setDarkMode"
       />
       <div
@@ -109,11 +135,13 @@ export default class Layout extends Mixins(Base) {
   @Getter sideNav
   @Getter content
   @Getter isEditing
-  menuOpen = false
+  showMenu = false
+  showSearch = false
   showKhaled = false
   khaledPosition = { x: 0, y: 0 }
   @Ref('container') container
-  canEdit = process.env.NODE_ENV !== 'production'
+  @Ref('search') search
+  canEdit = false // process.env.NODE_ENV !== 'production'
   @Mutation setDarkMode
   @Mutation setIsEditing
   noTransition = false
@@ -154,6 +182,12 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
+  @Watch('showSearch') onShowSearchChange() {
+    setTimeout(() => {
+      this.search.input.input.focus()
+    }, 20)
+  }
+
   openKhaled(position) {
     this.khaledPosition = position
     this.showKhaled = true
@@ -181,38 +215,6 @@ export default class Layout extends Mixins(Base) {
       callback: this.onMenuItemClick.bind(this),
       children: item?.children?.map(this.attachHandler.bind(this)) || [],
     }
-  }
-
-  get normalizedSideNav() {
-    return [
-      ...this.sideNav,
-      [
-        {
-          title: 'Playground',
-          icon: 'playground',
-          href: 'https://playground.chargetrip.com/',
-          arrow: true,
-        },
-        {
-          title: 'Voyager',
-          icon: 'voyager-alt',
-          href: 'https://voyager.chargetrip.com/',
-          arrow: true,
-        },
-        {
-          title: 'Examples',
-          icon: 'code',
-          href: 'https://chargetrip.com/examples/',
-          arrow: true,
-        },
-        {
-          title: 'Github',
-          icon: 'github',
-          href: 'https://github.com/chargetrip',
-          arrow: true,
-        },
-      ],
-    ]
   }
 
   get offset() {
@@ -329,6 +331,8 @@ export default class Layout extends Mixins(Base) {
   }
 
   @Watch('$route.path') onRouteChange() {
+    this.showMenu = false
+
     if (process.env.NODE_ENV === 'production') {
       window.fathom.trackPageview()
     }
@@ -531,11 +535,11 @@ export default class Layout extends Mixins(Base) {
           padding-right: 512px;
         }
         .search {
-          max-width: calc(100vh - 492px);
+          max-width: calc(100vw - 848px);
         }
       }
       .search {
-        max-width: calc(100vh - 458px);
+        max-width: calc(100vw - 816px);
       }
       .view > .content {
         padding-right: 480px;
