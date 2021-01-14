@@ -41,7 +41,6 @@
     "cross-fetch": "^3.0.6",
     "date-fns": "^2.16.1",
     "express": "^4.17.1",
-    "fsevents": "^2.3.1",
     "graphql": "^15.3.0",
     "highlight.js": "^10.4.0",
     "js-convert-case": "^4.1.0",
@@ -91,5 +90,8 @@
     "vue-property-decorator": "^9.1.2",
     "vuex-class": "^0.3.2",
     "vuex-module-decorators": "^1.0.1"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.1"
   }
 }
