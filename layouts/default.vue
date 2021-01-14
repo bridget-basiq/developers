@@ -29,14 +29,14 @@
         <Button
           v-if="!showMenu"
           size="sm"
-          color="alt"
+          color="base"
           icon="search"
           @click.native="showSearch = !showSearch"
         />
         <Button
           class="ml-4"
           size="sm"
-          color="alt"
+          color="base"
           :icon="showMenu ? 'close' : 'menu'"
           @click.native="showMenu = !showMenu"
         />
@@ -77,10 +77,10 @@
       />
       <div
         ref="container"
-        class="content flex-1 flex flex-col relative overflow-y-scroll mt-8 lg:mt-0"
+        class="content flex-1 flex flex-col relative overflow-y-scroll"
       >
         <Nuxt
-          class="max-w-container pb-8 flex flex-col lg:px-12 pt-8 px-6 lg-max:overflow-x-hidden page"
+          class="max-w-container pb-8 flex flex-col pt-8 lg:px-12 px-6 lg-max:overflow-x-hidden page"
         />
         <PrevNextNavigation v-if="sideNav && !isEditing" class="mt-auto" />
       </div>
@@ -330,6 +330,14 @@ export default class Layout extends Mixins(Base) {
     return this.$route.path === '/home'
   }
 
+  @Watch('showMenu') onShowMenuChange() {
+    if (this.$root?.$el?.parentElement) {
+      this.$root.$el.parentElement.style.overflow = this.showMenu
+        ? 'hidden'
+        : 'unset'
+    }
+  }
+
   @Watch('$route.path') onRouteChange() {
     this.showMenu = false
 
@@ -499,25 +507,6 @@ export default class Layout extends Mixins(Base) {
 }
 
 .layout {
-  @screen lg-max {
-    &.show-menu {
-      .c-banner {
-        @apply hidden;
-      }
-    }
-
-    .c-side-nav {
-      &:not(.show-menu) {
-        &:not(.show-search) {
-          @apply overflow-hidden;
-        }
-      }
-    }
-
-    .view {
-      overflow: unset;
-    }
-  }
   &.no-transition {
     .box,
     .animate,
