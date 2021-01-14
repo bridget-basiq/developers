@@ -67,7 +67,7 @@ export default class Slug extends Vue {
 .home {
   .examples {
     @screen xl-max {
-      @apply relative border-0 w-full block h-auto p-0 top-0 mt-8;
+      @apply relative border-0 w-full block h-auto p-0 top-0 mt-8 z-0;
 
       .container {
         @apply grid grid-cols-2 gap-8;
@@ -78,7 +78,12 @@ export default class Slug extends Vue {
       }
 
       img {
-        @apply w-full m-0 mb-4;
+        @apply m-0 mb-4;
+      }
+
+      .description,
+      img {
+        @apply w-full;
       }
     }
     @screen sm-max {

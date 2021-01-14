@@ -140,6 +140,9 @@ module.exports = {
       },
     },
   },
+  corePlugins: {
+    container: false,
+  },
   variants: {
     borderRadius: ['responsive', 'first', 'last'],
     borderWidth: ['responsive', 'first', 'last'],
