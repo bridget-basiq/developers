@@ -56,8 +56,6 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
     </c-row>
 </c-table>
 
-<right-aside>
-
 <examples title="Clone an example">
     <!-- Cars -->
     <example 
@@ -127,5 +125,3 @@ Need some information about EV-routing, EVs or graphQL first? No worries we got 
         category="Tiles">
     </example>
 </examples>
-
-</right-aside>

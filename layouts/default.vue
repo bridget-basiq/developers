@@ -314,7 +314,10 @@ export default class Layout extends Mixins(Base) {
   get aside() {
     return this.findInArray(
       this.content?.body?.children || [],
-      (item) => item.tag === 'playground' || item.tag === 'right-aside'
+      (item) =>
+        item.tag === 'playground' ||
+        item.tag === 'examples' ||
+        item.tag === 'right-aside'
     )
   }
 
@@ -324,10 +327,6 @@ export default class Layout extends Mixins(Base) {
 
   @Listen('dblclick') onDblClick(e) {
     e.stopPropagation()
-  }
-
-  get isHome() {
-    return this.$route.path === '/home'
   }
 
   @Watch('showMenu') onShowMenuChange() {

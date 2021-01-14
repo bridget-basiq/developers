@@ -15,8 +15,6 @@ First, use your GraphQL client to execute the [mutation](). This mutation takes 
 ## Notes
 Be aware that if the route is computed before you subscribe to it, you will not receive any updates. This could happen when you create a short route. To prevent that scenario, query the route once right after you have set up the subscription. If the route is already calculated, `unsubscribe`. To retrieve a route use the getRoute query using the `newRoute` ID.
 
-<right-aside>
-
 <examples title="Clone an example">
     <!-- Routes -->
     <example 
@@ -41,5 +39,3 @@ Be aware that if the route is computed before you subscribe to it, you will not 
         category="Routes">
     </example>
 </examples>
-
-</right-aside>

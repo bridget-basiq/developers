@@ -1,10 +1,12 @@
 <template>
-  <div class="examples px-8 flex flex-col overflow-y-scroll">
+  <RightAside class="examples px-8 flex flex-col overflow-y-scroll">
     <div class="sticky-header">
       <h2>Examples</h2>
     </div>
-    <slot />
-  </div>
+    <div class="container">
+      <slot />
+    </div>
+  </RightAside>
 </template>
 <style lang="scss">
 .examples {

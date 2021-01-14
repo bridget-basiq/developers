@@ -19,9 +19,6 @@ You need to set your `x-client-id` as a `header` to authorize your request. In a
 
 <code-block lang="json" prefix="Tile Service" title="Authorization">"x-client-id": "5e8c22366f9c5f23ab0eff39"</code-block>
 
-
-<right-aside>
-
 <examples title="Clone an example">
     <!-- Tiles -->
     <example 
@@ -32,5 +29,3 @@ You need to set your `x-client-id` as a `header` to authorize your request. In a
         category="Tiles">
     </example>
 </examples>
-
-</right-aside>

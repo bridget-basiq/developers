@@ -189,7 +189,7 @@ export default class Search extends Mixins(Base) {
   }
 
   @Listen('keyup') onKeyUp(e) {
-    if (e.key === 'Escape') this.$emit('close')
+    if (e.key === 'Escape') this.input.input.blur()
 
     if (!this.suggestions.length) return
 

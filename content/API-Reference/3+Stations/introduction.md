@@ -15,8 +15,6 @@ If you do not have a commercial agreement in place with a charge station provide
 ## Importing your own database
 Importing your own station data, both static and dynamic, into Chargetrip is a breeze. <cta action='smallchat'>Contact us</cta> to discuss the possibilities. 
 
-<right-aside>
-
 <examples title="Clone an example">
     <!-- Stations -->
     <example 
@@ -41,5 +39,3 @@ Importing your own station data, both static and dynamic, into Chargetrip is a b
         category="Stations">
     </example>
 </examples>
-
-</right-aside>
