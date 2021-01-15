@@ -80,7 +80,7 @@
         class="content flex-1 flex flex-col relative overflow-y-scroll"
       >
         <Nuxt
-          class="max-w-container py-8 lg:px-12 px-6 lg-max:overflow-x-hidden page"
+          class="max-w-container pt-8 pb-14 lg:px-12 px-6 lg-max:overflow-x-hidden page"
         />
         <PrevNextNavigation v-if="sideNav && !isEditing" class="mt-auto" />
       </div>
@@ -484,10 +484,16 @@ export default class Layout extends Mixins(Base) {
   }
 
   > p {
-    @apply mb-3;
+    @apply my-3;
 
     & + p {
       @apply mt-8;
+    }
+  }
+
+  > * {
+    &:last-child {
+      @apply mb-0 pb-0;
     }
   }
 
@@ -517,6 +523,13 @@ export default class Layout extends Mixins(Base) {
   }
 
   &.has-aside {
+    .nuxt-content {
+      > * {
+        &:nth-last-child(2) {
+          @apply mb-0 pb-0;
+        }
+      }
+    }
     @screen xl {
       &.is-large-aside {
         .view > .content {
