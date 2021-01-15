@@ -80,7 +80,7 @@
         class="content flex-1 flex flex-col relative overflow-y-scroll"
       >
         <Nuxt
-          class="max-w-container pb-8 flex flex-col pt-8 lg:px-12 px-6 lg-max:overflow-x-hidden page"
+          class="max-w-container py-8 lg:px-12 px-6 lg-max:overflow-x-hidden page"
         />
         <PrevNextNavigation v-if="sideNav && !isEditing" class="mt-auto" />
       </div>
