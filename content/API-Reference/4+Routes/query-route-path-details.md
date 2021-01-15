@@ -8,10 +8,10 @@ frequently:
 ---
 
 # Query route path
-Whenever you need more information about your route or a certain section of it, you can use the `routePath` query. It knows all about `temperatures`, `speeds`, `elevation` and more. 
+Whenever you need data about a specific point in your route, you can use the `routePath` query. It can return information about `temperatures`, `speed`, `elevation` and more. 
 
 ## Query
-To use the `routePath` query you will need to configure two things. The route `id` needs to be present and the `location` as a GeoJSON point of the route path segment. The route `id` is the one you collect when executing a new route mutation as described [here](/API-Reference/Routes/mutate-route).
+When using the `routePath` query you need a route id and `location` as a GeoJSON point of a specific point in the route. You can create a new route a receive the route `id` using the new route mutation as described [here](/API-Reference/Routes/mutate-route).. Please note that the coordinates need to be identical to those you receive back from your route request. You can find all coordinates by decoding the encoded `polyline`. 
 
 <schema name="routePath" :frequent="frequently"></schema>
 

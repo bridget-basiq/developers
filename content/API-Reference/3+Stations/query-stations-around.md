@@ -7,7 +7,7 @@ frequently:
 ---
 
 # Query stations around a GeoJSON point
-With the query stations around a GeoJSON point you can fetch the stations around a GeoJSON point with a specific distance in meters. This can be useful when a station is busy, or when you want to provide several options.
+With the query `stationsAround` you can fetch the stations around a GeoJSON point with a specific distance in meters. This can be useful when a station is busy, or when you want to provide several charging options.
 
 ## Query
 To query a station around GeoJSON point you have set various `query` arguments including `location`, `distance` and optionally `power` and `amenities`. To limit your results and improve the performance you can use [pagination](/API-Reference/API/pagination) on your query.

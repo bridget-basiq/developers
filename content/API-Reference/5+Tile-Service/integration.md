@@ -5,7 +5,7 @@ order: 4
 ---
 
 # Integration
-Our Tile Services integrates easly with Mapbox, almost out of the box. You only need to tell Mapbox to put the `x-client-id` header on the request. To do that, you can use `transformRequest` in your Mapbox constructor.
+Our Tile Services integrates easly with Mapbox. You only need to tell Mapbox to put the `x-client-id` header on the request. To do that, you can use `transformRequest` in your Mapbox constructor.
 
 ## Example
 Here is a snippet to give you an idea of how this will look when we combine everything together;

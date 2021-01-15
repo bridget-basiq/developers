@@ -10,10 +10,10 @@ frequently:
 ---
 
 # Query station operators
-Charge stations are often exploited by various operators. To get an overview of the operators in your station database you can use the `operatorList` query. All operator details are available for you to query, but keep the number of attributes as low as possible for the better performance.
+Charge stations are often exploited by various operators. To get an overview of the operators in your station database you can use the `operatorList` query. All operator details are available for you to query. Keeping the number of attributes as low as possible will improve performance.
 
 ## Query
-The entire operatorList can be accessed by using the `operatorList` query with the attributes you would like to use. Optionally you can use [pagination](/API-Reference/API/pagination) and `filters` to improve your results.
+The entire list of operators can be accessed using the `operatorList` query, along with the attributes you would like to receive. Optionally you can use [pagination](/API-Reference/API/pagination) and `filters` to improve your results.
 
 ### Filters
 To filter your operator list you can use the `query` argument. You can then use `name`, `id`, `external_id` or `country` to specify how you want to filter the list.

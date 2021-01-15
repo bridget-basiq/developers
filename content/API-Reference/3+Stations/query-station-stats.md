@@ -8,7 +8,7 @@ frequently:
 ---
 
 # Query station statistics
-When applying filters, you might want to let them know how much amenities, powertypes or standards there are available. That's why we provide you with the ability to query station statistics through our `stationStats` endpoint.
+The `stationStats` query provides you with the ability to query information about your database.This endpoint gives you an overview of what amenities, powertypes or standards are available.
 
 ## Query
 The query is pretty straight-forward and doesn't require any setup. Just select the attributes you need and you are good to go.
