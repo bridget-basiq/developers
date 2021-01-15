@@ -66,15 +66,24 @@
       class="view flex lg:bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden rounded-t-xl"
     >
       <SideNav
-        v-if="sideNav"
+        v-if="normalizedSideNav"
         class="text-14 z-40 top-0"
-        :navs="sideNav"
+        :navs="normalizedSideNav"
         :dark-mode="darkMode"
         :spacing="6"
         :show-menu="showMenu"
         @setShowMenu="showMenu = false"
         @setDarkMode="setDarkMode"
-      />
+      >
+        <div class="dashboard bg-subdued py-4 px-6 lg:hidden">
+          <Button
+            href="https://account.chargetrip.com"
+            class="w-full"
+            color="accent"
+            title="Sign up"
+          />
+        </div>
+      </SideNav>
       <div
         ref="container"
         class="content flex-1 flex flex-col relative overflow-y-scroll"
@@ -141,7 +150,7 @@ export default class Layout extends Mixins(Base) {
   khaledPosition = { x: 0, y: 0 }
   @Ref('container') container
   @Ref('search') search
-  canEdit = false // process.env.NODE_ENV !== 'production'
+  canEdit = process.env.NODE_ENV !== 'production'
   @Mutation setDarkMode
   @Mutation setIsEditing
   noTransition = false
@@ -186,6 +195,52 @@ export default class Layout extends Mixins(Base) {
     setTimeout(() => {
       this.search.input.input.focus()
     }, 20)
+  }
+
+  get normalizedSideNav() {
+    return [
+      ...this.sideNav,
+      [
+        {
+          title: 'Playground',
+          icon: 'playground',
+          href: 'https://playground.chargetrip.com/',
+          arrow: true,
+        },
+        {
+          title: 'Voyager',
+          icon: 'voyager-alt',
+          href: 'https://voyager.chargetrip.com/',
+          arrow: true,
+        },
+        {
+          title: 'Examples',
+          icon: 'code',
+          href: 'https://chargetrip.com/examples/',
+          arrow: true,
+        },
+        {
+          title: 'Github',
+          icon: 'github',
+          href: 'https://github.com/chargetrip',
+          arrow: true,
+        },
+      ],
+      [
+        {
+          title: 'Website',
+          icon: 'globe',
+          href: 'https://chargetrip.com/',
+          arrow: true,
+        },
+        {
+          title: 'Documentation',
+          icon: 'slashes-1',
+          href: 'https://developers.chargetrip.com/',
+          arrow: true,
+        },
+      ],
+    ]
   }
 
   openKhaled(position) {
@@ -341,7 +396,7 @@ export default class Layout extends Mixins(Base) {
     this.showMenu = false
 
     if (process.env.NODE_ENV === 'production') {
-      window.fathom.trackPageview()
+      window.fathom?.trackPageview?.()
     }
     if (!this.container) return
 
@@ -579,6 +634,12 @@ export default class Layout extends Mixins(Base) {
 
     .c-side-nav {
       width: 240px;
+
+      nav {
+        &:last-child {
+          @apply hidden;
+        }
+      }
     }
   }
 
