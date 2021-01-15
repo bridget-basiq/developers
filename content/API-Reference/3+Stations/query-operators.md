@@ -20,15 +20,10 @@ To filter your operator list you can use the `query` argument. You can then use 
 
 <schema name="operatorList" :frequent="frequently"></schema>
 
-## Response
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
-
-<errors name="operatorList"></errors>
+<response error="operatorList"></response>
 
 <playground>
-<code-block lang="graphql" query="operatorList">					
+<code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/?page=stationListAll">					
 query operatorList {
   operatorList(
     query: { name: "AeroVironment" }
@@ -56,7 +51,7 @@ query operatorList {
   }
 }
 </code-block>
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "data": {
     "operatorList": [

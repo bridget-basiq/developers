@@ -4,135 +4,93 @@
     :class="{
       'theme-dark': darkMode,
       'theme-light': !darkMode,
-      'menu-open': menuOpen,
+      'menu-open': showMenu,
       'is-editing': isEditing,
       'no-transition': noTransition,
-      'is-playground': isPlayground,
+      'has-aside': aside || isEditing,
+      'is-large-aside': isLargeAside && !isEditing,
     }"
     @click="closeKhaled"
   >
-    <Banner type="switcher">
-      <div class="flex w-full text-font-alt3 text-12 font-semibold">
-        <a class="mr-1" href="https://chargetrip.com" target="_blank"
-          >Website</a
-        >
-        /
-        <router-link class="mx-1 text-font-primary" to="/"
-          >Developers
-        </router-link>
-        <!--        /-->
-        <!--        <a class="ml-1" href="https://chargetrip.com" target="_blank">-->
-        <!--          Dashboard-->
-        <!--        </a>-->
-        <!--        <div class="ml-auto flex items-center">-->
-        <!--          <a-->
-        <!--            href="https://account.chargetrip.com/profile"-->
-        <!--            target="_blank"-->
-        <!--            class="pr-3 border-r border-alt2"-->
-        <!--          >-->
-        <!--            Account-->
-        <!--          </a>-->
-        <!--          <div class="pl-3 text-font-primary">Sign out</div>-->
-        <!--        </div>-->
+    <TopNav class="z-50" :show-items="!canEdit">
+      <div
+        class="lg:relative flex-1 h-16 flex items-center"
+        :class="{ 'lg-max:hidden': !showSearch }"
+      >
+        <Search
+          ref="search"
+          :click-handler="onMenuItemClick"
+          icon="search"
+          class="flex-1"
+          @setShowSearch="showSearch = $event"
+        />
       </div>
-    </Banner>
+      <div class="flex ml-auto lg:hidden">
+        <Button
+          v-if="!showMenu"
+          size="sm"
+          color="base"
+          icon="search"
+          @click.native="showSearch = !showSearch"
+        />
+        <Button
+          class="ml-4"
+          size="sm"
+          color="base"
+          :icon="showMenu ? 'close' : 'menu'"
+          @click.native="showMenu = !showMenu"
+        />
+      </div>
+      <template v-if="canEdit" v-slot:cta>
+        <Button
+          v-if="!isEditing"
+          class="ml-auto lg-max:hidden"
+          size="sm"
+          color="accent"
+          icon="edit"
+          @click.native="triggerEdit"
+        />
+        <div v-else class="flex">
+          <Button size="sm" color="alt" icon="close" @click.native="cancel" />
+          <Button
+            size="sm"
+            class="ml-4"
+            color="accent"
+            icon="checkmark"
+            @click.native="save"
+          />
+        </div>
+      </template>
+    </TopNav>
     <div
       class="view flex lg:bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden rounded-t-xl"
     >
       <SideNav
         v-if="sideNav"
         class="text-14 z-40 top-0"
-        :navs="normalizedSideNav"
+        :navs="sideNav"
         :dark-mode="darkMode"
-        :show-toggle-menu="true"
-        :current-page="content.title"
         :spacing="6"
-        @changeDarkMode="setDarkMode"
-      >
-        <template v-slot:icons>
-          <span
-            class="icon-search lg:hidden ml-4"
-            @click="showSearch = !showSearch"
-          />
-        </template>
-        <Input
-          class="px-3 lg-max:hidden"
-          icon="search"
-          :hotkey="{
-            icon: 'slash',
-            key: '/',
-            fn: () => (showSearch = true),
-          }"
-          placeholder="Search.."
-          @focus="showSearch = true"
-        />
-      </SideNav>
+        :show-menu="showMenu"
+        @setShowMenu="showMenu = false"
+        @setDarkMode="setDarkMode"
+      />
       <div
         ref="container"
-        class="content flex-1 flex flex-col relative overflow-y-scroll mt-8 lg:mt-0"
+        class="content flex-1 flex flex-col relative overflow-y-scroll"
       >
-        <div class="max-w-xl flex flex-col">
-          <div class="sticky-header lg:px-8 px-6 hidden lg:block">
-            <div class="flex items-center">
-              <template v-if="!isEditing">
-                <Select
-                  v-if="options.length"
-                  v-model="value"
-                  class="navigate-select"
-                  :options="options"
-                  @input="onMenuItemClick({ hash: $event })"
-                />
-                <template v-if="canEdit">
-                  <Button
-                    class="ml-auto lg-max:hidden"
-                    size="sm"
-                    color="accent"
-                    @click.native="triggerEdit"
-                    >Edit page
-                  </Button>
-                </template>
-              </template>
-              <template v-else>
-                <h2>Edit {{ content.title }}</h2>
-                <div class="ml-auto flex">
-                  <Button size="sm" color="alt" @click.native="cancel"
-                    >Cancel</Button
-                  >
-                  <Button
-                    size="sm"
-                    class="ml-2"
-                    color="accent"
-                    @click.native="save"
-                    >Save edits
-                  </Button>
-                </div>
-              </template>
-            </div>
-          </div>
-          <div class="lg:px-8 px-6 lg-max:overflow-x-hidden">
-            <Nuxt class="page mb-8" />
-          </div>
-        </div>
-        <PrevNextNavigation v-if="sideNav" class="mt-auto" />
+        <Nuxt
+          class="max-w-container pb-8 flex flex-col pt-8 lg:px-12 px-6 lg-max:overflow-x-hidden page"
+        />
+        <PrevNextNavigation v-if="sideNav && !isEditing" class="mt-auto" />
       </div>
-      <aside
-        class="right-aside border-l border-alt py-8 px-6 overflow-y-scroll hidden xl:block"
-      >
-        <MarkdownFormatting v-if="isEditing" />
-        <RelatedActions v-else />
-      </aside>
     </div>
+    <MarkdownFormatting v-if="isEditing" />
     <img
       v-if="showKhaled"
       class="absolute max-w-screen-sm z-50 rounded shadow-down-xl transform -translate-x-1/2 -translate-y-full bottom-0 -mt-6"
       :style="{ top: `${khaledPosition.y}px`, left: `${khaledPosition.x}px` }"
       src="khaled.gif"
-    />
-    <Search
-      :active="showSearch"
-      :click-handler="onMenuItemClick"
-      icon="search"
-      @close="showSearch = false"
     />
   </div>
 </template>
@@ -143,12 +101,13 @@ import {
   Banner,
   Button,
   SideNav,
+  TopNav,
   Input,
   Select,
 } from '@chargetrip/internal-vue-components'
 
 import { Getter, Mutation } from 'vuex-class'
-import Table from '~/components/global/PropertyTable.vue'
+import Table from '~/components/globals/PropertyTable.vue'
 import RelatedActions from '~/components/RelatedActions.vue'
 import PrevNextNavigation from '~/components/PrevNextNavigation.vue'
 import Base from '~/mixins/base'
@@ -165,6 +124,7 @@ import Search from '~/components/Search.vue'
     PrevNextNavigation,
     RelatedActions,
     SideNav,
+    TopNav,
     Table,
     Banner,
     Button,
@@ -175,11 +135,13 @@ export default class Layout extends Mixins(Base) {
   @Getter sideNav
   @Getter content
   @Getter isEditing
-  menuOpen = false
+  showMenu = false
+  showSearch = false
   showKhaled = false
   khaledPosition = { x: 0, y: 0 }
   @Ref('container') container
-  canEdit = process.env.NODE_ENV !== 'production'
+  @Ref('search') search
+  canEdit = false // process.env.NODE_ENV !== 'production'
   @Mutation setDarkMode
   @Mutation setIsEditing
   noTransition = false
@@ -188,7 +150,6 @@ export default class Layout extends Mixins(Base) {
   hElms: any[] = []
   hash = this.$route.hash.slice(1)
   stopReplacing = false
-  showSearch = false
   options: { label: string; value: string }[] = []
   value: string = ''
 
@@ -221,6 +182,12 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
+  @Watch('showSearch') onShowSearchChange() {
+    setTimeout(() => {
+      this.search.input.input.focus()
+    }, 20)
+  }
+
   openKhaled(position) {
     this.khaledPosition = position
     this.showKhaled = true
@@ -248,32 +215,6 @@ export default class Layout extends Mixins(Base) {
       callback: this.onMenuItemClick.bind(this),
       children: item?.children?.map(this.attachHandler.bind(this)) || [],
     }
-  }
-
-  get normalizedSideNav() {
-    return [
-      ...this.sideNav,
-      [
-        {
-          title: 'Playground',
-          icon: 'playground',
-          href: 'https://playground.chargetrip.com/',
-          arrow: true,
-        },
-        {
-          title: 'Voyager',
-          icon: 'voyager-alt',
-          href: 'https://voyager.chargetrip.com/',
-          arrow: true,
-        },
-        {
-          title: 'Examples',
-          icon: 'code',
-          href: 'https://chargetrip.com/examples/',
-          arrow: true,
-        },
-      ],
-    ]
   }
 
   get offset() {
@@ -354,35 +295,51 @@ export default class Layout extends Mixins(Base) {
     this.value = this.hash || this.options[0]?.value || ''
   }
 
-  findInArray(arr, name) {
-    let find = false
+  findInArray(arr, compareFn): any {
+    let find = null
 
     arr.forEach((item) => {
-      if (item.tag === name) {
-        find = true
+      if (compareFn(item)) {
+        find = item
       }
 
       if (item.children) {
-        find = this.findInArray(item.children, name) || find
+        find = this.findInArray(item.children, compareFn) || find
       }
     })
 
     return find
   }
 
-  get isPlayground() {
-    return this.findInArray(this.content?.body?.children || [], 'playground')
+  get aside() {
+    return this.findInArray(
+      this.content?.body?.children || [],
+      (item) =>
+        item.tag === 'playground' ||
+        item.tag === 'examples' ||
+        item.tag === 'right-aside'
+    )
+  }
+
+  get isLargeAside() {
+    return this.aside?.tag === 'playground' || this.aside?.props?.large
   }
 
   @Listen('dblclick') onDblClick(e) {
     e.stopPropagation()
   }
 
-  get isHome() {
-    return this.$route.path === '/home'
+  @Watch('showMenu') onShowMenuChange() {
+    if (this.$root?.$el?.parentElement) {
+      this.$root.$el.parentElement.style.overflow = this.showMenu
+        ? 'hidden'
+        : 'unset'
+    }
   }
 
   @Watch('$route.path') onRouteChange() {
+    this.showMenu = false
+
     if (process.env.NODE_ENV === 'production') {
       window.fathom.trackPageview()
     }
@@ -458,13 +415,29 @@ export default class Layout extends Mixins(Base) {
 </script>
 <style lang="scss">
 .highlighted-code code,
-.page p > code {
-  @apply rounded-2xs bg-base border border-alt px-1 leading-none text-font-primary;
+.page p > code,
+.page p > strong > code {
+  @apply rounded-2xs bg-base border border-alt px-1 leading-none text-14 text-font-primary font-medium;
 }
 
 .nuxt-content {
-  .code-block {
-    @apply my-4;
+  > .code-block {
+    @apply mt-4;
+
+    &:last-child {
+      @apply mb-0;
+    }
+  }
+
+  &.authorization,
+  &.status-error-codes {
+    h2 {
+      @apply mt-20;
+    }
+  }
+
+  .right-aside h2 {
+    @apply mt-0;
   }
 
   .table,
@@ -476,9 +449,9 @@ export default class Layout extends Mixins(Base) {
     @apply mt-14 mb-2;
   }
 
-  > h3,
-  .schema .h2 {
-    @apply mt-8 mb-3;
+  > h3 {
+    margin-bottom: 0.125rem;
+    @apply mt-12;
   }
 
   > ul:not(.errors),
@@ -490,10 +463,11 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
-  > ul:not(.errors) {
+  > ul:not(.errors),
+  .release-note ul {
     li {
       &::before {
-        content: '•';
+        content: '- ';
       }
     }
   }
@@ -510,45 +484,28 @@ export default class Layout extends Mixins(Base) {
   }
 
   > p {
+    @apply mb-3;
+
     & + p {
-      @apply mt-4;
+      @apply mt-8;
     }
   }
 
-  img {
+  > img {
     @apply rounded overflow-hidden my-10 w-full;
   }
 
   h1 {
-    @apply mb-3;
+    @apply mb-2;
 
     + p,
     + p + p {
-      @apply text-18 text-font-alt3;
+      @apply text-font-alt3;
     }
   }
 }
 
 .layout {
-  @screen lg-max {
-    &.show-menu {
-      .c-banner {
-        @apply hidden;
-      }
-    }
-
-    .c-side-nav {
-      &:not(.show-menu) {
-        &:not(.show-search) {
-          @apply overflow-hidden;
-        }
-      }
-    }
-
-    .view {
-      overflow: unset;
-    }
-  }
   &.no-transition {
     .box,
     .animate,
@@ -559,16 +516,22 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
-  &.is-playground {
-    &:not(.is-editing) {
-      .right-aside {
-        > * {
-          @apply opacity-0;
+  &.has-aside {
+    @screen xl {
+      &.is-large-aside {
+        .view > .content {
+          padding-right: 512px;
+        }
+        .search {
+          max-width: min(640px, calc(100vw - 848px));
         }
       }
-    }
-    .right-aside {
-      width: 512px;
+      .search {
+        max-width: min(640px, calc(100vw - 816px));
+      }
+      .view > .content {
+        padding-right: 480px;
+      }
     }
   }
 
@@ -590,11 +553,11 @@ export default class Layout extends Mixins(Base) {
     .view > .content,
     .playground,
     aside {
-      max-height: calc(100vh - 34px);
+      max-height: calc(100vh - 64px);
     }
 
     .view {
-      height: calc(100vh - 34px);
+      height: calc(100vh - 64px);
     }
 
     aside {
@@ -602,16 +565,19 @@ export default class Layout extends Mixins(Base) {
     }
 
     .c-side-nav {
-      width: 260px;
+      width: 240px;
     }
   }
 
+  .max-w-container {
+    max-width: 736px;
+  }
   .nuxt-content-editor {
     @apply text-font-primary bg-body;
   }
 
   .navigate-select {
-    max-width: 164px;
+    max-width: 204px;
     @apply w-full;
   }
 }

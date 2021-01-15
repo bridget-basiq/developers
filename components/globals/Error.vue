@@ -1,11 +1,11 @@
 <template>
   <li
-    class="error flex items-start py-4 border rounded-md border-alt items-center text-14 bg-base p-4 mb-2 last:mb-0"
+    class="error flex sm-max:flex-col items-start py-4 border rounded-md border-alt sm:items-center text-14 p-4 mb-2 last:mb-0"
   >
     <Tag color="error" type="secondary">Error</Tag>
-    <div class="ml-4">
-      <p class="font-mono uppercase break-all">{{ code }}</p>
-      <p class="text-font-alt3">Message: {{ message }}</p>
+    <div class="sm:ml-4 sm-max:mt-2">
+      <p class="font-mono uppercase font-medium break-all">{{ code }}</p>
+      <p class="text-font-alt3">{{ message }}</p>
     </div>
   </li>
 </template>

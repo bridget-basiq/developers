@@ -23,11 +23,10 @@ If your [route mutation](/API-Reference/Routes/mutate-route) included stations i
 
 <schema name="route" :frequent="frequently"></schema>
 
-## Response
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
+<response error="route"></response>
 
-<playground url="https://playground.chargetrip.com/page=getRoute">
-<code-block lang="graphql" query="route">					
+<playground>
+<code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/page=getRoute">					
 query getRoute {
   route(id:"5e300e71f7e26f726afd3d71") {
     route {
@@ -119,7 +118,7 @@ query getRoute {
   }
 }
 </code-block>
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "data": {
     "route": {

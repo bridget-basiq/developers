@@ -45,11 +45,8 @@ On success, the HTTP status code in the response header is `200` and the respons
 
 <status-table :statuses="statuses" :descriptions="statusDescriptions"></status-table>
 
-
-<errors name=""></errors>
-
-<playground url="https://playground.chargetrip.com/?page=routeUpdatedById">
-<code-block lang="graphql" query="routeUpdatedById" query-type="subscription">					
+<playground>
+<code-block lang="graphql" type="subscription" edit-url="https://playground.chargetrip.com/?page=routeUpdatedById">					
 subscription routeUpdatedById {
   routeUpdatedById(id: "5e300e71f7e26f726afd3d71") {
     status
@@ -57,7 +54,7 @@ subscription routeUpdatedById {
   }
 }
 </code-block>
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "data": {
     "route": {

@@ -28,7 +28,7 @@ export default {
       {
         rel: 'stylesheet',
         href:
-          'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap',
+          'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto+Mono:wght@400;500&display=swap',
       },
     ],
     script: [
@@ -44,7 +44,6 @@ export default {
     ],
   },
   router: {
-    scrollBehavior: () => null,
     base: '/',
     extendRoutes(routes) {
       routes.unshift({

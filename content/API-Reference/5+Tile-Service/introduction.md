@@ -18,3 +18,14 @@ The Tile Service can be used with your own station database, the premium Eco-mov
 You need to set your `x-client-id` as a `header` to authorize your request. In a similar fashion as described [here]().
 
 <code-block lang="json" prefix="Tile Service" title="Authorization">"x-client-id": "5e8c22366f9c5f23ab0eff39"</code-block>
+
+<examples title="Clone an example">
+    <!-- Tiles -->
+    <example 
+        href="https://chargetrip.github.io/examples/tile-server/?provider=eco#eco" 
+        img="tile-service-example.png" 
+        title="Vector tile service" 
+        description="Show stations on a map using our Vector Tile Server" 
+        category="Tiles">
+    </example>
+</examples>

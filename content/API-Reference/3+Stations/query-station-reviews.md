@@ -12,13 +12,10 @@ To get the reviews of a specific station you will need to provide a `stationId` 
 
 <schema name="reviewList"></schema>
 
-## Response
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
+<response error="reviewList"></response>
 
-<errors name="reviewList"></errors>
-
-<playground url="https://playground.chargetrip.com/?page=reviewListLazyLoading">
-<code-block lang="graphql" query="reviewList">					
+<playground>
+<code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/?page=reviewListLazyLoading">					
 query reviewList($stationId: ID!) {
   reviewList(stationId: $stationId, size: 2, page: 0) {
     id
@@ -43,7 +40,7 @@ query reviewList($stationId: ID!) {
   }
 }
 </code-block>
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "data": {
     "reviewList": [

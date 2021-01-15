@@ -103,7 +103,7 @@ export default () =>
         const cookies = cookie.parse(ssrContext?.req?.headers?.cookie || '')
         const darkMode = cookies.dark_mode
 
-        commit('setDarkMode', darkMode ? darkMode === 'true' : true)
+        commit('setDarkMode', darkMode ? darkMode === 'true' : false)
 
         const pages = await $content('', { deep: true }).fetch()
 

@@ -1,13 +1,8 @@
 <template>
-  <div class="accordion my-14">
+  <div class="accordion my-14 last:mb-0">
     <h2 :id="id">
       {{ title }}
     </h2>
-    <p class="text-14 text-font-alt3">
-      <strong>
-        {{ description }}
-      </strong>
-    </p>
     <div class="mt-2">
       <slot />
     </div>

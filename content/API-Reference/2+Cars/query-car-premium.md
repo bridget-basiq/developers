@@ -20,15 +20,10 @@ To get premium data of a car you need to provide a `carId`. This `id` can be obt
 
 <schema name="carPremium" :frequent="frequently"></schema>
 
-## Response
-On success, the HTTP status code in the response header is `200` and the response body contains the attributes you requested.
-
-On error the header status code is an error code and the response body contains an error response object. The error response object can be any of the following;
-
-<errors name="carPremium"></errors>
+<response error="carPremium"></response>
 
 <playground>
-<code-block lang="graphql" query="carPremium">	
+<code-block lang="graphql" type="query">	
 query car{
   car(id: "5d161be5c9eef46132d9d20a") {
     id
@@ -81,7 +76,7 @@ query car{
 }
 </code-block>
 
-<code-block lang="json">
+<code-block lang="json" type="response">
 {
   "errors": [
     {

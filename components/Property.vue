@@ -17,9 +17,13 @@
         class="line-v w-px h-full absolute transform left-1/2 -translate-x-1/2 bg-alt2"
       />
     </div>
-    <div class="content p-4 relative">
+    <div
+      class="content p-4 relative"
+      :class="{ 'cursor-pointer': children.length }"
+      @click="showChildren = !showChildren"
+    >
       <div class="bg absolute inset-0" />
-      <PropertyToggleChildren v-model="showChildren" v-bind="$props" />
+      <PropertyToggleChildren v-bind="$props" :value="showChildren" />
       <PropertyTitle v-bind="$props" />
       <div
         v-if="description"
@@ -105,20 +109,14 @@ export default class Property extends Vue {
     }
   }
   &.is-deprecated {
-    > .content .truncate > *:not(.deprecated-tag),
-    > .children .truncate,
+    > .content .property-title > *:not(.tag-wrapper),
+    > .children .property-title > *:not(.tag-wrapper),
     > .children .description,
     > .children .content > .bg {
       @apply opacity-50;
     }
   }
   &.is-child {
-    .content .bg,
-    .bg,
-    .toggle-children {
-      @apply bg-base;
-    }
-
     > .content {
       @apply pl-12;
 
@@ -136,7 +134,7 @@ export default class Property extends Vue {
 
         &::before {
           content: '';
-          @apply w-10 transform z-10 -ml-10 bg-base h-full left-0 top-0 absolute bg-base;
+          @apply w-10 transform z-10 -ml-10 h-full left-0 top-0 absolute bg-body;
         }
       }
     }
@@ -146,7 +144,7 @@ export default class Property extends Vue {
     z-index: -1;
   }
   &:not(.is-child) {
-    @apply border border-alt bg-base rounded-md mb-2;
+    @apply border border-alt rounded-md mb-2;
 
     &:last-child {
       @apply mb-0;

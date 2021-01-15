@@ -63,3 +63,34 @@ export default class Slug extends Vue {
   }
 }
 </script>
+<style lang="scss">
+.home {
+  .examples {
+    @screen xl-max {
+      @apply relative border-0 w-full block h-auto p-0 top-0 mt-8 z-0;
+
+      .container {
+        @apply grid grid-cols-2 gap-8;
+      }
+
+      .example {
+        @apply flex-col items-start;
+      }
+
+      img {
+        @apply m-0 mb-4;
+      }
+
+      .description,
+      img {
+        @apply w-full;
+      }
+    }
+    @screen sm-max {
+      .container {
+        @apply grid-cols-1;
+      }
+    }
+  }
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
   <div class="step mb-24 relative z-20">
-    <div class="side relative md:pl-24">
-      <div class="image-wrapper overflow-hidden mb-6 md:rounded relative">
+    <div class="side relative">
+      <div class="image-wrapper overflow-hidden mb-8 md:rounded relative">
         <div class="absolute w-full top-0 left-0">
           <StepImage v-if="img" :src="img" :title="title" />
           <div
@@ -50,20 +50,6 @@
       </div>
     </div>
     <div class="number-wrapper relative flex">
-      <div
-        class="w-24 hidden md:block flex-shrink-0 font-semibold text-font-alt3 relative z-20"
-      >
-        <div class="flex items-center">
-          <div class="border bg-body rounded-full border-alt4">
-            <div class="w-2 h-2 rounded-full bg-alt4 m-px"></div>
-          </div>
-          <div class="flex mx-auto">
-            0
-            <div class="number" />
-            .
-          </div>
-        </div>
-      </div>
       <div>
         <slot />
       </div>
@@ -101,7 +87,6 @@ export default class Steps extends Vue {
   @screen md-max {
     .image-wrapper {
       width: calc(100% + 48px);
-      min-height: 320px;
       @apply -ml-6;
 
       &::after {
@@ -109,7 +94,7 @@ export default class Steps extends Vue {
       }
     }
     .step-image {
-      @apply overflow-hidden;
+      @apply overflow-hidden translate-x-0;
 
       img {
         @apply origin-top-left transform scale-150;
@@ -128,8 +113,9 @@ export default class Steps extends Vue {
   img {
     @apply m-0;
   }
+
   h2 {
-    margin-top: 0 !important;
+    @apply mb-2;
   }
 
   .c-button {
