@@ -209,7 +209,7 @@ export default class Layout extends Mixins(Base) {
         },
         {
           title: 'Voyager',
-          icon: 'voyager-alt',
+          icon: 'voyager',
           href: 'https://voyager.chargetrip.com/',
           arrow: true,
         },

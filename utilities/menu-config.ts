@@ -6,8 +6,8 @@ export default {
   icons: {
     '/': 'home',
     'Getting-Started': 'lightning',
-    'API-Reference': 'squared-terminal',
-    '/release-notes': 'notifications',
+    'API-Reference': 'terminal',
+    '/release-notes': 'announcement',
     '/faq': 'question',
   },
 }
