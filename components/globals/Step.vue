@@ -1,7 +1,7 @@
 <template>
   <div class="step mb-24 relative z-20">
     <div class="side relative">
-      <div class="image-wrapper overflow-hidden mb-8 md:rounded relative">
+      <div class="image-wrapper overflow-hidden md:rounded relative">
         <div class="absolute w-full top-0 left-0">
           <StepImage v-if="img" :src="img" :title="title" />
           <div
@@ -20,7 +20,7 @@
         </div>
         <template v-if="images">
           <ul
-            class="flex md:hidden absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-4 justify-center"
+            class="flex md:hidden absolute bottom-0 left-1/2 transform -translate-x-1/2 justify-center"
           >
             <li
               v-for="(_, key) in images"
@@ -112,10 +112,6 @@ export default class Steps extends Vue {
   }
   img {
     @apply m-0;
-  }
-
-  h2 {
-    @apply mb-2;
   }
 
   .c-button {

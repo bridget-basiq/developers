@@ -480,54 +480,66 @@ export default class Layout extends Mixins(Base) {
 }
 
 .nuxt-content {
-  > .code-block {
-    @apply mt-4;
+  h1 {
+    @apply mb-3;
 
-    &:last-child {
-      @apply mb-0;
+    & + p,
+    & + p + p {
+      @apply text-font-alt3;
     }
   }
 
-  &.authorization,
-  &.status-error-codes {
-    h2 {
-      @apply mt-20;
-    }
-  }
-
-  .right-aside h2 {
-    @apply mt-0;
-  }
-
-  .table,
-  .property-table {
-    @apply mt-6 mb-10;
-  }
-
-  > h2 {
+  h2 {
     @apply mt-14 mb-2;
   }
 
-  > h3 {
-    margin-bottom: 0.125rem;
+  h3 {
     @apply mt-12;
   }
 
-  > ul:not(.errors),
-  ol {
-    @apply ml-6 my-4;
+  p {
+    & + img {
+      @apply mt-6;
+    }
 
-    li::before {
-      @apply mr-3;
+    & + .code-block {
+      @apply mt-4;
+    }
+
+    & + .property-table {
+      @apply mt-6 mb-10;
+    }
+
+    & + p {
+      @apply mt-8;
     }
   }
 
-  > ul:not(.errors),
-  .release-note ul {
-    li {
-      &::before {
-        content: '- ';
-      }
+  .code-block {
+    & + p,
+    & + .code-block {
+      @apply mt-4;
+    }
+  }
+
+  // Exceptions
+  .right-aside {
+    h1,
+    h2,
+    h3 {
+      @apply mt-0;
+    }
+  }
+
+  .step {
+    h2 {
+      @apply mt-6;
+    }
+  }
+
+  .release-note {
+    h2 {
+      @apply mt-0;
     }
   }
 
@@ -542,30 +554,12 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
-  > p {
-    @apply my-3;
-
-    & + p {
-      @apply mt-8;
-    }
-  }
-
-  > * {
-    &:last-child {
-      @apply mb-0 pb-0;
-    }
-  }
-
-  > img {
-    @apply rounded overflow-hidden my-10 w-full;
-  }
-
-  h1 {
-    @apply mb-2;
-
-    + p,
-    + p + p {
-      @apply text-font-alt3;
+  > ul:not(.errors),
+  .release-note ul {
+    li {
+      &::before {
+        content: '- ';
+      }
     }
   }
 }
