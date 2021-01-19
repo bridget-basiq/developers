@@ -18,7 +18,7 @@
         },
         {
             "name": "powers",
-            "description": "Determines the powers of the stations that will be included in the tiles. This can be `all` (powers=all) for all powers or a list of kWh values for individual powers. For kWh values, you can send a numeric array with the specific powers you would like to return, `powers[]=22&powers[]=43&powers[]=50`.",
+            "description": "Determines the powers of the stations that will be included in the tiles. This can be `all` for all powers or a list of kWh values for individual powers. For kWh values, you can send a numeric array with the specific powers you would like to return, `powers[]=22&powers[]=43&powers[]=50`.",
             "type": {
                 "kind": "SCALAR",
                 "name": "All || [Number]",
@@ -32,7 +32,7 @@
         },
         {
             "name": "powerGroups",
-            "description": "Determines the speed groups of powers that will be included in the tiles. We have grouped all available powers into three speed groups (slow, fast or turbo), you can send an array (`powerGroups[]=slow&powerGroups[]=fast`). <br /><br /> Note: You can't mix powerGroups with powers set to all. You can mix powerGroups with individual powers `powerGroups[]=fast&powers[]=22` (for this specific example we will consider both, stations which are fast and stations that are 22 kWh).",
+            "description": "Determines the speed groups of powers that will be included in the tiles. We have grouped all available powers into three speed groups; slow, fast and turbo. You can send an array `powerGroups[]=slow&powerGroups[]=fast`. <br /><br /> Note: You can't mix powerGroups with powers set to all. You can mix powerGroups with individual powers `powerGroups[]=fast&powers[]=22`.",
             "type": {
                 "kind": "OBJECT",
                 "name": "StationSpeedType",
@@ -290,7 +290,7 @@
         },
         {
             "name": "availableOnly",
-            "description": "An optional flag that will return only available (`status: free`) stations.",
+            "description": "An optional flag that will return only available stations.",
             "type": {
                 "kind": "SCALAR",
                 "name": "Boolean",

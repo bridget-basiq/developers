@@ -475,6 +475,10 @@ export default class Layout extends Mixins(Base) {
   @apply rounded-2xs bg-base border border-alt px-1 leading-none text-14 text-font-primary font-medium;
 }
 
+.page .property .description p > code {
+  @apply font-normal;
+}
+
 .nuxt-content {
   > .code-block {
     @apply mt-4;
