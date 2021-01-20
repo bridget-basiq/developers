@@ -20,7 +20,7 @@ Having a Schema before querying helps you validate a query before you make it. T
 
 All GraphQL requests are sent to the same endpoint, which means that you can often retrieve all the data that you need in a single request. Using GraphQL features such as connections, variables, and aliases, you can make your queries incredibly efficient and retrieve data about many resource types in a single request. Learn about query features [here](https://graphql.org/learn/queries/).
 
-## Primary operations
+### Primary operations
 GraphQL has three primary operations: `Queries`, `Mutations`, and `Subscriptions`. Below are examples of each one.
 
 <code-block lang="graphql" prefix="GraphQL / Primary Operations" title="Query">

@@ -1,19 +1,16 @@
 <template>
   <div
-    class="schema my-14"
+    class="schema"
     :data-type="type"
     :data-name="name"
     :data-hidden="hidden"
     :data-frequent="frequent"
   >
-    <section
-      v-for="(section, i) in sections"
-      :key="i"
-      class="mb-12 last:mb-0"
-      :class="section.id"
-    >
-      <h2 :id="section.id">{{ section.title }}</h2>
-      <div class="mt-3">
+    <section v-for="(section, i) in sections" :key="i" :class="section.id">
+      <h3 :id="section.id" class="mb-3">
+        {{ section.title }}
+      </h3>
+      <div>
         <Property
           v-for="(item, c) in section.items"
           :key="`${i}-${c}`"

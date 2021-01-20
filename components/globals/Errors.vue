@@ -1,11 +1,12 @@
 <template>
-  <div v-if="errors.length" class="errors mt-10">
+  <div v-if="errors.length" class="errors mt-8">
     <p>
       On error the header status code is an error code and the response body
       contains an error response object. The error response object can be any of
-      the following;
+      the ones below.
     </p>
-    <ul v-if="errors.length" class="mt-6">
+    <h3 class="mb-3">Errors &amp; warnings</h3>
+    <ul v-if="errors.length">
       <Error v-for="(error, key) in errors" :key="key" v-bind="error" />
     </ul>
   </div>
