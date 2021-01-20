@@ -16,6 +16,11 @@ import { Tag } from '@chargetrip/internal-vue-components'
 export default class extends Vue {}
 </script>
 <style lang="scss">
+.theme-dark {
+  .note-comp {
+    background: rgba(51, 22, 0, 0.2);
+  }
+}
 .note-comp {
   background: rgba(252, 215, 186, 0.2);
   padding-bottom: 1.5rem !important;
