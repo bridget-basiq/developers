@@ -8,6 +8,6 @@ export default {
     'Getting-Started': 'lightning',
     'API-Reference': 'terminal',
     '/release-notes': 'announcement',
-    '/faq': 'question',
+    '/faq': 'question-mark-circle',
   },
 }
