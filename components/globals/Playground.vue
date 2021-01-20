@@ -19,6 +19,9 @@
       &:first-child {
         @apply bg-subdued;
 
+        .action-bar {
+          background: var(--sticky-bg-subdued);
+        }
         header {
           @apply top-0;
         }

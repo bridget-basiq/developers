@@ -5,11 +5,10 @@
     :class="{ 'bg-base': query || title, 'has-type': codeType }"
   >
     <header
-      v-if="title || codeType"
-      class="flex h-10 px-6 font-semibold items-center border-b border-alt text-font-alt2"
+      v-if="title"
+      class="flex h-10 px-6 font-semibold items-center border-b border-alt text-font-alt2 relative z-50"
     >
-      <Tag v-if="codeType" class="mr-2" v-bind="codeType.tag" />
-      <div v-else class="title">
+      <div class="title">
         <span v-if="prefix" class="text-font-alt3 mr-1">{{ prefix }} / </span>
         {{ title }}
       </div>
@@ -24,23 +23,27 @@
         /></strong>
       </div>
     </header>
-    <div
-      v-if="type === 'query' || type === 'mutation' || type === 'subscription'"
-      class="flex px-6 h-10 pt-6 justify-end items-center sticky ctas -mt-12 top-0"
+    <ActionBar
+      v-if="type"
+      class="px-6 items-center ctas -mt-12 mb-6 top-0"
+      :sticky="true"
     >
-      <Button
-        :href="editUrl"
-        title="Edit"
-        size="xs"
-        class="bg-body border border-alt2 text-font-primary mr-1"
-      />
-      <Button
-        size="xs"
-        class="bg-body border border-alt2 text-font-primary"
-        :title="copied ? 'Copied' : 'Copy'"
-        @click.native="copy"
-      />
-    </div>
+      <Tag v-if="codeType" v-bind="codeType.tag" />
+      <div v-if="type !== 'response'" class="ml-auto flex">
+        <Button
+          :href="editUrl"
+          title="Edit"
+          size="xs"
+          class="bg-body border border-alt2 text-font-primary mr-1"
+        />
+        <Button
+          size="xs"
+          class="bg-body border border-alt2 text-font-primary"
+          :title="copied ? 'Copied' : 'Copy'"
+          @click.native="copy"
+        />
+      </div>
+    </ActionBar>
     <div class="wrapper">
       <pre
         class="font-mono px-6 py-4 font-base overflow-x-scroll"
@@ -50,11 +53,11 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { Tag, Button } from '@chargetrip/internal-vue-components'
+import { Tag, Button, ActionBar } from '@chargetrip/internal-vue-components'
 import { copy } from '~/utilities/project.functions'
 import highlightjs from '~/utilities/highlight'
 
-@Component({ components: { Tag, Button } })
+@Component({ components: { Tag, Button, ActionBar } })
 export default class CodeBlock extends Vue {
   @Prop() title
   @Prop({ default: 'Query' }) queryType

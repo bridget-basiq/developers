@@ -66,15 +66,24 @@
       class="view flex lg:bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden rounded-t-xl"
     >
       <SideNav
-        v-if="sideNav"
+        v-if="normalizedSideNav"
         class="text-14 z-40 top-0"
-        :navs="sideNav"
+        :navs="normalizedSideNav"
         :dark-mode="darkMode"
         :spacing="6"
         :show-menu="showMenu"
         @setShowMenu="showMenu = false"
         @setDarkMode="setDarkMode"
-      />
+      >
+        <div class="dashboard bg-subdued py-4 px-6 lg:hidden">
+          <Button
+            href="https://account.chargetrip.com"
+            class="w-full"
+            color="accent"
+            title="Sign up"
+          />
+        </div>
+      </SideNav>
       <div
         ref="container"
         class="content flex-1 flex flex-col relative overflow-y-scroll"
@@ -141,7 +150,7 @@ export default class Layout extends Mixins(Base) {
   khaledPosition = { x: 0, y: 0 }
   @Ref('container') container
   @Ref('search') search
-  canEdit = false // process.env.NODE_ENV !== 'production'
+  canEdit = process.env.NODE_ENV !== 'production'
   @Mutation setDarkMode
   @Mutation setIsEditing
   noTransition = false
@@ -186,6 +195,52 @@ export default class Layout extends Mixins(Base) {
     setTimeout(() => {
       this.search.input.input.focus()
     }, 20)
+  }
+
+  get normalizedSideNav() {
+    return [
+      ...this.sideNav,
+      [
+        {
+          title: 'Playground',
+          icon: 'playground',
+          href: 'https://playground.chargetrip.com/',
+          arrow: true,
+        },
+        {
+          title: 'Voyager',
+          icon: 'voyager',
+          href: 'https://voyager.chargetrip.com/',
+          arrow: true,
+        },
+        {
+          title: 'Examples',
+          icon: 'code',
+          href: 'https://chargetrip.com/examples/',
+          arrow: true,
+        },
+        {
+          title: 'Github',
+          icon: 'github',
+          href: 'https://github.com/chargetrip',
+          arrow: true,
+        },
+      ],
+      [
+        {
+          title: 'Website',
+          icon: 'globe',
+          href: 'https://chargetrip.com/',
+          arrow: true,
+        },
+        {
+          title: 'Documentation',
+          icon: 'slashes-1',
+          href: 'https://developers.chargetrip.com/',
+          arrow: true,
+        },
+      ],
+    ]
   }
 
   openKhaled(position) {
@@ -341,7 +396,7 @@ export default class Layout extends Mixins(Base) {
     this.showMenu = false
 
     if (process.env.NODE_ENV === 'production') {
-      window.fathom.trackPageview()
+      window.fathom?.trackPageview?.()
     }
     if (!this.container) return
 
@@ -420,55 +475,71 @@ export default class Layout extends Mixins(Base) {
   @apply rounded-2xs bg-base border border-alt px-1 leading-none text-14 text-font-primary font-medium;
 }
 
+.page .property .description p > code {
+  @apply font-normal;
+}
+
 .nuxt-content {
-  > .code-block {
-    @apply mt-4;
+  h1 {
+    @apply mb-3;
 
-    &:last-child {
-      @apply mb-0;
+    & + p,
+    & + p + p {
+      @apply text-font-alt3;
     }
   }
 
-  &.authorization,
-  &.status-error-codes {
-    h2 {
-      @apply mt-20;
-    }
-  }
-
-  .right-aside h2 {
-    @apply mt-0;
-  }
-
-  .table,
-  .property-table {
-    @apply mt-6 mb-10;
-  }
-
-  > h2 {
+  h2 {
     @apply mt-14 mb-2;
   }
 
-  > h3 {
-    margin-bottom: 0.125rem;
+  h3 {
     @apply mt-12;
   }
 
-  > ul:not(.errors),
-  ol {
-    @apply ml-6 my-4;
+  p {
+    & + img {
+      @apply mt-6;
+    }
 
-    li::before {
-      @apply mr-3;
+    & + .code-block {
+      @apply mt-4;
+    }
+
+    & + .property-table {
+      @apply mt-6 mb-10;
+    }
+
+    & + p {
+      @apply mt-8;
     }
   }
 
-  > ul:not(.errors),
-  .release-note ul {
-    li {
-      &::before {
-        content: '- ';
-      }
+  .code-block {
+    & + p,
+    & + .code-block {
+      @apply mt-4;
+    }
+  }
+
+  // Exceptions
+  .right-aside {
+    h1,
+    h2,
+    h3 {
+      @apply mt-0;
+    }
+  }
+
+  .step {
+    h2 {
+      @apply mt-6;
+    }
+  }
+
+  .release-note {
+    h2 {
+      @apply mt-0;
     }
   }
 
@@ -483,30 +554,12 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
-  > p {
-    @apply my-3;
-
-    & + p {
-      @apply mt-8;
-    }
-  }
-
-  > * {
-    &:last-child {
-      @apply mb-0 pb-0;
-    }
-  }
-
-  > img {
-    @apply rounded overflow-hidden my-10 w-full;
-  }
-
-  h1 {
-    @apply mb-2;
-
-    + p,
-    + p + p {
-      @apply text-font-alt3;
+  > ul:not(.errors),
+  .release-note ul {
+    li {
+      &::before {
+        content: '- ';
+      }
     }
   }
 }
@@ -579,6 +632,12 @@ export default class Layout extends Mixins(Base) {
 
     .c-side-nav {
       width: 240px;
+
+      nav {
+        &:last-child {
+          @apply hidden;
+        }
+      }
     }
   }
 

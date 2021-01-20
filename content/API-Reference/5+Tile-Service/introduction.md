@@ -8,6 +8,7 @@ order: 1
 The Chargetrip Tile Service is a Vector Tile Server that offers a pre-rendered fully clustered charge station solution including filtering that supercharges your station map (pun intended). Traditionally you would load stations on the frontend within a visible bounding box and apply filters and clusters on the client side. This will result in long waiting times when you interact with the map. Our tile-service moves complex operations to the back-end. So filtering and clustering become nearly instant, and the map becomes much more responsive.
 
 ## Configuration
+Configuring your Tile Service can be done through two easy steps as shown below.
 
 ### Using the tile service
 The Tile Service can be used with your own station database, the premium Eco-movement database, or the free Open Charge Map database. Our Tile Service can be accessed at:

@@ -21,6 +21,7 @@
   --black: #0C0C0F;
 
   --sticky-bg: linear-gradient(180deg, #0C0C0F 80%, rgba(12, 12, 15, 0) 100%);
+  --sticky-bg-subdued: linear-gradient(180deg, #161619 80%, rgba(22, 22, 25, 0) 100%);
 
   --warning: #ED7922;
   --warning-alt: #AA4E09;
@@ -65,13 +66,14 @@
   --font-primary: #0C0C10;
   --font-alt: #202024;
   --font-alt2: #404046;
-  --font-alt3: #787884;
+  --font-alt3: #666670;
   --font-accent: var(--accent);
 
   --white: #FFF;
   --black: #0C0C0F;
 
   --sticky-bg: linear-gradient(180deg, #FFF 80%, rgba(255, 255, 255, 0) 100%);
+  --sticky-bg-subdued: linear-gradient(180deg, #FAFCFD 80%, rgba(250, 252, 253, 0) 100%);
 
   --warning: #F46F09;
   --warning-alt: #F8984E;

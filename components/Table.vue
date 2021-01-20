@@ -70,7 +70,7 @@ export default class Table extends Vue {
       }
 
       &::after {
-        content: '\e92f';
+        content: '\e971';
         font-family: icomoon;
         @apply absolute right-0 top-1/2 transform -translate-y-1/2 mr-6;
       }

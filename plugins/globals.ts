@@ -2,6 +2,7 @@ import { Button, Cell, Row } from '@chargetrip/internal-vue-components'
 import Vue from 'vue'
 import Image from '~/components/Image.vue'
 import Table from '~/components/Table.vue'
+import Note from '~/components/globals/Note.vue'
 import Accordion from '~/components/globals/Accordion.vue'
 import AccordionItem from '~/components/globals/AccordionItem.vue'
 import ArticleTeaser from '~/components/globals/ArticleTeaser.vue'
@@ -41,6 +42,7 @@ Vue.component('cta', Cta)
 Vue.component('error', Error)
 Vue.component('errors', Errors)
 Vue.component('example', Example)
+Vue.component('note', Note)
 Vue.component('examples', Examples)
 Vue.component('guide', Guide)
 Vue.component('guides', Guides)
