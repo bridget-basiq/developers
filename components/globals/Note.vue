@@ -1,6 +1,6 @@
 <template>
   <div
-    class="note border border-warning rounded p-6 flex flex-col items-start mt-8"
+    class="note-comp border border-warning rounded p-6 flex flex-col items-start mt-8"
   >
     <Tag color="warning" class="mb-3" type="secondary" size="xs">Note</Tag>
     <div class="text-font-alt">
@@ -16,7 +16,7 @@ import { Tag } from '@chargetrip/internal-vue-components'
 export default class extends Vue {}
 </script>
 <style lang="scss">
-.note {
+.note-comp {
   background: rgba(252, 215, 186, 0.2);
   padding-bottom: 1.5rem !important;
 }
