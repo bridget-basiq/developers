@@ -25,6 +25,7 @@ https://api.chargetrip.io/station/count.json?powers[]=22&powers[]=43&connectors[
 </code-block>
 
 It will return a response that looks like this;
+
 <code-block lang="json" prefix="Tile Service" title="Count Endpoint">
 {
     "count": 158
