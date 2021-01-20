@@ -10,6 +10,7 @@
       v-model="search"
       name="do-not-auto-fill"
       class="w-full"
+      autocomplete="off"
       icon="search"
       :hotkey="{
         key: '/',
@@ -22,7 +23,7 @@
     />
     <nav
       v-show="showSuggestions && suggestions.length"
-      class="text-font-alt3 text-14 border rounded border-alt absolute w-full top-full mt-1 bg-body"
+      class="text-font-alt3 text-14 border rounded border-alt absolute w-full top-full -mt-2 bg-body"
     >
       <main ref="container" class="flex flex-col suggestions overflow-y-scroll">
         <ul class="p-3 lg:p-2">
