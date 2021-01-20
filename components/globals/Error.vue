@@ -4,7 +4,7 @@
   >
     <Tag color="error" type="secondary">Error</Tag>
     <div class="sm:ml-4 sm-max:mt-2">
-      <code class="font-mono uppercase font-medium break-all">{{ code }}</code>
+      <code class="uppercase break-all">{{ code }}</code>
       <p class="text-font-alt3">{{ message }}</p>
     </div>
   </li>
