@@ -4,7 +4,9 @@
       <h2 class="title">
         {{ title }}
       </h2>
-      <img class="ml-auto" src="medium.svg" alt="Medium" />
+      <a class="ml-auto" target="_blank" href="https://medium.com/chargetrip">
+        <img src="medium.svg" alt="Medium" />
+      </a>
     </div>
     <slot />
   </section>
