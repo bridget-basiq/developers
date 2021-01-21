@@ -10,11 +10,7 @@
     </p>
     <slot />
     <strong class="text-accent mt-3 block"> Read more </strong>
-    <img
-      class="absolute h-full w-auto right-0 top-0"
-      src="globe.svg"
-      alt="Globe"
-    />
+    <img class="absolute h-full w-auto right-0 top-0" :src="src" alt="Globe" />
     <a
       :href="href"
       class="text-accent absolute inset-0 mt-3 block"
@@ -31,6 +27,7 @@ export default class CImage extends Vue {
   @Prop() href
   @Prop() title
   @Prop() description
+  @Prop() src
 }
 </script>
 <style lang="scss">
