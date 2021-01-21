@@ -21,7 +21,7 @@
       </template>
     </div>
     <div class="ml-auto tag-wrapper">
-      <Tag v-if="required" class="ml-2" color="accent" type="secondary"
+      <Tag v-if="required" class="ml-2" color="warning" type="secondary"
         >Required
       </Tag>
       <Tag v-if="optional" class="ml-2" color="font-alt3" type="secondary"

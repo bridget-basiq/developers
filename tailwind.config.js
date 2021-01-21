@@ -144,6 +144,8 @@ module.exports = {
     container: false,
   },
   variants: {
+    opacity: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
+    display: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
     borderRadius: ['responsive', 'first', 'last'],
     borderWidth: ['responsive', 'first', 'last'],
     margin: ['responsive', 'last', 'first'],
