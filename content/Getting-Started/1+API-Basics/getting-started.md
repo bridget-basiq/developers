@@ -49,10 +49,10 @@ These keys can’t be regenerated so keep them safe by using environment variabl
 
 <right-aside large="true">
 
-<article-teaser href="https://medium.com/chargetrip/chargetrip-tile-service-with-react-native-and-mapbox-228dae36a574">
+<article-teaser src="globe.svg" href="https://medium.com/chargetrip/a-simple-guide-to-ev-navigation-and-routing-for-developers-bb82b1c78901">
 
-## Chargetrip Tile Service with React Native and Mapbox
-An introduction to the Chargetrip Tile Service and the caveats of integrating it into a React Native mobile application.
+## A simple guide to EV navigation and routing
+To help you get started with the Chargetrip API, we provide you insights about the EV routing paradigm.
 
 </article-teaser>
 
