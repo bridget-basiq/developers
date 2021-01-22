@@ -25,6 +25,8 @@ statusDescriptions:
 # Subscribe to route updates
 When you have obtained a `route ID` through the [route mutation](/API-Reference/Routes/mutate-route), you can start a route calculation to obtain your polyline and other route details. Because longer routes take some time to finish you can use a [GraphQL subscription](https://graphql.org/blog/subscriptions-in-graphql-and-relay/) as described in the [introduction](/API-Reference/Routes/introduction). 
 
+<api-reference-actions url="https://playground.chargetrip.com/?page=routeUpdatedById"></api-reference-actions>
+
 ## Subscription
 The subscription service needs to be initiated with a `route ID`. From there on it will start calculating and based on your interval provide you with a route status. For all possible statuses, see the [response section](/API-Reference/Routes/subscribe-to-route-updates#response) of this chapter. 
 
@@ -46,7 +48,7 @@ On success, the HTTP status code in the response header is `200` and the respons
 <status-table :statuses="statuses" :descriptions="statusDescriptions"></status-table>
 
 <playground>
-<code-block lang="graphql" type="subscription" edit-url="https://playground.chargetrip.com/?page=routeUpdatedById">					
+<code-block lang="graphql" type="subscription">					
 subscription routeUpdatedById {
   routeUpdatedById(id: "5e300e71f7e26f726afd3d71") {
     status

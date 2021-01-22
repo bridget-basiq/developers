@@ -7,6 +7,8 @@ order: 6
 # Create a new station review
 To improve the user experience of routes you can include reviews as described in [query station reviews](/API-Reference/Stations/query-station-reviews). To collect reviews and allow users to write one, you will need to use the following mutation. 
 
+<api-reference-actions url="https://playground.chargetrip.com/?page=reviewListLazyLoading"></api-reference-actions>
+
 ## Mutation
 To be able to write a review you will need a `stationId` and `carId`. After that you can use various review arguments like `rating`, `message` and `tags` to collect the appropriate data. Keep in mind, the `stationId` and `rating` are both required when submitting a review.
 
@@ -15,7 +17,7 @@ To be able to write a review you will need a `stationId` and `carId`. After that
 <response error="addReview"></response>
 
 <playground>
-<code-block lang="graphql" type="mutation" edit-url="https://playground.chargetrip.com/?page=reviewListLazyLoading">					
+<code-block lang="graphql" type="mutation">					
 mutation addReview($stationId: String!, $carId: String) {
   addReview(
     review: {

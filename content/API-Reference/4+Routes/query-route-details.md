@@ -10,6 +10,8 @@ frequently:
 # Query route details
 After you received your `route ID` through the [route mutation](/API-Reference/Routes/mutate-route), you can query your route details. These route details will contain everything from a polyline to charge stations. Ideal for plotting a route on a map or providing turn-by-turn instructions. If you need more details for your specific route, see [query route path](/API-Reference/Routes/query-route-path-details).
 
+<api-reference-actions url="https://playground.chargetrip.com/page=getRoute"></api-reference-actions>
+
 ## Query
 To query the route details you will need to configure it with the `route ID`. Be sure to include the status in your response and check it. If your route hasn't completed processing yet, then your route details will not be available. To prevent this from happening you can use the [subscription service](/API-Reference/Routes/subscribe-to-route-updates).
 
@@ -26,7 +28,7 @@ If your [route mutation](/API-Reference/Routes/mutate-route) included stations i
 <response error="route"></response>
 
 <playground>
-<code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/page=getRoute">					
+<code-block lang="graphql" type="query">					
 query getRoute {
   route(id:"5e300e71f7e26f726afd3d71") {
     route {

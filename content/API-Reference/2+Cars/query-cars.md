@@ -13,6 +13,8 @@ frequently:
 # Querying cars
 In order to see all cars in our car databse you can use the `carList` query. You can see a live example of this query including all available output parameters [here](https://playground.chargetrip.com/?page=carListAll).
 
+<api-reference-actions url="https://playground.chargetrip.com/?page=carList"></api-reference-actions>
+
 ## Query
 To query the cars in your database, you only need to call the `carList` alongside the paramaters you would like to receive. Optionally you can add [pagination](/API-Reference/API/pagination) and `filters`.
 
@@ -24,7 +26,7 @@ To filter your car list you can use the `query` argument. You can use the `make`
 <response error="carList"></response>
 
 <playground>
-<code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/?page=carList">	
+<code-block lang="graphql" type="query">	
 query carListAll {
   carList {
     id

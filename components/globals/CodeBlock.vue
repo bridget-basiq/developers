@@ -30,18 +30,14 @@
     >
       <Tag v-if="codeType" v-bind="codeType.tag" />
       <div v-if="type !== 'response'" class="ml-auto flex">
-        <Button
-          :href="editUrl"
-          title="Edit"
-          size="xs"
-          class="bg-body border border-alt2 text-font-primary mr-1"
+        <span
+          v-if="!copied"
+          class="icon icon-clipboard cursor-pointer"
+          @click="copy"
         />
-        <Button
-          size="xs"
-          class="bg-body border border-alt2 text-font-primary"
-          :title="copied ? 'Copied' : 'Copy'"
-          @click.native="copy"
-        />
+        <strong v-else class="text-accent flex items-center">
+          Copied <span class="icon-circle-checkmark ml-2"
+        /></strong>
       </div>
     </ActionBar>
     <div class="wrapper">
@@ -64,7 +60,6 @@ export default class CodeBlock extends Vue {
   @Prop() lang
   @Prop() type
   @Prop() query
-  @Prop() editUrl
   @Prop() tag
   @Prop() prefix
   copied = false

@@ -3,6 +3,7 @@ import Vue from 'vue'
 import Image from '~/components/Image.vue'
 import Table from '~/components/Table.vue'
 import Note from '~/components/globals/Note.vue'
+import ApiReferenceActions from '~/components/globals/ApiReferenceActions.vue'
 import Accordion from '~/components/globals/Accordion.vue'
 import AccordionItem from '~/components/globals/AccordionItem.vue'
 import ArticleTeaser from '~/components/globals/ArticleTeaser.vue'
@@ -34,6 +35,7 @@ Vue.component('c-row', Row)
 Vue.component('c-cell', Cell)
 Vue.component('c-image', Image)
 Vue.component('accordion', Accordion)
+Vue.component('api-reference-actions', ApiReferenceActions)
 Vue.component('accordion-item', AccordionItem)
 Vue.component('article-teaser', ArticleTeaser)
 Vue.component('article-teaser-section', ArticleTeaserSection)

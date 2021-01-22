@@ -15,6 +15,8 @@ frequently:
 # Query stations
 To be able to browse through all your stations inside your station database you can use the `stationList` query. While querying you will have access to all station properties. You can set the size property to specify how many stations you would like to receive, the default is 10. Keep your query as small as possible to improve the performance. 
 
+<api-reference-actions url="https://playground.chargetrip.com/?page=stationListAll"></api-reference-actions>
+
 ## Query
 To query your stations you only need to call the `stationList` alongside the properties you would like to receive. Optionally you can add [pagination](/API-Reference/API/pagination) and `filters`.
 
@@ -26,7 +28,7 @@ To filter your station list you can use the `query` argument. You can then use `
 <response error="stationList"></response>
 
 <playground>
-<code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/?page=stationListAll">					
+<code-block lang="graphql" type="query">					
 query stationListAll {
   stationList(
     query: { name: "Townley Road (2)" }
