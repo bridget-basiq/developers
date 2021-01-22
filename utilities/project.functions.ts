@@ -70,8 +70,7 @@ export const copy = (str) => {
 }
 
 export const getFileByPath = (path, dirs) => {
-  const normalizedPath = path.slice(-1) === '/' ? path.slice(0, -1) : path
-  const splitPath = normalizedPath.split('/')
+  const splitPath = path.split('/')
   const slug = splitPath.slice(-1)[0]
   const dir =
     dirs[

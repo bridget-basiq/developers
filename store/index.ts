@@ -49,7 +49,7 @@ const getSideNav = (pages) => {
                   .join('/')
 
           obj.children.push({
-            to: to.slice(-1) === '/' ? to : `${to}/`,
+            to,
             order: page.order,
             icon: page.icon,
             title: page.title,
@@ -60,7 +60,7 @@ const getSideNav = (pages) => {
           obj.children.push({
             order: parseInt(order),
             path,
-            fullPath: `${fullPath}/`,
+            fullPath,
             children: [],
             title: path.replace(new RegExp('-', 'g'), ' '),
           })
