@@ -37,31 +37,37 @@ export default class Slug extends Vue {
     }
   }
 
-  async asyncData({ $content, route: { path }, store }) {
+  async asyncData({ $content, route: { path }, store, error }) {
     const actualPath =
       path === '/' ? '/home' : getFileByPath(path, store.getters.dirs)
 
     console.log(path)
     console.log(actualPath)
 
-    const page = await $content(actualPath, {
-      deep: true,
-    }).fetch()
+    try {
+      const page = await $content(actualPath, {
+        deep: true,
+      }).fetch()
 
-    const normalizedPage = {
-      ...page,
-      headings: getHeadings(page.body.children, page).map((child) => ({
-        to: path,
-        hash: child.props.id,
-        inset: child.inset,
-        title: child.title || child.children[1].value,
-      })),
-    }
+      const normalizedPage = {
+        ...page,
+        headings: getHeadings(page.body.children, page).map((child) => ({
+          to: path,
+          hash: child.props.id,
+          inset: child.inset,
+          title: child.title || child.children[1].value,
+        })),
+      }
 
-    store.commit('setContent', normalizedPage)
+      store.commit('setContent', normalizedPage)
 
-    return {
-      page: normalizedPage,
+      return {
+        page: normalizedPage,
+      }
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e)
+      error({ statusCode: 500, message: 'Unexpected error.' })
     }
   }
 }
