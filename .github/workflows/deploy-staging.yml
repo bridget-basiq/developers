@@ -12,7 +12,7 @@ jobs:
         with:
           node-version: 14.13.0
       - run: npm install
-      - run: npm run generate
+      - run: npm run build:staging
       - uses: jakejarvis/s3-sync-action@master
         with:
             args: --acl public-read
