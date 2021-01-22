@@ -73,6 +73,7 @@ export const getFileByPath = (path, dirs) => {
   const normalizedPath = path.slice(-1) === '/' ? path.slice(0, -1) : path
   const splitPath = normalizedPath.split('/')
   const slug = splitPath.slice(-1)[0]
+
   const dir =
     dirs[
       dirs
@@ -85,5 +86,5 @@ export const getFileByPath = (path, dirs) => {
         .indexOf(splitPath.slice(0, -1).join('/'))
     ]
 
-  return `${dir || ''}/${slug}`
+  return `${dir?.replace('//', '/') || ''}/${slug}`
 }
