@@ -1,13 +1,13 @@
 export default {
   groups: [
     ['/', 'Getting-Started', 'API-Reference'],
-    ['/release-notes/', '/faq/'],
+    ['/release-notes', '/faq'],
   ],
   icons: {
     '/': 'home',
     'Getting-Started': 'lightning',
     'API-Reference': 'terminal',
-    '/release-notes/': 'announcement',
-    '/faq/': 'question-mark-circle',
+    '/release-notes': 'announcement',
+    '/faq': 'question-mark-circle',
   },
 }
