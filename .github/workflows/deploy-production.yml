@@ -13,6 +13,7 @@ jobs:
           node-version: 14.13.0
       - run: npm install
       - run: npm run build:production
+      - run: gzip -r *
       - uses: jakejarvis/s3-sync-action@master
         with:
             args: --acl public-read
