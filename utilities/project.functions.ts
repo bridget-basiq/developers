@@ -86,5 +86,5 @@ export const getFileByPath = (path, dirs) => {
         .indexOf(splitPath.slice(0, -1).join('/'))
     ]
 
-  return `${dir?.replace('//', '/') || ''}/${slug}`
+  return `${dir || ''}/${slug}`
 }

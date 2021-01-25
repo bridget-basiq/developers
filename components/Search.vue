@@ -5,11 +5,10 @@
       class="bg fixed inset-0 bg-black opacity-50"
     />
     <CInput
-      id="do-not-auto-fill"
+      id="search-input"
       ref="input"
       v-model="search"
       name="search"
-      label=""
       class="w-full"
       autocomplete="off"
       icon="search"
