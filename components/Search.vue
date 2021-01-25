@@ -9,7 +9,6 @@
       ref="input"
       v-model="search"
       name="search"
-      label=""
       class="w-full"
       autocomplete="off"
       icon="search"
