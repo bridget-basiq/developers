@@ -13,9 +13,9 @@ frequently:
 ---
 
 # Query car details
-Car data can be usefull when you want to display more information about the car. You can access data using the `car` query or get even more data with`carPremium`. Please <cta action='smallchat'>contact us</cta> for more information on how to get access to our premium data set. You can see a live example with all available output parameters [here](https://playground.chargetrip.com/?page=car).
+Car data can be useful when you want to display more information about the car. You can access data using the `car` query or get even more data with`carPremium`. Please <cta action='smallchat'>contact us</cta> for more information on how to get access to our premium data set. You can see a live example with all available output parameters [here](https://playground.chargetrip.com/?page=car).
 
-<api-reference-actions url="https://playground.chargetrip.com/?page=car"></api-reference-actions>
+<api-reference-actions example-url="https://chargetrip.github.io/examples/car/" url="https://playground.chargetrip.com/?page=car"></api-reference-actions>
 
 ## Query
 To get specific details of a car you need to provide a `carId`. This `id` can be obtained by using the `carList` query.

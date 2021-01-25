@@ -38,7 +38,7 @@ descriptions:
 ---
 
 # Properties
-Each tile provided by the Tile Service contains a layer, called `stations`. This layer contains a list of features, for either clusters or stations. All features have the following properties;
+Each tile provided by the tile service contains a layer, called `stations`. This layer contains a list of features, for either clusters or stations. All features have the following properties:
 
 <property-table :keys="keys" :types="types" :descriptions="descriptions"></property-table>
 
