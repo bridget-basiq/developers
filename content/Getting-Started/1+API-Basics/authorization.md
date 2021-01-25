@@ -27,7 +27,7 @@ Before you can start with our API you need to be able to authorize yourself. You
 <c-image alt="Authorization image" src="authorization.png" max-width="full"></c-image>
 
 ## The API
-Now that you have all credentials that are required you can start using our API. The first thing you will need is the following base url;
+Now that you have all necessary credentials you can start using our API. The first thing you need is the following base url:
 
 <code-block lang="bash" prefix="Authorization" title="Base Url">					
 http://api.chargetrip.io/graphql

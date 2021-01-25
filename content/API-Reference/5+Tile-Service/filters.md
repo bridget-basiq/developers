@@ -6,9 +6,11 @@ order: 3
 
 # Filters
 
-To render stations on a map, you need to add a set of filters to the tile request. These filters are send as query parameters and must be appended after `?`.
+To render stations on a map, you need to add a set of filters to the tile request. These filters are sent as query parameters and must be appended after `?`.
 
-**Please note**: the Tile Service will only return results if at least a combination of powers and connectors are applied. 
+<note>
+The tile service will only return results once a combination of powers and connectors are applied.
+</note>
 
 ## Filters
 Below you can find an overview of possible filters you can apply.
@@ -24,7 +26,7 @@ https://api.chargetrip.io/station/count.json
 https://api.chargetrip.io/station/count.json?powers[]=22&powers[]=43&connectors[]=CHADEMO&connectors[]=IEC_62196_T2_COMBO&amenities[]=restaurant&availableOnly=true
 </code-block>
 
-It will return a response that looks like this;
+It will return a response that looks like this:
 
 <code-block lang="json" prefix="Tile Service" title="Count Endpoint">
 {

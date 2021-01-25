@@ -8,9 +8,9 @@ frequently:
 ---
 
 # Query route details
-After you received your `route ID` through the [route mutation](/API-Reference/Routes/mutate-route), you can query your route details. These route details will contain everything from a polyline to charge stations. Ideal for plotting a route on a map or providing turn-by-turn instructions. If you need more details for your specific route, see [query route path](/API-Reference/Routes/query-route-path-details).
+After you received your `route ID` through the [route mutation](/API-Reference/Routes/mutate-route), you can query your route details. These route details will contain everything from a polyline to charge stations, ideal for plotting a route on a map or providing turn-by-turn instructions. If you need more details for your specific route, see [query route path](/API-Reference/Routes/query-route-path-details).
 
-<api-reference-actions url="https://playground.chargetrip.com/page=getRoute"></api-reference-actions>
+<api-reference-actions example-url="https://chargetrip.github.io/examples/route/" url="https://playground.chargetrip.com/page=getRoute"></api-reference-actions>
 
 ## Query
 To query the route details you will need to configure it with the `route ID`. Be sure to include the status in your response and check it. If your route hasn't completed processing yet, then your route details will not be available. To prevent this from happening you can use the [subscription service](/API-Reference/Routes/subscribe-to-route-updates).
@@ -18,7 +18,7 @@ To query the route details you will need to configure it with the `route ID`. Be
 If you also supported additional route options in the [route mutation]() you will now be able to collect the details. Below you can find instructions on how to do that.
 
 ### Support alternative stations along a route
-If your [route mutation](/API-Reference/Routes/mutate-route) included the `stationsAlongRouteRadius` with a valid distance, you can now request the station details in this query. To do so, you will need to add the `stationsAlongRoute` field with it's appropriate children.
+If your [route mutation](/API-Reference/Routes/mutate-route) included the `stationsAlongRouteRadius` with a valid distance, you can now request the station details in this query. To do so, you will need to add the `stationsAlongRoute` field with its appropriate children.
 
 ### Support stations as waypoint
 If your [route mutation](/API-Reference/Routes/mutate-route) included stations in the `via` parameter, you will receive a route with additional stations as waypoints. These station as waypoints can be found inside the `route.leg`.
