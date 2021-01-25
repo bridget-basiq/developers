@@ -13,6 +13,20 @@ jobs:
           node-version: 14.13.0
       - run: npm install
       - run: npm run build:production
+        env:
+          CHARGETRIP_API_URL:  ${{ secrets.CHARGETRIP_API_URL }}
+          CHARGETRIP_MGT_API_URL:  ${{ secrets.CHARGETRIP_MGT_API_URL }}
+          AUTH0_DOMAIN:  ${{ secrets.AUTH0_DOMAIN }}
+          AUTH0_USERNAME:  ${{ secrets.AUTH0_USERNAME }}
+          AUTH0_PASSWORD:  ${{ secrets.AUTH0_PASSWORD }}
+          AUTH0_CLIENT_ID:  ${{ secrets.AUTH0_CLIENT_ID }}
+          AUTH0_CLIENT_SECRET:  ${{ secrets.AUTH0_CLIENT_SECRET }}
+          ALGOLIA_API_SECRET_KEY:  ${{ secrets.ALGOLIA_API_SECRET_KEY }}
+          ALGOLIA_API_PUBLIC_KEY:  ${{ secrets.ALGOLIA_API_PUBLIC_KEY }}
+          ALGOLIA_APP_ID:  ${{ secrets.ALGOLIA_APP_ID }}
+          FATHOM_ID:  ${{ secrets.FATHOM_ID }}
+          EDIT_GITHUB_URL:  ${{ secrets.EDIT_GITHUB_URL }}
+          EDIT_API_URL:  ${{ secrets.EDIT_API_URL }}
       - uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --cache-control max-age=31536000,public

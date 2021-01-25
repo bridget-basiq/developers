@@ -35,7 +35,7 @@ export default {
       {
         src: 'https://cdn.usefathom.com/script.js',
         defer: true,
-        'data-site': 'OZCKUFXK',
+        'data-site': process.env.FATHOM_ID,
       },
       {
         src: 'https://embed.small.chat/T33286SKGGSBRX0P8T.js',
