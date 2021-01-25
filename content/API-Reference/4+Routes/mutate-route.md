@@ -7,6 +7,8 @@ order: 2
 # Create a new route
 As described in the route introduction, the first thing you will need to do is fetch a `route ID`. This `route ID` can then be sent to subscribe to [route details](/API-Reference/Routes/query-route-details) and retrieve a polyline and other route data.
 
+<api-reference-actions example-url="https://chargetrip.github.io/examples/route/" url="https://playground.chargetrip.com/?page=newRoute"></api-reference-actions>
+
 ## Mutation
 To get a `route ID`, you will need to provide us with EV details and at least a departure location and destination. Apart from that you can also support any of the options that are described below.
 
@@ -21,7 +23,7 @@ You can add a station as a waypoint or as a destination. To do this, add `statio
 <response error="newRoute"></response>
 
 <playground>
-<code-block lang="graphql" type="mutation" edit-url="https://playground.chargetrip.com/?page=newRoute">					
+<code-block lang="graphql" type="mutation">					
 mutation newRoute {
   newRoute(
     input: {

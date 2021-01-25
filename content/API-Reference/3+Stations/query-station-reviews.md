@@ -7,6 +7,8 @@ order: 5
 # Query station reviews
 Every station in your database can be accompanied by a user review. you can query for properties such as `rating` and `message` but also recieve data about the EV that was used. Reviews are stored per station database and can't be used across different projects.
 
+<api-reference-actions url="https://playground.chargetrip.com/?page=reviewListLazyLoading"></api-reference-actions>
+
 ## Query
 To get the reviews of a specific station you will need to provide a `stationId` as an argument. Optionally you can use [pagination](/API-Reference/API/pagination) to your query.
 
@@ -15,7 +17,7 @@ To get the reviews of a specific station you will need to provide a `stationId` 
 <response error="reviewList"></response>
 
 <playground>
-<code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/?page=reviewListLazyLoading">					
+<code-block lang="graphql" type="query">					
 query reviewList($stationId: ID!) {
   reviewList(stationId: $stationId, size: 2, page: 0) {
     id

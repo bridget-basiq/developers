@@ -13,7 +13,9 @@ frequently:
 ---
 
 # Subscribe to station updates
-If a route is calculated and it includes several stations, you might want to receive status updates from these stations. To prevent you from making too much requests, you can make use of the `station updates` subscription. This service will let you know whenever a station's availability has changed or when a review was added.
+If a route is calculated and it includes several stations, you might want to receive status updates from these stations. To prevent you from making too many requests, you can make use of the `station updates` subscription. This service will let you know whenever a station's availability has changed or when a review was added.
+
+<api-reference-actions url="https://playground.chargetrip.com/?page=station"></api-reference-actions>
 
 ## Subscription
 To use the subscription service you will need a station `id` that can be obtained from queries like [stations] or [route details](). 
@@ -23,7 +25,7 @@ To use the subscription service you will need a station `id` that can be obtaine
 <response error="stationUpdatedById"></response>
 
 <playground>
-<code-block lang="graphql" type="subscription" edit-url="https://playground.chargetrip.com/?page=station">					
+<code-block lang="graphql" type="subscription">					
 subscription stationUpdatedById($stationId: ID!) {
   stationUpdatedById(id: $stationId) {
     id

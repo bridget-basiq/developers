@@ -4,7 +4,7 @@ description: An extension on our features and functionalities where we answer th
 ---
 
 # Integrator FAQ
-We always try to explain our features and functionalities as detailed as possible, but sometimes we still get questions from developers. That's why we decided to answer the most frequently asked questions in this section and hopefully help you out!
+We always try to explain our features and functionalities in as much detail as possible. But sometimes we still get questions from developers. That's why we decided to answer the most frequently asked questions in this section, and hopefully help you out!
 
 <accordion title="Car" description="3 Frequently Asked Questions">
 <accordion-item title="Is it possible to reduce the image file size?">
@@ -119,9 +119,9 @@ We do not take traffic into account when calculating routes. The impact of traff
 
 <accordion title="Tile Service" description="2 Frequently Asked Questions">
 
-<accordion-item title="Can I build an MVP without using Chargetrip’s Tile Server? We don’t want to use Mapbox.">
+<accordion-item title="Can I build an MVP without using Chargetrip’s tile server? We don’t want to use Mapbox.">
 
-Yes, this is possible! However, we strongly advise you use our Tile Server. We’re not legally allowed to expose large datasets from our partner EcoMovement, because it would let users of our API scrape the station data. So premium data like address and plug type isn’t exposed unless you query a single station with the station ID. 
+Yes, this is possible! However, we strongly advise you use our tile server. We’re not legally allowed to expose large datasets from our partner EcoMovement, because it would let users of our API scrape the station data. So premium data like address and plug type isn’t exposed unless you query a single station with the station ID. 
 
 </accordion-item>
 

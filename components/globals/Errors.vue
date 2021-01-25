@@ -1,9 +1,9 @@
 <template>
   <div v-if="errors.length" class="errors mt-8">
     <p>
-      On error the header status code is an error code and the response body
-      contains an error response object. The error response object can be any of
-      the ones below.
+      If unsuccessful, the header status code is an error code and the response
+      body contains an error response object. The error response object can be
+      any of the ones below.
     </p>
     <h3 class="mb-3">Errors &amp; warnings</h3>
     <ul v-if="errors.length">

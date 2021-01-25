@@ -12,17 +12,16 @@ jobs:
         with:
           node-version: 14.13.0
       - run: npm install
-      - run: npm run generate
+      - run: npm run build:staging
       - uses: jakejarvis/s3-sync-action@master
         with:
-            args: --acl public-read
+            args: --acl public-read --cache-control max-age=31536000,public
         env:
-           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET_STAGING }}
            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
            AWS_REGION: 'eu-central-1'
            SOURCE_DIR: 'dist'      # optional: defaults to entire repository
-           DEST_DIR: 'staging'
       - name: invalidate
         uses: chetan/invalidate-cloudfront-action@master
         env:

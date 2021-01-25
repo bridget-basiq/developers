@@ -12,6 +12,8 @@ frequently:
 # Query station operators
 Charge stations are often exploited by various operators. To get an overview of the operators in your station database you can use the `operatorList` query. All operator details are available for you to query. Keeping the number of attributes as low as possible will improve performance.
 
+<api-reference-actions url="https://playground.chargetrip.com/?page=stationListAll"></api-reference-actions>
+
 ## Query
 The entire list of operators can be accessed using the `operatorList` query, along with the attributes you would like to receive. Optionally you can use [pagination](/API-Reference/API/pagination) and `filters` to improve your results.
 
@@ -23,7 +25,7 @@ To filter your operator list you can use the `query` argument. You can then use 
 <response error="operatorList"></response>
 
 <playground>
-<code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/?page=stationListAll">					
+<code-block lang="graphql" type="query">					
 query operatorList {
   operatorList(
     query: { name: "AeroVironment" }

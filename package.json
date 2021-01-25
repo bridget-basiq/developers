@@ -5,10 +5,10 @@
   "scripts": {
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
-    "build:staging": "nuxt-ts build",
     "start": "NODE_ENV=staging nuxt-ts --hostname 0.0.0.0",
     "pages-to-algolia": "node scripts/algolia.js",
-    "generate": "nuxt-ts generate && npm run pages-to-algolia",
+    "build:staging": "nuxt-ts generate",
+    "build:production": "nuxt-ts generate && npm run pages-to-algolia",
     "lint:js": "eslint --ext .js,.vue,.ts --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "deploy": "pm2 deploy production update",
@@ -29,7 +29,7 @@
     }
   },
   "dependencies": {
-    "@chargetrip/internal-vue-components": "^0.0.197",
+    "@chargetrip/internal-vue-components": "^0.0.204",
     "@nuxt/content": "^1.11.1",
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/axios": "^5.12.2",

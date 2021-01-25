@@ -9,6 +9,8 @@ frequently:
 # Query stations around a GeoJSON point
 With the query `stationsAround` you can fetch the stations around a GeoJSON point with a specific distance in meters. This can be useful when a station is busy, or when you want to provide several charging options.
 
+<api-reference-actions example-url="https://chargetrip.github.io/examples/stations/" url="https://playground.chargetrip.com/?page=stationAround"></api-reference-actions>
+
 ## Query
 To query a station around GeoJSON point you have set various `query` arguments including `location`, `distance` and optionally `power` and `amenities`. To limit your results and improve the performance you can use [pagination](/API-Reference/API/pagination) on your query.
 
@@ -17,7 +19,7 @@ To query a station around GeoJSON point you have set various `query` arguments i
 <response error="stationAround"></response>
 
 <playground>
-<code-block lang="graphql" type="query" edit-url="https://playground.chargetrip.com/?page=stationAround">					
+<code-block lang="graphql" type="query">					
 query stationAround {
   stationAround(
     query: {
