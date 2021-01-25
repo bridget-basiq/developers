@@ -7,9 +7,9 @@ const OfTypeKind = {
 }
 
 const path = require('path');
+const fs = require('fs')
 const ofTypeKinds = Object.keys(OfTypeKind)
 const fetch = require('cross-fetch').fetch
-const fs = require('fs')
 const { getIntrospectionQuery } = require('graphql')
 require('dotenv').config()
 const axios = require('axios')
@@ -215,4 +215,5 @@ const appendOfType = (fields, allowRequired = false) => {
 
 
 main();
+
 

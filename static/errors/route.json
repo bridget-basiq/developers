@@ -1,6 +1,1 @@
-[
-  {
-    "code": "ROUTE_NOT_FOUND",
-    "message": "No route was found with the provided ID."
-  }
-]
+[{"code":"ROUTE_NOT_FOUND","message":"No route was found with the provided ID"}]

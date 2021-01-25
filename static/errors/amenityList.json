@@ -1,6 +1,1 @@
-[
-  {
-    "code": "STATION_NOT_FOUND",
-    "message": "No station was found with the provided ID."
-  }
-]
+[{"code":"STATION_NOT_FOUND","message":"No station was found with the provided ID"}]
