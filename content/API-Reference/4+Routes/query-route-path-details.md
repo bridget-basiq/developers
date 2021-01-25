@@ -13,7 +13,7 @@ Whenever you need data about a specific point in your route, you can use the `ro
 <api-reference-actions url="https://playground.chargetrip.com/page=getRoute"></api-reference-actions>
 
 ## Query
-When using the `routePath` query you need a route id and `location` as a GeoJSON point of a specific point in the route. You can create a new route a receive the route `id` using the new route mutation as described [here](/API-Reference/Routes/mutate-route).. Please note that the coordinates need to be identical to those you receive back from your route request. You can find all coordinates by decoding the encoded `polyline`. 
+When using the `routePath` query you need a route id and `location` as a GeoJSON point of a specific point in the route. You can create a new route and receive the route `id` using the new route mutation as described [here](/API-Reference/Routes/mutate-route). Please note that the coordinates need to be identical to those you receive back from your route request. You can find all coordinates by decoding the encoded `polyline`. 
 
 <schema name="routePath" :frequent="frequently"></schema>
 

@@ -2,7 +2,7 @@
   <div class="response">
     <h2>Response</h2>
     <p>
-      On success, the HTTP status code in the response header is
+      If successful, the HTTP status code in the response header is
       <code>200</code> and the response body contains the attributes you
       requested.
     </p>

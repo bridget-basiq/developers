@@ -54,7 +54,7 @@ descriptions:
 
 # Status & Error Codes
 
-To ensure you can respond appropriate when our API gives uexpected output, we maintain a consistent set of API response and error codes. The general design of the response and error codes will be discussed inside this chapter.
+To ensure you can respond appropriately when our API gives unexpected output, we maintain a consistent set of API response and error codes. The general design of these will be discussed inside this chapter.
 
 <c-image alt="Authorization image" src="status-and-error-codes.png" max-width="full"></c-image>
 
