@@ -1,10 +1,1 @@
-[
-  {
-    "code": "CAR_BAD_REQUEST",
-    "message": "Missing id."
-  },
-  {
-    "code": "CAR_NOT_FOUND",
-    "message": "No EV was found with the provided ID."
-  }
-]
+[{"code":"CAR_NOT_FOUND","message":"No car was found with the provided ID"},{"code":"MISSING_REQUIRED_PARAMETERS","message":"Missing required parameter(s): $PARAMETERS"}]

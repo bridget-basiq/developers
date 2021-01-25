@@ -1,6 +1,1 @@
-[
-  {
-    "code": "TARIFF_NOT_FOUND",
-    "message": "No tariff was found with the provided ID."
-  }
-]
+[{"code":"TARIFF_NOT_FOUND","message":"No tariff was found with the provided ID"}]
