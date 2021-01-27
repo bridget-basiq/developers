@@ -5,7 +5,6 @@
       class="bg fixed inset-0 bg-black opacity-50"
     />
     <CInput
-      id="search-input"
       ref="input"
       v-model="search"
       name="search"
