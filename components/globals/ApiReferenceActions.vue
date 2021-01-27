@@ -30,3 +30,14 @@ export default class extends Vue {
   @Prop() exampleUrl
 }
 </script>
+<style lang="scss">
+.api-reference-actions {
+  .c-button {
+    @apply px-3;
+
+    .icon {
+      @apply ml-1;
+    }
+  }
+}
+</style>
