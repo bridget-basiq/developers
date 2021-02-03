@@ -12,10 +12,6 @@ frequently:
 # Query station tariff list
 To get an overview of the charging costs and optional setup fee you can run the query station tariff list. Within this list you will find all costs per station.
 
-<note>
-The tariff data is currently not available in the playground. You can sign up for an account and use your own key to retrieve the tariff data.
-</note>
-
 ## Query
 The `tariffList` query works out of the box and no additional information is required. However, you have the option to enable [pagination]() on the query to improve the performance as you can see below.
 

@@ -12,10 +12,6 @@ frequently:
 # Query station tariff details
 The `tariff` query will provide you with the costs to use a specific charging station. It will include the charging costs and optional setup fee.
 
-<note>
-The tariff data is currently not available in the playground. You can sign up for an account and use your own key to retrieve the tariff data.
-</note>
-
 ## Query
 The `tariff` query requires a tariff `id` to work. This tariff `id` can be found inside the attributes of a [station]().
 
