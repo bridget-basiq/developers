@@ -130,7 +130,7 @@ export default class CodeBlock extends Vue {
     counter-increment: listing;
 
     &::before {
-      @apply mr-4 text-font-alt3;
+      @apply mr-4 text-font-alt3 inline-block text-right w-4;
 
       content: counter(listing);
     }
