@@ -14,6 +14,10 @@ To start integrating the Chargetrip API you can read our [getting started guide]
 https://api-2.chargetrip.io/graphql
 </code-block>
 
+<note>
+If you already had an account before december 2020, you might be running on our previous environment that uses https://api.chargetrip.io/graphql. If you are unsure which environment you need, <cta action='smallchat'>contact us<cta>.
+</note>
+
 ## Authorization
 The quick example below shows the header needed to authorize with the Chargetrip API. For a more in-depth guide around authorization and errors, you can take a look [here](/Getting-Started/API-Basics/status-error-codes).
 
