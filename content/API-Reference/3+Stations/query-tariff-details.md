@@ -9,11 +9,11 @@ frequently:
 - elements
 ---
 
-# Query station tariff details <premium />
+# Query station tariff details
 The `tariff` query will provide you with the costs to use a specific charging station. It will include the charging costs and optional setup fee.
 
 <note>
-The tariff data is not available when using OCM data. Therefore it is also unavailable in our playground. <cta action='smallchat'>Contact us<cta> for premium ecomovement data that holds tariff details.
+The tariff data is currently not available in the playground. You can sign up for an account and use your own key to retrieve the tariff data.
 </note>
 
 ## Query
