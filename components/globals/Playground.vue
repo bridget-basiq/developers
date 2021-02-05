@@ -32,6 +32,10 @@
   .code-block {
     @apply m-0 rounded-none border-0 border-b;
 
+    + .code-block {
+      @apply m-0;
+    }
+
     code {
       @apply pr-8;
     }

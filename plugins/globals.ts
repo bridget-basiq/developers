@@ -1,14 +1,18 @@
-import { Button, Cell, Row } from '@chargetrip/internal-vue-components'
 import Vue from 'vue'
+import {
+  Button,
+  Cell,
+  Row,
+  Note,
+  CodeBlock,
+} from '@chargetrip/internal-vue-components'
 import Image from '~/components/Image.vue'
 import Table from '~/components/Table.vue'
-import Note from '~/components/globals/Note.vue'
 import ApiReferenceActions from '~/components/globals/ApiReferenceActions.vue'
 import Accordion from '~/components/globals/Accordion.vue'
 import AccordionItem from '~/components/globals/AccordionItem.vue'
 import ArticleTeaser from '~/components/globals/ArticleTeaser.vue'
 import ArticleTeaserSection from '~/components/globals/ArticleTeaserSection.vue'
-import CodeBlock from '~/components/globals/CodeBlock.vue'
 import Cta from '~/components/globals/Cta.vue'
 import Error from '~/components/globals/Error.vue'
 import Errors from '~/components/globals/Errors.vue'

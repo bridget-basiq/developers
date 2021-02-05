@@ -11,7 +11,7 @@ Chargetrip operates an extensive database of EV makes, editions, and versions, e
 ## Database options
 The car database can only be modified by Chargetrip. New vehicles are added as soon as the OEM specifications are released, which tends to happen months before a release. We currently have 188 EV Car Models in our Database. A list of all supported vehicles can be found by using the `carList` query. Data for a specific model can be retrieved using the car query. You can also use the `carPremium` query to get access to even more data! Please <cta action="smallchat">contact us<cta> for more information about premium data.
 
-<note>
+<note display="block">
 
 The Playground only includes four test car models. You need a premium `x-client-id` to access the full car database or to get access to premium data. Some car parameters are courtesy of our partner EV Database
 
