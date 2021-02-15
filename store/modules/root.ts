@@ -9,6 +9,7 @@ export default class extends VuexModule {
   _darkMode = Cookies.get('dark_mode') === 'true'
   _querySchema: null | object = null
   _sideNav: null | object = null
+  _carCount: null | number = null
   _isEditing = false
   _content: null | object = null
   _user: object = { name: '', description: '' }
@@ -39,6 +40,11 @@ export default class extends VuexModule {
   }
 
   @Mutation
+  setCarCount(count) {
+    this._carCount = count
+  }
+
+  @Mutation
   setQuerySchema(querySchema: object) {
     this._querySchema = querySchema
   }
@@ -54,6 +60,10 @@ export default class extends VuexModule {
 
   get user() {
     return this._user
+  }
+
+  get carCount() {
+    return this._carCount
   }
 
   get querySchema() {

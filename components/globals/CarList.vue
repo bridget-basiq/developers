@@ -17,9 +17,11 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { CarList } from '@chargetrip/internal-vue-components'
+import { Mutation } from 'vuex-class'
 
 @Component({ components: { CarList } })
 export default class extends Vue {
+  @Mutation setCarCount
   carList: any = []
   value: any = []
 
@@ -31,6 +33,7 @@ export default class extends Vue {
     try {
       this.carList = (await import(`~/static/carList.json`)).default
       this.value = this.carList.map((car) => car.id)
+      this.setCarCount(this.carList.length)
     } catch (e) {
       this.carList = []
     }

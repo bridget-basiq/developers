@@ -25,6 +25,7 @@ import LatestUpdates from '~/components/globals/LatestUpdates.vue'
 import Playground from '~/components/globals/Playground.vue'
 import Premium from '~/components/globals/Premium.vue'
 import PropertyTable from '~/components/globals/PropertyTable.vue'
+import ReplaceVars from '~/components/globals/ReplaceVars.vue'
 import ReleaseNote from '~/components/globals/ReleaseNote.vue'
 import Response from '~/components/globals/Response.vue'
 import RightAside from '~/components/globals/RightAside.vue'
@@ -58,6 +59,7 @@ Vue.component('latest-updates', LatestUpdates)
 Vue.component('playground', Playground)
 Vue.component('premium', Premium)
 Vue.component('property-table', PropertyTable)
+Vue.component('replace-vars', ReplaceVars)
 Vue.component('release-note', ReleaseNote)
 Vue.component('response', Response)
 Vue.component('right-aside', RightAside)

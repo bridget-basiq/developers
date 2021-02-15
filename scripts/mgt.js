@@ -64,7 +64,7 @@ const getCarList = async () => {
   } = await axios.post(
     process.env.CHARGETRIP_MGT_API_URL,
     {
-      query: 'query { carList { id naming {model make version chargetrip_version edition } }}',
+      query: 'query { carList(query: {status: public}) { id naming {model make version chargetrip_version edition } }}',
     },
     {
       headers: {
@@ -99,6 +99,7 @@ const main = async () => {
       )
     )
   } catch (e) {
+    console.log(e)
     throw new Error("Can't fetch errors")
   }
 }
