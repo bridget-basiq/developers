@@ -20,8 +20,8 @@ import { CarList } from '@chargetrip/internal-vue-components'
 
 @Component({ components: { CarList } })
 export default class extends Vue {
-  carList: any[] = []
-  value = []
+  carList: any = []
+  value: any = []
 
   labelFn(option) {
     return `${option.children.length} Cars`
