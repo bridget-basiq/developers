@@ -17,6 +17,8 @@ The Playground only includes four test car models. You need a premium `x-client-
 
 </note>
 
+<car-list></car-list>
+
 <examples title="Clone an example">
     <!-- Cars -->
     <example 

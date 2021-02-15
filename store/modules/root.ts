@@ -56,7 +56,6 @@ export default class extends VuexModule {
     return this._user
   }
 
-
   get querySchema() {
     return this._querySchema
   }

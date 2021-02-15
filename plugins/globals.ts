@@ -14,6 +14,7 @@ import AccordionItem from '~/components/globals/AccordionItem.vue'
 import ArticleTeaser from '~/components/globals/ArticleTeaser.vue'
 import ArticleTeaserSection from '~/components/globals/ArticleTeaserSection.vue'
 import Cta from '~/components/globals/Cta.vue'
+import CarList from '~/components/globals/CarList.vue'
 import Error from '~/components/globals/Error.vue'
 import Errors from '~/components/globals/Errors.vue'
 import Example from '~/components/globals/Example.vue'
@@ -45,6 +46,7 @@ Vue.component('article-teaser', ArticleTeaser)
 Vue.component('article-teaser-section', ArticleTeaserSection)
 Vue.component('code-block', CodeBlock)
 Vue.component('cta', Cta)
+Vue.component('car-list', CarList)
 Vue.component('error', Error)
 Vue.component('errors', Errors)
 Vue.component('example', Example)
