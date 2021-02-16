@@ -6,7 +6,7 @@
       v-if="carList"
       class="car-list mt-4 border-alt border-t border-b"
       :car-list="carList"
-      :value="value"
+      :value="normalizedCarList"
       :readonly="true"
       :label-fn="labelFn"
       @input="$emit('input', $event)"
@@ -18,22 +18,27 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { CarList } from '@chargetrip/internal-vue-components'
 import { Mutation } from 'vuex-class'
+import { Getter } from 'nuxt-property-decorator'
+import availableVars from '~/utilities/availableVars'
 
 @Component({ components: { CarList } })
 export default class extends Vue {
   @Mutation setCarCount
-  carList: any = []
+  @Getter carList
   value: any = []
 
   labelFn(option) {
     return `${option.children.length} Cars`
   }
 
+  get normalizedCarList() {
+    return (this.carList || []).map((car) => car.id)
+  }
+
   async fetch() {
     try {
-      this.carList = (await import(`~/static/carList.json`)).default
-      this.value = this.carList.map((car) => car.id)
-      this.setCarCount(this.carList.length)
+      if (this.carList) return
+      await availableVars.carList(this.$store)
     } catch (e) {
       this.carList = []
     }

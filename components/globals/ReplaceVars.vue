@@ -1,9 +1,16 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import availableVars from '~/utilities/availableVars'
 
 @Component
-export default class Cta extends Vue {
+export default class extends Vue {
   @Prop() vars
+
+  async fetch() {
+    await Promise.all(
+      this.vars.map((varName) => availableVars?.[varName]?.(this.$store))
+    )
+  }
 
   replaceVars(nodes, varName) {
     return nodes.map((node) => {
