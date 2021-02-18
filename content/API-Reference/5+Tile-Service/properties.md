@@ -42,7 +42,7 @@ Each tile provided by the tile service contains a layer, called `stations`. This
 
 <property-table :keys="keys" :types="types" :descriptions="descriptions"></property-table>
 
-<note>
+<note display="block">
 
 You must use the `count` property to differentiate between stations and clusters. The `count` will always be 1 for a station and more than 1 for clusters.
 

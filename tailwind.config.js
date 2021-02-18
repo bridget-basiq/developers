@@ -87,6 +87,10 @@ module.exports = {
         lg: '10px',
         xl: '12px',
       },
+      cursor: {
+        'ew-resize': 'ew-resize',
+        'ns-resize': 'ns-resize',
+      },
       height: {
         '1/2': '50%',
       },

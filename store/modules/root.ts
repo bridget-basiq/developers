@@ -1,6 +1,7 @@
 import { Module, Mutation, VuexModule } from 'vuex-module-decorators'
 import Vuex from 'vuex'
 import Cookies from 'js-cookie'
+import { Action } from 'vuex-class'
 const store = new Vuex.Store({})
 
 @Module({ namespaced: false, dynamic: true, store, name: 'root' })
@@ -9,6 +10,8 @@ export default class extends VuexModule {
   _darkMode = Cookies.get('dark_mode') === 'true'
   _querySchema: null | object = null
   _sideNav: null | object = null
+  _carList: null | [] = null
+  _carCount: null | number = null
   _isEditing = false
   _content: null | object = null
   _user: object = { name: '', description: '' }
@@ -39,6 +42,18 @@ export default class extends VuexModule {
   }
 
   @Mutation
+  setCarCount(count) {
+    this._carCount = count
+  }
+
+  @Mutation
+  setCarList(carList) {
+    this._carList = carList
+
+    this._carCount = carList.length
+  }
+
+  @Mutation
   setQuerySchema(querySchema: object) {
     this._querySchema = querySchema
   }
@@ -56,6 +71,13 @@ export default class extends VuexModule {
     return this._user
   }
 
+  get carCount() {
+    return this._carCount
+  }
+
+  get carList() {
+    return this._carList
+  }
 
   get querySchema() {
     return this._querySchema

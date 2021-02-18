@@ -8,7 +8,7 @@ order: 3
 
 To render stations on a map, you need to add a set of filters to the tile request. These filters are sent as query parameters and must be appended after `?`.
 
-<note>
+<note display="block">
 The tile service will only return results once a combination of powers and connectors are applied.
 </note>
 
