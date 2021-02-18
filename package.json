@@ -31,7 +31,7 @@
     }
   },
   "dependencies": {
-    "@chargetrip/internal-vue-components": "^0.0.242",
+    "@chargetrip/internal-vue-components": "^0.0.244",
     "@nuxt/content": "^1.11.1",
     "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/axios": "^5.12.2",

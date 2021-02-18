@@ -12,6 +12,7 @@
       class="car-list mt-4 border-alt border-t border-b"
       :car-list="carList"
       :value="normalizedCarList"
+      :nested-label-fn="nestedLabelFn"
       :readonly="true"
       :label-fn="labelFn"
       @input="$emit('input', $event)"
@@ -38,6 +39,10 @@ export default class extends Vue {
 
   get normalizedCarList() {
     return (this.carList || []).map((car) => car.id)
+  }
+
+  nestedLabelFn(option) {
+    return option.id
   }
 
   async fetch() {
