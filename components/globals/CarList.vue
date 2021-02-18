@@ -1,6 +1,6 @@
 <template>
   <div class="car-list">
-    <h3>Available cars</h3>
+    <h2>Available cars</h2>
     <p>In the table below you can find all our available cars.</p>
     <CarList
       v-if="carList"
