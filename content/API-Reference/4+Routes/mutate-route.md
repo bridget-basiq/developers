@@ -18,7 +18,7 @@ If you want to request alternative charging stations along a route, you can set 
 ### Support stations as waypoint
 You can add a station as a waypoint or as a destination. To do this, add `stationId` to `routeRequest.via.properties` or `routeRequest.destination.properties`. 
 
-<note>
+<note display="block">
 You can only query for a preferred operator when it’s been set by a Chargetrip employee. You can <cta action='smallchat'>contact us</cta> to do so.
 </note>
 
