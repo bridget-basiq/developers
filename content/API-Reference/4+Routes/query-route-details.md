@@ -23,6 +23,9 @@ If your [route mutation](/API-Reference/Routes/mutate-route) included the `stati
 ### Support stations as waypoint
 If your [route mutation](/API-Reference/Routes/mutate-route) included stations in the `via` parameter, you will receive a route with additional stations as waypoints. These station as waypoints can be found inside the `route.leg`.
 
+### Get additional properties
+Our route destination, origin and stations have an optional `properties` attribute any of our route queries. You can use this to fetch a complete `address`, the current temperature (`temp`) and air `pressure` at that location. 
+
 <schema name="route" :frequent="frequently"></schema>
 
 <response error="route"></response>
