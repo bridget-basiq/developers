@@ -14,6 +14,7 @@ module.exports = {
   plugins: ['prettier'],
   // add your custom rules here
   rules: {
+    camelcase: 'off',
     'vue/no-v-html': 'off',
   },
 }

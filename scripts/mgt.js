@@ -8,7 +8,6 @@ let accessToken = '';
 
 const login = async () => {
   const {
-    // eslint-disable-next-line camelcase
     data: { access_token },
   } = await axios.post(`https://${process.env.AUTH0_DOMAIN}/oauth/token`, {
     grant_type: 'password',
@@ -33,7 +32,6 @@ const getExceptionList = async () => {
     },
     {
       headers: {
-        // eslint-disable-next-line camelcase
         Authorization: `Bearer ${accessToken}`,
       },
     }
@@ -68,7 +66,6 @@ const getCarList = async () => {
     },
     {
       headers: {
-        // eslint-disable-next-line camelcase
         Authorization: `Bearer ${accessToken}`,
       },
     }
@@ -99,7 +96,6 @@ const main = async () => {
       )
     )
   } catch (e) {
-    console.log(e)
     throw new Error("Can't fetch errors")
   }
 }

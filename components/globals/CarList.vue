@@ -1,5 +1,5 @@
 <template>
-  <div class="car-list">
+  <div v-if="carList" class="car-list">
     <h3>Available cars</h3>
     <p>In the table below you can find all our available cars.</p>
     <CarList
@@ -40,7 +40,7 @@ export default class extends Vue {
       if (this.carList) return
       await availableVars.carList(this.$store)
     } catch (e) {
-      this.carList = []
+      this.carList = null
     }
   }
 }
