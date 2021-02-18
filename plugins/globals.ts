@@ -1,15 +1,20 @@
-import { Button, Cell, Row } from '@chargetrip/internal-vue-components'
 import Vue from 'vue'
+import {
+  Button,
+  Cell,
+  Row,
+  Note,
+  CodeBlock,
+} from '@chargetrip/internal-vue-components'
 import Image from '~/components/Image.vue'
 import Table from '~/components/Table.vue'
-import Note from '~/components/globals/Note.vue'
 import ApiReferenceActions from '~/components/globals/ApiReferenceActions.vue'
 import Accordion from '~/components/globals/Accordion.vue'
 import AccordionItem from '~/components/globals/AccordionItem.vue'
 import ArticleTeaser from '~/components/globals/ArticleTeaser.vue'
 import ArticleTeaserSection from '~/components/globals/ArticleTeaserSection.vue'
-import CodeBlock from '~/components/globals/CodeBlock.vue'
 import Cta from '~/components/globals/Cta.vue'
+import CarList from '~/components/globals/CarList.vue'
 import Error from '~/components/globals/Error.vue'
 import Errors from '~/components/globals/Errors.vue'
 import Example from '~/components/globals/Example.vue'
@@ -20,6 +25,7 @@ import LatestUpdates from '~/components/globals/LatestUpdates.vue'
 import Playground from '~/components/globals/Playground.vue'
 import Premium from '~/components/globals/Premium.vue'
 import PropertyTable from '~/components/globals/PropertyTable.vue'
+import ReplaceVars from '~/components/globals/ReplaceVars.vue'
 import ReleaseNote from '~/components/globals/ReleaseNote.vue'
 import Response from '~/components/globals/Response.vue'
 import RightAside from '~/components/globals/RightAside.vue'
@@ -41,6 +47,7 @@ Vue.component('article-teaser', ArticleTeaser)
 Vue.component('article-teaser-section', ArticleTeaserSection)
 Vue.component('code-block', CodeBlock)
 Vue.component('cta', Cta)
+Vue.component('car-list', CarList)
 Vue.component('error', Error)
 Vue.component('errors', Errors)
 Vue.component('example', Example)
@@ -52,6 +59,7 @@ Vue.component('latest-updates', LatestUpdates)
 Vue.component('playground', Playground)
 Vue.component('premium', Premium)
 Vue.component('property-table', PropertyTable)
+Vue.component('replace-vars', ReplaceVars)
 Vue.component('release-note', ReleaseNote)
 Vue.component('response', Response)
 Vue.component('right-aside', RightAside)

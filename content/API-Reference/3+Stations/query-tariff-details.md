@@ -12,6 +12,10 @@ frequently:
 # Query station tariff details
 The `tariff` query will provide you with the costs to use a specific charging station. It will include the charging costs and optional setup fee.
 
+<note display="block">
+The tariff data is not available when using OCM data. Therefore it is also unavailable in our playground. <cta action='smallchat'>Contact us<cta> for premium ecomovement data that holds tariff details.
+</note>
+
 ## Query
 The `tariff` query requires a tariff `id` to work. This tariff `id` can be found inside the attributes of a [station]().
 

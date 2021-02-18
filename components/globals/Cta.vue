@@ -1,5 +1,5 @@
 <template>
-  <a class="cta" @click="onClick">
+  <a class="inline cta" @click="onClick">
     <slot />
   </a>
 </template>

@@ -641,6 +641,26 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
+  .c-note {
+    padding-bottom: 1rem !important;
+    @apply mt-8;
+  }
+
+  .c-side-nav {
+    .c-menu-item-group {
+      &.depth-0 {
+        > .children {
+          & > * {
+            @apply mb-6;
+
+            &:last-child {
+              @apply mb-0;
+            }
+          }
+        }
+      }
+    }
+  }
   .max-w-container {
     max-width: 736px;
   }
