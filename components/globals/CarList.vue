@@ -1,7 +1,12 @@
 <template>
   <div v-if="carList" class="car-list">
-    <h3>Available cars</h3>
-    <p>In the table below you can find all our available cars.</p>
+    <h2>Available cars</h2>
+    <p>
+      The table below lists all our supported cars sorted by make. When using
+      our API you can use the name of the car or it's id to query for specific
+      details. Please reach out to us if you think we are missing out on a
+      specific car.
+    </p>
     <CarList
       v-if="carList"
       class="car-list mt-4 border-alt border-t border-b"
