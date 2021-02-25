@@ -16,10 +16,10 @@ var map = new mapboxgl.Map({
   center: [-122.420679, 37.772537],
   zoom: 13,
   transformRequest: (url, resourceType)=> {
-    if(resourceType === 'Tile' && url.startsWith('https://api.chargetrip.io')) {
+    if(resourceType === 'Tile' && url.startsWith('https://api-2.chargetrip.io')) {
        return {
         url: url,
-        headers: { "x-client-id": "5e8c22366f9c5f23ab0eff39" },
+        headers: { "x-client-id": "YOUR_CLIENT_ID_HERE" },
       }
     }
   }

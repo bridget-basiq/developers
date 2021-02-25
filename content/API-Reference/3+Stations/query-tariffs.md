@@ -9,13 +9,15 @@ frequently:
 - elements
 ---
 
-# Query station tariff list <premium />
+# Query station tariff list
 To get an overview of the charging costs and optional setup fee you can run the query station tariff list. Within this list you will find all costs per station.
 
-**Note**: the tariff data is not available when using OCM data. Therefore it also unavailable in our [playground](). <cta action='smallchat'>Contact us</cta> for premium ecomovement data which holds tariff details.
+<note display="block">
+The station tariff data is currently not available on our playground. Create an account or <cta action='smallchat'>contact sales</cta> to get access to the data.
+</note>
 
 ## Query
-The `tariffList` query works out of the box and no additional information is required. However, you have the option to enable [pagination]() on the query to improve the performance as you can see below.
+The `tariffList` query works out of the box and no additional information is required. However, you have the option to enable [pagination](/API-Reference/API/pagination) on the query to improve the performance as you can see below.
 
 <schema name="tariffList" :frequent="frequently"></schema>
 

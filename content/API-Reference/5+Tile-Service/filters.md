@@ -22,8 +22,8 @@ Below you can find an overview of possible filters you can apply.
 You can request the number of displayed stations on the map by using the following API endpoint. If you applied any filters you will need to apply them to the count endpoint as well to make sure you receive the correct count.
 
 <code-block lang="html" prefix="Tile Service" title="Count Endpoint">
-https://api.chargetrip.io/station/count.json
-https://api.chargetrip.io/station/count.json?powers[]=22&powers[]=43&connectors[]=CHADEMO&connectors[]=IEC_62196_T2_COMBO&amenities[]=restaurant&availableOnly=true
+https://api-2.chargetrip.io/station/count.json
+https://api-2.chargetrip.io/station/count.json?powers[]=22&powers[]=43&connectors[]=CHADEMO&connectors[]=IEC_62196_T2_COMBO&amenities[]=restaurant&availableOnly=true
 </code-block>
 
 It will return a response that looks like this:
