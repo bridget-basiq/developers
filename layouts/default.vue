@@ -497,7 +497,7 @@ export default class Layout extends Mixins(Base) {
     @apply mt-12;
   }
 
-  p {
+  > p {
     & + img {
       @apply mt-6;
     }

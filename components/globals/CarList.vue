@@ -7,42 +7,88 @@
       details. Please reach out to us if you think we are missing out on a
       specific car.
     </p>
-    <CarList
-      v-if="carList"
-      class="car-list mt-4 border-alt border-t border-b"
-      :car-list="carList"
-      :value="normalizedCarList"
-      :nested-label-fn="nestedLabelFn"
-      :readonly="true"
-      :label-fn="labelFn"
-      @input="$emit('input', $event)"
-    />
+    <ul class="mt-5 bor">
+      <li
+        v-for="(category, categoryKey) in normalizedCarList"
+        :key="categoryKey"
+        class="divider-y divide-alt text-14 border-alt border-t"
+      >
+        <div
+          class="cursor-pointer py-2.5 flex items-center"
+          @click="index = categoryKey"
+        >
+          <div>
+            <p>
+              <strong>
+                {{ categoryKey }}
+              </strong>
+            </p>
+            <p class="text-font-alt3 mt-0 text-12">
+              <strong> {{ category.length }} Cars </strong>
+            </p>
+          </div>
+          <span
+            class="icon-chevron-down ml-auto transform"
+            :class="{ 'rotate-180': index === categoryKey }"
+          />
+        </div>
+        <ul v-show="index === categoryKey" class="pl-8 border-t border-alt">
+          <li
+            v-for="(car, carKey) in category"
+            :key="carKey"
+            class="border-b border-alt last:border-b-0 py-4"
+          >
+            <p>
+              <strong>
+                {{ car.name }}
+              </strong>
+            </p>
+            <p class="text-font-alt3 text-12">
+              <strong>
+                {{ car.id }}
+              </strong>
+            </p>
+          </li>
+        </ul>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { CarList } from '@chargetrip/internal-vue-components'
 import { Mutation } from 'vuex-class'
 import { Getter } from 'nuxt-property-decorator'
 import availableVars from '~/utilities/availableVars'
 
-@Component({ components: { CarList } })
+@Component
 export default class extends Vue {
   @Mutation setCarCount
   @Getter carList
-  value: any = []
+  index = null
 
-  labelFn(option) {
-    return `${option.children.length} Cars`
+  getCarName({ model, version, chargetrip_version }) {
+    return `${model} ${chargetrip_version || version}`
   }
 
   get normalizedCarList() {
-    return (this.carList || []).map((car) => car.id)
-  }
-
-  nestedLabelFn(option) {
-    return option.id
+    return this.carList
+      ?.slice(0)
+      ?.sort((a, b) =>
+        a.naming.make < b.naming.make
+          ? -1
+          : a.naming.make > b.naming.make
+          ? 1
+          : 0
+      )
+      .reduce((obj, item) => {
+        if (!obj[item.naming.make]) obj[item.naming.make] = []
+        obj[item.naming.make].push({
+          ...item,
+          name: this.getCarName(item.naming),
+        })
+        return obj
+      }, {})
   }
 
   async fetch() {

@@ -70,6 +70,7 @@ module.exports = {
         'note-alt2': 'var(--note-alt2)',
       },
       spacing: {
+        2.5: '0.625rem',
         7: '1.75rem',
         9: '2.25rem',
         13: '3.25rem',
