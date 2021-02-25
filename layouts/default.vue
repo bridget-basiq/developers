@@ -150,7 +150,7 @@ export default class Layout extends Mixins(Base) {
   khaledPosition = { x: 0, y: 0 }
   @Ref('container') container
   @Ref('search') search
-  canEdit = process.env.NODE_ENV !== 'production'
+  canEdit = false // process.env.NODE_ENV !== 'production'
   @Mutation setDarkMode
   @Mutation setIsEditing
   noTransition = false
@@ -497,7 +497,7 @@ export default class Layout extends Mixins(Base) {
     @apply mt-12;
   }
 
-  p {
+  > p {
     & + img {
       @apply mt-6;
     }

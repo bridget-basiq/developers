@@ -9,8 +9,8 @@ import { getFileByPath, getHeadings } from '~/utilities/project.functions'
 
 @Component
 export default class Slug extends Vue {
-  page: any = null
   @Mutation setIsEditing
+  page: any = null
 
   head() {
     if (!this.page) return
