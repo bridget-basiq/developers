@@ -88,10 +88,10 @@ If we want to reflect this as a curl it would look like this;
       ],
       "extensions": {
         "exception": {
-          "response": "ERROR_EV_NOT_FOUND",
+          "response": "CAR_NOT_FOUND",
           "status": 500,
-          "message": "The car was not found in the database",
-          "code": "ERROR_EV_NOT_FOUND"
+          "message": "No car was found with the provided ID",
+          "code": "CAR_NOT_FOUND"
         }
       }
     }
