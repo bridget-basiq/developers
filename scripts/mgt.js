@@ -9,15 +9,15 @@ let accessToken = '';
 const login = async () => {
   const {
     data: { access_token },
-  } = await axios.post(`https://${process.env.AUTH0_DOMAIN}/oauth/token`, {
-    grant_type: 'password',
-    username: process.env.AUTH0_USERNAME,
-    password: process.env.AUTH0_PASSWORD,
-    client_id: process.env.AUTH0_CLIENT_ID,
-    client_secret: process.env.AUTH0_CLIENT_SECRET,
-  })
+  } = await axios.post(
+    process.env.CHARGETRIP_MGT_LOGIN_URL,
+    {
+      email: process.env.CHARGETRIP_MGT_EMAIL,
+      password: process.env.CHARGETRIP_MGT_PASSWORD
+    }
+  );
 
-  return access_token;
+  return access_token
 }
 
 const getExceptionList = async () => {
