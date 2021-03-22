@@ -12,7 +12,7 @@
     }"
     @click="closeKhaled"
   >
-    <TopNav class="z-50 lg-max:sticky" :show-items="!canEdit">
+    <TopNav class="z-50 lg-max:sticky">
       <div
         class="lg:relative flex-1 h-16 flex items-center"
         :class="{ 'lg-max:hidden': !showSearch }"
@@ -29,38 +29,26 @@
         <Button
           v-if="!showMenu"
           size="sm"
+          class="mr-4"
+          color="base"
+          :icon="!darkMode ? 'filled-dark-mode' : 'filled-light-mode'"
+          @click.native="setDarkMode(!darkMode)"
+        />
+        <Button
+          v-if="!showMenu"
+          size="sm"
+          class="mr-4"
           color="base"
           icon="search"
           @click.native="showSearch = !showSearch"
         />
         <Button
-          class="ml-4"
           size="sm"
           color="base"
           :icon="showMenu ? 'close' : 'menu'"
           @click.native="showMenu = !showMenu"
         />
       </div>
-      <template v-if="canEdit" v-slot:cta>
-        <Button
-          v-if="!isEditing"
-          class="ml-auto lg-max:hidden"
-          size="sm"
-          color="accent"
-          icon="edit"
-          @click.native="triggerEdit"
-        />
-        <div v-else class="flex">
-          <Button size="sm" color="alt" icon="close" @click.native="cancel" />
-          <Button
-            size="sm"
-            class="ml-4"
-            color="accent"
-            icon="checkmark"
-            @click.native="save"
-          />
-        </div>
-      </template>
     </TopNav>
     <div
       class="view flex lg:bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden rounded-t-xl"
@@ -568,6 +556,16 @@ export default class Layout extends Mixins(Base) {
   .top-nav {
     .container {
       @apply ml-12;
+
+      > * {
+        &:last-child {
+          .c-button {
+            &:first-child {
+              @apply hidden;
+            }
+          }
+        }
+      }
     }
     .logo-wrapper {
       @screen lg {
