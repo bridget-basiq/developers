@@ -12,7 +12,7 @@
     }"
     @click="closeKhaled"
   >
-    <TopNav class="z-50" :show-items="!canEdit">
+    <TopNav class="z-50 lg-max:sticky" :show-items="!canEdit">
       <div
         class="lg:relative flex-1 h-16 flex items-center"
         :class="{ 'lg-max:hidden': !showSearch }"
@@ -565,6 +565,17 @@ export default class Layout extends Mixins(Base) {
 }
 
 .layout {
+  .top-nav {
+    .container {
+      @apply ml-12;
+    }
+    .logo-wrapper {
+      @screen lg {
+        width: calc(240px - 24px);
+      }
+    }
+  }
+
   &.no-transition {
     .box,
     .animate,
