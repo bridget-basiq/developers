@@ -1,9 +1,9 @@
 h1 {
   @apply leading-10 text-32 font-bold;
 
-  @screen md {
-    @apply text-32;
-  }
+@screen md {
+  @apply text-32;
+}
 }
 
 h2 {

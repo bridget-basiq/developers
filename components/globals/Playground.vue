@@ -1,5 +1,5 @@
 <template>
-  <RightAside class="playground" :large="true">
+  <right-aside class="playground" :large="true">
     <div
       class="h-3 w-full z-10 absolute left-0 top-1/2 transform -translate-y-1/2 cursor-ns-resize"
       :style="{ top: `${height}%` }"
@@ -8,14 +8,15 @@
     <div class="container flex flex-col">
       <slot />
     </div>
-  </RightAside>
+  </right-aside>
 </template>
 <script lang="ts">
 import { Component, Mixins } from 'vue-property-decorator'
 import Base from '~/mixins/base'
 import { Listen } from '~/utilities/decorators'
+import RightAside from '~/components/globals/RightAside.vue'
 
-@Component
+@Component({ components: { RightAside } })
 export default class extends Mixins(Base) {
   codeBlock: any = null
   height = 50

@@ -11,8 +11,9 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import Errors from '@/components/globals/Errors.vue'
 
-@Component
+@Component({ components: { Errors } })
 export default class Response extends Vue {
   @Prop() error
 }

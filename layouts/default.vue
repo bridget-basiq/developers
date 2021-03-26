@@ -209,7 +209,7 @@ export default class Layout extends Mixins(Base) {
         },
         {
           title: 'Github',
-          icon: 'github',
+          icon: 'logo-github',
           href: 'https://github.com/chargetrip',
           arrow: true,
         },
@@ -557,12 +557,10 @@ export default class Layout extends Mixins(Base) {
     .container {
       @apply ml-12;
 
-      > * {
-        &:last-child {
-          .c-button {
-            &:first-child {
-              @apply hidden;
-            }
+      .ctas {
+        .c-menu-item {
+          &:first-child {
+            @apply hidden;
           }
         }
       }
