@@ -13,7 +13,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, Getter } from 'nuxt-property-decorator'
 
-@Component
+@Component({ name: 'c-image' })
 export default class CImage extends Vue {
   @Prop() src
   @Prop() alt

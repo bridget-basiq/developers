@@ -62,6 +62,7 @@ export default {
   css: [
     '~/assets/styles/index.scss',
     '@chargetrip/internal-vue-components/dist/components.css',
+    '@chargetrip/internal-vue-components/src/assets/styles/icons.scss',
   ],
 
   content: {
@@ -94,7 +95,9 @@ export default {
     '@nuxtjs/axios',
     '@nuxt/content',
   ],
-
+  tailwindcss: {
+    jit: true,
+  },
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [],
   // Build Configuration (https://go.nuxtjs.dev/config-build)

@@ -1,13 +1,20 @@
 <template>
-  <RightAside class="examples px-8 flex flex-col overflow-y-scroll">
-    <div class="sticky-header">
+  <right-aside class="examples px-8 flex flex-col overflow-y-scroll">
+    <ActionBar :sticky="true">
       <h2>Examples</h2>
-    </div>
+    </ActionBar>
     <div class="container">
       <slot />
     </div>
-  </RightAside>
+  </right-aside>
 </template>
+<script lang="ts">
+import { Vue, Component } from 'nuxt-property-decorator'
+import { ActionBar } from '@chargetrip/internal-vue-components'
+
+@Component({ components: { ActionBar } })
+export default class extends Vue {}
+</script>
 <style lang="scss">
 .examples {
   height: calc(100vh - 64px);

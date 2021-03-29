@@ -115,6 +115,7 @@ module.exports = {
         24: '24px',
         32: '32px',
         40: '40px',
+        64: '64px',
       },
       translate: {
         '1/4': '25%',

@@ -12,7 +12,7 @@
     }"
     @click="closeKhaled"
   >
-    <TopNav class="z-50" :show-items="!canEdit">
+    <TopNav class="z-50 lg-max:sticky" :is-logged-in="isLoggedIn">
       <div
         class="lg:relative flex-1 h-16 flex items-center"
         :class="{ 'lg-max:hidden': !showSearch }"
@@ -29,38 +29,26 @@
         <Button
           v-if="!showMenu"
           size="sm"
+          class="mr-4"
+          color="base"
+          :icon="!darkMode ? 'filled-dark-mode' : 'filled-light-mode'"
+          @click.native="setDarkMode(!darkMode)"
+        />
+        <Button
+          v-if="!showMenu"
+          size="sm"
+          class="mr-4"
           color="base"
           icon="search"
           @click.native="showSearch = !showSearch"
         />
         <Button
-          class="ml-4"
           size="sm"
           color="base"
           :icon="showMenu ? 'close' : 'menu'"
           @click.native="showMenu = !showMenu"
         />
       </div>
-      <template v-if="canEdit" v-slot:cta>
-        <Button
-          v-if="!isEditing"
-          class="ml-auto lg-max:hidden"
-          size="sm"
-          color="accent"
-          icon="edit"
-          @click.native="triggerEdit"
-        />
-        <div v-else class="flex">
-          <Button size="sm" color="alt" icon="close" @click.native="cancel" />
-          <Button
-            size="sm"
-            class="ml-4"
-            color="accent"
-            icon="checkmark"
-            @click.native="save"
-          />
-        </div>
-      </template>
     </TopNav>
     <div
       class="view flex lg:bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden rounded-t-xl"
@@ -116,6 +104,7 @@ import {
 } from '@chargetrip/internal-vue-components'
 
 import { Getter, Mutation } from 'vuex-class'
+import Cookies from 'js-cookie'
 import Table from '~/components/globals/PropertyTable.vue'
 import RelatedActions from '~/components/RelatedActions.vue'
 import PrevNextNavigation from '~/components/PrevNextNavigation.vue'
@@ -123,7 +112,6 @@ import Base from '~/mixins/base'
 import MarkdownFormatting from '~/components/MarkdownFormatting.vue'
 import { Listen } from '~/utilities/decorators'
 import Search from '~/components/Search.vue'
-
 @Component({
   components: {
     Search,
@@ -144,6 +132,7 @@ export default class Layout extends Mixins(Base) {
   @Getter sideNav
   @Getter content
   @Getter isEditing
+  isLoggedIn = false
   showMenu = false
   showSearch = false
   showKhaled = false
@@ -180,6 +169,8 @@ export default class Layout extends Mixins(Base) {
   }
 
   mounted() {
+    this.isLoggedIn = !!Cookies.get('access_token')
+
     this.onRouteChange()
     if (this.hash.length) {
       this.onMenuItemClick({ hash: this.hash })
@@ -221,7 +212,7 @@ export default class Layout extends Mixins(Base) {
         },
         {
           title: 'Github',
-          icon: 'github',
+          icon: 'logo-github',
           href: 'https://github.com/chargetrip',
           arrow: true,
         },
@@ -565,6 +556,25 @@ export default class Layout extends Mixins(Base) {
 }
 
 .layout {
+  .top-nav {
+    .container {
+      @apply ml-12;
+
+      .ctas {
+        .c-menu-item {
+          &:first-child {
+            @apply hidden;
+          }
+        }
+      }
+    }
+    .logo-wrapper {
+      @screen lg {
+        width: calc(240px - 24px);
+      }
+    }
+  }
+
   &.no-transition {
     .box,
     .animate,

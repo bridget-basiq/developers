@@ -6,7 +6,7 @@ import {
   Note,
   CodeBlock,
 } from '@chargetrip/internal-vue-components'
-import Image from '~/components/Image.vue'
+import CImage from '~/components/CImage.vue'
 import Table from '~/components/Table.vue'
 import ApiReferenceActions from '~/components/globals/ApiReferenceActions.vue'
 import Accordion from '~/components/globals/Accordion.vue'
@@ -39,7 +39,7 @@ Vue.component('c-button', Button)
 Vue.component('c-table', Table)
 Vue.component('c-row', Row)
 Vue.component('c-cell', Cell)
-Vue.component('c-image', Image)
+Vue.component('c-image', CImage)
 Vue.component('accordion', Accordion)
 Vue.component('api-reference-actions', ApiReferenceActions)
 Vue.component('accordion-item', AccordionItem)

@@ -8,7 +8,7 @@ images:
 - configuring-your-project-2.png
 ---
 # Getting started
-The Chargetrip API can be used to render electric vehicles, plot stations and calculate routes. The API itself has different access levels and request limits depending on your plan. Everyone can start with a limited dataset on the free plan, but you can <cta action="small-chat">contact us<cta> at any time to upgrade your plan.
+The Chargetrip API can be used to render electric vehicles, plot stations and calculate routes. The API itself has different access levels and request limits depending on your plan. Everyone can start with a limited dataset on the free plan, but you can <cta action="small-chat">contact us</cta> at any time to upgrade your plan.
 
 <steps>
 <step img="getting-access.png">
@@ -25,7 +25,7 @@ To get started with the Chargetrip API you need to create an account and collect
 
 ## Configuring your project
 
-When logged in to the dashboard, go to projects and click on create new project. Upon saving your configuration, you will be returned to the project overview with your new key.
+When logged in to the dashboard, go to projects and click create new project. You will be going through a small onboarding guide where you can set your station provider and cars. Bear in mind: cars can be updated later on, stations can not. 
 
 <step-note color="accent" title="Chargetip">
 
@@ -37,7 +37,7 @@ Want to use the same configuration in a different app? Create additional app key
 <step img="collect-your-keys.png">
 
 ## Collect your keys
-After configuring your project, you need to click save. You will then be redirected to the project overview where you can copy your project key.
+After configuring your project, you need to click create. After that you will be taken to your project overview. Copy the `project id` / `x-client-id` and use this to make requests.
 
 <step-note color="note" title="Key alert" :khaled="true">
 
