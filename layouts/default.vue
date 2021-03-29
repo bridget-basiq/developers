@@ -12,7 +12,7 @@
     }"
     @click="closeKhaled"
   >
-    <TopNav class="z-50 lg-max:sticky">
+    <TopNav class="z-50 lg-max:sticky" :is-logged-in="isLoggedIn">
       <div
         class="lg:relative flex-1 h-16 flex items-center"
         :class="{ 'lg-max:hidden': !showSearch }"
@@ -104,6 +104,7 @@ import {
 } from '@chargetrip/internal-vue-components'
 
 import { Getter, Mutation } from 'vuex-class'
+import Cookies from 'js-cookie'
 import Table from '~/components/globals/PropertyTable.vue'
 import RelatedActions from '~/components/RelatedActions.vue'
 import PrevNextNavigation from '~/components/PrevNextNavigation.vue'
@@ -111,7 +112,6 @@ import Base from '~/mixins/base'
 import MarkdownFormatting from '~/components/MarkdownFormatting.vue'
 import { Listen } from '~/utilities/decorators'
 import Search from '~/components/Search.vue'
-
 @Component({
   components: {
     Search,
@@ -132,6 +132,7 @@ export default class Layout extends Mixins(Base) {
   @Getter sideNav
   @Getter content
   @Getter isEditing
+  isLoggedIn = false
   showMenu = false
   showSearch = false
   showKhaled = false
@@ -168,6 +169,8 @@ export default class Layout extends Mixins(Base) {
   }
 
   mounted() {
+    this.isLoggedIn = !!Cookies.get('access_token')
+
     this.onRouteChange()
     if (this.hash.length) {
       this.onMenuItemClick({ hash: this.hash })
