@@ -9,6 +9,7 @@ export default class extends VuexModule {
   _dirs: string[] = []
   _darkMode = Cookies.get('dark_mode') === 'true'
   _querySchema: null | object = null
+  _schemas = {}
   _sideNav: null | object = null
   _carList: null | [] = null
   _carCount: null | number = null
@@ -29,6 +30,11 @@ export default class extends VuexModule {
   @Mutation
   setSideNav(sideNav: object) {
     this._sideNav = sideNav
+  }
+
+  @Mutation
+  setSchemas(schemas) {
+    this._schemas = schemas
   }
 
   @Mutation
@@ -69,6 +75,10 @@ export default class extends VuexModule {
 
   get user() {
     return this._user
+  }
+
+  get schemas() {
+    return this._schemas
   }
 
   get carCount() {

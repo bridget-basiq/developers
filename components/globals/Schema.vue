@@ -23,6 +23,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Getter, Mutation } from 'vuex-class'
 import Property from '~/components/Property.vue'
 import {
   getAttributes,
@@ -34,38 +35,56 @@ import {
   components: { Property },
 })
 export default class Schema extends Vue {
+  @Getter schemas
+  @Mutation setSchemas
   @Prop({ default: 'Query' }) type
   @Prop() name
-  schema: any = null
   @Prop({ default: () => [] }) frequent!: string[]
   @Prop({ default: () => [] }) hidden!: number[]
   requestParameters: any[] = []
   returnFields: any = []
 
+  get schemaKey() {
+    return `${this.type}-${this.name}`
+  }
+
   get sections() {
+    if (!this.schema) return []
     return getSections({
-      requestParameters: this.requestParameters,
+      requestParameters: this.schema.requestParameters,
       frequentlyUsedAttributes: getFrequentlyUsedAttributes(
-        this.returnFields,
+        this.schema.returnFields,
         this.frequent
       ),
-      attributes: getAttributes(this.returnFields, this.frequent),
+      attributes: getAttributes(this.schema.returnFields, this.frequent),
     })
   }
 
   async getJson() {
-    const json = await import(
-      `~/static/schema/${this.type}-${this.name}.json`
-    ).catch(console.log)
+    const json = await import(`~/static/schema/${this.schemaKey}.json`).catch(
+      console.log
+    )
 
-    return json.default
+    return json?.default
+  }
+
+  get schema() {
+    return this.schemas[this.schemaKey]
   }
 
   async fetch() {
     const schema: any = await this.getJson()
-
     this.requestParameters = schema.args
     this.returnFields = schema?.fields || []
+
+    this.setSchemas({
+      ...this.schemas,
+      [this.schemaKey]: {
+        requestParameters: this.requestParameters,
+        returnFields: this.returnFields,
+      },
+    })
+    return schema
   }
 }
 </script>

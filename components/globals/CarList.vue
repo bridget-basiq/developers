@@ -95,9 +95,7 @@ export default class extends Vue {
     try {
       if (this.carList) return
       await availableVars.carList(this.$store)
-    } catch (e) {
-      this.carList = null
-    }
+    } catch (e) {}
   }
 }
 </script>

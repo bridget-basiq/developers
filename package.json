@@ -5,12 +5,12 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "NODE_ENV=staging nuxt-ts --hostname 0.0.0.0",
+    "start": "NODE_ENV=staging nuxt --hostname 0.0.0.0",
     "pages-to-algolia": "node scripts/algolia.js",
     "generate:mgt": "node scripts/mgt.js",
     "generate:schemas": "node scripts/schema.js",
     "build:staging": "nuxt generate",
-    "build:production": "npm run generate:mgt && npm run generate:schemas && nuxt-ts generate && npm run pages-to-algolia",
+    "build:production": "npm run generate:mgt && npm run generate:schemas && nuxt generate && npm run pages-to-algolia",
     "lint:js": "eslint --ext .js,.vue,.ts --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
     "deploy": "pm2 deploy production update",
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@chargetrip/internal-vue-components": "^0.0.293",
-    "@nuxt/content": "^1.11.1",
+    "@nuxt/content": "^1.14.0",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/pwa": "^3.3.2",
     "algoliasearch": "^4.8.1",
