@@ -25,9 +25,7 @@ To get specific details of a car you need to provide a `carId`. This `id` can be
 <response error="car"></response>
 
 <playground>
-
 <code-block lang="graphql" type="query">
-
 query car {
   car(id: "5d161be5c9eef46132d9d20a") {
     id
@@ -59,11 +57,9 @@ query car {
     }
   }
 }
-
 </code-block>
 
 <code-block lang="json" type="response">
-
 {
   "data": {
     "car": {
@@ -105,7 +101,6 @@ query car {
     }
   },
 }
-
 </code-block>
 
 </playground>
