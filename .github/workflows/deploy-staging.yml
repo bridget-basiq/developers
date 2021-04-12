@@ -14,7 +14,9 @@ jobs:
       - run: npm install
       - run: npm run build:staging
         env:
-          CHARGETRIP_API_URL: ${{ secrets.CHARGETRIP_STAGING_API_URL }}
+          CHARGETRIP_API_URL: ${{ secrets.CHARGETRIP_API_URL }}
+          CHARGETRIP_STAGING_API_URL: ${{ secrets.CHARGETRIP_STAGING_API_URL }}
+          CHARGETRIP_STAGING_MGT_API_URL: ${{ secrets.CHARGETRIP_MGT_API_URL }}
           CHARGETRIP_MGT_API_URL: ${{ secrets.CHARGETRIP_STAGING_MGT_API_URL }}
           CHARGETRIP_MGT_LOGIN_URL: ${{ secrets.CHARGETRIP_MGT_LOGIN_URL }}
           CHARGETRIP_MGT_EMAIL: ${{ secrets.CHARGETRIP_MGT_EMAIL }}
