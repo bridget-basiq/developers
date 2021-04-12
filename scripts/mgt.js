@@ -96,7 +96,7 @@ const main = async () => {
       )
     )
   } catch (e) {
-    throw new Error("Can't fetch errors")
+    throw new Error("Can't fetch errors", JSON.stringify(e));
   }
 }
 
