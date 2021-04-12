@@ -11,7 +11,7 @@
     "generate:schemas": "NODE_ENV=production node scripts/schema.js",
     "generate:mgt-staging": "NODE_ENV=staging node scripts/mgt.js",
     "generate:schemas-staging": "NODE_ENV=staging node scripts/schema.js",
-    "build:staging": "npm run generate:mgt && npm run generate:schemas && nuxt generate",
+    "build:staging": "npm run generate:mgt-staging && npm run generate:schemas-staging && nuxt generate",
     "build:production": "npm run generate:mgt && npm run generate:schemas && nuxt generate && npm run pages-to-algolia",
     "lint:js": "eslint --ext .js,.vue,.ts --ignore-path .gitignore .",
     "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
