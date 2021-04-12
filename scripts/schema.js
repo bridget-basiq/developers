@@ -101,9 +101,10 @@ const tileFilter = {
 }
 
 const mainTypes = ['Query', 'Mutation', 'Subscription'];
+const baseURL = process.env.NODE_ENV == "production" ? process.env.CHARGETRIP_API_URL : process.env.CHARGETRIP_STAGING_API_URL;
 
 const main = async () => {
-  const { data: { data: { __schema: { types } } } } = await axios.post(process.env.CHARGETRIP_API_URL, {
+  const { data: { data: { __schema: { types } } } } = await axios.post(baseURL, {
     variables: {},
     query: getIntrospectionQuery({ descriptions: true })
   });
