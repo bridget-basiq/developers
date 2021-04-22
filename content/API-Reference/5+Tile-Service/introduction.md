@@ -11,10 +11,10 @@ The Chargetrip tile service is a vector tile server that offers a pre-rendered f
 Configuring your tile service can be done through two easy steps as shown below.
 
 ### Using the tile service
-The tile service can be used with your own station database, the premium eco-movement database, or the free Open Charge Map database. Our tile service can be accessed at:
+The tile service can be used with your own station database or the premium eco-movement database. Our tile service can be accessed at:
 
 <code-block lang="html" prefix="Tile Service" title="Endpoint">
-    https://api-2.chargetrip.io/station/{z}/{x}/{y}/tile.mvt
+    https://api.chargetrip.io/station/{z}/{x}/{y}/tile.mvt
 </code-block>
 
 ### Authorization

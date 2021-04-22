@@ -11,12 +11,8 @@ The Chargetrip API gives you the ability to integrate smart, EV-specific routing
 To start integrating the Chargetrip API you can read our [getting started guide](/Getting-Started/API-Basics/getting-started). If you already have your keys ready and know a thing or two about graphQL you can continue here by copying the base URL.
 
 <code-block lang="html" prefix="API Reference / Integration" title="Base URL">
-https://api-2.chargetrip.io/graphql
+https://api.chargetrip.io/graphql
 </code-block>
-
-<note display="block">
-If you already had an account before december 2020, you might be running on our previous environment that uses https://api.chargetrip.io/graphql.  If you are uncertain which environment you need, please <cta action='smallchat'>contact us<cta>.
-</note>
 
 ## Authorization
 The quick example below shows the header needed to authorize with the Chargetrip API. For a more in-depth guide around authorization and errors, you can take a look [here](/Getting-Started/API-Basics/status-error-codes).
@@ -26,7 +22,7 @@ curl -X POST \
 -H "Content-Type: application/json" \
 -H "x-client-id: 5e8c22366f9c5f23ab0eff39" \
 -d 'query { }' \
-http://api-2.chargetrip.io/graphql
+http://api.chargetrip.io/graphql
 </code-block>
 
 ## Who is this API for?
