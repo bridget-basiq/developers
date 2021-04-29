@@ -1,4 +1,6 @@
 /* eslint-disable */
+const path = require('path');
+const fs = require('fs')
 const OfTypeKind = {
   LIST: 'LIST',
   OBJECT: 'OBJECT',
@@ -6,12 +8,20 @@ const OfTypeKind = {
   ENUM: 'ENUM',
 }
 
-const path = require('path');
-const fs = require('fs')
+const flags = require('flags');
+flags.defineString('dotenv')
+flags.parse();
+
+const dotenv = require('dotenv')
+dotenv.config()
+dotenv.config({path: '.env.local'});
+if(flags.get('dotenv')) {
+  dotenv.config({path: flags.get('dotenv') || ".env"})
+}
+
 const ofTypeKinds = Object.keys(OfTypeKind)
 const fetch = require('cross-fetch').fetch
 const { getIntrospectionQuery } = require('graphql')
-require('dotenv').config()
 const axios = require('axios')
 let schemas = {};
 const tileFilter = {
@@ -103,9 +113,7 @@ const tileFilter = {
 const mainTypes = ['Query', 'Mutation', 'Subscription'];
 
 const main = async () => {
-  const baseURL = process.env.NODE_ENV == "production" ? process.env.CHARGETRIP_API_URL : process.env.CHARGETRIP_STAGING_API_URL;
-  console.log(process.env.NODE_ENV);
-
+  const baseURL = process.env.CHARGETRIP_API_URL;
   const { data: { data: { __schema: { types } } } } = await axios.post(baseURL, {
     variables: {},
     query: getIntrospectionQuery({ descriptions: true })
