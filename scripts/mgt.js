@@ -1,8 +1,17 @@
 /* eslint-disable */
-const dotenv = require('dotenv').config()
 const fs = require('fs')
-const axios = require('axios')
 const path = require('path')
+const flags = require('flags');
+flags.defineString('dotenv')
+flags.parse();
+
+const dotenv = require('dotenv')
+dotenv.config()
+dotenv.config({path: '.env.local'});
+if (flags.get('dotenv')) {
+  dotenv.config({path: flags.get('dotenv') || ".env"})
+}
+const axios = require('axios')
 
 let accessToken = '';
 

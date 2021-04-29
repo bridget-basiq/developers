@@ -15,18 +15,11 @@ jobs:
       - run: npm run build:staging
         env:
           CHARGETRIP_API_URL: ${{ secrets.CHARGETRIP_API_URL }}
-          CHARGETRIP_STAGING_API_URL: ${{ secrets.CHARGETRIP_STAGING_API_URL }}
-          CHARGETRIP_STAGING_MGT_API_URL: ${{ secrets.CHARGETRIP_MGT_API_URL }}
-          CHARGETRIP_MGT_API_URL: ${{ secrets.CHARGETRIP_STAGING_MGT_API_URL }}
+          CHARGETRIP_MGT_API_URL: ${{ secrets.CHARGETRIP_MGT_API_URL }}
           CHARGETRIP_MGT_LOGIN_URL: ${{ secrets.CHARGETRIP_MGT_LOGIN_URL }}
-          CHARGETRIP_MGT_EMAIL: ${{ secrets.CHARGETRIP_MGT_EMAIL }}
+          CHARGETRIP_MGT_MAIL: ${{ secrets.CHARGETRIP_MGT_EMAIL }}
           CHARGETRIP_MGT_PASSWORD: ${{ secrets.CHARGETRIP_MGT_PASSWORD }}
           ALGOLIA_API_SECRET_KEY: ${{ secrets.ALGOLIA_API_SECRET_KEY }}
-          ALGOLIA_API_PUBLIC_KEY: ${{ secrets.ALGOLIA_API_PUBLIC_KEY }}
-          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-          FATHOM_ID: ${{ secrets.FATHOM_ID }}
-          EDIT_GITHUB_URL: ${{ secrets.EDIT_GITHUB_URL }}
-          EDIT_API_URL: ${{ secrets.EDIT_API_URL }}
       - uses: jakejarvis/s3-sync-action@master
         with:
           args: --acl public-read --delete --exclude="*.html" --cache-control max-age=31536000,public
