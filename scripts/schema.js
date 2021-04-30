@@ -15,7 +15,7 @@ flags.parse();
 const dotenv = require('dotenv')
 dotenv.config()
 dotenv.config({path: '.env.local'});
-if(flags.get('dotenv')) {
+if (flags.get('dotenv')) {
   dotenv.config({path: flags.get('dotenv') || ".env"})
 }
 
@@ -226,5 +226,4 @@ const appendOfType = (fields, allowRequired = false) => {
 
 
 main();
-
 
