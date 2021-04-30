@@ -2,7 +2,7 @@
   <Theme
     class="text-16 h-screen flex flex-col"
     :dark-mode="darkMode"
-    @click="closeKhaled"
+    @click.native="closeKhaled"
   >
     <TopNav class="z-50 lg-max:sticky" :is-logged-in="isLoggedIn">
       <div

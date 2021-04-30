@@ -15,18 +15,9 @@
       >
         <div
           class="cursor-pointer py-2.5 flex items-center"
-          @click="index = categoryKey"
+          @click="index = index === categoryKey ? null : categoryKey"
         >
-          <div>
-            <p>
-              <strong>
-                {{ categoryKey }}
-              </strong>
-            </p>
-            <p class="text-font-alt3 mt-0 text-12">
-              <strong> {{ category.length }} Cars </strong>
-            </p>
-          </div>
+          <Label :label="categoryKey" :sub-label="`${category.length} Cars`" />
           <span
             class="icon-chevron-down ml-auto transform"
             :class="{ 'rotate-180': index === categoryKey }"
@@ -38,16 +29,7 @@
             :key="carKey"
             class="border-b border-alt last:border-b-0 py-4"
           >
-            <p>
-              <strong>
-                {{ car.name }}
-              </strong>
-            </p>
-            <p class="text-font-alt3 text-12">
-              <strong>
-                {{ car.id }}
-              </strong>
-            </p>
+            <Label :label="car.name" :sub-label="car.id" />
           </li>
         </ul>
       </li>
@@ -59,9 +41,10 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { Mutation } from 'vuex-class'
 import { Getter } from 'nuxt-property-decorator'
+import { Label } from '@chargetrip/internal-vue-components'
 import availableVars from '~/utilities/availableVars'
 
-@Component
+@Component({ components: { Label } })
 export default class extends Vue {
   @Mutation setCarCount
   @Getter carList
