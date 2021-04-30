@@ -71,7 +71,7 @@ const getCarList = async () => {
   } = await axios.post(
     process.env.CHARGETRIP_MGT_API_URL,
     {
-      query: 'query { carList(query: {status: public}) { id naming {model make version chargetrip_version edition } }}',
+      query: 'query { carList(query: {status: public}, size: 1000) { id naming {model make version chargetrip_version edition } }}',
     },
     {
       headers: {

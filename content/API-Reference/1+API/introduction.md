@@ -15,7 +15,9 @@ https://api-2.chargetrip.io/graphql
 </code-block>
 
 <note display="block">
-If you already had an account before december 2020, you might be running on our previous environment that uses https://api.chargetrip.io/graphql.  If you are uncertain which environment you need, please <cta action='smallchat'>contact us<cta>.
+
+If you already had an account before december 2020, you might be running on our previous environment that uses https://api.chargetrip.io/graphql.  If you are uncertain which environment you need, please <cta action='smallchat'>contact us<cta>
+
 </note>
 
 ## Authorization
