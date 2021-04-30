@@ -17,9 +17,6 @@
     "lint": "npm run lint:js && npm run lint:style",
     "test": "jest"
   },
-  "engines": {
-    "node": "12.9.1"
-  },
   "lint-staged": {
     "*.{js,vue}": "eslint",
     "*.{css,vue}": "stylelint"
@@ -48,7 +45,7 @@
     "js-convert-case": "^4.1.0",
     "js-cookie": "^2.2.1",
     "jsdom": "^16.4.0",
-    "marked": "^1.2.5",
+    "marked": "^2.0.3",
     "nuxt": "^2.15.3",
     "path": "^0.12.7",
     "showdown": "^1.9.1",
