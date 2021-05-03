@@ -6,7 +6,7 @@
           <StepImage v-if="img" :src="img" :title="title" />
           <div
             v-if="images"
-            class="rails transition whitespace-no-wrap duration-300 ease-in-out"
+            class="rails transition whitespace-nowrap duration-300 ease-in-out"
             :style="{ transform: `translateX(-${sliderIndex * 100}%)` }"
           >
             <StepImage

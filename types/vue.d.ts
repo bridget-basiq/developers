@@ -8,6 +8,7 @@ declare module 'vue/types/vue' {
     listeners: any[]
     form: any
     change: any
+    $fileMap: object
   }
 }
 

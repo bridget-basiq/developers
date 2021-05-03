@@ -98,6 +98,10 @@ export default {
     '@nuxtjs/tailwindcss',
     '@nuxtjs/axios',
     '@nuxt/content',
+    [
+      '@chargetrip/internal-vue-components/src/modules/file-upload',
+      { allowedFormats: ['jpg', 'png', 'svg', 'mp4'] },
+    ],
   ],
   tailwindcss: {
     jit: true,
