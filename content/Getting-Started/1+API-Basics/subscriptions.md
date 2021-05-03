@@ -1,46 +1,46 @@
 ---
 title: Subscriptions
-description: A quick introduction on how to authorize with the chargetrip websocket so you can use GraphQL subscriptions
+description: A quick introduction on how to authorize with the Chargetrip websocket, so you can use GraphQL subscriptions
 order: 3
 quickNav: true
 ---
 # Subscriptions
 
-The Chargetrip API is relying on the GraphQL techonology so some requests use a [subscription](https://spec.graphql.org/draft/#sec-Subscription) mechanism. Unlike queries or mutations, subscriptions are long-lasting operations and can change their result over time. These operations are being handled by a websocket. Authenticating and communicating with this websocket is a bit different than a regular query or mutation. So let's go over it in detail.
+The Chargetrip API relies on GraphQL technology, so some requests use a [subscription](https://spec.graphql.org/draft/#sec-Subscription) mechanism. Unlike queries or mutations, subscriptions are long-lasting operations and can change their result over time. These operations are handled by a websocket. Authenticating and communicating with this websocket is different than a regular query or mutation. Let's go over it in detail.
 
 <note display="block">
 Websocket connections can't be used out of the box in your terminal. So if you would like to tag along with the steps below you can use a library called wscat. It's open source and can be downloaded [here](https://github.com/websockets/wscat).
 </note>
 
 ## Library usage
-The guide below is for people that are not opting in on a library like [Apollo GraphQL](https://www.apollographql.com/) and rather take care of it manually. If you do opt-in for such library, please follow along with the tutorials on the libraries website. They are already taking care of certain configurations for you.
+The guide below is for those not opting in on a library like [Apollo GraphQL](https://www.apollographql.com/), and rather taking care of it manually. If you do opt in for such a library, please follow along with the tutorials on the libraries website. They already take care of certain configurations for you.
 
 ## Initialize the websocket
-To get started with the websocket you will first need to initialize a connection. The important bit here is to set the correct websocket protocols. We are using `graphql-ws` as the `Sec-WebSocket-Protocol` so make sure you set it! You will end up with something like this;
+To get started with the websocket, you'll first need to initialize a connection. The important bit here is to set the correct websocket protocols. We're using `graphql-ws` as the `Sec-WebSocket-Protocol`, so make sure you set this! You'll end up with something like this;
 
-<code-block lang="bash" prefix="Subscriptions" title="Initialization">
+<code-block lang="bash" prefix="Subscriptions" title="Initializing">
 wscat -c wss://api.chargetrip.io/graphql -s graphql-ws
 </code-block>
 
 ## Authorization on the websocket
-Now that we opened up our connection, we need to authorize ourself. We can do this by sending a message with the correct type and payload. The type will need to be `init` and your payload needs to contain your `x-client-id`. Combining this all together, it will look like this;
+Now that we've opened our connection, we need to authorize ourselves. We can do this by sending a message with the correct type and payload. The type will need to be `init` and your payload must contain your `x-client-id`. In combination, it will look like this;
 
-<code-block lang="bash" prefix="Subscriptions" title="Authorization">
-{"type":"connection_init","payload":{"x-client-id":"Your client id here"}
+<code-block lang="bash" prefix="Subscriptions" title="Authorizing">
+{ "type":"connection_init", "payload": { "x-client-id": "Your client id here" }
 </code-block>
 
-If everything went correct you will receive the following message from the websocket; `{ "type": "connection_ack" }`.
+If everything was correct, you'll receive the following message from the websocket; `{ "type": "connection_ack" }`.
 
 ## Communicating on the websocket
-With all configuration done you are finally ready to send subscriptions and receive some real useful data. This is almost identical to the authorization but with one exception! You will need to add an `id` set to `1` to your message. Every next message will be an increment of 1 so nobody can jump the queue. To give you an idea of how this looks like we will be using our [routeUpdatedById](/API-Reference/Routes/subscribe-to-route-updates) subscription as an example and only request it's processing `status`. 
+With all configuration done you're finally ready to send subscriptions and receive useful data. This is almost identical to the authorization, but with one exception! You'll need to add `id` set to `1` to your message. Every next message will be an increment of 1 so nobody can cut the line. To give you an idea of how this looks, we'll be using our [routeUpdatedById](/API-Reference/Routes/subscribe-to-route-updates) subscription as an example, and only requesting its processing `status`. 
 
 <code-block lang="bash" prefix="Subscriptions" title="Communicating">
 { "id": "1", "type": "start", "payload": { "query": "subscription routeUpdatedById { routeUpdatedById(id: \"Your route id here\") { status } }", "variables": { "id": "Your route id here"} } }
 </code-block>
 
-If everything went correct and you set the `routeId`, the websocket will respond with an object that contains the `status`. If you didn't set your id, there will be **no** response from the server.
+If everything was correct and you set the `routeId`, the websocket will respond with an object that contains the `status`. If you didn't set your id, there will be **no** response from the server.
 
-Last but not least. If you got the result you were looking for, **don't forget to close the connection!** 
+Last but not least; if you got the result you were looking for, **don't forget to close the connection!** 
 
 <right-aside large="true">
 
