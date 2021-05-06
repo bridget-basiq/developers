@@ -16,7 +16,7 @@ var map = new mapboxgl.Map({
   center: [-122.420679, 37.772537],
   zoom: 13,
   transformRequest: (url, resourceType)=> {
-    if(resourceType === 'Tile' && url.startsWith('https://api-2.chargetrip.io')) {
+    if(resourceType === 'Tile' && url.startsWith('https://api.chargetrip.io')) {
        return {
         url: url,
         headers: { "x-client-id": "YOUR_CLIENT_ID_HERE" },
