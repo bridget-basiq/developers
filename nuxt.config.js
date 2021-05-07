@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+dotenv.config({ path: '.env' })
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   publicRuntimeConfig: {
@@ -63,6 +66,7 @@ export default {
     '~/assets/styles/index.scss',
     '@chargetrip/internal-vue-components/dist/components.css',
     '@chargetrip/internal-vue-components/src/assets/styles/icons.scss',
+    '@chargetrip/internal-vue-components/src/assets/styles/defaults.scss',
   ],
 
   content: {

@@ -1,16 +1,8 @@
 <template>
-  <div
-    class="layout flex flex-col antialiased font-body min-h-screen text-font-primary text-16 bg-body"
-    :class="{
-      'theme-dark': darkMode,
-      'theme-light': !darkMode,
-      'menu-open': showMenu,
-      'is-editing': isEditing,
-      'no-transition': noTransition,
-      'has-aside': aside || isEditing,
-      'is-large-aside': isLargeAside && !isEditing,
-    }"
-    @click="closeKhaled"
+  <Theme
+    class="text-16 h-screen flex flex-col"
+    :dark-mode="darkMode"
+    @click.native="closeKhaled"
   >
     <TopNav class="z-50 lg-max:sticky" :is-logged-in="isLoggedIn">
       <div
@@ -89,7 +81,7 @@
       :style="{ top: `${khaledPosition.y}px`, left: `${khaledPosition.x}px` }"
       src="khaled.gif"
     />
-  </div>
+  </Theme>
 </template>
 <script lang="ts">
 import { Component, Watch, Ref } from 'nuxt-property-decorator'
@@ -97,6 +89,7 @@ import { Mixins } from 'vue-property-decorator'
 import {
   Banner,
   Button,
+  Theme,
   SideNav,
   TopNav,
   Input,
@@ -115,6 +108,7 @@ import Search from '~/components/Search.vue'
 @Component({
   components: {
     Search,
+    Theme,
     Select,
     Input,
     MarkdownFormatting,
@@ -555,7 +549,7 @@ export default class Layout extends Mixins(Base) {
   }
 }
 
-.layout {
+.theme {
   .top-nav {
     .container {
       @apply ml-12;

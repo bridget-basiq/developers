@@ -1,8 +1,17 @@
 /* eslint-disable */
-const dotenv = require('dotenv').config()
 const fs = require('fs')
-const axios = require('axios')
 const path = require('path')
+const flags = require('flags');
+flags.defineString('dotenv')
+flags.parse();
+
+const dotenv = require('dotenv')
+dotenv.config()
+dotenv.config({path: '.env.local'});
+if (flags.get('dotenv')) {
+  dotenv.config({path: flags.get('dotenv') || ".env"})
+}
+const axios = require('axios')
 
 let accessToken = '';
 
@@ -62,7 +71,7 @@ const getCarList = async () => {
   } = await axios.post(
     process.env.CHARGETRIP_MGT_API_URL,
     {
-      query: 'query { carList(query: {status: public}) { id naming {model make version chargetrip_version edition } }}',
+      query: 'query { carList(query: {status: public}, size: 1000) { id naming {model make version chargetrip_version edition } }}',
     },
     {
       headers: {
@@ -96,7 +105,7 @@ const main = async () => {
       )
     )
   } catch (e) {
-    throw new Error("Can't fetch errors")
+    throw new Error("Can't fetch errors", JSON.stringify(e));
   }
 }
 
