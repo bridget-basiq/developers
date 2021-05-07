@@ -9,7 +9,9 @@ quickNav: true
 The Chargetrip API relies on GraphQL technology, so some requests use a [subscription](https://spec.graphql.org/draft/#sec-Subscription) mechanism. Unlike queries or mutations, subscriptions are long-lasting operations and can change their result over time. These operations are handled by a websocket. Authenticating and communicating with this websocket is different than a regular query or mutation. Let us go over it in detail.
 
 <note display="block">
+
 Websocket connections can't be used out of the box in your terminal. So if you would like to tag along with the steps below you can use a library called wscat. It's open source and can be downloaded [here](https://github.com/websockets/wscat).
+
 </note>
 
 ## Library usage
