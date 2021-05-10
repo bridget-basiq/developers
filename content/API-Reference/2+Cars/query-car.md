@@ -27,7 +27,7 @@ To get specific details of a car you need to provide a `carId`. This `id` can be
 <playground>
 <code-block lang="graphql" type="query">
 query car {
-  car(id: "5d161be5c9eef46132d9d20a") {
+  car(id: "car-test") {
     id
     naming {
       make
@@ -42,64 +42,170 @@ query car {
       time
       speed
     }
+    adapters {
+      standard
+      power
+      time
+      speed
+    }
     battery {
       usable_kwh
       full_kwh
     }
     body {
-      seats
-      weight
       width
       height
+      weight
+      seats
+    }
+    availability {
+      status
+    }
+    performance {
+      acceleration
+      top_speed
+    }
+    range {
+      real
+      real_is_estimated
+      worst {
+        highway
+        city
+        combined
+      }
+      best {
+        highway
+        city
+        combined
+      }
+      chargetrip_range {
+        worst
+        best
+      }
+    }
+    media {
+      evdb_details_url
+      image {
+        id
+        type
+        url
+        height
+        width
+        thumbnail_url
+        thumbnail_width
+        thumbnail_height
+      }
+      brand {
+        id
+        type
+        url
+        height
+        width
+        thumbnail_url
+        thumbnail_width
+        thumbnail_height
+      }
+      image_list {
+        id
+        type
+        url
+        height
+        width
+        thumbnail_url
+        thumbnail_width
+        thumbnail_height
+      }
+      video {
+        id
+        url
+      }
+      video_list {
+        id
+        url
+      }
     }
     routing {
       fast_charging_support
     }
   }
 }
+
 </code-block>
 
 <code-block lang="json" type="response">
 {
   "data": {
     "car": {
-      "id": "5d161be5c9eef46132d9d20a",
+      "id": "car-test",
       "naming": {
-        "make": "Tesla",
-        "model": "Model S",
-        "version": "75D",
-        "edition": null,
-        "chargetrip_version": "75D (2016-2019)"
+        "make": "car-test",
+        "model": "car-test",
+        "version": "car-test",
+        "edition": "car-test",
+        "chargetrip_version": "car-test"
       },
       "connectors": [
         {
           "standard": "IEC_62196_T2",
-          "power": 16.5,
-          "time": 315,
-          "speed": 72
+          "power": 22,
+          "time": 285,
+          "speed": 81
         },
         {
-          "standard": "TESLA_S",
-          "power": 80,
-          "time": 40,
-          "speed": 390
+          "standard": "IEC_62196_T2_COMBO",
+          "power": 130,
+          "time": 35,
+          "speed": 460
         }
       ],
+      "adapters": [],
       "battery": {
-        "usable_kwh": 72.5,
-        "full_kwh": 75
+        "usable_kwh": 87,
+        "full_kwh": 90
       },
       "body": {
-        "seats": 5,
-        "weight": 2183,
-        "width": 2037,
-        "height": 1445
+        "width": 1850,
+        "height": 1660,
+        "weight": 2300
       },
+      "availability": {
+        "status": 3
+      },
+      "performance": {
+        "acceleration": 5.1,
+        "top_speed": 200
+      },
+      "range": {
+        "real": 385,
+        "real_is_estimated": false,
+        "worst": {
+          "highway": 275,
+          "city": 390,
+          "combined": 330
+        },
+        "best": {
+          "highway": 345,
+          "city": 555,
+          "combined": 430
+        },
+        "chargetrip_range": {
+          "worst": 407,
+          "best": 471
+        }
+      },
+      "media": {
+        "evdb_details_url": "car-test",
+        "image": null,
+        "brand": null,
+        "image_list": null,
+        "video": null,
+        "video_list": null
+      }
       "routing": {
         "fast_charging_support": true
       }
     }
-  },
+  }
 }
 </code-block>
 
