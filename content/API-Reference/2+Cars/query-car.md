@@ -27,7 +27,7 @@ To get specific details of a car you need to provide a `carId`. This `id` can be
 <playground>
 <code-block lang="graphql" type="query">
 query car {
-  car(id: "5ed1175bad06853b3aa1e492") {
+  car(id: "5d161be5c9eef46132d9d20a") {
     id
     naming {
       make
@@ -136,71 +136,91 @@ query car {
 {
   "data": {
     "car": {
-      "id": "5ed1175bad06853b3aa1e492",
+      "id": "5d161be5c9eef46132d9d20a",
       "naming": {
-        "make": "car-test",
-        "model": "car-test",
-        "version": "car-test",
-        "edition": "car-test",
-        "chargetrip_version": "car-test"
+        "make": "Tesla",
+        "model": "Model S",
+        "version": "75D",
+        "edition": null,
+        "chargetrip_version": "75D (2016-2019)"
       },
       "connectors": [
         {
           "standard": "IEC_62196_T2",
-          "power": 22,
-          "time": 285,
-          "speed": 81
+          "power": 16.5,
+          "time": 315,
+          "speed": 72
         },
         {
-          "standard": "IEC_62196_T2_COMBO",
-          "power": 130,
-          "time": 35,
-          "speed": 460
+          "standard": "TESLA_S",
+          "power": 120,
+          "time": 40,
+          "speed": 390
         }
       ],
-      "adapters": [],
+      "adapters": [
+        {
+          "standard": "IEC_62196_T2_COMBO",
+          "power": 80,
+          "time": 45,
+          "speed": 350
+        },
+        {
+          "standard": "CHADEMO",
+          "power": 80,
+          "time": 45,
+          "speed": 350
+        },
+        {
+          "standard": "IEC_62196_T2",
+          "power": 16.5,
+          "time": 315,
+          "speed": 55
+        }
+      ],
       "battery": {
-        "usable_kwh": 87,
-        "full_kwh": 90
+        "usable_kwh": 72.5,
+        "full_kwh": 75
       },
       "body": {
-        "width": 1850,
-        "height": 1660,
-        "weight": 2300
+        "width": 2037,
+        "height": 1445,
+        "weight": 2183,
+        "seats": 5
       },
       "availability": {
-        "status": 3
+        "status": 0
       },
       "performance": {
-        "acceleration": 5.1,
-        "top_speed": 200
+        "acceleration": 4.4,
+        "top_speed": 225
       },
       "range": {
-        "real": 385,
+        "real": 380,
         "real_is_estimated": false,
         "worst": {
           "highway": 275,
-          "city": 390,
-          "combined": 330
+          "city": 370,
+          "combined": 320
         },
         "best": {
-          "highway": 345,
-          "city": 555,
-          "combined": 430
+          "highway": 350,
+          "city": 540,
+          "combined": 435
         },
         "chargetrip_range": {
-          "worst": 407,
-          "best": 471
+          "worst": 334,
+          "best": 387
         }
       },
       "media": {
-        "evdb_details_url": "car-test",
+        "evdb_details_url": null,
         "image": null,
         "brand": null,
         "image_list": null,
         "video": null,
         "video_list": null
-      }
+      },
       "routing": {
         "fast_charging_support": true
       }
