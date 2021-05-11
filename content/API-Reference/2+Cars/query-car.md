@@ -27,7 +27,7 @@ To get specific details of a car you need to provide a `carId`. This `id` can be
 <playground>
 <code-block lang="graphql" type="query">
 query car {
-  car(id: "car-test") {
+  car(id: "5ed1175bad06853b3aa1e492") {
     id
     naming {
       make
@@ -136,7 +136,7 @@ query car {
 {
   "data": {
     "car": {
-      "id": "car-test",
+      "id": "5ed1175bad06853b3aa1e492",
       "naming": {
         "make": "car-test",
         "model": "car-test",
