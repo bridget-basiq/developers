@@ -42,21 +42,94 @@ query car {
       time
       speed
     }
+    adapters {
+      standard
+      power
+      time
+      speed
+    }
     battery {
       usable_kwh
       full_kwh
     }
     body {
-      seats
-      weight
       width
       height
+      weight
+      seats
+    }
+    availability {
+      status
+    }
+    performance {
+      acceleration
+      top_speed
+    }
+    range {
+      real
+      real_is_estimated
+      worst {
+        highway
+        city
+        combined
+      }
+      best {
+        highway
+        city
+        combined
+      }
+      chargetrip_range {
+        worst
+        best
+      }
+    }
+    media {
+      evdb_details_url
+      image {
+        id
+        type
+        url
+        height
+        width
+        thumbnail_url
+        thumbnail_width
+        thumbnail_height
+      }
+      brand {
+        id
+        type
+        url
+        height
+        width
+        thumbnail_url
+        thumbnail_width
+        thumbnail_height
+      }
+      image_list {
+        id
+        type
+        url
+        height
+        width
+        thumbnail_url
+        thumbnail_width
+        thumbnail_height
+      }
+      video {
+        id
+        url
+      }
+      video_list {
+        id
+        url
+      }
     }
     routing {
       fast_charging_support
     }
   }
 }
+
 </code-block>
 
 <code-block lang="json" type="response">
@@ -80,9 +153,29 @@ query car {
         },
         {
           "standard": "TESLA_S",
-          "power": 80,
+          "power": 120,
           "time": 40,
           "speed": 390
+        }
+      ],
+      "adapters": [
+        {
+          "standard": "IEC_62196_T2_COMBO",
+          "power": 80,
+          "time": 45,
+          "speed": 350
+        },
+        {
+          "standard": "CHADEMO",
+          "power": 80,
+          "time": 45,
+          "speed": 350
+        },
+        {
+          "standard": "IEC_62196_T2",
+          "power": 16.5,
+          "time": 315,
+          "speed": 55
         }
       ],
       "battery": {
@@ -90,16 +183,49 @@ query car {
         "full_kwh": 75
       },
       "body": {
-        "seats": 5,
-        "weight": 2183,
         "width": 2037,
-        "height": 1445
+        "height": 1445,
+        "weight": 2183,
+        "seats": 5
+      },
+      "availability": {
+        "status": 0
+      },
+      "performance": {
+        "acceleration": 4.4,
+        "top_speed": 225
+      },
+      "range": {
+        "real": 380,
+        "real_is_estimated": false,
+        "worst": {
+          "highway": 275,
+          "city": 370,
+          "combined": 320
+        },
+        "best": {
+          "highway": 350,
+          "city": 540,
+          "combined": 435
+        },
+        "chargetrip_range": {
+          "worst": 334,
+          "best": 387
+        }
+      },
+      "media": {
+        "evdb_details_url": null,
+        "image": null,
+        "brand": null,
+        "image_list": null,
+        "video": null,
+        "video_list": null
       },
       "routing": {
         "fast_charging_support": true
       }
     }
-  },
+  }
 }
 </code-block>
 
