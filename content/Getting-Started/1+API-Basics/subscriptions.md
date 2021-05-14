@@ -1,7 +1,7 @@
 ---
 title: Subscriptions
 description: A quick introduction on how to authorize with the Chargetrip websocket, so you can use GraphQL subscriptions
-order: 3
+order: 4
 quickNav: true
 ---
 # Subscriptions
@@ -34,13 +34,13 @@ Now that we have opened our connection, we need to authorize ourselves. We can d
 If everything was correct, you will receive the following message from the websocket; `{ "type": "connection_ack" }`.
 
 ## Communicating on the websocket
-With all configuration done you're finally ready to send subscriptions and receive useful data. This is almost identical to the authorization, but with one exception! You will need to add `id` set to `1` to your message. Every next message will be an increment of 1 so nobody can cut the line. To give you an idea of how this looks, we will be using our [routeUpdatedById](/API-Reference/Routes/subscribe-to-route-updates) subscription as an example, and only requesting its processing `status`. 
+With all configuration done you're finally ready to send subscriptions and receive useful data. This is almost identical to the authorization, but with one exception! You will need to add `id` set to any unique identifier in your message. The `id` will be returned so you are ensured you got the right message back. To give you an idea of how this looks, we will be using our [routeUpdatedById](/API-Reference/Routes/subscribe-to-route-updates) subscription as an example, and only requesting its processing `status`. 
 
 <code-block lang="bash" prefix="Subscriptions" title="Communicating">
 { "id": "1", "type": "start", "payload": { "query": "subscription routeUpdatedById { routeUpdatedById(id: \"Your route id here\") { status } }", "variables": { "id": "Your route id here"} } }
 </code-block>
 
-If everything was correct and you set the `routeId` in variables, the websocket will respond with an object that contains the `status`. For more information about the route subscription and responses have a look at the [route section](https://developers.chargetrip.com/API-Reference/Routes/introduction/). If you did not set your `routeId` in variables, there will be **no** response from the server.
+If everything was correct and you set the `routeId` in variables and inside your `query`, the websocket will respond with an object that contains the `status`. For more information about the route subscription and responses have a look at the [route section](https://developers.chargetrip.com/API-Reference/Routes/introduction/). If you did not set your `routeId` in variables, there will be **no** response from the server.
 
 ## Disconnecting the websocket
 Last but not least; if you got the result you were looking for, **don't forget to close the connection!** You can do this by pressing `ctrl + c` or `cmd + c` in your terminal.

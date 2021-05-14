@@ -4,12 +4,9 @@ description: Query the data of a single car
 order: 3
 frequently:
 - id
-- make
-- model
-- standard
-- power
-- usable_kwh
-- fast_charging_support
+- naming
+- connectors
+- availability
 ---
 
 # Query car details
