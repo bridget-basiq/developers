@@ -4,10 +4,9 @@ description: Query all cars from the database
 order: 2
 frequently:
 - id
-- make
-- model
-- edition
-- chargetrip_version
+- naming
+- connectors
+- availability
 ---
 
 # Querying cars
