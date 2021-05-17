@@ -187,6 +187,8 @@ const appendOfType = (fields, allowRequired = false) => {
 
     const required = allowRequired && typeStr === 'NON_NULL'
 
+    const isDeprecated = field.isDeprecated || field.description?.includes('Deprecated:');
+
     if (
       !(
         field.type?.ofType?.name ||
@@ -197,6 +199,7 @@ const appendOfType = (fields, allowRequired = false) => {
     ) {
       return {
         ...returnField,
+        isDeprecated,
         typeStr,
         required,
       }
@@ -217,6 +220,7 @@ const appendOfType = (fields, allowRequired = false) => {
       ...returnField,
       showOfTypeKind,
       typeStr,
+      isDeprecated,
       typeName: normalizedTypeName,
       required,
       children,
