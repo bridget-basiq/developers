@@ -62,15 +62,20 @@ export default class Table extends Vue {
       @apply block;
     }
     tr {
-      width: calc(100% + 48px);
-      @apply -ml-6 relative;
+      @apply relative;
 
       &:first-child {
         @apply hidden;
       }
 
+      &:nth-child(2) {
+        td {
+          @apply border-0;
+        }
+      }
+
       &::after {
-        content: '\e971';
+        content: '\e902';
         font-family: icomoon;
         @apply absolute right-0 top-1/2 transform -translate-y-1/2 mr-6;
       }
@@ -78,14 +83,20 @@ export default class Table extends Vue {
     td {
       @apply block h-auto pl-6 pr-12;
 
-      &:first-child {
-        @apply pt-4 pb-0;
-
-        .bg {
-          @apply border-0;
-        }
+      &.spacer {
+        @apply hidden;
       }
 
+      &:nth-child(2) {
+        @apply pt-4 pb-0 border-b-0;
+      }
+
+      &:nth-child(3) {
+        @apply border-0;
+      }
+      &::before {
+        @apply hidden;
+      }
       &:last-child {
         @apply pb-4 pt-0;
       }

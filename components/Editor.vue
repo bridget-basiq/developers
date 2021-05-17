@@ -5,7 +5,7 @@
       v-model="file"
       class="whitespace-pre-line resize-none block bg-body font-primary outline-none w-full h-full"
       @mousedown="showHelper = false"
-    ></textarea>
+    />
     <div
       v-if="showHelper"
       class="helper transform -translate-x-1/2 -translate-y-full z-50 absolute bg-black flex shadow-down-m p-1 border border-alt2 rounded-md text-white"

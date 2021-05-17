@@ -1,6 +1,6 @@
 <template>
   <Theme
-    class="text-16 h-screen flex flex-col"
+    class="text-16 lg:h-screen flex flex-col"
     :dark-mode="darkMode"
     @click.native="closeKhaled"
   >

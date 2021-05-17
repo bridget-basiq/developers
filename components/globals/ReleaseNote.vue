@@ -6,7 +6,7 @@
       <h2 :id="id" class="mb-1">
         {{ title }}
       </h2>
-      <p class="text-14 text-font-alt3">{{ date }}</p>
+      <date class="text-14 text-font-alt3">{{ date }}</date>
     </div>
     <div class="content">
       <slot />

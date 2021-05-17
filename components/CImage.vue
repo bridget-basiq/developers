@@ -14,7 +14,7 @@ import { Component, Vue, Prop, Getter } from 'nuxt-property-decorator'
 import { Image as ChargetripImage } from '@chargetrip/internal-vue-components'
 
 @Component({ components: { ChargetripImage } })
-export default class Image extends Vue {
+export default class CImage extends Vue {
   @Prop() src
   @Prop() alt
   @Prop() maxWidth
