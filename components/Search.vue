@@ -219,10 +219,17 @@ export default class Search extends Mixins(Base) {
   }
 
   getParentByItem({ url, type }) {
-    if (type === 'page' || type === 'error') return { path: '' }
+    if (type === 'page') return { path: '' }
 
     const [path, hash] = url.split('#')
     const splitPath = path.split('/').slice(1)
+
+    if (type === 'error') {
+      return {
+        path: '',
+        propertyPath: toSentenceCase(splitPath[splitPath.length - 1]),
+      }
+    }
 
     const propertyParent = hash.split('-').slice(1)
     splitPath.splice(1, 1)

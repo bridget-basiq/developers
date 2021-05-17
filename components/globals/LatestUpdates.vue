@@ -28,7 +28,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
-import { slugify } from '~/utilities/project.functions'
+import { normalizeDate, slugify } from '~/utilities/project.functions'
 
 @Component
 export default class LatestUpdates extends Vue {
@@ -47,6 +47,10 @@ export default class LatestUpdates extends Vue {
         .slice(0, 2)
         .map((item) => ({
           ...item,
+          props: {
+            ...item.props,
+            date: normalizeDate(item.props.date),
+          },
           to: `${releasePage.slug}#release-${slugify(item.props.title)}`,
         }))
     }

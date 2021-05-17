@@ -22,6 +22,7 @@
           },
           "defaultValue": null,
           "children": [],
+          "isDeprecated": true,
           "typeStr": "String",
           "required": false
         },
@@ -35,6 +36,7 @@
           },
           "defaultValue": null,
           "children": [],
+          "isDeprecated": true,
           "typeStr": "String",
           "required": false
         },
@@ -48,6 +50,7 @@
           },
           "defaultValue": null,
           "children": [],
+          "isDeprecated": true,
           "typeStr": "String",
           "required": false
         },
@@ -61,6 +64,7 @@
           },
           "defaultValue": null,
           "children": [],
+          "isDeprecated": true,
           "typeStr": "String",
           "required": false
         },
@@ -98,12 +102,14 @@
           ],
           "showOfTypeKind": true,
           "typeStr": "ENUM",
+          "isDeprecated": true,
           "typeName": "CarMode",
           "required": false
         }
       ],
       "showOfTypeKind": true,
       "typeStr": null,
+      "isDeprecated": true,
       "typeName": "CarList",
       "required": false
     },
@@ -117,6 +123,7 @@
       },
       "defaultValue": null,
       "children": [],
+      "isDeprecated": false,
       "typeStr": "String",
       "required": false
     },
@@ -146,12 +153,14 @@
           "children": [],
           "showOfTypeKind": false,
           "typeStr": "LIST",
+          "isDeprecated": false,
           "typeName": "Int",
           "required": false
         }
       ],
       "showOfTypeKind": true,
       "typeStr": null,
+      "isDeprecated": false,
       "typeName": "CarListFilter",
       "required": false
     },
@@ -165,6 +174,7 @@
       },
       "defaultValue": null,
       "children": [],
+      "isDeprecated": false,
       "typeStr": "Int",
       "required": false
     },
@@ -178,6 +188,7 @@
       },
       "defaultValue": null,
       "children": [],
+      "isDeprecated": false,
       "typeStr": "Int",
       "required": false
     }
@@ -339,112 +350,112 @@
             },
             {
               "name": "DOMESTIC_A",
-              "description": "Standard/Domestic household, type \"A\", NEMA 1-15, 2 pins",
+              "description": "Standard/domestic household, type \"A\", NEMA 1-15, 2 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_B",
-              "description": "Standard/Domestic household, type \"B\", NEMA 5-15, 3 pins",
+              "description": "Standard/domestic household, type \"B\", NEMA 5-15, 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_C",
-              "description": "Standard/Domestic household, type \"C\", CEE 7/17, 2 pins",
+              "description": "Standard/domestic household, type \"C\", CEE 7/17, 2 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_D",
-              "description": "Standard/Domestic household, type \"D\", 3 pins",
+              "description": "Standard/domestic household, type \"D\", 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_E",
-              "description": "Standard/Domestic household, type \"E\", CEE 7/5 3 pins",
+              "description": "Standard/domestic household, type \"E\", CEE 7/5 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_F",
-              "description": "Standard/Domestic household, type \"F\", CEE 7/4, Schuko, 3 pins",
+              "description": "Standard/domestic household, type \"F\", CEE 7/4, Schuko, 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_G",
-              "description": "Standard/Domestic household, type \"G\", BS 1363, Commonwealth, 3 pins",
+              "description": "Standard/domestic household, type \"G\", BS 1363, Commonwealth, 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_H",
-              "description": "Standard/Domestic household, type \"H\", SI-32, 3 pins",
+              "description": "Standard/domestic household, type \"H\", SI-32, 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_I",
-              "description": "Standard/Domestic household, type \"I\", AS 3112, 3 pins",
+              "description": "Standard/domestic household, type \"I\", AS 3112, 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_J",
-              "description": "Standard/Domestic household, type \"J\", SEV 1011, 3 pins",
+              "description": "Standard/domestic household, type \"J\", SEV 1011, 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_K",
-              "description": "Standard/Domestic household, type \"K\", DS 60884-2-D1, 3 pins",
+              "description": "Standard/domestic household, type \"K\", DS 60884-2-D1, 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_L",
-              "description": "Standard/Domestic household, type \"L\", CEI 23-16-VII, 3 pins",
+              "description": "Standard/domestic household, type \"L\", CEI 23-16-VII, 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "IEC_60309_2_single_16",
-              "description": "IEC 60309-2 Industrial Connector single phase 16 amperes (usually blue)",
+              "description": "IEC 60309-2 Industrial connector single phase 16 amperes (usually blue)",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "IEC_60309_2_three_16",
-              "description": "IEC 60309-2 Industrial Connector three phase 16 amperes (usually red)",
+              "description": "IEC 60309-2 Industrial connector three phase 16 amperes (usually red)",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "IEC_60309_2_three_32",
-              "description": "IEC 60309-2 Industrial Connector three phase 32 amperes (usually red)",
+              "description": "IEC 60309-2 Industrial connector three phase 32 amperes (usually red)",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "IEC_60309_2_three_64",
-              "description": "IEC 60309-2 Industrial Connector three phase 64 amperes (usually red)",
+              "description": "IEC 60309-2 Industrial connector three phase 64 amperes (usually red)",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
@@ -493,28 +504,28 @@
             },
             {
               "name": "PANTOGRAPH_BOTTOM_UP",
-              "description": "On-board Bottom-up-Pantograph typically for bus charging",
+              "description": "On-board bottom-up-pantograph typically for bus charging",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "PANTOGRAPH_TOP_DOWN",
-              "description": "Off-board Top-down-Pantograph typically for bus charging",
+              "description": "Off-board top-down-pantograph typically for bus charging",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "TESLA_R",
-              "description": "Tesla Connector \"Roadster\"-type (round, 4 pins)",
+              "description": "Tesla connector \"Roadster\"-type (round, 4 pins)",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "TESLA_S",
-              "description": "Tesla Connector \"Model-S\"-type (oval, 5 pins)",
+              "description": "Tesla connector \"Model-S\"-type (oval, 5 pins)",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
@@ -527,7 +538,7 @@
         },
         {
           "name": "power",
-          "description": "This is the maximum power a plug accepts in kW",
+          "description": "The maximum power a plug accepts in kW",
           "args": [],
           "type": {
             "kind": "SCALAR",
@@ -542,7 +553,7 @@
         },
         {
           "name": "time",
-          "description": "Time it takes to charge from 10% to 80%, with a fast charger in minutes",
+          "description": "Time it takes to charge from 10 to 80% with a fast charger, shown in minutes",
           "args": [],
           "type": {
             "kind": "SCALAR",
@@ -613,112 +624,112 @@
             },
             {
               "name": "DOMESTIC_A",
-              "description": "Standard/Domestic household, type \"A\", NEMA 1-15, 2 pins",
+              "description": "Standard/domestic household, type \"A\", NEMA 1-15, 2 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_B",
-              "description": "Standard/Domestic household, type \"B\", NEMA 5-15, 3 pins",
+              "description": "Standard/domestic household, type \"B\", NEMA 5-15, 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_C",
-              "description": "Standard/Domestic household, type \"C\", CEE 7/17, 2 pins",
+              "description": "Standard/domestic household, type \"C\", CEE 7/17, 2 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_D",
-              "description": "Standard/Domestic household, type \"D\", 3 pins",
+              "description": "Standard/domestic household, type \"D\", 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_E",
-              "description": "Standard/Domestic household, type \"E\", CEE 7/5 3 pins",
+              "description": "Standard/domestic household, type \"E\", CEE 7/5 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_F",
-              "description": "Standard/Domestic household, type \"F\", CEE 7/4, Schuko, 3 pins",
+              "description": "Standard/domestic household, type \"F\", CEE 7/4, Schuko, 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_G",
-              "description": "Standard/Domestic household, type \"G\", BS 1363, Commonwealth, 3 pins",
+              "description": "Standard/domestic household, type \"G\", BS 1363, Commonwealth, 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_H",
-              "description": "Standard/Domestic household, type \"H\", SI-32, 3 pins",
+              "description": "Standard/domestic household, type \"H\", SI-32, 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_I",
-              "description": "Standard/Domestic household, type \"I\", AS 3112, 3 pins",
+              "description": "Standard/domestic household, type \"I\", AS 3112, 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_J",
-              "description": "Standard/Domestic household, type \"J\", SEV 1011, 3 pins",
+              "description": "Standard/domestic household, type \"J\", SEV 1011, 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_K",
-              "description": "Standard/Domestic household, type \"K\", DS 60884-2-D1, 3 pins",
+              "description": "Standard/domestic household, type \"K\", DS 60884-2-D1, 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "DOMESTIC_L",
-              "description": "Standard/Domestic household, type \"L\", CEI 23-16-VII, 3 pins",
+              "description": "Standard/domestic household, type \"L\", CEI 23-16-VII, 3 pins",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "IEC_60309_2_single_16",
-              "description": "IEC 60309-2 Industrial Connector single phase 16 amperes (usually blue)",
+              "description": "IEC 60309-2 Industrial connector single phase 16 amperes (usually blue)",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "IEC_60309_2_three_16",
-              "description": "IEC 60309-2 Industrial Connector three phase 16 amperes (usually red)",
+              "description": "IEC 60309-2 Industrial connector three phase 16 amperes (usually red)",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "IEC_60309_2_three_32",
-              "description": "IEC 60309-2 Industrial Connector three phase 32 amperes (usually red)",
+              "description": "IEC 60309-2 Industrial connector three phase 32 amperes (usually red)",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "IEC_60309_2_three_64",
-              "description": "IEC 60309-2 Industrial Connector three phase 64 amperes (usually red)",
+              "description": "IEC 60309-2 Industrial connector three phase 64 amperes (usually red)",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
@@ -767,28 +778,28 @@
             },
             {
               "name": "PANTOGRAPH_BOTTOM_UP",
-              "description": "On-board Bottom-up-Pantograph typically for bus charging",
+              "description": "On-board bottom-up-pantograph typically for bus charging",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "PANTOGRAPH_TOP_DOWN",
-              "description": "Off-board Top-down-Pantograph typically for bus charging",
+              "description": "Off-board top-down-pantograph typically for bus charging",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "TESLA_R",
-              "description": "Tesla Connector \"Roadster\"-type (round, 4 pins)",
+              "description": "Tesla connector \"Roadster\"-type (round, 4 pins)",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "TESLA_S",
-              "description": "Tesla Connector \"Model-S\"-type (oval, 5 pins)",
+              "description": "Tesla connector \"Model-S\"-type (oval, 5 pins)",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
@@ -801,7 +812,7 @@
         },
         {
           "name": "power",
-          "description": "This is the maximum power a plug accepts in kW",
+          "description": "The maximum power a plug accepts in kW",
           "args": [],
           "type": {
             "kind": "SCALAR",
@@ -816,7 +827,7 @@
         },
         {
           "name": "time",
-          "description": "Time it takes to charge from 10% to 80%, with a fast charger in minutes",
+          "description": "Time it takes to charge from 10 to 80% with a fast charger, shown in minutes",
           "args": [],
           "type": {
             "kind": "SCALAR",
@@ -1231,28 +1242,28 @@
                 },
                 {
                   "name": "image",
-                  "description": "Full size image at 1536x864 px",
+                  "description": "Full-sized image at 1536x864 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "image_thumbnail",
-                  "description": "Thumbnail of a full size image at 131x72 px",
+                  "description": "Thumbnail of a full-sized image at 131x72 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "brand",
-                  "description": "Full size brand (maker) logo at 768x432 px",
+                  "description": "Full-sized brand (maker) logo at 768x432 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "brand_thumbnail",
-                  "description": "Thumbnail of a full size brand logo at 56x24 px",
+                  "description": "Thumbnail of a full-sized brand logo at 56x24 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
@@ -1407,28 +1418,28 @@
                 },
                 {
                   "name": "image",
-                  "description": "Full size image at 1536x864 px",
+                  "description": "Full-sized image at 1536x864 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "image_thumbnail",
-                  "description": "Thumbnail of a full size image at 131x72 px",
+                  "description": "Thumbnail of a full-sized image at 131x72 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "brand",
-                  "description": "Full size brand (maker) logo at 768x432 px",
+                  "description": "Full-sized brand (maker) logo at 768x432 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "brand_thumbnail",
-                  "description": "Thumbnail of a full size brand logo at 56x24 px",
+                  "description": "Thumbnail of a full-sized brand logo at 56x24 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
@@ -1602,7 +1613,7 @@
       "deprecationReason": null,
       "children": [
         {
-          "name": "fast_charging_is_supported",
+          "name": "fast_charging_support",
           "description": "EVs that support fast charging have a minimum charging speed of 43 Kwh.\nEVs without support for fast charging used in a newRoute mutation will return an error.",
           "args": [],
           "type": {
@@ -1612,21 +1623,6 @@
           },
           "isDeprecated": false,
           "deprecationReason": null,
-          "children": [],
-          "typeStr": "Boolean",
-          "required": false
-        },
-        {
-          "name": "fast_charging_support",
-          "description": "EVs that support fast charging have a minimum charging speed of 43 Kwh.\nEVs without support for fast charging used in a newRoute mutation will return an error.",
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "Boolean",
-            "ofType": null
-          },
-          "isDeprecated": true,
-          "deprecationReason": "Will be removed in the future",
           "children": [],
           "typeStr": "Boolean",
           "required": false
@@ -1785,7 +1781,7 @@
         "ofType": null
       },
       "isDeprecated": true,
-      "deprecationReason": "In favor of routing.fast_charging_is_supported",
+      "deprecationReason": "In favor of routing.fast_charging_support",
       "children": [],
       "typeStr": "Boolean",
       "required": false
@@ -1934,28 +1930,28 @@
                 },
                 {
                   "name": "image",
-                  "description": "Full size image at 1536x864 px",
+                  "description": "Full-sized image at 1536x864 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "image_thumbnail",
-                  "description": "Thumbnail of a full size image at 131x72 px",
+                  "description": "Thumbnail of a full-sized image at 131x72 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "brand",
-                  "description": "Full size brand (maker) logo at 768x432 px",
+                  "description": "Full-sized brand (maker) logo at 768x432 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "brand_thumbnail",
-                  "description": "Thumbnail of a full size brand logo at 56x24 px",
+                  "description": "Thumbnail of a full-sized brand logo at 56x24 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
@@ -2110,28 +2106,28 @@
                 },
                 {
                   "name": "image",
-                  "description": "Full size image at 1536x864 px",
+                  "description": "Full-sized image at 1536x864 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "image_thumbnail",
-                  "description": "Thumbnail of a full size image at 131x72 px",
+                  "description": "Thumbnail of a full-sized image at 131x72 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "brand",
-                  "description": "Full size brand (maker) logo at 768x432 px",
+                  "description": "Full-sized brand (maker) logo at 768x432 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "brand_thumbnail",
-                  "description": "Thumbnail of a full size brand logo at 56x24 px",
+                  "description": "Thumbnail of a full-sized brand logo at 56x24 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
@@ -2286,28 +2282,28 @@
                 },
                 {
                   "name": "image",
-                  "description": "Full size image at 1536x864 px",
+                  "description": "Full-sized image at 1536x864 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "image_thumbnail",
-                  "description": "Thumbnail of a full size image at 131x72 px",
+                  "description": "Thumbnail of a full-sized image at 131x72 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "brand",
-                  "description": "Full size brand (maker) logo at 768x432 px",
+                  "description": "Full-sized brand (maker) logo at 768x432 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "brand_thumbnail",
-                  "description": "Thumbnail of a full size brand logo at 56x24 px",
+                  "description": "Thumbnail of a full-sized brand logo at 56x24 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
@@ -2462,28 +2458,28 @@
                 },
                 {
                   "name": "image",
-                  "description": "Full size image at 1536x864 px",
+                  "description": "Full-sized image at 1536x864 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "image_thumbnail",
-                  "description": "Thumbnail of a full size image at 131x72 px",
+                  "description": "Thumbnail of a full-sized image at 131x72 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "brand",
-                  "description": "Full size brand (maker) logo at 768x432 px",
+                  "description": "Full-sized brand (maker) logo at 768x432 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
                 },
                 {
                   "name": "brand_thumbnail",
-                  "description": "Thumbnail of a full size brand logo at 56x24 px",
+                  "description": "Thumbnail of a full-sized brand logo at 56x24 px",
                   "isDeprecated": false,
                   "deprecationReason": null,
                   "children": []
@@ -3209,28 +3205,28 @@
             },
             {
               "name": "image",
-              "description": "Full size image at 1536x864 px",
+              "description": "Full-sized image at 1536x864 px",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "image_thumbnail",
-              "description": "Thumbnail of a full size image at 131x72 px",
+              "description": "Thumbnail of a full-sized image at 131x72 px",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "brand",
-              "description": "Full size brand (maker) logo at 768x432 px",
+              "description": "Full-sized brand (maker) logo at 768x432 px",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
             },
             {
               "name": "brand_thumbnail",
-              "description": "Thumbnail of a full size brand logo at 56x24 px",
+              "description": "Thumbnail of a full-sized brand logo at 56x24 px",
               "isDeprecated": false,
               "deprecationReason": null,
               "children": []
