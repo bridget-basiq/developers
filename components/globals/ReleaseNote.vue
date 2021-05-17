@@ -6,7 +6,9 @@
       <h2 :id="id" class="mb-1">
         {{ title }}
       </h2>
-      <time class="text-14 text-font-alt3">{{ date }}</time>
+      <time :datetime="readableTime" class="text-14 text-font-alt3">{{
+        date
+      }}</time>
     </div>
     <div class="content">
       <slot />
@@ -21,6 +23,7 @@ import { slugify } from '~/utilities/project.functions'
 export default class ReleaseNote extends Vue {
   @Prop() title
   @Prop() date
+  @Prop() readableTime
 
   get id() {
     return `release-${slugify(this.title)}`
