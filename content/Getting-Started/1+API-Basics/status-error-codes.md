@@ -56,7 +56,7 @@ descriptions:
 
 To ensure you can respond appropriately when our API gives unexpected output, we maintain a consistent set of API response and error codes. The general design of these will be discussed inside this chapter.
 
-<c-image alt="Authorization image" src="status-and-error-codes.png" max-width="full"></c-image>
+<c-image alt="Authorization image" src="/status-and-error-codes.png" max-width="full"></c-image>
 
 ## API Response Codes
 
@@ -104,7 +104,7 @@ Navigate to our API reference to get a more detailed look at the possible errors
 
 <right-aside large="true">
 
-<article-teaser src="globe.svg" href="https://medium.com/chargetrip/chargetrip-tile-service-with-react-native-and-mapbox-228dae36a574">
+<article-teaser src="/globe.svg" href="https://medium.com/chargetrip/chargetrip-tile-service-with-react-native-and-mapbox-228dae36a574">
 
 ## Chargetrip Tile Service with React Native and Mapbox
 An introduction to the Chargetrip Tile Service and the caveats of integrating it into a React Native mobile application.

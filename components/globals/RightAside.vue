@@ -1,6 +1,6 @@
 <template>
   <div
-    class="right-aside fixed border-l border-alt right-0 bg-body z-40 hidden xl:block"
+    class="right-aside fixed border-l border-alt right-0 bg-body z-40 hidden xl2:block"
     :class="{ large: large }"
   >
     <slot />

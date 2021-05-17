@@ -32,7 +32,32 @@ async function getEntries(path) {
   const url = _url.length ? _url : '/'
   const h1 = dom.window.document.body.querySelector('h1')?.textContent
 
-  return [getPage({ url, dom, h1 }), ...(await getProperties({ url, dom }))]
+  return [
+    getPage({ url, dom, h1 }),
+    ...(await getProperties({ url, dom })),
+    ...getErrors({ dom, url }),
+  ]
+}
+
+function getErrors({ dom, url }) {
+  const arr = []
+
+  dom.window.document.body
+    .querySelectorAll('.errors li.error')
+    .forEach((el) => {
+      const title = el.querySelector('.title').textContent
+      const description = el.querySelector('.description').textContent
+
+      arr.push({
+        type: 'error',
+        title,
+        objectID: `${url}-${title}`,
+        description,
+        url: `${url}#${title}`,
+      })
+    })
+
+  return arr
 }
 
 async function getProperties({ dom, url }) {

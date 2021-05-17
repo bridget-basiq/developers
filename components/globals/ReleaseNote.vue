@@ -6,7 +6,9 @@
       <h2 :id="id" class="mb-1">
         {{ title }}
       </h2>
-      <p class="text-14 text-font-alt3">{{ date }}</p>
+      <time :datetime="date" class="text-14 text-font-alt3">{{
+        normalizedDate
+      }}</time>
     </div>
     <div class="content">
       <slot />
@@ -15,12 +17,23 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { format } from 'date-fns'
 import { slugify } from '~/utilities/project.functions'
 
 @Component
 export default class ReleaseNote extends Vue {
   @Prop() title
   @Prop() date
+
+  get normalizedDate() {
+    const [day, month, year]: [number, number, number] = this.date
+      .split('-')
+      .map((value) => parseInt(value))
+
+    const date = new Date(year, month - 1, day)
+
+    return `${format(date, 'do')} of ${format(date, 'MMM yyyy')}`
+  }
 
   get id() {
     return `release-${slugify(this.title)}`

@@ -72,7 +72,7 @@ export default class Slug extends Vue {
 <style lang="scss">
 .home {
   .examples {
-    @screen xl-max {
+    @screen xl2-max {
       @apply relative border-0 w-full block h-auto p-0 top-0 mt-8 z-0;
 
       .container {

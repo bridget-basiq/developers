@@ -1,9 +1,9 @@
 <template>
   <div
-    class="step-image md:rounded overflow-hidden"
+    class="step-image w-full md:rounded overflow-hidden"
     :class="{ 'bg-alt': !darkMode, 'bg-base': darkMode }"
   >
-    <c-image class="shadow-down-md" :alt="title" :src="src" />
+    <c-image class="w-full shadow-down-md" :alt="title" :src="src" />
   </div>
 </template>
 <script lang="ts">
