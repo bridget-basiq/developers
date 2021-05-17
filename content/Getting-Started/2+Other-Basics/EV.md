@@ -15,7 +15,7 @@ The Chargetrip API enables you to calculate EV-specific routes for all electric 
 
 <right-aside large="true">
 
-<article-teaser src="globe.svg" href="https://medium.com/chargetrip/a-simple-guide-to-ev-navigation-and-routing-for-developers-bb82b1c78901">
+<article-teaser src="/globe.svg" href="https://medium.com/chargetrip/a-simple-guide-to-ev-navigation-and-routing-for-developers-bb82b1c78901">
 
 ## A simple guide to EV navigation and routing
 To help you get started with the Chargetrip API, we provide you insights about the EV routing paradigm.

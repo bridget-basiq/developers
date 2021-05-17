@@ -1,6 +1,6 @@
 <template>
   <Theme
-    class="text-16 h-screen flex flex-col"
+    class="text-16 lg:h-screen flex flex-col"
     :dark-mode="darkMode"
     @click.native="closeKhaled"
   >
@@ -17,7 +17,7 @@
           @setShowSearch="showSearch = $event"
         />
       </div>
-      <div class="flex ml-auto lg:hidden">
+      <div class="flex h-16 items-center ml-auto lg:hidden">
         <Button
           v-if="!showMenu"
           size="sm"
@@ -483,7 +483,8 @@ export default class Layout extends Mixins(Base) {
   }
 
   > p {
-    & + img {
+    & + img,
+    & + .c-image {
       @apply mt-6;
     }
 

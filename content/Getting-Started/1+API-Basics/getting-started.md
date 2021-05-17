@@ -4,14 +4,14 @@ description: Get started by setting up your chargetrip API project
 order: 1
 quickNav: true
 images:
-- configuring-your-project-1.png
-- configuring-your-project-2.png
+- /configuring-your-project-1.png
+- /configuring-your-project-2.png
 ---
 # Getting started
 The Chargetrip API can be used to render electric vehicles, plot stations and calculate routes. The API itself has different access levels and request limits depending on your plan. Everyone can start with a limited dataset on the free plan, but you can <cta action="small-chat">contact us</cta> at any time to upgrade your plan.
 
 <steps>
-<step img="getting-access.png">
+<step img="/getting-access.png">
 
 ## Getting access
 
@@ -34,7 +34,7 @@ Want to use the same configuration in a different app? Create additional app key
 </step-note>
 
 </step>
-<step img="collect-your-keys.png">
+<step img="/collect-your-keys.png">
 
 ## Collect your keys
 After configuring your project, you need to click create. After that you will be taken to your project overview. Copy the `project id` / `x-client-id` and use this to make requests.
@@ -49,7 +49,7 @@ These keys can’t be regenerated so keep them safe by using environment variabl
 
 <right-aside large="true">
 
-<article-teaser src="globe.svg" href="https://medium.com/chargetrip/a-simple-guide-to-ev-navigation-and-routing-for-developers-bb82b1c78901">
+<article-teaser src="/globe.svg" href="https://medium.com/chargetrip/a-simple-guide-to-ev-navigation-and-routing-for-developers-bb82b1c78901">
 
 ## A simple guide to EV navigation and routing
 To help you get started with the Chargetrip API, we provide you insights about the EV routing paradigm.

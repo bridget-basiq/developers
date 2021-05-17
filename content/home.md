@@ -32,7 +32,7 @@ Need some information about EV routing, EVs or graphQL first? No worries, we hav
 
 <article-teaser-section title="Latest technology article">
 
-<article-teaser src="globe.svg" href="https://medium.com/chargetrip/chargetrip-tile-service-with-react-native-and-mapbox-228dae36a574">
+<article-teaser src="/globe.svg" href="https://medium.com/chargetrip/chargetrip-tile-service-with-react-native-and-mapbox-228dae36a574">
 
 ### Chargetrip Tile Service with React Native and Mapbox
 

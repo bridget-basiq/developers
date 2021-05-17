@@ -1,4 +1,5 @@
 import { toSnakeCase } from 'js-convert-case/lib'
+import { format } from 'date-fns'
 
 const getTitle = (child) => {
   if (child.tag === 'release-note') {
@@ -59,6 +60,16 @@ export const slugify = (str) =>
     .replace(/\./g, '-')
     .replace(new RegExp('\\s+', 'g'), '-')
     .toLowerCase()
+
+export const normalizeDate = (str) => {
+  const [day, month, year]: [number, number, number] = str
+    .split('-')
+    .map((value) => parseInt(value))
+
+  const date = new Date(year, month - 1, day)
+
+  return `${format(date, 'do')} of ${format(date, 'MMMM yyyy')}`
+}
 
 export const copy = (str) => {
   const el = document.createElement('textarea')

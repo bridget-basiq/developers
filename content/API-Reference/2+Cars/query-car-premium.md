@@ -4,12 +4,10 @@ description: Query data of a single car
 order: 4
 frequently:
 - id
-- make
-- model
-- standard
-- power
-- usable_kwh
-- fast_charging_support
+- naming
+- connectors
+- fast_charge
+- routing
 ---
 
 # Query premium car details <premium />

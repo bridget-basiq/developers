@@ -10,7 +10,14 @@
     </p>
     <slot />
     <strong class="text-accent mt-3 block"> Read more </strong>
-    <img class="absolute h-full w-auto right-0 top-0" :src="src" alt="Globe" />
+    <div class="absolute inset-0">
+      <ChargetripImage
+        :src="src"
+        :params="{ h: 'auto' }"
+        :show-placeholder="false"
+        alt="globe"
+      />
+    </div>
     <a
       :href="href"
       class="text-accent absolute inset-0 mt-3 block"
@@ -21,8 +28,9 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Image as ChargetripImage } from '@chargetrip/internal-vue-components'
 
-@Component
+@Component({ components: { ChargetripImage } })
 export default class CImage extends Vue {
   @Prop() href
   @Prop() title
@@ -35,6 +43,7 @@ export default class CImage extends Vue {
   img {
     height: 150%;
     transform: translateY(-33.333%);
+    @apply mr-0;
   }
 
   p {

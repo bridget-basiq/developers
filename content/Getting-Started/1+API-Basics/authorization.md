@@ -24,7 +24,7 @@ required:
 
 Before you can start with our API you need to be able to authorize yourself. You can do this by [signing up](http://dashboard.chargetrip.com/) and [configuring](/Getting-Started/API-Basics/getting-started#configuring-your-project) your own free key. After you’ve done that we will guide you through the process of configuring your key and authorizing yourself.
 
-<c-image alt="Authorization image" src="authorization.png" max-width="full"></c-image>
+<c-image alt="Authorization image" src="/authorization.png" max-width="full"></c-image>
 
 ## The API
 Now that you have all necessary credentials you can start using our API. The first thing you need is the following base url:
@@ -53,7 +53,7 @@ http://api.chargetrip.io/graphql
 
 <right-aside large="true">
 
-<article-teaser src="globe.svg" href="https://medium.com/chargetrip/chargetrip-tile-service-with-react-native-and-mapbox-228dae36a574">
+<article-teaser src="/globe.svg" href="https://medium.com/chargetrip/chargetrip-tile-service-with-react-native-and-mapbox-228dae36a574">
 
 ## Chargetrip Tile Service with React Native and Mapbox
 An introduction to the Chargetrip Tile Service and the caveats of integrating it into a React Native mobile application.

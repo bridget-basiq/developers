@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="content.quickNav && (prev || next)"
+    v-if="content.quickNav === true"
     class="prev-next-navigation max-w-lg flex px-6 lg:px-12 pb-10 font-semibold"
   >
     <router-link

@@ -1,11 +1,12 @@
 <template>
   <li
+    :id="code"
     class="error flex sm-max:flex-col items-start py-4 border rounded-md border-alt sm:items-center text-14 p-4 mb-2 last:mb-0"
   >
     <Tag color="error" type="secondary">Error</Tag>
     <div class="sm:ml-4 sm-max:mt-2">
-      <code class="uppercase break-all font-medium">{{ code }}</code>
-      <p class="text-font-alt3">{{ message }}</p>
+      <code class="title uppercase break-all font-medium">{{ code }}</code>
+      <p class="description text-font-alt3">{{ message }}</p>
     </div>
   </li>
 </template>

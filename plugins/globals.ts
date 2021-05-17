@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import {
+  Accordion,
+  AccordionItem,
   Button,
   Cell,
   Row,
@@ -9,8 +11,6 @@ import {
 import CImage from '~/components/CImage.vue'
 import Table from '~/components/Table.vue'
 import ApiReferenceActions from '~/components/globals/ApiReferenceActions.vue'
-import Accordion from '~/components/globals/Accordion.vue'
-import AccordionItem from '~/components/globals/AccordionItem.vue'
 import ArticleTeaser from '~/components/globals/ArticleTeaser.vue'
 import ArticleTeaserSection from '~/components/globals/ArticleTeaserSection.vue'
 import Cta from '~/components/globals/Cta.vue'

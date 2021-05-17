@@ -5,7 +5,7 @@
   >
     <Button
       size="sm"
-      class="border bg-base text-accent"
+      class="playground border bg-base text-accent"
       title="Explore on the playground"
       icon="arrow-up-right"
       :href="url"
@@ -13,7 +13,7 @@
     <Button
       v-if="exampleUrl"
       size="sm"
-      class="border bg-body sm:ml-3 sm-max:mt-3 text-font-primary"
+      class="example border bg-body sm:ml-3 sm-max:mt-3 text-font-primary"
       title="View example"
       :href="exampleUrl"
     />
@@ -35,11 +35,11 @@ export default class extends Vue {
   .c-button {
     @apply px-3;
 
-    &:first-child {
+    &.playground {
       @apply border-accent;
     }
 
-    &:last-child {
+    &.example {
       @apply border-alt2;
     }
 

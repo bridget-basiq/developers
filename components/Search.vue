@@ -224,6 +224,13 @@ export default class Search extends Mixins(Base) {
     const [path, hash] = url.split('#')
     const splitPath = path.split('/').slice(1)
 
+    if (type === 'error') {
+      return {
+        path: '',
+        propertyPath: toSentenceCase(splitPath[splitPath.length - 1]),
+      }
+    }
+
     const propertyParent = hash.split('-').slice(1)
     splitPath.splice(1, 1)
 
