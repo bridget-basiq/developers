@@ -8,7 +8,7 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
-<release-note title="3.2.0 - Tile Service Filter" date="16th of July 2020" readable-time="16-07-2020">
+<release-note title="3.2.0 - Tile Service Filter" date="16-07-2020">
 
 ### ⚡️ New features
 
@@ -21,14 +21,14 @@ With every update we write release notes. This way you know what has been fixed 
 
 </release-note>
 
-<release-note title="3.1.0 - OCPI 2.2 Support" date="10th of June 2020" readable-time="10-06-2020">
+<release-note title="3.1.0 - OCPI 2.2 Support" date="10-06-2020">
 
 ### ⚡️ New features
 - We've added support for the latest version of OCPI. More information about the OCPI 2.2 specifications can be found [here](https://github.com/ocpi/ocpi). The full specifications can be found [here](https://github.com/ocpi/ocpi/releases/download/2.2/OCPI-2.2.pdf).
 
 </release-note>
 
-<release-note title="3.0.1 - OCPI 2.1.1 Support" date="14th of April 2020" readable-time="14-04-2020">
+<release-note title="3.0.1 - OCPI 2.1.1 Support" date="14-04-2020">
 
 ### ⚡️ New features
 - Chargetrip includes an exclusive Eco-Movement integration. Next to our free Open Charge Map stations, your account can be pre-loaded with over 100.000 highly curated premium charge stations across Europe. Our premium station data includes real-time availability, pricing<sup>1</sup>, and charging history<sup>1</sup>. You no longer need to connect several costly charge station database providers to get European coverage. See eco-movement.com for more details about regional limitations. <cta action='smallchat'>Contact us</cta> for pricing. 
@@ -40,7 +40,7 @@ With every update we write release notes. This way you know what has been fixed 
 
 </release-note>
 
-<release-note title="3.0.0 - Generation 3 of the Chargetrip API" date="18th of January 2020" readable-time="18-01-2020">
+<release-note title="3.0.0 - Generation 3 of the Chargetrip API" date="18-01-2020">
 
 ### ⚡️ New features
 - Added support for Peugeot e-208 and the Seat Mii Electric. 
