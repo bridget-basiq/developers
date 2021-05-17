@@ -26,11 +26,11 @@ export default class ReleaseNote extends Vue {
   @Prop() date
 
   get normalizedDate() {
-    const splitDate: [number, number, number] = this.date
+    const [day, month, year]: [number, number, number] = this.date
       .split('-')
       .map((value) => parseInt(value))
-      .reverse()
-    const date = new Date(...splitDate)
+
+    const date = new Date(day, month - 1, year)
 
     return `${format(date, 'do')} of ${format(date, 'MMM yyyy')}`
   }
