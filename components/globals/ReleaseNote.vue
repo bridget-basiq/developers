@@ -17,8 +17,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
-import { format } from 'date-fns'
-import { slugify } from '~/utilities/project.functions'
+import { normalizeDate, slugify } from '~/utilities/project.functions'
 
 @Component
 export default class ReleaseNote extends Vue {
@@ -26,13 +25,7 @@ export default class ReleaseNote extends Vue {
   @Prop() date
 
   get normalizedDate() {
-    const [day, month, year]: [number, number, number] = this.date
-      .split('-')
-      .map((value) => parseInt(value))
-
-    const date = new Date(year, month - 1, day)
-
-    return `${format(date, 'do')} of ${format(date, 'MMM yyyy')}`
+    return normalizeDate(this.date)
   }
 
   get id() {
