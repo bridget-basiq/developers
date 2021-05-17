@@ -30,7 +30,7 @@ export default class ReleaseNote extends Vue {
       .split('-')
       .map((value) => parseInt(value))
 
-    const date = new Date(day, month - 1, year)
+    const date = new Date(year, month - 1, day)
 
     return `${format(date, 'do')} of ${format(date, 'MMM yyyy')}`
   }
