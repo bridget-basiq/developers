@@ -71,7 +71,11 @@ export default class Property extends Vue {
   showChildren = false
   ofTypeKind = OfTypeKind
 
-  @Watch('$route.hash', { immediate: true })
+  mounted() {
+    this.onHashChange()
+  }
+
+  @Watch('$route.hash')
   onHashChange() {
     this.showChildren = this.showChildren || this.getShowChildren()
   }
