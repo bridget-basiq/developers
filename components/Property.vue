@@ -31,10 +31,7 @@
         v-html="$options.filters.markdown(description)"
       />
     </div>
-    <ul
-      v-show="showChildren && children.length"
-      class="children pl-10 lg:pl-14"
-    >
+    <ul v-if="showChildren && children.length" class="children pl-10 lg:pl-14">
       <property
         v-for="(child, i) in children"
         :key="i"
