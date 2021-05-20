@@ -31,7 +31,10 @@
         v-html="$options.filters.markdown(description)"
       />
     </div>
-    <ul v-if="showChildren && children.length" class="children pl-10 lg:pl-14">
+    <ul
+      v-show="showChildren && children.length"
+      class="children pl-10 lg:pl-14"
+    >
       <property
         v-for="(child, i) in children"
         :key="i"
@@ -71,7 +74,11 @@ export default class Property extends Vue {
   showChildren = false
   ofTypeKind = OfTypeKind
 
-  @Watch('$route.hash', { immediate: true })
+  mounted() {
+    this.onHashChange()
+  }
+
+  @Watch('$route.hash')
   onHashChange() {
     this.showChildren = this.showChildren || this.getShowChildren()
   }
