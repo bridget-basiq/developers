@@ -28,17 +28,17 @@ The Playground only includes four test car models. You need a premium `x-client-
 <examples title="Clone an example">
     <!-- Cars -->
     <example 
-        href="https://chargetrip.github.io/examples/car/" 
+        href="https://examples.chargetrip.com/?id=car-list" 
         img="cars-example.png" 
         title="Query cars" 
-        description="Quickly fetch a list of cars with additional data." 
+        description="Quickly fetch a list of cars." 
         category="Cars">
     </example>
-    <example 
-        href="https://chargetrip.github.io/examples/state-of-charge/" 
-        img="state-of-charge-example.png" 
-        title="State of Charge" 
-        description="Mutate the state of charge and reroute the journey" 
+     <example 
+        href="https://examples.chargetrip.com/?id=car-details" 
+        img="cars-example.png" 
+        title="Query car details" 
+        description="Fetch all the details of a specific car." 
         category="Cars">
     </example>
 </examples>

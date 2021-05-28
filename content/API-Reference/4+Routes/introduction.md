@@ -18,21 +18,21 @@ Be aware that if the route is computed before you subscribe to it, you will not 
 <examples title="Clone an example">
     <!-- Routes -->
     <example 
-        href="https://chargetrip.github.io/examples/route/" 
+        href="https://examples.chargetrip.com/?id=route" 
         img="route-example.png" 
         title="Build a route" 
         description="Query and mutate route information and plot it on a map" 
         category="Routes">
     </example>
     <example 
-        href="https://chargetrip.github.io/examples/elevation-plot/" 
+        href="https://examples.chargetrip.com/?id=elevation-plot" 
         img="elevation-example.png" 
         title="Elevation Plot" 
         description="Grab the elevation profile from a route and plot it on a graph" 
         category="Routes">
     </example>
     <example 
-        href="https://chargetrip.github.io/examples/alternative-routes/" 
+        href="https://examples.chargetrip.com/?id=alternative-routes" 
         img="alternative-routes-example.png" 
         title="Alternative routes" 
         description="Query and render alternative routes" 
