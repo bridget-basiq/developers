@@ -25,7 +25,7 @@ You need to set your `x-client-id` as a `header` to authorize your request. In a
 <examples title="Clone an example">
     <!-- Tiles -->
     <example 
-        href="https://chargetrip.github.io/examples/tile-server/?provider=eco#eco" 
+        href="https://examples.chargetrip.com/?id=tile-server" 
         img="tile-service-example.png" 
         title="Vector tile service" 
         description="Show stations on a map using our Vector Tile Server" 

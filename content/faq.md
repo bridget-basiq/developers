@@ -29,7 +29,7 @@ Both `wltp` and `chargetrip_range` are estimates. WLTP is a testing cycle that c
 
 <accordion-item title="Can I see alternative stations along a planned route?">
 
-Yes. While our route calculates the best charging stations for you and your car — you can also view alternative stations. Simply add the `stationsAlongRouteRadius` flag to your `newRoute` mutation, and set the search radius in meters (the max is 5 km). Make sure to also add `stationsAlongRoute` to your `route` query. For more information, please see our [documentation](/API-Reference/Routes/query-route-details) and [examples](https://chargetrip.github.io/examples/stations-along-route/).
+Yes. While our route calculates the best charging stations for you and your car — you can also view alternative stations. Simply add the `stationsAlongRouteRadius` flag to your `newRoute` mutation, and set the search radius in meters (the max is 5 km). Make sure to also add `stationsAlongRoute` to your `route` query. For more information, please see our [documentation](/API-Reference/Routes/query-route-details) and [examples](https://examples.chargetrip.com/?id=stations-along-route).
 
 </accordion-item>
 
@@ -82,7 +82,7 @@ Charging station names flow from our station database. They receive these names 
 
 <accordion-item title="Can I show alternative routes?">
 
-Definitely. Just add alternatives to your `route` query, with all the parameters you want from your alternative routes. For more information, please visit our [examples](https://chargetrip.github.io/examples/alternative-routes/). 
+Definitely. Just add alternatives to your `route` query, with all the parameters you want from your alternative routes. For more information, please visit our [examples](https://examples.chargetrip.com/?id=alternative-routes). 
 
 </accordion-item>
 
@@ -106,7 +106,7 @@ You can add waypoints to your route by adding the `via` property to your route r
 
 <accordion-item title="Do you recommend using a subscription or a query for routes?">
 
-We recommend that you subscribe to route updates, and unsubscribe when a route has reached a final status. Be aware that if a route is computed before you subscribe to it, you will not receive any updates. To prevent this, query the route once immediately after the subscription. If the route is already calculated, unsubscribe. For more information, consult our [documentation](/API-Reference/Routes/subscribe-to-route-updates) and [examples](https://chargetrip.github.io/examples/route/).  
+We recommend that you subscribe to route updates, and unsubscribe when a route has reached a final status. Be aware that if a route is computed before you subscribe to it, you will not receive any updates. To prevent this, query the route once immediately after the subscription. If the route is already calculated, unsubscribe. For more information, consult our [documentation](/API-Reference/Routes/subscribe-to-route-updates) and [examples](https://examples.chargetrip.com/?id=route).  
 
 </accordion-item>
 
@@ -127,7 +127,7 @@ Yes, this is possible! However, we strongly advise you use our tile server. We�
 
 <accordion-item title="How do I filter stations?">
 
-You can add a set of filters to the tile request. These filters are sent as query parameters. To request a tile you must have a combination of connectors and powers. For more information, refer to our [examples](https://chargetrip.github.io/examples/tile-server/?provider=eco#eco) and [documentation](/API-Reference/Tile-Service/filters). 
+You can add a set of filters to the tile request. These filters are sent as query parameters. To request a tile you must have a combination of connectors and powers. For more information, refer to our [examples](https://examples.chargetrip.com/?id=tile-server) and [documentation](/API-Reference/Tile-Service/filters). 
 
 </accordion-item>
 </accordion>

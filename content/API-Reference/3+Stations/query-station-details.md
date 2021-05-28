@@ -15,7 +15,7 @@ frequently:
 # Query station details
 Specific station details can be useful when you want to display the type of chargers, the number of chargers, the location or any other detail that is currently available.  
 
-<api-reference-actions example-url="https://chargetrip.github.io/examples/station-info/" url="https://playground.chargetrip.com/?page=station"></api-reference-actions>
+<api-reference-actions example-url="https://examples.chargetrip.com/?id=station-details" url="https://playground.chargetrip.com/?page=station"></api-reference-actions>
 
 ## Query
 To get specific details of a station you need to provide a `stationId`. This `id` can be obtained by using the stations query described [here](/API-Reference/Stations/query-stations) or by using the [tile service](/API-Reference/Tile-Service/introduction).
