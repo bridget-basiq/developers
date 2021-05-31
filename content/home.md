@@ -61,14 +61,14 @@ Need some information about EV routing, EVs or graphQL first? No worries, we hav
     <example 
         href="https://examples.chargetrip.com/?id=car-list" 
         img="cars-example.png" 
-        title="Query cars" 
+        title="Query car list" 
         description="Quickly fetch a list of cars." 
         category="Cars">
     </example>
     <example 
         href="https://examples.chargetrip.com/?id=car-details" 
-        img="cars-example.png" 
-        title="Query cars" 
+        img="cars-detail-example.png" 
+        title="Query car details" 
         description="Query all the details of a specific car." 
         category="Cars">
     </example>
