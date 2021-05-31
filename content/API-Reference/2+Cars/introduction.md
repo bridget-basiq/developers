@@ -30,13 +30,13 @@ The Playground only includes four test car models. You need a premium `x-client-
     <example 
         href="https://examples.chargetrip.com/?id=car-list" 
         img="cars-example.png" 
-        title="Query cars" 
+        title="Query car list" 
         description="Quickly fetch a list of cars." 
         category="Cars">
     </example>
      <example 
         href="https://examples.chargetrip.com/?id=car-details" 
-        img="cars-example.png" 
+        img="cars-detail-example.png"
         title="Query car details" 
         description="Fetch all the details of a specific car." 
         category="Cars">
