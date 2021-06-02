@@ -43,8 +43,8 @@ Need some information about EV routing, EVs or graphQL first? No worries, we hav
 ## Open source
 <c-table>
     <c-row>
-        <c-cell tag="th">Package</c-cell>
-        <c-cell tag="th">Description</c-cell>
+        <c-cell font-weight="bold" tag="th">Package</c-cell>
+        <c-cell font-weight="bold" tag="th">Description</c-cell>
     </c-row>
     <c-row url="https://github.com/chargetrip/types">
         <c-cell font-weight="semibold">Typescript Typings</c-cell>

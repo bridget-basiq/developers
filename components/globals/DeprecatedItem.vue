@@ -1,10 +1,10 @@
 <template>
   <div
-    class="deprecated-item flex flex-col md:flex-row mt-3 border border-alt rounded"
+    class="deprecated-item flex flex-col md:flex-row mt-3 border border-alt rounded text-14"
   >
     <div class="p-4">
       <p>
-        <strong class="flex items-center">
+        <strong class="flex items-center flex-wrap">
           <span class="text-font-alt3">{{ fromTitle }}</span>
           <template v-if="toTitle">
             <span class="icon-arrow-right mx-1" />
@@ -12,13 +12,13 @@
           </template>
         </strong>
       </p>
-      <p class="text-font-alt3">
+      <p class="text-font-alt3 mt-1 md:mt-0">
         {{ description }}
         <slot />
       </p>
     </div>
     <div
-      class="p-4 bg-subdued md:ml-auto whitespace-nowrap flex md:flex-col justify-between"
+      class="p-4 bg-subdued md:ml-auto whitespace-nowrap flex md:flex-col justify-between md:border-t-0 md:border-l border-alt border-t"
     >
       <p>
         <strong> Supported until </strong>

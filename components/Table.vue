@@ -77,7 +77,7 @@ export default class Table extends Vue {
       &::after {
         content: '\e902';
         font-family: icomoon;
-        @apply absolute right-0 top-1/2 transform -translate-y-1/2 mr-6;
+        @apply absolute right-0 top-1/2 transform -translate-y-1/2 mr-6 text-14;
       }
     }
     td {
@@ -92,7 +92,7 @@ export default class Table extends Vue {
       }
 
       &:nth-child(3) {
-        @apply border-0;
+        @apply border-0 pt-0;
       }
       &::before {
         @apply hidden;
