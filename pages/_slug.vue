@@ -83,12 +83,12 @@ export default class Slug extends Vue {
         @apply flex-col items-start;
       }
 
-      img {
+      .c-image {
         @apply m-0 mb-4;
       }
 
       .description,
-      img {
+      .c-image {
         @apply w-full;
       }
     }

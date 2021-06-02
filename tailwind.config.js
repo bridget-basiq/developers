@@ -18,9 +18,10 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        xl2: '1464px',
-
-        'xl2-max': { max: '1463px' },
+        xl3: '1464px',
+        xl2: '1440px',
+        'xl3-max': { max: '1463px' },
+        'xl2-max': { max: '1439px' },
         'xl-max': { max: '1279px' },
         // => @media (max-width: 1279px) { ... }
 
