@@ -4,10 +4,10 @@
   >
     <div class="p-4">
       <p>
-        <strong>
+        <strong class="flex items-center">
           <span class="text-font-alt3">{{ fromTitle }}</span>
           <template v-if="toTitle">
-            ->
+            <span class="icon-arrow-right mx-1" />
             <span>{{ toTitle }}</span>
           </template>
         </strong>
