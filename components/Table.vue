@@ -55,6 +55,24 @@ export default class Table extends Vue {
 .home .dev-portal-table {
   table {
     @apply mb-0;
+
+    td {
+      &::before {
+        @apply text-12;
+      }
+    }
+    .c-row {
+      &:hover,
+      &:hover + tr {
+        td,
+        th {
+          @apply bg-body;
+        }
+        .spacer {
+          @apply border-0;
+        }
+      }
+    }
   }
   @screen lg-max {
     tr,
@@ -77,7 +95,7 @@ export default class Table extends Vue {
       &::after {
         content: '\e902';
         font-family: icomoon;
-        @apply absolute right-0 top-1/2 transform -translate-y-1/2 mr-6 text-14;
+        @apply absolute right-0 top-1/2 transform -translate-y-1/2 mr-6;
       }
     }
     td {
