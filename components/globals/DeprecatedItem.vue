@@ -18,7 +18,7 @@
       </p>
     </div>
     <div
-      class="p-4 bg-subdued md:ml-auto whitespace-nowrap flex md:flex-col justify-between md:border-t-0 md:border-l border-alt border-t"
+      class="p-4 bg-subdued md:ml-auto whitespace-nowrap flex md:flex-col md:border-t-0 md:border-l border-alt border-t"
     >
       <p>
         <strong> Supported until </strong>
