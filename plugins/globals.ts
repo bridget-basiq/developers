@@ -17,6 +17,7 @@ import Cta from '~/components/globals/Cta.vue'
 import CarList from '~/components/globals/CarList.vue'
 import Error from '~/components/globals/Error.vue'
 import Errors from '~/components/globals/Errors.vue'
+import DeprecatedItem from '~/components/globals/DeprecatedItem.vue'
 import Example from '~/components/globals/Example.vue'
 import Examples from '~/components/globals/Examples.vue'
 import Guide from '~/components/globals/Guide.vue'
@@ -50,6 +51,7 @@ Vue.component('cta', Cta)
 Vue.component('car-list', CarList)
 Vue.component('error', Error)
 Vue.component('errors', Errors)
+Vue.component('deprecated-item', DeprecatedItem)
 Vue.component('example', Example)
 Vue.component('note', Note)
 Vue.component('examples', Examples)

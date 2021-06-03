@@ -52,9 +52,33 @@ export default class Table extends Vue {
 }
 </script>
 <style lang="scss">
+.dev-portal-table {
+  th {
+    @apply font-semibold;
+  }
+}
+
 .home .dev-portal-table {
   table {
     @apply mb-0;
+
+    td {
+      &::before {
+        @apply text-12;
+      }
+    }
+    .c-row {
+      &:hover,
+      &:hover + tr {
+        td,
+        th {
+          @apply bg-body;
+        }
+        .spacer {
+          @apply border-0;
+        }
+      }
+    }
   }
   @screen lg-max {
     tr,
@@ -92,7 +116,7 @@ export default class Table extends Vue {
       }
 
       &:nth-child(3) {
-        @apply border-0;
+        @apply border-0 pt-0;
       }
       &::before {
         @apply hidden;

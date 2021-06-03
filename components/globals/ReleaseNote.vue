@@ -1,14 +1,12 @@
 <template>
-  <div
-    class="release-note py-16 border-b border-alt last:border-0 relative last:pb-0"
-  >
-    <div class="title-wrapper">
-      <h2 :id="id" class="mb-1">
+  <div class="release-note py-16 relative last:pb-0">
+    <div class="title-wrapper mb-4">
+      <h2 :id="id">
         {{ title }}
       </h2>
-      <time :datetime="date" class="text-14 text-font-alt3">{{
-        normalizedDate
-      }}</time>
+      <time :datetime="date" class="text-14 text-font-alt3">
+        Released on {{ normalizedDate }}
+      </time>
     </div>
     <div class="content">
       <slot />
@@ -35,17 +33,52 @@ export default class ReleaseNote extends Vue {
 </script>
 <style lang="scss">
 .release-note {
+  @apply relative;
+
+  &::after {
+    content: '';
+    @apply absolute bottom-0 w-screen h-px bg-alt -left-6;
+
+    @screen lg {
+      width: calc(100vw - 240px);
+      @apply -left-12;
+    }
+  }
+
+  &:last-child::after {
+    background: none;
+  }
+
+  h2 {
+    @apply mb-0;
+  }
+
   .content {
     h3 {
-      @apply mt-6 mb-2;
+      @apply mt-8 mb-2;
+    }
+
+    table {
+      @apply mb-8;
+
+      th:nth-child(2),
+      td:nth-child(2) {
+        @apply w-1/6;
+      }
     }
 
     p {
-      @apply my-4 text-font-alt3;
+      & + p {
+        @apply my-4;
+      }
 
       strong {
         @apply block text-font-primary;
       }
+    }
+
+    li {
+      @apply mb-2;
     }
   }
 }
