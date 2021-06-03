@@ -1,6 +1,6 @@
 ---
 title: Deprecations
-description: Deprecations
+description: An overview of all fields that have been deprecated on the Chargetrip API.
 ---
 
 # Deprecations

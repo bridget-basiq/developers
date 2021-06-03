@@ -1,6 +1,6 @@
 ---
 title: Release notes
-description: Release notes
+description: An overview of updates and improvements on the Chargetrip API.
 releasePage: true
 ---
 
@@ -46,7 +46,7 @@ Today we are rolling out an overhauled carlist query which allows for better fro
 
 <release-note title="2.38.3 - Car Database Structure" date="27-01-2021">
 
-This release improves the structuring of our car data. This improvement however includes breaking changes and requires migration. The fields that require migration can be found on the [deprecation page](https://developers.chargetrip.com/deprecations).
+This release improves the structuring of our car data. This improvement however includes breaking changes and requires migration. The fields that require migration can be found on the [deprecation page](/deprecations).
 
 ### ✨ Improvements
 
@@ -150,7 +150,7 @@ The days of the week start at 1 which results in the following `weekdays` values
 
 <release-note title="2.30.2 - Chargetrip Range" date="27-10-2020">
 
-This release introduces the chargetripRange field. The Chargetrip Real Range helps displaying a realistic range for all EV models. The range is based on Chargetrip's research and driving data. You can find more details on the [car section](http://localhost:3000/API-Reference/Cars/introduction).
+This release introduces the chargetripRange field. The Chargetrip Real Range helps displaying a realistic range for all EV models. The range is based on Chargetrip's research and driving data. You can find more details on the [car section](/API-Reference/Cars/introduction).
 
 ### ⚡️ New features
 
@@ -255,7 +255,7 @@ This week the `chargetripEdition` field has been released. Often car manufacture
 
 ### ⚡️ New features
 
-- Added support for OCPI 2.2. OCPI specifications can be found [here](). The full specifications can be found [here]()
+- Added support for OCPI 2.2. OCPI specifications can be found [here](https://github.com/ocpi/ocpi). The full specifications can be found [here](https://github.com/ocpi/ocpi/releases/download/2.2/OCPI-2.2.pdf)
 
 </release-note>
 
@@ -281,7 +281,7 @@ Today's release contains an exclusive Eco-Movement Integration. Next to our free
 ### ⚡️ New features
 
 - Added support for Peugeot e-208 and Seat Mii Electric
-- Added support for the OCPI Tarrif Module. More information about the OCPI 2.1.1 specifications can be found [here](). The full specifications can be found [here]().
+- Added support for the OCPI Tarrif Module. More information about the OCPI 2.1.1 specifications can be found [here](https://github.com/ocpi/ocpi). The full specifications can be found [here](https://github.com/ocpi/ocpi/releases/download/2.1.1/OCPI_2.1.1.pdf).
 
 ### 🐞️ Bug fixes
 
