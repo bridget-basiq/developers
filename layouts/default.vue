@@ -668,7 +668,7 @@ export default class Layout extends Mixins(Base) {
     }
   }
   .max-w-container {
-    max-width: 736px;
+    max-width: 720px;
   }
   .nuxt-content-editor {
     @apply text-font-primary bg-body;
