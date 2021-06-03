@@ -21,7 +21,7 @@ Below you will find a list of everything that is deprecated and will be removed.
 
 <deprecated-item 
     from-title="user" 
-    description="May, 2021: User property is handled internally." 
+    description="May, 2021: user property is handled internally." 
     supported-until="Nov, 2021">
 </deprecated-item>
 
@@ -30,13 +30,13 @@ Below you will find a list of everything that is deprecated and will be removed.
 <deprecated-item 
     from-title="carList.size (optional)" 
     to-title="carList.size (required)"
-    description="January, 2021: Carlist query no longer supports fetching the full list in one go and requires pagination." 
+    description="January, 2021: carList query no longer supports fetching the full list in one go and requires pagination." 
     supported-until="Nov, 2021">
 </deprecated-item>
 
 <deprecated-item 
     from-title="externalId" 
-    description="January, 2021: ExternalId is no longer being used internally." 
+    description="January, 2021: externalId is no longer being used internally." 
     supported-until="Nov, 2021">
 </deprecated-item>
 
@@ -196,49 +196,49 @@ Below you will find a list of everything that is deprecated and will be removed.
 
 <deprecated-item 
     from-title="chargingOffset" 
-    description="January, 2021: Field removed. Charging offset is handled internally." 
+    description="January, 2021: Field removed. chargingOffset is handled internally." 
     supported-until="Nov, 2021">
 </deprecated-item>
 
 <deprecated-item 
     from-title="auxConsumption" 
-    description="January, 2021: Field removed. Aux consumption is handled internally." 
+    description="January, 2021: Field removed. auxConsumption is handled internally." 
     supported-until="Nov, 2021">
 </deprecated-item>
 
 <deprecated-item 
     from-title="bmsConsumption" 
-    description="January, 2021: Field removed. Battery management system consumption is handled internally." 
+    description="January, 2021: Field removed. bmsConsumption is handled internally." 
     supported-until="Nov, 2021">
 </deprecated-item>
 
 <deprecated-item 
     from-title="dragCoefficient" 
-    description="January, 2021: Field removed. Drag coefficient is handled internally." 
+    description="January, 2021: Field removed. dragCoefficient is handled internally." 
     supported-until="Nov, 2021">
 </deprecated-item>
 
 <deprecated-item 
     from-title="tirePressure" 
-    description="January, 2021: Field removed. Tire pressure is handled internally." 
+    description="January, 2021: Field removed. tirePressure is handled internally." 
     supported-until="Nov, 2021">
 </deprecated-item>
 
 <deprecated-item 
     from-title="motorEfficiency" 
-    description="January, 2021: Field removed. Motor efficiency is handled internally." 
+    description="January, 2021: Field removed. motorEfficiency is handled internally." 
     supported-until="Nov, 2021">
 </deprecated-item>
 
 <deprecated-item 
     from-title="drivelineEfficiency" 
-    description="January, 2021: Field removed. Driveline efficiency is handled internally." 
+    description="January, 2021: Field removed. drivelineEfficiency is handled internally." 
     supported-until="Nov, 2021">
 </deprecated-item>
 
 <deprecated-item 
     from-title="regenEfficiency" 
-    description="January, 2021: Field removed. Regen efficiency is handled internally." 
+    description="January, 2021: Field removed. regenEfficiency is handled internally." 
     supported-until="Nov, 2021">
 </deprecated-item>
 
@@ -247,19 +247,19 @@ Below you will find a list of everything that is deprecated and will be removed.
 
 <deprecated-item 
     from-title="user.id" 
-    description="May, 2021: User object is no longer available." 
+    description="May, 2021: user.id is no longer available." 
     supported-until="Nov, 2021">
 </deprecated-item>
 
 <deprecated-item 
     from-title="user.firstName" 
-    description="May, 2021: User object is no longer available." 
+    description="May, 2021: user.firstName is no longer available." 
     supported-until="Nov, 2021">
 </deprecated-item>
 
 <deprecated-item 
     from-title="user.lastName" 
-    description="May, 2021: User object is no longer available." 
+    description="May, 2021: user.lastName is no longer available." 
     supported-until="Nov, 2021">
 </deprecated-item>
 
