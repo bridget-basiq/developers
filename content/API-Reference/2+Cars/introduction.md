@@ -19,7 +19,7 @@ The car database can only be modified by Chargetrip. New vehicles are added as s
 
 <note display="block">
 
-The Playground only includes four test car models. You need a premium `x-client-id` to access the full car database or to get access to premium data. Some car parameters are courtesy of our partner EV Database
+The Playground only includes twelve test car models. You need a premium `x-client-id` to access the full car database or to get access to premium data. Some car parameters are courtesy of our partner EV Database.
 
 </note>
 
