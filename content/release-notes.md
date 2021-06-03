@@ -12,11 +12,11 @@ With every update we write release notes. This way you know what has been fixed 
 
 ### ⚡️ New features
 
-- Graph engine has been rebuild from the ground-up to maintain performance and withstand higher loads. The new version of the engine calculates routes faster, uses more variables and gives back better results
+- Chargetrip's Graph Engine has been rebuild from the ground-up to maintain performance and withstand higher loads. The new version of the engine calculates routes faster, uses more variables and gives back better results
 
 ### ✨ Improvements
 
-- Improved stability by moving importing and processing station data outside of the client environment 
+- Improved the client environment's stability by moving the import and processing of station data outside the client environment
 - Improved route calculation speeds when searching for stations along a route
 - Improved route calculation speeds when using preferred operators
 - Improved car data processing
@@ -46,7 +46,7 @@ Today we are rolling out an overhauled carlist query which allows for better fro
 
 <release-note title="2.38.3 - Car Database Structure" date="27-01-2021">
 
-This release we are improving the structuring of our car data. This improvement however includes breaking changes and requires migration. The fields that require migration can be found on the [deprecation page](https://developers.chargetrip.com/deprecations).
+This release improves the structuring of our car data. This improvement however includes breaking changes and requires migration. The fields that require migration can be found on the [deprecation page](https://developers.chargetrip.com/deprecations).
 
 ### ✨ Improvements
 
@@ -63,7 +63,7 @@ This release we are improving the structuring of our car data. This improvement 
 
 This week we extended our station data by including historical station availability. Not every station includes this information at the moment but this will increase over time. 
 
-The predictive availability module contains this weeks predictions. For every hour there is an availability scale ranging from 1 to 5.
+The predictive availability module contains this week's predictions. For every hour, there is an availability scale ranging from 1 to 5.
 
 <c-table>
     <c-row>
@@ -150,7 +150,7 @@ The days of the week start at 1 which results in the following `weekdays` values
 
 <release-note title="2.30.2 - Chargetrip Range" date="27-10-2020">
 
-This week the chargetripRange field has been released. The Chargetrip Real Range helps displaying a realistic range for all EV models. The range is based on Chargetrip's research and driving data. You can find more details on the [car section](http://localhost:3000/API-Reference/Cars/introduction).
+This release introduces the chargetripRange field. The Chargetrip Real Range helps displaying a realistic range for all EV models. The range is based on Chargetrip's research and driving data. You can find more details on the [car section](http://localhost:3000/API-Reference/Cars/introduction).
 
 ### ⚡️ New features
 
@@ -170,7 +170,7 @@ This week the chargetripRange field has been released. The Chargetrip Real Range
 
 ### ✨ Improvements
 
-- Improved outside temperature module which enhances the route computation speed and improves the charge stop accuracy
+- Improved outside temperature model which enhances the route computation speed and improves the charge stop accuracy
 - Various other improvements to improve our route calculation speed
 
 ### 🐞️ Bug fixes
