@@ -456,7 +456,8 @@ export default class Layout extends Mixins(Base) {
 <style lang="scss">
 .highlighted-code code,
 .page p > code,
-.page p > strong > code {
+.page p > strong > code,
+.release-note li > code {
   @apply rounded-2xs bg-base border border-alt px-1 leading-none text-14 text-font-primary font-medium;
 }
 
@@ -667,7 +668,7 @@ export default class Layout extends Mixins(Base) {
     }
   }
   .max-w-container {
-    max-width: 736px;
+    max-width: 720px;
   }
   .nuxt-content-editor {
     @apply text-font-primary bg-body;

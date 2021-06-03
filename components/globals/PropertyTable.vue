@@ -1,5 +1,5 @@
 <template>
-  <div class="property-table">
+  <div class="dev-portal-table property-table">
     <CTable class="hidden md:table">
       <Row>
         <Cell v-for="(col, c) in columns" :key="c" tag="th">
