@@ -52,6 +52,12 @@ export default class Table extends Vue {
 }
 </script>
 <style lang="scss">
+.dev-portal-table {
+  th {
+    @apply font-semibold;
+  }
+}
+
 .home .dev-portal-table {
   table {
     @apply mb-0;
