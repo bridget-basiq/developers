@@ -201,7 +201,7 @@ export default class Layout extends Mixins(Base) {
         {
           title: 'Examples',
           icon: 'code',
-          href: 'https://chargetrip.com/examples/',
+          href: 'https://examples.chargetrip.com/',
           arrow: true,
         },
         {
