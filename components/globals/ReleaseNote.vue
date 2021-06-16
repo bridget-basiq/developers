@@ -79,6 +79,10 @@ export default class ReleaseNote extends Vue {
 
     li {
       @apply mb-2;
+
+      a {
+        @apply text-font-accent font-semibold;
+      }
     }
   }
 }
