@@ -13,7 +13,7 @@ With every update we write release notes. This way you know what has been fixed 
 
 ### ⚡️ New features
 
-- Our tile server now supports URL parameter authentication on top of header authentication to provide a more seamless Mapbox integration. See our updated documentation [here]().
+- Our tile server now supports URL parameter authentication on top of header authentication to provide a more seamless Mapbox integration. See our updated documentation [here](/API-Reference/Tile-Service/integration).
 
 ### ✨ Improvements
 
