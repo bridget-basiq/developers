@@ -8,6 +8,19 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
+
+<release-note title="3.3.4 - Routing in Low Density Charge Station Regions" date="02-06-2021">
+
+### ⚡️ New features
+
+- Our tile server now supports URL parameter authentication on top of header authentication to provide a more seamless Mapbox integration. See our updated documentation [here](/API-Reference/Tile-Service/integration).
+
+### ✨ Improvements
+
+- Improved our calculations in regions where the density of stations is still low by widening our search for possible stations if the first route fails.
+
+</release-note>
+
 <release-note title="3.0.0 - GraphEngine 3.0" date="31-05-2021">
 
 ### ⚡️ New features
