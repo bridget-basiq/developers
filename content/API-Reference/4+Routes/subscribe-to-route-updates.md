@@ -23,14 +23,12 @@ statusDescriptions:
 ---
 
 # Subscribe to route updates
-When you have obtained a `route ID` through the [route mutation](/API-Reference/Routes/mutate-route), you can start a route calculation to obtain your polyline and other route details. Because longer routes take some time to finish you can use a [GraphQL subscription](https://graphql.org/blog/subscriptions-in-graphql-and-relay/) as described in the [introduction](/API-Reference/Routes/introduction). 
+When you have obtained a `route ID` through the [route mutation](/API-Reference/Routes/mutate-route), you can start a route subscription to obtain your polyline and other route details. Because longer routes take some time to finish you can use a [GraphQL subscription](https://graphql.org/blog/subscriptions-in-graphql-and-relay/) as described in the [introduction](/API-Reference/Routes/introduction). 
 
 <api-reference-actions url="https://playground.chargetrip.com/?page=routeUpdatedById"></api-reference-actions>
 
 ## Subscription
-The subscription service needs to be initiated with a `route ID`. From there on it will start calculating and, based on your interval, provide you with a route status. For all possible statuses, see the [response section](/API-Reference/Routes/subscribe-to-route-updates#response) of this chapter. 
-
-**Be aware** that if the route is computed before you subscribe to it, you will **not** receive any updates. This could happen when you create a short route. To prevent that scenario, [query the route details](/API-Reference/Routes/query-route-details) once right after you have set up the subscription. If the route is already calculated, `unsubscribe`.
+The subscription service needs to be initiated with a `route ID`. From there on it will start calculating and, based on your interval, provide you with a route status. For all possible statuses, see the [response section](/API-Reference/Routes/subscribe-to-route-updates#response) of this chapter.
 
 Last but not least, if your route supported any additional options you can now request them on the subscription response, as described here;
 
