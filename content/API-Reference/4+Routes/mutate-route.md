@@ -19,7 +19,7 @@ If you want to request alternative charging stations along a route, you can set 
 You can add a station as a waypoint or as a destination. To do this, add `stationId` to `routeRequest.via.properties` or `routeRequest.destination.properties`. 
 
 ### Get additional properties
-Our route destination, origin and stations have an optional `properties` attribute any of our route queries. You can use this to fetch a complete `address`, the current temperature (`temp`) and air `pressure` at that location. 
+Our route destination, origin and stations have an optional `properties` attribute in any of our route queries. You can use this to fetch a complete `address`, the current temperature (`temp`) and air `pressure` at that location. 
 
 <note display="block">
 You can only query for a preferred operator when it’s been set by a Chargetrip employee. You can <cta action='smallchat'>contact us</cta> to do so.
