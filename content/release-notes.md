@@ -8,6 +8,25 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
+<release-note title="3.8.0 - pathPlot Release" date="17-06-2021">
+In this release, we introduce pathPlot, a new property that combines the data from our previous elevationPlot and aggregated data from routePath query. The received data is more accurate, and the response is quicker. 
+
+### ⚡️ New features
+
+- Added the `pathPlot` property in favour of `elevationPlot`.
+
+### ✨ Improvements
+
+- Improved how routes should be queried. A single additional `route` query is no longer needed after you started a `route` subscription.
+- It now also possible to search by car id in carList
+
+### 🐞️ Bug fixes
+
+- Removed the unused operator and station subscriptions.
+- We fixed an issue where in some cases the wrong connector type was selected at charge stations.
+
+</release-note>
+
 
 <release-note title="3.3.4 - Routing in Low Density Charge Station Regions" date="02-06-2021">
 
