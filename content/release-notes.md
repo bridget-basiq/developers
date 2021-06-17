@@ -13,17 +13,18 @@ In this release, we introduce pathPlot, a new property that combines the data fr
 
 ### ⚡️ New features
 
-- Added the `pathPlot` property in favour of `elevationPlot`.
+- Added the `pathPlot` property in favour of `elevationPlot`
+- Added support to search the `carList` by `id`
 
 ### ✨ Improvements
 
-- Improved how routes should be queried. A single additional `route` query is no longer needed after you started a `route` subscription.
+- Improved how routes should be queried. A single additional `route` query is no longer needed after you started a `route` subscription
 - It now also possible to search by car id in carList
 
 ### 🐞️ Bug fixes
 
-- Removed the unused operator and station subscriptions.
-- We fixed an issue where in some cases the wrong connector type was selected at charge stations.
+- Removed the unused operator and station subscriptions
+- We fixed an issue where in some cases the wrong connector type was selected at charge stations
 
 </release-note>
 
@@ -32,11 +33,11 @@ In this release, we introduce pathPlot, a new property that combines the data fr
 
 ### ⚡️ New features
 
-- Our tile server now supports URL parameter authentication on top of header authentication to provide a more seamless Mapbox integration. See our updated documentation [here](/API-Reference/Tile-Service/integration).
+- Our tile server now supports URL parameter authentication on top of header authentication to provide a more seamless Mapbox integration. See our updated documentation [here](/API-Reference/Tile-Service/integration)
 
 ### ✨ Improvements
 
-- Improved our calculations in regions where the density of stations is still low by widening our search for possible stations if the first route fails.
+- Improved our calculations in regions where the density of stations is still low by widening our search for possible stations if the first route fails
 
 </release-note>
 
