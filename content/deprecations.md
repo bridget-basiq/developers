@@ -248,7 +248,6 @@ Below you will find a list of everything that is deprecated and will be removed.
     supported-until="Nov, 2021">
 </deprecated-item>
 
-
 ### Reviews
 
 <deprecated-item 
@@ -269,7 +268,7 @@ Below you will find a list of everything that is deprecated and will be removed.
     supported-until="Nov, 2021">
 </deprecated-item>
 
-### Operators
+### Operator subscriptions
 
 <deprecated-item 
     from-title="operator.operatorAdded" 
@@ -301,7 +300,7 @@ Below you will find a list of everything that is deprecated and will be removed.
     supported-until="Dec, 2021">
 </deprecated-item>
 
-### Stations
+### Station subscriptions
 
 <deprecated-item 
     from-title="stations.stationAdded" 
@@ -332,9 +331,6 @@ Below you will find a list of everything that is deprecated and will be removed.
     description="June, 2021: stationDeletedById has been removed, no value will be sent." 
     supported-until="Dec, 2021">
 </deprecated-item>
-
-
-
 
 <right-aside>
 
