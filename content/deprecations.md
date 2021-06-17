@@ -25,6 +25,12 @@ Below you will find a list of everything that is deprecated and will be removed.
     supported-until="Nov, 2021">
 </deprecated-item>
 
+<deprecated-item 
+    from-title="route.elevationPlot" 
+    description="June, 2021: deprecated in favour of `pathPlot`" 
+    supported-until="Dec, 2021">
+</deprecated-item>
+
 ### Cars
 
 <deprecated-item 
@@ -262,6 +268,73 @@ Below you will find a list of everything that is deprecated and will be removed.
     description="May, 2021: user.lastName is no longer available." 
     supported-until="Nov, 2021">
 </deprecated-item>
+
+### Operators
+
+<deprecated-item 
+    from-title="operator.operatorAdded" 
+    description="June, 2021: operatorAdded has been removed, no value will be sent." 
+    supported-until="Dec, 2021">
+</deprecated-item>
+
+<deprecated-item 
+    from-title="operator.operatorUpdated" 
+    description="June, 2021: operatorUpdated has been removed, no value will be sent." 
+    supported-until="Dec, 2021">
+</deprecated-item>
+
+<deprecated-item 
+    from-title="operator.operatorDeleted" 
+    description="June, 2021: operatorDeleted has been removed, no value will be sent." 
+    supported-until="Dec, 2021">
+</deprecated-item>
+
+<deprecated-item 
+    from-title="operator.operatorUpdatedById(id: ID!)" 
+    description="June, 2021: operatorUpdatedById(id: ID!) has been removed, no value will be sent." 
+    supported-until="Dec, 2021">
+</deprecated-item>
+
+<deprecated-item 
+    from-title="operator.operatorDeletedById(id: ID!)" 
+    description="June, 2021: operatorDeletedById(id: ID!) has been removed, no value will be sent." 
+    supported-until="Dec, 2021">
+</deprecated-item>
+
+### Stations
+
+<deprecated-item 
+    from-title="stations.stationAdded" 
+    description="June, 2021: stationAdded has been removed, no value will be sent." 
+    supported-until="Dec, 2021">
+</deprecated-item>
+
+<deprecated-item 
+    from-title="stations.stationUpdated" 
+    description="June, 2021: stationUpdated has been removed, no value will be sent." 
+    supported-until="Dec, 2021">
+</deprecated-item>
+
+<deprecated-item 
+    from-title="stations.stationDeleted" 
+    description="June, 2021: stationDeleted has been removed, no value will be sent." 
+    supported-until="Dec, 2021">
+</deprecated-item>
+
+<deprecated-item 
+    from-title="stations.stationUpdatedById(id: ID!)" 
+    description="June, 2021: stationUpdatedById has been removed, no value will be sent." 
+    supported-until="Dec, 2021">
+</deprecated-item>
+
+<deprecated-item 
+    from-title="stations.stationDeletedById(id: ID!)" 
+    description="June, 2021: stationDeletedById has been removed, no value will be sent." 
+    supported-until="Dec, 2021">
+</deprecated-item>
+
+
+
 
 <right-aside>
 
