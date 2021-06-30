@@ -29,7 +29,7 @@ When logged in to the dashboard, go to projects and click create new project. Yo
 
 <step-note color="accent" title="Chargetip">
 
-Want to use the same configuration in a different app? Create additional app keys inside your project and add them to your header as explained [here](http://localhost:3000/setup-&-integration/API-Basics/setup/authorization#authorization-process).
+Want to use the same configuration in a different app? Create additional app keys inside your project and add them to your header as explained [here](/Getting-Started/API-Basics/authorization/).
 
 </step-note>
 
