@@ -27,6 +27,10 @@ export default {
       },
     ],
     link: [
+      {
+        rel: 'canonical',
+        href: 'https://developers.chargetrip.com',
+      },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
