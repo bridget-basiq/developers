@@ -10,7 +10,7 @@ frequently:
 ---
 
 # Querying cars
-In order to see all cars in our car databse you can use the `carList` query. You can see a live example of this query including all available output parameters [here](https://playground.chargetrip.com/?page=carListAll).
+In order to see all cars in our car database you can use the `carList` query. You can see a live example of this query including all available output parameters [here](https://playground.chargetrip.com/?page=carListAll).
 
 <api-reference-actions url="https://playground.chargetrip.com/?page=carList"></api-reference-actions>
 
