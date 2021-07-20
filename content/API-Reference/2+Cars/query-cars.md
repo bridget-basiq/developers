@@ -10,7 +10,7 @@ frequently:
 ---
 
 # Querying cars
-In order to see all cars in our car database you can use the `carList` query. You can see a live example of this query including all available output parameters [here](https://playground.chargetrip.com/?page=carListAll).
+In order to see all cars in our car database you can use the `carList` query. To create fast front-ends, you are allowed to cache the carList query response. We recommend you query the carList at least once a day, never to miss an update. You can see a live example of this query including all available output parameters [here](https://playground.chargetrip.com/?page=carListAll).
 
 <api-reference-actions url="https://playground.chargetrip.com/?page=carList"></api-reference-actions>
 
