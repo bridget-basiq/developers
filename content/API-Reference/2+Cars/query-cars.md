@@ -30,11 +30,11 @@ query carListAll {
   carList {
   id
  	naming {
-    make
-    model
-    edition
-    chargetrip_version
-  }
+      make
+      model
+      edition
+      chargetrip_version
+    }
   body {
       seats
     }
