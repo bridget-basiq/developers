@@ -28,14 +28,14 @@ To filter your car list you can use the `query` argument. You can use the `make`
 <code-block lang="graphql" type="query">	
 query carListAll {
   carList {
-    id
- 	 naming{
-    make
-    model
-    edition
-    chargetrip_version
-  }
-    body {
+  id
+ 	naming {
+      make
+      model
+      edition
+      chargetrip_version
+    }
+  body {
       seats
     }
   }
