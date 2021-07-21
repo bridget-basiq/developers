@@ -150,8 +150,8 @@ query getRoute {
             "elevation": 4,
             "consumptionPerKm": 0.143,
             "averageSpeed": 65
-          },...
-          {
+          },
+          ...{
             "elevation": 275,
             "consumptionPerKm": 0.118,
             "averageSpeed": 39
