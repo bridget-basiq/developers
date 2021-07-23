@@ -92,6 +92,18 @@ A route calculated with the Chargetrip API can be exported to any navigation app
 
 </accordion-item>
 
+<accordion-item title="Why is my desired final state of charge not reached on my route?">
+
+When calculating your journey, we find chargers along the route to meet your desired final state of charge best. However, sometimes we are not able to find a station close enough to fulfill your request. For example, that can happen when chargers are too far away from the route. 
+
+</accordion-item>
+
+<accordion-item title="How can I best decode the polyline">
+
+There are different tools available online. In the examples, we use the Mapbox polyline package. It is essential to look at the order in which latitude and longitude are returned. In some cases, you might need to flip the coordinates before plotting them on your map. 
+
+</accordion-item>
+
 <accordion-item title="Is it possible to avoid toll roads when requesting a route?">
 
 No, this isn’t supported yet. But we’re working on it!
@@ -106,7 +118,7 @@ You can add waypoints to your route by adding the `via` property to your route r
 
 <accordion-item title="Do you recommend using a subscription or a query for routes?">
 
-We recommend that you subscribe to route updates, and unsubscribe when a route has reached a final status. Be aware that if a route is computed before you subscribe to it, you will not receive any updates. To prevent this, query the route once immediately after the subscription. If the route is already calculated, unsubscribe. For more information, consult our [documentation](/API-Reference/Routes/subscribe-to-route-updates) and [examples](https://examples.chargetrip.com/?id=route).  
+We recommend that you subscribe to route updates, and unsubscribe when a route has reached a final status. For more information, consult our [documentation](/API-Reference/Routes/subscribe-to-route-updates) and [examples](https://examples.chargetrip.com/?id=route).  
 
 </accordion-item>
 
