@@ -98,7 +98,7 @@ When calculating your journey, we find chargers along the route to meet your des
 
 </accordion-item>
 
-<accordion-item title="How can I best decode the polyline">
+<accordion-item title="How can I best decode a polyline?">
 
 There are different tools available online. In the examples, we use the Mapbox polyline package. It is essential to look at the order in which latitude and longitude are returned. In some cases, you might need to flip the coordinates before plotting them on your map. 
 
