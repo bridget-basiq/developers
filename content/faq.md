@@ -55,7 +55,7 @@ Unknown appears when we do not know the status of a charger. It could be free, b
 
 <accordion-item title="Why do you only consider fast and turbochargers in your routing?">
 
-When calculating routes we only include chargers of 43 kWh or more. This reduces charging time and thus creates faster routes.
+When calculating routes we only include chargers of 43 kW or more. This reduces charging time and thus creates faster routes.
 
 </accordion-item>
 
