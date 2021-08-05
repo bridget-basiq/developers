@@ -12,7 +12,7 @@ With every update we write release notes. This way you know what has been fixed 
 
 ### ⚡️ New features
 
-- Added the field "max_electric_power" which gives the maximum electric power in kW of a connector/adapter. max_electric_power is exposed on the carList, Car and CarPremium query.
+- Added the field `max_electric_power` which gives the maximum electric power in kW of a connector/adapter. `max_electric_power` is exposed on the carList, Car and CarPremium query.
 - Added the ability to configure the time it takes to halt, start and stop charging on client level. We default to 5 minutes if you to choose not to change this. This will functionality will soon become available to you in the dashboard.
 
 ### ✨ Improvements
@@ -21,8 +21,8 @@ With every update we write release notes. This way you know what has been fixed 
 
 ### 🐞️ Bug fixes
 
-- Fixed an issue when the parameters in a route mutation were operatorPrefer: true and operatorIds: null we gave back an internal server error.
-- Fixed an issue with safeRiskMargin - it also accepted NULL while it should only accept an integer between 0 and 60.
+- Fixed an issue when the parameters in a route mutation were `operatorPrefer: true` and `operatorIds: null` we gave back an internal server error.
+- Fixed an issue with `safeRiskMargin` - it also accepted `null` while it should only accept an integer between 0 and 60.
 
 </release-note>
 
@@ -72,7 +72,7 @@ With every update we write release notes. This way you know what has been fixed 
 
 <release-note title="3.8.0 - pathPlot Release" date="17-06-2021">
 
-In this release, we introduce pathPlot, a new property that combines the data from our previous elevationPlot and aggregated data from routePath query. The received data is more accurate, and the response is quicker. 
+In this release, we introduce `pathPlot`, a new property that combines the data from our previous `elevationPlot` and aggregated data from `routePath` query. The received data is more accurate, and the response is quicker. 
 
 ### ⚡️ New features
 
