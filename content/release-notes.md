@@ -8,7 +8,70 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
+<release-note title="3.25.0 - Client congifuration options" date="04-08-2021">
+
+### ⚡️ New features
+
+- Added the field "max_electric_power" which gives the maximum electric power in kW of a connector/adapter. max_electric_power is exposed on the carList, Car and CarPremium query.
+- Added the ability to configure the time it takes to halt, start and stop charging on client level. We default to 5 minutes if you to choose not to change this. This will functionality will soon become available to you in the dashboard.
+
+### ✨ Improvements
+
+- Improved the description of the power field for connectors and adapters to: "Usable electric power in kW"
+
+### 🐞️ Bug fixes
+
+- Fixed an issue when the parameters in a route mutation were operatorPrefer: true and operatorIds: null we gave back an internal server error.
+- Fixed an issue with safeRiskMargin - it also accepted NULL while it should only accept an integer between 0 and 60.
+
+</release-note>
+
+<release-note title="3.24.0 - Stability improvements" date="30-07-2021">
+
+### ✨ Improvements
+
+- Improved stability through several software updates
+
+</release-note>
+
+<release-note title="3.22.1 - Configurable charge speed" date="29-07-2021">
+
+### ⚡️ New features
+
+- Added configurable charge speed for our customers. By default we use the average charge speed, but customers can now choose to use the maximum charge speed instead. This will functionality will soon become available to you in the dashboard.
+
+### 🐞️ Bug fixes
+- Fixed an issue with the tariffs module where in some cases the wrong tariff was displayed. 
+- Fixed an issue when the WebSocket broke and it didn’t return a result on a subscription by adding a KeepAlive message.
+
+</release-note>
+
+<release-note title="3.14.1-supercluster.15 - Tile service performance" date="22-07-2021">
+
+### ✨ Improvements
+
+- Improved the performance of our Tile Service to provide more structured clustering and faster response times.
+
+</release-note>
+
+<release-note title="3.14.1 - Password changes" date="14-07-2021">
+
+### ⚡️ New features
+
+- Added the ability to change your Chargetrip account password through your profile.
+
+</release-note>
+
+<release-note title="3.9.0 - Performance improvements" date="28-06-2021">
+
+### ✨ Improvements
+
+- Improved performance for several sections of the Chargetrip dashboard.
+
+</release-note>
+
 <release-note title="3.8.0 - pathPlot Release" date="17-06-2021">
+
 In this release, we introduce pathPlot, a new property that combines the data from our previous elevationPlot and aggregated data from routePath query. The received data is more accurate, and the response is quicker. 
 
 ### ⚡️ New features
