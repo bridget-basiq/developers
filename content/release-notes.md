@@ -13,7 +13,7 @@ With every update we write release notes. This way you know what has been fixed 
 ### ⚡️ New features
 
 - Added the field `max_electric_power` which gives the maximum electric power in kW of a connector/adapter. `max_electric_power` is exposed on the carList, Car and CarPremium query.
-- Added the ability to configure the time it takes to halt, start and stop charging on client level. We default to 5 minutes if you to choose not to change this. This will functionality will soon become available to you in the dashboard.
+- Added the ability to configure the time it takes to halt, start and stop charging on client level. We default to 5 minutes if you choose not to change this. This functionality will soon become available to you in the dashboard.
 
 ### ✨ Improvements
 
@@ -38,7 +38,7 @@ With every update we write release notes. This way you know what has been fixed 
 
 ### ⚡️ New features
 
-- Added configurable charge speed for our customers. By default we use the average charge speed, but customers can now choose to use the maximum charge speed instead. This will functionality will soon become available to you in the dashboard.
+- Added configurable charge speed for our customers. By default we use the average charge speed, but customers can now choose to use the maximum charge speed instead. This functionality will soon become available to you in the dashboard.
 
 ### 🐞️ Bug fixes
 - Fixed an issue with the tariffs module where in some cases the wrong tariff was displayed. 
