@@ -27,7 +27,7 @@ Below you will find a list of everything that is deprecated and will be removed.
 
 <deprecated-item 
     from-title="route.elevationPlot" 
-    description="June, 2021: deprecated in favour of `pathPlot`" 
+    description="June, 2021: deprecated in favor of `pathPlot`" 
     supported-until="Dec, 2021">
 </deprecated-item>
 
@@ -250,7 +250,8 @@ Below you will find a list of everything that is deprecated and will be removed.
 
 <deprecated-item 
     from-title="carList.query" 
-    description="January, 2021: deprecated in favour of `filter`" 
+    to-title="carList.filter"
+    description="January, 2021: n favor of `filter`" 
     supported-until="January, 2022">
 </deprecated-item>
 
@@ -340,7 +341,8 @@ Below you will find a list of everything that is deprecated and will be removed.
 
 <deprecated-item 
     from-title="station.predicted_availability" 
-    description="August, 2021: deprecated in favour of `predicted_occupancy`" 
+    to-title="station.predicted_occupancy"
+    description="August, 2021: deprecated in favor of `predicted_occupancy`" 
     supported-until="Jan, 2022">
 </deprecated-item>
 
