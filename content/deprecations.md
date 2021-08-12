@@ -27,6 +27,7 @@ Below you will find a list of everything that is deprecated and will be removed.
 
 <deprecated-item 
     from-title="route.elevationPlot" 
+    to-title="route.pathPlot" 
     description="June, 2021: deprecated in favor of `pathPlot`" 
     supported-until="Dec, 2021">
 </deprecated-item>
