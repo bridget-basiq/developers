@@ -248,6 +248,12 @@ Below you will find a list of everything that is deprecated and will be removed.
     supported-until="Nov, 2021">
 </deprecated-item>
 
+<deprecated-item 
+    from-title="carList.query" 
+    description="January, 2021: deprecated in favour of `filter`" 
+    supported-until="January, 2022">
+</deprecated-item>
+
 ### Reviews
 
 <deprecated-item 
@@ -330,6 +336,12 @@ Below you will find a list of everything that is deprecated and will be removed.
     from-title="stations.stationDeletedById(id: ID!)" 
     description="June, 2021: stationDeletedById has been removed, no value will be sent." 
     supported-until="Dec, 2021">
+</deprecated-item>
+
+<deprecated-item 
+    from-title="station.predicted_availability" 
+    description="August, 2021: deprecated in favour of `predicted_occupancy`" 
+    supported-until="Jan, 2022">
 </deprecated-item>
 
 <right-aside>
