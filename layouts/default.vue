@@ -43,7 +43,18 @@
       </div>
     </TopNav>
     <div
-      class="view flex lg:bg-body flex-col lg:flex-row relative z-10 flex-1 lg:overflow-hidden rounded-t-xl"
+      class="
+        view
+        flex
+        lg:bg-body
+        flex-col
+        lg:flex-row
+        relative
+        z-10
+        flex-1
+        lg:overflow-hidden
+        rounded-t-xl
+      "
     >
       <SideNav
         v-if="normalizedSideNav"
@@ -69,7 +80,15 @@
         class="content flex-1 flex flex-col relative overflow-y-scroll"
       >
         <Nuxt
-          class="max-w-container pt-8 pb-14 lg:px-12 px-6 lg-max:overflow-x-hidden page"
+          class="
+            max-w-container
+            pt-8
+            pb-14
+            lg:px-12
+            px-6
+            lg-max:overflow-x-hidden
+            page
+          "
         />
         <PrevNextNavigation v-if="sideNav && !isEditing" class="mt-auto" />
       </div>
@@ -77,7 +96,17 @@
     <MarkdownFormatting v-if="isEditing" />
     <img
       v-if="showKhaled"
-      class="absolute max-w-screen-sm z-50 rounded shadow-down-xl transform -translate-x-1/2 -translate-y-full bottom-0 -mt-6"
+      class="
+        absolute
+        max-w-screen-sm
+        z-50
+        rounded
+        shadow-down-xl
+        transform
+        -translate-x-1/2 -translate-y-full
+        bottom-0
+        -mt-6
+      "
       :style="{ top: `${khaledPosition.y}px`, left: `${khaledPosition.x}px` }"
       src="khaled.gif"
     />
@@ -163,8 +192,10 @@ export default class Layout extends Mixins(Base) {
   }
 
   mounted() {
-    this.isLoggedIn = !!Cookies.get('access_token')
+    this.onScroll = this.onScroll.bind(this)
 
+    this.isLoggedIn = !!Cookies.get('access_token')
+    this.container.addEventListener('scroll', this.onScroll)
     this.onRouteChange()
     if (this.hash.length) {
       this.onMenuItemClick({ hash: this.hash })
@@ -400,7 +431,7 @@ export default class Layout extends Mixins(Base) {
     }, 1000)
   }
 
-  @Listen('scroll') onScroll() {
+  onScroll() {
     const smallchat: HTMLElement | null = document.querySelector('#Smallchat')
 
     if (smallchat && window.innerWidth < 1280 && window.innerWidth >= 1024) {
@@ -448,6 +479,7 @@ export default class Layout extends Mixins(Base) {
   }
 
   beforeDestroy() {
+    this.container.removeEventListener('scroll', this.onScroll)
     this.$root.$off('openKhaled', this.openKhaled)
     this.$root.$off('closeKhaled', this.closeKhaled)
   }
