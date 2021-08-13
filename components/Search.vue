@@ -22,7 +22,17 @@
     />
     <nav
       v-show="showSuggestions && suggestions.length"
-      class="text-font-alt3 text-14 border rounded border-alt absolute w-full top-full -mt-2 bg-body"
+      class="
+        text-font-alt3 text-14
+        border
+        rounded
+        border-alt
+        absolute
+        w-full
+        top-full
+        -mt-2
+        bg-body
+      "
     >
       <main ref="container" class="flex flex-col suggestions overflow-y-scroll">
         <ul class="p-3 lg:p-2">
@@ -61,7 +71,15 @@
         </ul>
       </main>
       <footer
-        class="border-t lg-max:hidden border-alt py-1 px-3 flex whitespace-no-wrap"
+        class="
+          border-t
+          lg-max:hidden
+          border-alt
+          py-1
+          px-3
+          flex
+          whitespace-no-wrap
+        "
       >
         <div
           v-for="(hotKey, i) in hotKeys"
@@ -72,7 +90,18 @@
             <span
               v-for="(key, c) in hotKey.keys"
               :key="`${i}-${c}`"
-              class="w-5 h-5 first:border-l border-r border-t border-b border-alt2 first:rounded-l-xs last:rounded-r-xs text-alt2 flex items-center justify-center"
+              class="
+                w-5
+                h-5
+                first:border-l
+                border-r border-t border-b border-alt2
+                first:rounded-l-xs
+                last:rounded-r-xs
+                text-alt2
+                flex
+                items-center
+                justify-center
+              "
               :class="`icon-${key}`"
             />
           </div>
@@ -85,7 +114,7 @@
         <div class="pl-20 ml-auto flex items-center">
           <img
             class="w-24 pl-8 h-auto object-contain flex-shrink-0 max-w-xs"
-            src="algolia.png"
+            src="/algolia.png"
             alt="algolia"
           />
         </div>
@@ -260,15 +289,9 @@ export default class Search extends Mixins(Base) {
     }
   }
 
-  @Watch('$route.hash')
-  @Watch('$route.path')
-  onRouteChange() {
-    this.showSuggestions = false
-    this.$emit('close')
-  }
-
   async onClick({ url }) {
     await this.$router.push(url)
+    this.input.input.blur()
     this.$emit('close')
     this.clickHandler({ hash: url.split('#')?.[1] })
   }
