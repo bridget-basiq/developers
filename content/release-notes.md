@@ -8,7 +8,48 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
-<release-note title="3.25.0 - Client congifuration options" date="04-08-2021">
+<release-note title="3.28.0 Introduction of chargeMode" date="18-08-2021">
+
+### ⚡️ New features
+
+- Added `chargeMode`. This field can be set to `optimize_travel_time` and `always_to_max_charge`. 
+
+---
+
+`always_to_max_charge` will give you a route response where we recommend charging to the maximum capacity at every charging stop. The default maximum charging capacity is 80%. For all our existing customers, this is the default setting. 
+
+---
+
+`optimize_travel_time` optimizes the charging time at each station, in order to decrease the total travel time. You will only charge up until the SOC you need in order to reach the next stop.
+
+</release-note>
+
+<release-note title="3.27.0 - CI/CD Upgrade" date="17-08-2021">
+
+### ✨ Improvements
+
+- Improved CI/CD for faster releases
+
+</release-note>
+
+<release-note title="3.26.0 - Turn-by-turn instructions" date="10-08-2021">
+
+<note display="block">
+This release contains experimental features. They are not supported and may change, break, or disappear at any time.
+</note>
+
+### ⚡️ New features
+
+- Added 'raw' turn-by-turn instructions that can be used in combination with navigation SDK's to offer turn-by-turn navigation. To receive the instructions, add the `instructions` argument to the `newRoute` mutation. Don’t forget to also request the instructions in the `getRoute` request. **Important**: this feature is still in active development and it should only be used for test purposes until further notice. 
+
+
+### ✨ Improvements
+
+- Improved performance for several sections of the Chargetrip dashboard.
+
+</release-note>
+
+<release-note title="3.25.0 - Client configuration options" date="04-08-2021">
 
 ### ⚡️ New features
 
