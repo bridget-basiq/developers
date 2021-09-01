@@ -71,7 +71,7 @@ export default class extends Mixins(Base) {
         @apply bg-subdued;
 
         .action-bar {
-          background: var(--sticky-bg-subdued);
+          background: var(--sticky-base-to-down-bg);
         }
         header {
           @apply top-0;

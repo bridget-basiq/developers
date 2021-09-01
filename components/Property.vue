@@ -12,7 +12,7 @@
   >
     <div
       v-if="showChildren && children.length"
-      class="main-line w-10 lg:w-14 absolute left-0 top-0 h-full z-10"
+      class="main-line w-6 lg:w-10 absolute left-0 top-0 h-full z-10"
     >
       <div
         class="
@@ -32,7 +32,7 @@
       :class="{ 'cursor-pointer': children.length }"
       @click="showChildren = !showChildren"
     >
-      <div class="absolute w-10 bg-body h-1/2 top-0 left-0 h-1/2" />
+      <div class="absolute w-6 bg-body rounded-lg h-1/2 top-0 left-0 h-1/2" />
       <div
         v-if="last"
         class="
@@ -64,7 +64,7 @@
         />
       </div>
     </div>
-    <ul v-if="showChildren && children.length" class="children pl-10 lg:pl-14">
+    <ul v-if="showChildren && children.length" class="children pl-6 lg:pl-10">
       <property
         v-for="(child, i) in children"
         :key="i"

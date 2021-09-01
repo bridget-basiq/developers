@@ -2,8 +2,8 @@
   <div
     class="
       property-toggle-children
-      w-10
-      lg:w-14
+      w-6
+      lg:w-10
       flex
       absolute
       z-10
