@@ -3,6 +3,9 @@
     class="property-arguments rounded border overflow-hidden border-alt2 mr-4"
     :class="{ active }"
   >
+    <div v-show="active">
+      <Property v-for="(property, key) in args" :key="key" v-bind="property" />
+    </div>
     <div
       class="
         toggle
@@ -22,9 +25,6 @@
       />
       <p><strong> Show arguments </strong></p>
     </div>
-    <div v-show="active">
-      <Property v-for="(property, key) in args" :key="key" v-bind="property" />
-    </div>
   </div>
 </template>
 <script lang="ts">
@@ -40,11 +40,11 @@ export default class PropertyArguments extends Vue {
 .property-arguments {
   &.active {
     .toggle {
-      @apply rounded-b-none border-b-0;
+      @apply rounded-t-none;
     }
   }
   .property {
-    @apply rounded-none border-alt2 border-0 border-b last:border-b-0 first:border-t;
+    @apply rounded-none border-alt2 border-0 border-b;
   }
 }
 </style>
