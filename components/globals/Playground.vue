@@ -1,7 +1,17 @@
 <template>
   <right-aside class="playground">
     <div
-      class="h-3 w-full z-10 absolute left-0 top-1/2 transform -translate-y-1/2 cursor-ns-resize"
+      class="
+        h-3
+        w-full
+        z-10
+        absolute
+        left-0
+        top-1/2
+        transform
+        -translate-y-1/2
+        cursor-ns-resize
+      "
       :style="{ top: `${height}%` }"
       @mousedown="onMouseDown"
     />

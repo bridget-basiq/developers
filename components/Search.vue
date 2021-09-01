@@ -177,7 +177,7 @@ export default class Search extends Mixins(Base) {
   }
 
   onEnter() {
-    this.$router.push(this.normalizedSuggestions[this.index]?.url)
+    this.onClick({ url: this.normalizedSuggestions[this.index]?.url })
   }
 
   onArrowUp() {

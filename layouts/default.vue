@@ -429,6 +429,8 @@ export default class Layout extends Mixins(Base) {
       ].filter((el) => el.id)
       this.stopReplacing = false
     }, 1000)
+
+    console.log(this.$cloudinaryFolder)
   }
 
   onScroll() {

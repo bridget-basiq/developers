@@ -213,6 +213,10 @@ const appendOfType = (fields, allowRequired = false) => {
       allowRequired
     );
 
+    if(field.name === 'polyline') {
+      console.log(field)
+    }
+
     const normalizedTypeName = (typeName || '').replace('Query', '')
     const showOfTypeKind = ofTypeKinds.includes(json?.kind)
     const children = appendOfType(

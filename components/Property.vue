@@ -3,6 +3,7 @@
     :id="propertyId"
     class="property list-none text-14 relative"
     :class="{
+      'has-args': args && args.length,
       'is-child': depth,
       'has-children': children.length,
       'show-children': showChildren,
@@ -27,24 +28,42 @@
       />
     </div>
     <div
-      class="content p-4 relative"
+      class="content p-4 relative z-10"
       :class="{ 'cursor-pointer': children.length }"
       @click="showChildren = !showChildren"
     >
-      <div class="bg absolute inset-0" />
-      <PropertyToggleChildren v-bind="$props" :value="showChildren" />
-      <PropertyTitle v-bind="$props" />
+      <div class="absolute w-10 bg-body h-1/2 top-0 left-0 h-1/2" />
       <div
-        v-if="description"
-        class="description text-font-alt3"
-        v-html="$options.filters.markdown(description)"
+        v-if="last"
+        class="
+          absolute
+          w-14
+          h-1/2
+          bottom-0
+          left-0
+          bg-body
+          transform
+          -translate-x-full
+        "
       />
+      <div class="bg absolute inset-0" />
+      <div class="container">
+        <div class="title-with-description relative">
+          <PropertyToggleChildren v-bind="$props" :value="showChildren" />
+          <PropertyTitle v-bind="$props" />
+          <div
+            v-if="description"
+            class="description text-font-alt3"
+            v-html="$options.filters.markdown(description)"
+          />
+        </div>
+        <PropertyArguments
+          v-if="args && args.length"
+          class="border-t border-alt2"
+          :args="args"
+        />
+      </div>
     </div>
-    <PropertyArguments
-      v-if="args && args.length"
-      class="ml-8 lg:ml-12"
-      :args="args"
-    />
     <ul v-if="showChildren && children.length" class="children pl-10 lg:pl-14">
       <property
         v-for="(child, i) in children"
@@ -118,6 +137,16 @@ export default class Property extends Vue {
 </script>
 <style lang="scss">
 .property {
+  &.has-args {
+    .container {
+      @apply border-alt2 border rounded-lg;
+    }
+
+    .title-with-description,
+    .property-arguments .toggle {
+      @apply py-2 px-4;
+    }
+  }
   &.has-children {
     > .content {
       @apply pl-14;

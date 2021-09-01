@@ -1,22 +1,10 @@
 <template>
   <div
-    class="property-arguments rounded border overflow-hidden border-alt2 mr-4"
+    class="property-arguments overflow-hidden bg-subdued rounded-b-lg"
     :class="{ active }"
   >
-    <div v-show="active">
-      <Property v-for="(property, key) in args" :key="key" v-bind="property" />
-    </div>
     <div
-      class="
-        toggle
-        cursor-pointer
-        text-font-alt3
-        bg-subdued
-        py-2
-        px-4
-        flex
-        items-center
-      "
+      class="toggle rounded-lg cursor-pointer text-font-alt3 flex items-center"
       @click="active = !active"
     >
       <span
@@ -26,6 +14,9 @@
       <p>
         <strong> {{ active ? 'Hide' : 'Show' }} arguments </strong>
       </p>
+    </div>
+    <div v-show="active">
+      <Property v-for="(property, key) in args" :key="key" v-bind="property" />
     </div>
   </div>
 </template>
@@ -40,13 +31,16 @@ export default class PropertyArguments extends Vue {
 </script>
 <style lang="scss">
 .property-arguments {
-  &.active {
-    .toggle {
-      @apply rounded-t-none;
-    }
-  }
   .property {
-    @apply rounded-none border-alt2 border-0 border-b;
+    @apply border-0 border-t border-alt2 rounded-none;
+
+    .content {
+      @apply p-0;
+    }
+
+    .container {
+      @apply rounded-none border-0 rounded-lg bg-subdued;
+    }
   }
 }
 </style>

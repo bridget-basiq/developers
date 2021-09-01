@@ -28,11 +28,13 @@
     }
   },
   "dependencies": {
-    "@chargetrip/internal-vue-components": "0.0.361",
+    "@chargetrip/internal-vue-components": "0.0.433",
     "@nuxt/content": "^1.14.0",
+    "@nuxt/image": "^0.5.0",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/pwa": "^3.3.2",
     "algoliasearch": "^4.8.1",
+    "cloudinary": "^1.26.3",
     "cookie": "^0.4.1",
     "core-js": "^3.7.0",
     "cors": "^2.8.5",
