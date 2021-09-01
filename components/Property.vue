@@ -37,7 +37,8 @@
         v-if="last"
         class="
           absolute
-          w-14
+          w-10
+          rounded-lg
           h-1/2
           bottom-0
           left-0
