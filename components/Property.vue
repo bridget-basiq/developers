@@ -37,8 +37,7 @@
         v-if="last"
         class="
           absolute
-          w-10
-          rounded-lg
+          w-6
           h-1/2
           bottom-0
           left-0
@@ -65,7 +64,7 @@
         />
       </div>
     </div>
-    <ul v-if="showChildren && children.length" class="children pl-6 lg:pl-10">
+    <ul v-if="showChildren && children.length" class="children pl-6 lg:pl-6">
       <property
         v-for="(child, i) in children"
         :key="i"
@@ -150,10 +149,10 @@ export default class Property extends Vue {
   }
   &.has-children {
     > .content {
-      @apply pl-14;
+      @apply pl-10;
 
       @screen lg-max {
-        @apply pl-10;
+        @apply pl-6;
       }
     }
   }
@@ -167,10 +166,10 @@ export default class Property extends Vue {
   }
   &.is-child {
     > .content {
-      @apply pl-12;
+      @apply pl-10;
 
       @screen lg-max {
-        @apply pl-8;
+        @apply pl-6;
       }
     }
 
@@ -183,7 +182,7 @@ export default class Property extends Vue {
 
         &::before {
           content: '';
-          @apply w-10 transform z-10 -ml-10 h-full left-0 top-0 absolute bg-body;
+          @apply w-10 transform z-10 -ml-6 h-full left-0 top-0 absolute bg-body;
         }
       }
     }

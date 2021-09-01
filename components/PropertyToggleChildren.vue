@@ -3,7 +3,6 @@
     class="
       property-toggle-children
       w-6
-      lg:w-10
       flex
       absolute
       z-10
@@ -11,8 +10,9 @@
       left-0
       top-0
       transform
+      -ml-6
+      lg:-ml-8
     "
-    :class="{ '-ml-8 lg:-ml-12': depth, '-ml-10 lg:-ml-14': !depth }"
   >
     <span
       v-if="children.length"
@@ -27,7 +27,7 @@
       v-if="depth"
       class="
         line-h
-        z-10
+        z-6
         h-px
         w-full
         transform

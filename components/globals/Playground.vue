@@ -61,6 +61,41 @@ export default class extends Mixins(Base) {
 </script>
 <style lang="scss">
 .playground {
+  --sticky-body-to-down-bg: linear-gradient(
+    180deg,
+    var(--body) 0%,
+    var(--transparent-body) 100%
+  );
+  --sticky-body-to-up-bg: linear-gradient(
+    0deg,
+    var(--body) 0%,
+    var(--transparent-body) 100%
+  );
+
+  --sticky-base-to-down-bg: linear-gradient(
+    180deg,
+    var(--base) 0%,
+    var(--transparent-base) 100%
+  );
+
+  --sticky-base-to-up-bg: linear-gradient(
+    0deg,
+    var(--base) 0%,
+    var(--transparent-base) 100%
+  );
+
+  --sticky-subdued-to-down-bg: linear-gradient(
+    180deg,
+    var(--base) 0%,
+    var(--transparent-base) 100%
+  );
+
+  --sticky-subdued-to-up-bg: linear-gradient(
+    0deg,
+    var(--subdued) 0%,
+    var(--transparent-subdued) 100%
+  );
+
   .container {
     height: calc(100vh - 64px);
 
@@ -81,7 +116,11 @@ export default class extends Mixins(Base) {
   }
 
   .code-block {
-    @apply m-0 rounded-none border-0 border-b;
+    @apply m-0 rounded-none border-0 border-b flex flex-col;
+
+    > .wrapper {
+      @apply flex-1 flex flex-col;
+    }
 
     + .code-block {
       @apply m-0;
@@ -101,7 +140,7 @@ export default class extends Mixins(Base) {
     }
 
     pre {
-      @apply py-6;
+      @apply py-6 flex-1;
     }
   }
 }
