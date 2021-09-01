@@ -208,11 +208,6 @@ const appendOfType = (fields, allowRequired = false) => {
     const typeName = getOfTypeName(field)
 
     const json = typeName ? schemas[typeName] : null
-
-
-    if(field.name === 'polyline') {
-    }
-
     const args = appendOfType(
       field?.args || [],
       allowRequired
