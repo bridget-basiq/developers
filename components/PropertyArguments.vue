@@ -23,7 +23,9 @@
         class="mr-3"
         :class="{ 'icon-add': !active, 'icon-close': active }"
       />
-      <p><strong> Show arguments </strong></p>
+      <p>
+        <strong> {{ active ? 'Hide' : 'Show' }} arguments </strong>
+      </p>
     </div>
   </div>
 </template>
