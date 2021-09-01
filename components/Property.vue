@@ -14,7 +14,16 @@
       class="main-line w-10 lg:w-14 absolute left-0 top-0 h-full z-10"
     >
       <div
-        class="line-v w-px h-full absolute transform left-1/2 -translate-x-1/2 bg-alt2"
+        class="
+          line-v
+          w-px
+          h-full
+          absolute
+          transform
+          left-1/2
+          -translate-x-1/2
+          bg-alt2
+        "
       />
     </div>
     <div
@@ -31,6 +40,7 @@
         v-html="$options.filters.markdown(description)"
       />
     </div>
+    <PropertyArguments v-if="args && args.length" class="ml-12" :args="args" />
     <ul v-if="showChildren && children.length" class="children pl-10 lg:pl-14">
       <property
         v-for="(child, i) in children"
@@ -67,6 +77,7 @@ export default class Property extends Vue {
   @Prop() typeStr
   @Prop() typeName
   @Prop() showOfTypeKind
+  @Prop() args
   @Prop({ default: () => [] }) children
   showChildren = false
   ofTypeKind = OfTypeKind

@@ -177,7 +177,6 @@ const appendOfType = (fields, allowRequired = false) => {
     }
 
     if (!field.type) return returnField
-
     const typeStr =
       field.type.kind === 'SCALAR'
         ? field.type?.name
@@ -186,15 +185,16 @@ const appendOfType = (fields, allowRequired = false) => {
         : field.type?.kind
 
     const required = allowRequired && typeStr === 'NON_NULL'
-
     const isDeprecated = field.isDeprecated || field.description?.includes('Deprecated:');
+
 
     if (
       !(
         field.type?.ofType?.name ||
         field.type.kind === OfTypeKind.ENUM ||
         field.type.kind === OfTypeKind.OBJECT ||
-        field.type.kind === OfTypeKind.INPUT_OBJECT
+        field.type.kind === OfTypeKind.INPUT_OBJECT ||
+        field.args
       )
     ) {
       return {
@@ -209,6 +209,15 @@ const appendOfType = (fields, allowRequired = false) => {
 
     const json = typeName ? schemas[typeName] : null
 
+
+    if(field.name === 'polyline') {
+    }
+
+    const args = appendOfType(
+      field?.args || [],
+      allowRequired
+    );
+
     const normalizedTypeName = (typeName || '').replace('Query', '')
     const showOfTypeKind = ofTypeKinds.includes(json?.kind)
     const children = appendOfType(
@@ -220,6 +229,7 @@ const appendOfType = (fields, allowRequired = false) => {
       ...returnField,
       showOfTypeKind,
       typeStr,
+      args,
       isDeprecated,
       typeName: normalizedTypeName,
       required,
