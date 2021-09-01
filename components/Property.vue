@@ -40,7 +40,11 @@
         v-html="$options.filters.markdown(description)"
       />
     </div>
-    <PropertyArguments v-if="args && args.length" class="ml-12" :args="args" />
+    <PropertyArguments
+      v-if="args && args.length"
+      class="ml-8 lg:ml-12"
+      :args="args"
+    />
     <ul v-if="showChildren && children.length" class="children pl-10 lg:pl-14">
       <property
         v-for="(child, i) in children"
