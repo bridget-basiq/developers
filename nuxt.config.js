@@ -1,5 +1,6 @@
 import dotenv from 'dotenv'
 dotenv.config({ path: '.env' })
+dotenv.config({ path: '.env.local' })
 
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -34,8 +35,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto+Mono:wght@400;500&display=swap',
+        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Roboto+Mono:wght@400;500&display=swap',
       },
     ],
     script: [
@@ -93,6 +93,7 @@ export default {
   components: true,
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
+    '@nuxt/image',
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/stylelint
@@ -104,9 +105,20 @@ export default {
     '@nuxt/content',
     [
       '@chargetrip/internal-vue-components/src/modules/file-upload',
-      { allowedFormats: ['jpg', 'png', 'svg', 'mp4'] },
+      {
+        CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+        CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
+        ALLOWED_FORMATS: process.env.ALLOWED_FORMATS,
+        CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+        CLOUDINARY_FOLDER: process.env.CLOUDINARY_FOLDER,
+      },
     ],
   ],
+  image: {
+    cloudinary: {
+      baseURL: `${process.env.CLOUDINARY_URL}/image/upload/`,
+    },
+  },
   tailwindcss: {
     jit: true,
   },

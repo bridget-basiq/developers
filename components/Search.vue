@@ -177,7 +177,7 @@ export default class Search extends Mixins(Base) {
   }
 
   onEnter() {
-    this.$router.push(this.normalizedSuggestions[this.index]?.url)
+    this.onClick({ url: this.normalizedSuggestions[this.index]?.url })
   }
 
   onArrowUp() {
@@ -222,9 +222,10 @@ export default class Search extends Mixins(Base) {
 
     if (!this.suggestions.length) return
 
-    this.keys[e.key]?.()
-
-    this.scrollToView()
+    if (this.keys[e.key]) {
+      this.keys[e.key]()
+      this.scrollToView()
+    }
   }
 
   @Watch('search')

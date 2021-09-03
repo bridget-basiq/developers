@@ -114,6 +114,7 @@ const mainTypes = ['Query', 'Mutation', 'Subscription'];
 
 const main = async () => {
   const baseURL = process.env.CHARGETRIP_API_URL;
+  console.log(`Fetching schema from ${baseURL}`)
   const { data: { data: { __schema: { types } } } } = await axios.post(baseURL, {
     variables: {},
     query: getIntrospectionQuery({ descriptions: true })
@@ -177,7 +178,6 @@ const appendOfType = (fields, allowRequired = false) => {
     }
 
     if (!field.type) return returnField
-
     const typeStr =
       field.type.kind === 'SCALAR'
         ? field.type?.name
@@ -186,15 +186,16 @@ const appendOfType = (fields, allowRequired = false) => {
         : field.type?.kind
 
     const required = allowRequired && typeStr === 'NON_NULL'
-
     const isDeprecated = field.isDeprecated || field.description?.includes('Deprecated:');
+
 
     if (
       !(
         field.type?.ofType?.name ||
         field.type.kind === OfTypeKind.ENUM ||
         field.type.kind === OfTypeKind.OBJECT ||
-        field.type.kind === OfTypeKind.INPUT_OBJECT
+        field.type.kind === OfTypeKind.INPUT_OBJECT ||
+        field.args
       )
     ) {
       return {
@@ -208,6 +209,11 @@ const appendOfType = (fields, allowRequired = false) => {
     const typeName = getOfTypeName(field)
 
     const json = typeName ? schemas[typeName] : null
+    const args = appendOfType(
+      field?.args || [],
+      allowRequired
+    );
+
 
     const normalizedTypeName = (typeName || '').replace('Query', '')
     const showOfTypeKind = ofTypeKinds.includes(json?.kind)
@@ -220,6 +226,7 @@ const appendOfType = (fields, allowRequired = false) => {
       ...returnField,
       showOfTypeKind,
       typeStr,
+      args,
       isDeprecated,
       typeName: normalizedTypeName,
       required,
