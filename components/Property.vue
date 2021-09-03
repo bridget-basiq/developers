@@ -3,6 +3,7 @@
     :id="propertyId"
     class="property list-none text-14 relative"
     :class="{
+      'has-args': args && args.length,
       'is-child': depth,
       'has-children': children.length,
       'show-children': showChildren,
@@ -11,27 +12,59 @@
   >
     <div
       v-if="showChildren && children.length"
-      class="main-line w-10 lg:w-14 absolute left-0 top-0 h-full z-10"
+      class="main-line w-6 lg:w-10 absolute left-0 top-0 h-full z-10"
     >
       <div
-        class="line-v w-px h-full absolute transform left-1/2 -translate-x-1/2 bg-alt2"
+        class="
+          line-v
+          w-px
+          h-full
+          absolute
+          transform
+          left-1/2
+          -translate-x-1/2
+          bg-alt2
+        "
       />
     </div>
     <div
-      class="content p-4 relative"
+      class="content p-4 relative z-10"
       :class="{ 'cursor-pointer': children.length }"
       @click="showChildren = !showChildren"
     >
-      <div class="bg absolute inset-0" />
-      <PropertyToggleChildren v-bind="$props" :value="showChildren" />
-      <PropertyTitle v-bind="$props" />
+      <div class="absolute w-6 bg-body rounded-lg h-1/2 top-0 left-0 h-1/2" />
       <div
-        v-if="description"
-        class="description text-font-alt3"
-        v-html="$options.filters.markdown(description)"
+        v-if="last"
+        class="
+          absolute
+          w-6
+          h-1/2
+          bottom-0
+          left-0
+          bg-body
+          transform
+          -translate-x-full
+        "
       />
+      <div class="bg absolute inset-0" />
+      <div class="container">
+        <div class="title-with-description relative">
+          <PropertyToggleChildren v-bind="$props" :value="showChildren" />
+          <PropertyTitle v-bind="$props" />
+          <div
+            v-if="description"
+            class="description text-font-alt3"
+            v-html="$options.filters.markdown(description)"
+          />
+        </div>
+        <PropertyArguments
+          v-if="args && args.length"
+          class="border-t border-alt2"
+          :args="args"
+        />
+      </div>
     </div>
-    <ul v-if="showChildren && children.length" class="children pl-10 lg:pl-14">
+    <ul v-if="showChildren && children.length" class="children pl-6 lg:pl-6">
       <property
         v-for="(child, i) in children"
         :key="i"
@@ -67,6 +100,7 @@ export default class Property extends Vue {
   @Prop() typeStr
   @Prop() typeName
   @Prop() showOfTypeKind
+  @Prop() args
   @Prop({ default: () => [] }) children
   showChildren = false
   ofTypeKind = OfTypeKind
@@ -103,12 +137,22 @@ export default class Property extends Vue {
 </script>
 <style lang="scss">
 .property {
+  &.has-args {
+    .container {
+      @apply border-alt2 border rounded-lg;
+    }
+
+    .title-with-description,
+    .property-arguments .toggle {
+      @apply py-2 px-4;
+    }
+  }
   &.has-children {
     > .content {
-      @apply pl-14;
+      @apply pl-10;
 
       @screen lg-max {
-        @apply pl-10;
+        @apply pl-6;
       }
     }
   }
@@ -122,10 +166,10 @@ export default class Property extends Vue {
   }
   &.is-child {
     > .content {
-      @apply pl-12;
+      @apply pl-10;
 
       @screen lg-max {
-        @apply pl-8;
+        @apply pl-6;
       }
     }
 
@@ -138,7 +182,7 @@ export default class Property extends Vue {
 
         &::before {
           content: '';
-          @apply w-10 transform z-10 -ml-10 h-full left-0 top-0 absolute bg-body;
+          @apply w-10 transform z-10 -ml-6 h-full left-0 top-0 absolute bg-body;
         }
       }
     }

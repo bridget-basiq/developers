@@ -9,6 +9,7 @@ declare module 'vue/types/vue' {
     form: any
     change: any
     $fileMap: object
+    $cloudinaryFolder: object
   }
 }
 

@@ -1,7 +1,17 @@
 <template>
   <right-aside class="playground">
     <div
-      class="h-3 w-full z-10 absolute left-0 top-1/2 transform -translate-y-1/2 cursor-ns-resize"
+      class="
+        h-3
+        w-full
+        z-10
+        absolute
+        left-0
+        top-1/2
+        transform
+        -translate-y-1/2
+        cursor-ns-resize
+      "
       :style="{ top: `${height}%` }"
       @mousedown="onMouseDown"
     />
@@ -51,6 +61,24 @@ export default class extends Mixins(Base) {
 </script>
 <style lang="scss">
 .playground {
+  --sticky-body-to-down-bg: linear-gradient(
+    180deg,
+    var(--body) 0%,
+    var(--transparent-body) 100%
+  );
+
+  --sticky-base-to-down-bg: linear-gradient(
+    180deg,
+    var(--base) 0%,
+    var(--transparent-base) 100%
+  );
+
+  --sticky-subdued-to-down-bg: linear-gradient(
+    180deg,
+    var(--base) 0%,
+    var(--transparent-base) 100%
+  );
+
   .container {
     height: calc(100vh - 64px);
 
@@ -61,7 +89,7 @@ export default class extends Mixins(Base) {
         @apply bg-subdued;
 
         .action-bar {
-          background: var(--sticky-bg-subdued);
+          background: var(--sticky-base-to-down-bg);
         }
         header {
           @apply top-0;
@@ -71,7 +99,11 @@ export default class extends Mixins(Base) {
   }
 
   .code-block {
-    @apply m-0 rounded-none border-0 border-b;
+    @apply m-0 rounded-none border-0 border-b flex flex-col;
+
+    > .wrapper {
+      @apply flex-1 flex flex-col;
+    }
 
     + .code-block {
       @apply m-0;
@@ -91,7 +123,7 @@ export default class extends Mixins(Base) {
     }
 
     pre {
-      @apply py-6;
+      @apply py-6 flex-1;
     }
   }
 }
