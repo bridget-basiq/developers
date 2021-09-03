@@ -66,20 +66,9 @@ export default class extends Mixins(Base) {
     var(--body) 0%,
     var(--transparent-body) 100%
   );
-  --sticky-body-to-up-bg: linear-gradient(
-    0deg,
-    var(--body) 0%,
-    var(--transparent-body) 100%
-  );
 
   --sticky-base-to-down-bg: linear-gradient(
     180deg,
-    var(--base) 0%,
-    var(--transparent-base) 100%
-  );
-
-  --sticky-base-to-up-bg: linear-gradient(
-    0deg,
     var(--base) 0%,
     var(--transparent-base) 100%
   );
@@ -88,12 +77,6 @@ export default class extends Mixins(Base) {
     180deg,
     var(--base) 0%,
     var(--transparent-base) 100%
-  );
-
-  --sticky-subdued-to-up-bg: linear-gradient(
-    0deg,
-    var(--subdued) 0%,
-    var(--transparent-subdued) 100%
   );
 
   .container {
