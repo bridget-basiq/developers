@@ -222,9 +222,10 @@ export default class Search extends Mixins(Base) {
 
     if (!this.suggestions.length) return
 
-    this.keys[e.key]?.()
-
-    this.scrollToView()
+    if (this.keys[e.key]) {
+      this.keys[e.key]()
+      this.scrollToView()
+    }
   }
 
   @Watch('search')
@@ -290,7 +291,6 @@ export default class Search extends Mixins(Base) {
   }
 
   async onClick({ url }) {
-    window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_self')
     await this.$router.push(url)
     this.input.input.blur()
     this.$emit('close')
