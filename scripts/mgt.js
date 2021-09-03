@@ -30,6 +30,7 @@ const login = async () => {
 }
 
 const getExceptionList = async () => {
+  console.log(`Fetching exception list from ${process.env.CHARGETRIP_MGT_API_URL}`)
   const {
     data: {
       data: { exceptionList },
@@ -64,6 +65,7 @@ const getExceptionList = async () => {
 }
 
 const getCarList = async () => {
+  console.log(`Fetching car list from ${process.env.CHARGETRIP_MGT_API_URL}`)
   const {
     data: {
       data: { carList },
