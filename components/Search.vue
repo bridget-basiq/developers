@@ -290,6 +290,7 @@ export default class Search extends Mixins(Base) {
   }
 
   async onClick({ url }) {
+    window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_self')
     await this.$router.push(url)
     this.input.input.blur()
     this.$emit('close')
