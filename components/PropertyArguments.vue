@@ -15,15 +15,16 @@
         <strong> {{ active ? 'Hide' : 'Show' }} arguments </strong>
       </p>
     </div>
-    <div v-show="active">
+    <div v-show="active" class="arguments">
       <Property v-for="(property, key) in args" :key="key" v-bind="property" />
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import Property from '~/components/Property.vue'
 
-@Component
+@Component({ components: { Property } })
 export default class PropertyArguments extends Vue {
   @Prop() args
   active = false
@@ -31,7 +32,7 @@ export default class PropertyArguments extends Vue {
 </script>
 <style lang="scss">
 .property-arguments {
-  .property {
+  .arguments .property {
     @apply border-0 border-t border-alt2 rounded-none;
 
     .content {
