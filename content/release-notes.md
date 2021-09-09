@@ -8,7 +8,29 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
-<release-note title="3.28.0 Introduction of chargeMode" date="18-08-2021">
+<release-note title="3.30.0 - Improved Charge Time estimates" date="1-09-2021">
+
+
+### ✨ Improvements
+
+- We have improved our charge time estimates by introducing a generalized charge curve model that accounts for the OBC power threshold and drop-off characteristic at higher SoCs. The generalized charge curve model is used for all cars for which we have sufficient data. We will increase our coverage over time when more data becomes available.
+
+</release-note>
+
+<release-note title="3.29.0 - E2E Maintenance" date="24-08-2021">
+
+### ✨ Improvements
+
+- Much needed maintenance on our e2e tests to lower the memory use.
+
+### 🐞 Bug fixes
+
+- Fixed a few issues on our MGT
+- Fixed a case where we selected an incorrect station far from the optimal route.
+
+</release-note>
+
+<release-note title="3.28.0 - Introduction of chargeMode" date="18-08-2021">
 
 ### ⚡️ New features
 
