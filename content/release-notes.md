@@ -8,8 +8,15 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
-<release-note title="3.30.0 - Improved Charge Time estimates" date="1-09-2021">
+<release-note title="3.31.0 - Tiered preferred operators and excluded operators" date="15-09-2021">
 
+### ⚡️ New features
+
+- Added the input argument `operators` to the `newRoute` mutation.! We are happy to announce the release of a tiered preferred operator system and the ability to exclude operators from routing! From now on, in your route request, you will be able to add what operators you want us to prefer in order of ranking, and let us know if there are operators you wish to exclude from the route calculation! The same functionality is possible to include in the config of your client ID, which will soon be possible to adjust in the dashboard; get in touch with us directly until then.
+
+</release-note>
+
+<release-note title="3.30.0 - Improved Charge Time estimates" date="1-09-2021">
 
 ### ✨ Improvements
 
@@ -21,11 +28,11 @@ With every update we write release notes. This way you know what has been fixed 
 
 ### ✨ Improvements
 
-- Much needed maintenance on our e2e tests to lower the memory use.
+- Much needed maintenance on our e2e tests to lower the memory usage.
 
 ### 🐞 Bug fixes
 
-- Fixed a few issues on our MGT
+- Fixed a few issues on our MGT (Mangagement API).
 - Fixed a case where we selected an incorrect station far from the optimal route.
 
 </release-note>
@@ -34,15 +41,15 @@ With every update we write release notes. This way you know what has been fixed 
 
 ### ⚡️ New features
 
-- Added `chargeMode`. This field can be set to `optimize_travel_time` and `always_to_max_charge`. 
+- Added `chargeMode`. This field can be set to `OPTIMIZE_TRAVEL_TIME` and `ALWAYS_TO_MAX_CHARGE`.
 
 ---
 
-`always_to_max_charge` will give you a route response where we recommend charging to the maximum capacity at every charging stop. The default maximum charging capacity is 80%. For all our existing customers, this is the default setting. 
+`ALWAYS_TO_MAX_CHARGE` will give you a route response where we recommend charging to the maximum capacity at every charging stop. The default maximum charging capacity is 80%. For all our existing customers, this is the default setting.
 
 ---
 
-`optimize_travel_time` optimizes the charging time at each station, in order to decrease the total travel time. You will only charge up until the SOC you need in order to reach the next stop.
+`OPTIMIZE_TRAVEL_TIME` optimizes the charging time at each station, in order to decrease the total travel time. You will only charge up until the SOC you need in order to reach the next stop.
 
 </release-note>
 
@@ -50,7 +57,7 @@ With every update we write release notes. This way you know what has been fixed 
 
 ### ✨ Improvements
 
-- Improved CI/CD for faster releases
+- Improved CI/CD for faster releases.
 
 </release-note>
 
@@ -62,8 +69,7 @@ This release contains experimental features. They are not supported and may chan
 
 ### ⚡️ New features
 
-- Added 'raw' turn-by-turn instructions that can be used in combination with navigation SDK's to offer turn-by-turn navigation. To receive the instructions, add the `instructions` argument to the `newRoute` mutation. Don’t forget to also request the instructions in the `getRoute` request. **Important**: this feature is still in active development and it should only be used for test purposes until further notice. 
-
+- Added 'raw' turn-by-turn instructions that can be used in combination with navigation SDK's to offer turn-by-turn navigation. To receive the instructions, add the `instructions` argument to the `newRoute` mutation. Don’t forget to also request the instructions in the `getRoute` request. **Important**: this feature is still in active development and it should only be used for test purposes until further notice.
 
 ### ✨ Improvements
 
@@ -93,7 +99,7 @@ This release contains experimental features. They are not supported and may chan
 
 ### ✨ Improvements
 
-- Improved stability through several software updates
+- Improved stability through several software updates.
 
 </release-note>
 
@@ -104,7 +110,8 @@ This release contains experimental features. They are not supported and may chan
 - Added configurable charge speed for our customers. By default we use the average charge speed, but customers can now choose to use the maximum charge speed instead. This functionality will soon become available to you in the dashboard.
 
 ### 🐞️ Bug fixes
-- Fixed an issue with the tariffs module where in some cases the wrong tariff was displayed. 
+
+- Fixed an issue with the tariffs module where in some cases the wrong tariff was displayed.
 - Fixed an issue when the WebSocket broke and it didn’t return a result on a subscription by adding a KeepAlive message.
 
 </release-note>
@@ -135,17 +142,17 @@ This release contains experimental features. They are not supported and may chan
 
 <release-note title="3.8.0 - pathPlot Release" date="17-06-2021">
 
-In this release, we introduce `pathPlot`, a new property that combines the data from our previous `elevationPlot` and aggregated data from `routePath` query. The received data is more accurate, and the response is quicker. 
+In this release, we introduce `pathPlot`, a new property that combines the data from our previous `elevationPlot` and aggregated data from `routePath` query. The received data is more accurate, and the response is quicker.
 
 ### ⚡️ New features
 
-- Added the `pathPlot` property in favour of `elevationPlot`
-- Added support to search the `carList` by `id`
+- Added the `pathPlot` property in favour of `elevationPlot`.
+- Added support to search the `carList` by `id`.
 
 ### ✨ Improvements
 
-- Improved how routes should be queried. A single additional `route` query is no longer needed after you started a `route` subscription
-- It now also possible to search by car id in carList
+- Improved how routes should be queried. A single additional `route` query is no longer needed after you started a `route` subscription.
+- It now also possible to search by car id in carList.
 
 ### 🐞️ Bug fixes
 
@@ -153,7 +160,6 @@ In this release, we introduce `pathPlot`, a new property that combines the data 
 - We fixed an issue where in some cases the wrong connector type was selected at charge stations
 
 </release-note>
-
 
 <release-note title="3.3.4 - Routing in Low Density Charge Station Regions" date="02-06-2021">
 
@@ -188,9 +194,9 @@ Today we are rolling out an overhauled carlist query which allows for better fro
 
 ### ⚡️ New features
 
-- Carlist query now supports pagination
-- Carlist query now supports search over `naming.make`, `naming.model`, `naming.chargetrip_version`
-- Carlist query now supports filtering using the `availability` field
+- Carlist query now supports pagination.
+- Carlist query now supports search over `naming.make`, `naming.model`, `naming.chargetrip_version`.
+- Carlist query now supports filtering using the `availability` field.
 
 </release-note>
 
@@ -198,10 +204,9 @@ Today we are rolling out an overhauled carlist query which allows for better fro
 
 ### ✨ Improvements
 
-- Improved car data clustering. Fields are now categorized by using nesting
+- Improved car data clustering. Fields are now categorized by using nesting.
 
 </release-note>
-
 
 <release-note title="2.38.3 - Car Database Structure" date="27-01-2021">
 
@@ -209,18 +214,17 @@ This release improves the structuring of our car data. This improvement however 
 
 ### ✨ Improvements
 
-- Improved car data structuring which allows for better clustering and query scalability
+- Improved car data structuring which allows for better clustering and query scalability.
 
 ### 🐞️ Bug fixes
 
-- Fixed a bug that prevented using stations as `via` point
+- Fixed a bug that prevented using stations as `via` point.
 
 </release-note>
 
-
 <release-note title="2.33.1 - Predictive Availability Module" date="17-11-2020">
 
-This week we extended our station data by including historical station availability. Not every station includes this information at the moment but this will increase over time. 
+This week we extended our station data by including historical station availability. Not every station includes this information at the moment but this will increase over time.
 
 The predictive availability module contains this week's predictions. For every hour, there is an availability scale ranging from 1 to 5.
 
@@ -290,11 +294,11 @@ The days of the week start at 1 which results in the following `weekdays` values
 
 ### ⚡️ New features
 
-- Station data has been extended and now includes historical station availability
+- Station data has been extended and now includes historical station availability.
 
 ### 🐞️ Bug fixes
 
-- Fixed a bug where our error codes where not consistent
+- Fixed a bug where our error codes where not consistent.
 
 </release-note>
 
@@ -302,8 +306,8 @@ The days of the week start at 1 which results in the following `weekdays` values
 
 ### 🐞️ Bug fixes
 
-- Fixed a bug that hid 24 / 7 information for some stations
-- Fixed a bug where alternative routes with a single charge were not displayed correctly
+- Fixed a bug that hid 24 / 7 information for some stations.
+- Fixed a bug where alternative routes with a single charge were not displayed correctly.
 
 </release-note>
 
@@ -317,11 +321,11 @@ This release introduces the chargetripRange field. The Chargetrip Real Range hel
 
 ### ✨ Improvements
 
-- Migrated fields from the `carList` query to the `car` query to allow caching of the `carList` query
+- Migrated fields from the `carList` query to the `car` query to allow caching of the `carList` query.
 
 ### 🐞️ Bug fixes
 
-- Fixed a bug where the number of amenities were not equal when comparing between the `stationList` and `amenityList`
+- Fixed a bug where the number of amenities were not equal when comparing between the `stationList` and `amenityList`.
 
 </release-note>
 
@@ -329,12 +333,12 @@ This release introduces the chargetripRange field. The Chargetrip Real Range hel
 
 ### ✨ Improvements
 
-- Improved outside temperature model which enhances the route computation speed and improves the charge stop accuracy
-- Various other improvements to improve our route calculation speed
+- Improved outside temperature model which enhances the route computation speed and improves the charge stop accuracy.
+- Various other improvements to improve our route calculation speed.
 
 ### 🐞️ Bug fixes
 
-- Fixed a bug where the ordering of alternative routes was wrong
+- Fixed a bug where the ordering of alternative routes was wrong.
 
 </release-note>
 
@@ -344,11 +348,11 @@ This release is all about errors. We know, you hate getting them but we tried to
 
 ### ⚡️ New features
 
-- Added custom error codes and detailed error descriptions. No more guess-work
+- Added custom error codes and detailed error descriptions. No more guess-work.
 
 ### 🐞️ Bug fixes
 
-- Various small bug fixes
+- Various small bug fixes.
 
 </release-note>
 
@@ -356,12 +360,12 @@ This release is all about errors. We know, you hate getting them but we tried to
 
 ### ✨ Improvements
 
-- Improved the description of our recently released `chargetripEdition` field
-- Improved various `chargetripEdition` field names to be more descriptive
+- Improved the description of our recently released `chargetripEdition` field.
+- Improved various `chargetripEdition` field names to be more descriptive.
 
 ### 🐞️ Bug fixes
 
-- Fixed a bug where `via` points were not correctly added to the route
+- Fixed a bug where `via` points were not correctly added to the route.
 
 </release-note>
 
@@ -371,7 +375,7 @@ This week the `chargetripEdition` field has been released. Often car manufacture
 
 ### ⚡️ New features
 
-- Added the `chargetripEdition` field
+- Added the `chargetripEdition` field.
 
 </release-note>
 
@@ -379,8 +383,8 @@ This week the `chargetripEdition` field has been released. Often car manufacture
 
 ### 🐞️ Bug fixes
 
-- Fixed a spelling mistake by renaming `recommandedSpeed` to `recommendedSpeed`
-- Fixed the destination type from `stationVia` to `stationFinal` when adding a station as final destination
+- Fixed a spelling mistake by renaming `recommandedSpeed` to `recommendedSpeed`.
+- Fixed the destination type from `stationVia` to `stationFinal` when adding a station as final destination.
 
 </release-note>
 
@@ -388,12 +392,12 @@ This week the `chargetripEdition` field has been released. Often car manufacture
 
 ### ⚡️ New features
 
-- Added the ability to request alternative stations along an existing route
-- Added the ability to set charge stations as waypoints to an existing route
+- Added the ability to request alternative stations along an existing route.
+- Added the ability to set charge stations as waypoints to an existing route.
 
 ### 🐞️ Bug fixes
 
-- Renamed the `stationAlong` field to `stationsAlongRoute`
+- Renamed the `stationAlong` field to `stationsAlongRoute`.
 
 </release-note>
 
@@ -401,12 +405,12 @@ This week the `chargetripEdition` field has been released. Often car manufacture
 
 ### ⚡️ New features
 
-- Added support for selecting different power filters
-- Added support to select all available connectors
+- Added support for selecting different power filters.
+- Added support to select all available connectors.
 
 ### 🐞️ Bug fixes
 
-- Fixed various spelling mistakes and inconsistencies in our documentation
+- Fixed various spelling mistakes and inconsistencies in our documentation.
 
 </release-note>
 
@@ -414,7 +418,7 @@ This week the `chargetripEdition` field has been released. Often car manufacture
 
 ### ⚡️ New features
 
-- Added support for OCPI 2.2. OCPI specifications can be found [here](https://github.com/ocpi/ocpi). The full specifications can be found [here](https://github.com/ocpi/ocpi/releases/download/2.2/OCPI-2.2.pdf)
+- Added support for OCPI 2.2. OCPI specifications can be found [here](https://github.com/ocpi/ocpi). The full specifications can be found [here](https://github.com/ocpi/ocpi/releases/download/2.2/OCPI-2.2.pdf).
 
 </release-note>
 
@@ -422,16 +426,15 @@ This week the `chargetripEdition` field has been released. Often car manufacture
 
 Today's release contains an exclusive Eco-Movement Integration. Next to our free Open Charge Map stations, your account can be pre-loaded with over 100.000 highly curated premium charge stations across Europe. Our premium station data includes real-time availability, pricing, and charging history. You no longer need to connect several costly charge station database providers to get European coverage. See [Eco-Movement](https://www.eco-movement.com/) for more details about regional limitations. <cta action='smallchat'>Contact us</cta> for pricing.
 
-
 ### ⚡️ New features
 
-- Included an exclusive Eco-Movement integration
+- Included an exclusive Eco-Movement integration.
 - Added support for OCPI 2.1.1
 
 ### 🐞️ Bug fixes
 
-- Fixed various spelling mistakes and inconsistencies in our documentation
-- Fixed missing descriptions for all types that return values with a unit
+- Fixed various spelling mistakes and inconsistencies in our documentation.
+- Fixed missing descriptions for all types that return values with a unit.
 
 </release-note>
 
@@ -439,11 +442,11 @@ Today's release contains an exclusive Eco-Movement Integration. Next to our free
 
 ### ⚡️ New features
 
-- Added support for Peugeot e-208 and Seat Mii Electric
+- Added support for Peugeot e-208 and Seat Mii Electric.
 - Added support for the OCPI Tarrif Module. More information about the OCPI 2.1.1 specifications can be found [here](https://github.com/ocpi/ocpi). The full specifications can be found [here](https://github.com/ocpi/ocpi/releases/download/2.1.1/OCPI_2.1.1.pdf).
 
 ### 🐞️ Bug fixes
 
-- Fixed various spelling mistakes and inconsistencies in our documentation
+- Fixed various spelling mistakes and inconsistencies in our documentation.
 
 </release-note>
