@@ -28,8 +28,8 @@ Our route destination, origin and stations have an optional `properties` attribu
 
 ### Operator ranking
 
-In your route request, you can add what operators you want to prefer in order of ranking and let us know if there are operators that you wish to exclude.
-We support ten different levels of preference. Level 1 is considered the highest level, and level 10 is the lowest. It is possible to skip levels or add multiple operators to the same level. Every level lowers the preference by 10 percent. Prefer your ranking by setting the operator type to preferred or required to make your ranking mandatory.
+In your route request, you can rank or exclude operators based on preference. 
+We support ten different levels of preference. Level 1 is considered the highest level, and level 10 is the lowest. It is possible to skip levels or add multiple operators to the same level. Every level lowers the preference by 10 percent. Enable your operator ranking by setting it to preferred or required.
 
 If you always prefer and exclude the same operators, we recommend that you add your operator ranking to your client configuration instead. The route request will override any client configuration you might have.
 
