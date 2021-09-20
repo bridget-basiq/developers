@@ -297,7 +297,7 @@ The days of the week start at 1 which results in the following `weekdays` values
 
 ### 🐞️ Bug fixes
 
-- Fixed a bug where our error codes where not consistent.
+- Fixed a bug where error codes were not consistent.
 
 </release-note>
 
