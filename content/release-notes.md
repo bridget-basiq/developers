@@ -12,7 +12,7 @@ With every update we write release notes. This way you know what has been fixed 
 
 ### ⚡️ New features
 
-- Added the input argument `operators` to the `newRoute` mutation.! We are happy to announce the release of a tiered preferred operator system and the ability to exclude operators from routing! From now on, in your route request, you will be able to add what operators you want us to prefer in order of ranking, and let us know if there are operators you wish to exclude from the route calculation! The same functionality is possible to include in the config of your client ID, which will soon be possible to adjust in the dashboard; get in touch with us directly until then.
+- Added the input argument `operators` to the `newRoute` mutation! We are happy to announce the release of a tiered preferred operator system and the ability to exclude operators from routing! From now on, in your route request, you will be able to add what operators you want us to prefer in order of ranking, and let us know if there are operators you wish to exclude from the route calculation! The same functionality is possible to include in the config of your client ID, which will soon be possible to adjust in the dashboard; get in touch with us directly until then.
 
 </release-note>
 
@@ -20,7 +20,7 @@ With every update we write release notes. This way you know what has been fixed 
 
 ### ✨ Improvements
 
-- We have improved our charge time estimates by introducing a generalized charge curve model that accounts for the OBC power threshold and drop-off characteristic at higher SoCs. The generalized charge curve model is used for all cars for which we have sufficient data. We will increase our coverage over time when more data becomes available.
+- Improved our charge time estimates by introducing a generalized charge curve model that accounts for the On Board Charging (OBC) power threshold and drop-off characteristic at higher state of charges. The generalized charge curve model is used for all cars for which we have sufficient data. We will increase our coverage over time when more data becomes available.
 
 </release-note>
 
@@ -28,12 +28,12 @@ With every update we write release notes. This way you know what has been fixed 
 
 ### ✨ Improvements
 
-- Much needed maintenance on our e2e tests to lower the memory usage.
+- Improved release times by lowering the memory usage on our end to end tests.
+- Improved performance for several sections of the Chargetrip dashboard.
 
 ### 🐞 Bug fixes
 
-- Fixed a few issues on our MGT (Mangagement API).
-- Fixed a case where we selected an incorrect station far from the optimal route.
+- Fixed an issue with the optimal route where in some cases a station was selected far from the optimal route.
 
 </release-note>
 
@@ -49,7 +49,7 @@ With every update we write release notes. This way you know what has been fixed 
 
 ---
 
-`OPTIMIZE_TRAVEL_TIME` optimizes the charging time at each station, in order to decrease the total travel time. You will only charge up until the SOC you need in order to reach the next stop.
+`OPTIMIZE_TRAVEL_TIME` optimizes the charging time at each station, in order to decrease the total travel time. You will only charge up until the state of charge you need in order to reach the next stop.
 
 </release-note>
 
@@ -86,12 +86,12 @@ This release contains experimental features. They are not supported and may chan
 
 ### ✨ Improvements
 
-- Improved the description of the power field for connectors and adapters to: "Usable electric power in kW"
+- Improved the description of the power field for connectors and adapters to: "Usable electric power in kW".
 
 ### 🐞️ Bug fixes
 
-- Fixed an issue when the parameters in a route mutation were `operatorPrefer: true` and `operatorIds: null` we gave back an internal server error.
-- Fixed an issue with `safeRiskMargin` - it also accepted `null` while it should only accept an integer between 0 and 60.
+- Fixed an issue where the route mutation returned an internal server error when the `operatorPrefer` parameter was set to `true` and the `operatorIds` parameter set to `null`.
+- Fixed an issue where `safeRiskMargin` could be set to `null`. An integer between 0 and 60 is now required.
 
 </release-note>
 
@@ -152,12 +152,11 @@ In this release, we introduce `pathPlot`, a new property that combines the data 
 ### ✨ Improvements
 
 - Improved how routes should be queried. A single additional `route` query is no longer needed after you started a `route` subscription.
-- It now also possible to search by car id in carList.
 
 ### 🐞️ Bug fixes
 
-- Removed the unused operator and station subscriptions
-- We fixed an issue where in some cases the wrong connector type was selected at charge stations
+- Removed the unused operator and station subscriptions.
+- Fixed an issue where in some cases an incorrect connector type was selected at charge stations.
 
 </release-note>
 
@@ -165,11 +164,11 @@ In this release, we introduce `pathPlot`, a new property that combines the data 
 
 ### ⚡️ New features
 
-- Our tile server now supports URL parameter authentication on top of header authentication to provide a more seamless Mapbox integration. See our updated documentation [here](/API-Reference/Tile-Service/integration)
+- Added support for URL parameter authentication on top of header authentication to provide a more seamless Mapbox integration. See our updated documentation [here](/API-Reference/Tile-Service/integration).
 
 ### ✨ Improvements
 
-- Improved our calculations in regions where the density of stations is still low by widening our search for possible stations if the first route fails
+- Improved our calculations in regions where the density of stations is still low by widening our search for possible stations if the first route fails.
 
 </release-note>
 
@@ -177,14 +176,14 @@ In this release, we introduce `pathPlot`, a new property that combines the data 
 
 ### ⚡️ New features
 
-- Chargetrip's Graph Engine has been rebuild from the ground-up to maintain performance and withstand higher loads. The new version of the engine calculates routes faster, uses more variables and gives back better results
+- Chargetrip's Graph Engine has been rebuild from the ground-up to maintain performance and withstand higher loads. The new version of the engine calculates routes faster, uses more variables and gives back better results.
 
 ### ✨ Improvements
 
-- Improved the client environment's stability by moving the import and processing of station data outside the client environment
-- Improved route calculation speeds when searching for stations along a route
-- Improved route calculation speeds when using preferred operators
-- Improved car data processing
+- Improved the client environment's stability by moving the import and processing of station data outside the client environment.
+- Improved route calculation speeds when searching for stations along a route.
+- Improved route calculation speeds when using preferred operators.
+- Improved car data processing.
 
 </release-note>
 
@@ -194,9 +193,9 @@ Today we are rolling out an overhauled carlist query which allows for better fro
 
 ### ⚡️ New features
 
-- Carlist query now supports pagination.
-- Carlist query now supports search over `naming.make`, `naming.model`, `naming.chargetrip_version`.
-- Carlist query now supports filtering using the `availability` field.
+- Added pagination to the carList query.
+- Added search over `naming.make`, `naming.model`, `naming.chargetrip_version` to the carList query.
+- Added filter for `availability` to the carList query.
 
 </release-note>
 
@@ -298,7 +297,7 @@ The days of the week start at 1 which results in the following `weekdays` values
 
 ### 🐞️ Bug fixes
 
-- Fixed a bug where our error codes where not consistent.
+- Fixed a bug where error codes were not consistent.
 
 </release-note>
 
@@ -317,7 +316,7 @@ This release introduces the chargetripRange field. The Chargetrip Real Range hel
 
 ### ⚡️ New features
 
-- Added the `chargetripRange` field
+- Added the `chargetripRange` field.
 
 ### ✨ Improvements
 
@@ -428,7 +427,7 @@ Today's release contains an exclusive Eco-Movement Integration. Next to our free
 
 ### ⚡️ New features
 
-- Included an exclusive Eco-Movement integration.
+- Added an exclusive Eco-Movement integration.
 - Added support for OCPI 2.1.1
 
 ### 🐞️ Bug fixes
