@@ -5,24 +5,36 @@ order: 2
 ---
 
 # Create a new route
+
 As described in the route introduction, the first thing you will need to do is fetch a `route ID`. This `route ID` can then be sent to subscribe to [route details](/API-Reference/Routes/query-route-details) and retrieve a polyline and other route data.
 
 <api-reference-actions example-url="https://examples.chargetrip.com/?id=route" url="https://playground.chargetrip.com/?page=newRoute"></api-reference-actions>
 
 ## Mutation
+
 To get a `route ID`, you will need to provide us with EV details and at least a departure location and destination. Apart from that you can also support any of the options that are described below.
 
 ### Support alternative stations along a route
-If you want to request alternative charging stations along a route, you can set the `stationsAlongRouteRadius` property of the route mutation. The radius can be set between `500` and `5000` meters. This will return all applicable stations within the set radius following the specified powers and standards. 
+
+If you want to request alternative charging stations along a route, you can set the `stationsAlongRouteRadius` property of the route mutation. The radius can be set between `500` and `5000` meters. This will return all applicable stations within the set radius following the specified powers and standards.
 
 ### Support stations as waypoint
-You can add a station as a waypoint or as a destination. To do this, add `stationId` to `routeRequest.via.properties` or `routeRequest.destination.properties`. 
+
+You can add a station as a waypoint or as a destination. To do this, add `stationId` to `routeRequest.via.properties` or `routeRequest.destination.properties`.
 
 ### Get additional properties
-Our route destination, origin and stations have an optional `properties` attribute in any of our route queries. You can use this to fetch a complete `address`, the current temperature (`temp`) and air `pressure` at that location. 
+
+Our route destination, origin and stations have an optional `properties` attribute in any of our route queries. You can use this to fetch a complete `address`, the current temperature (`temp`) and air `pressure` at that location.
+
+### Operator ranking
+
+In your route request, you can add what operators you want to prefer in order of ranking and let us know if there are operators that you wish to exclude.
+We support ten different levels of preference. Level 1 is considered the highest level, and level 10 is the lowest. It is possible to skip levels or add multiple operators to the same level. Every level lowers the preference by 10 percent. Prefer your ranking by setting the operator type to preferred or required to make your ranking mandatory.
+
+If you always prefer and exclude the same operators, we recommend that you add your operator ranking to your client configuration instead. The route request will override any client configuration you might have.
 
 <note display="block">
-You can only query for a preferred operator when it’s been set by a Chargetrip employee. You can <cta action='smallchat'>contact us</cta> to do so.
+We do not use onboard chargers of 20 kWh or less. If you add a plug of 20 kWh or less to your route request, this plug will be ignored unless there is no plug with a higher power.
 </note>
 
 <schema name="newRoute" type="Mutation"></schema>
@@ -34,17 +46,18 @@ You can only query for a preferred operator when it’s been set by a Chargetrip
 mutation newRoute {
   newRoute(
     input: {
-      ev: {
-        id: "5d161be5c9eef46132d9d20a"
-        battery: {
-          stateOfCharge: { value: 72.5, type: kwh }
-        }
-        plugs: [{ standard: TESLA_S, chargingPower: 150 }]
-        adapters: [{ standard:IEC_62196_T2_COMBO, chargingPower: 150 }, { standard:CHADEMO, chargingPower: 150 }]
-        climate: true
-        numberOfPassengers: 1
+      ev: { 
+        id: "5f043da2bc262f1627fc0333"
       }
       routeRequest: {
+        operators:{ 
+          type: preferred 
+          ranking: { 
+            level1: ["5e8582d6ec23e63214acc2fb"]
+            level5: ["5e8582d7ec23e63adeacc313"]
+          }
+          exclude: ["5e858338ec23e666aeacc912"]
+        }
         origin: {
           type: Feature
           geometry: { type: Point, coordinates: [13.3888599, 52.5170365] }
@@ -63,7 +76,7 @@ mutation newRoute {
           }
         ]
         stationsAlongRouteRadius: 5000
-      }
+     }
     }
   )
 }
