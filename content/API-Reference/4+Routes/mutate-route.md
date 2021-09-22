@@ -34,7 +34,7 @@ We support ten different levels of preference. Level 1 is considered the highest
 If you always prefer and exclude the same operators, we recommend that you add your operator ranking to your client configuration instead. The route request will override any client configuration you might have.
 
 <note display="block">
-We do not use onboard chargers of 20 kWh or less in routing, unless the car has no plug with a power above 20 kWh. Therefore, if you add a plug of 20 kWh or less to your route request, this plug will often be ignored.
+We do not use onboard chargers of 20 kWh in routing unless a car has no plugs above 20 kWh. Therefore, if you add a plug of 20 kWh or less to your route request, this plug will often be ignored.
 </note>
 
 <schema name="newRoute" type="Mutation"></schema>
