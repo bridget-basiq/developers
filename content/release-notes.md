@@ -8,11 +8,11 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
-<release-note title="3.32.0 - Tiered preferred operators and excluded operators" date="22-09-2021">
+<release-note title="3.32.0 - Improved tile service expansion zoom" date="22-09-2021">
 
 ### ✨ Improvements
-- Improved the tile service cluster break-up by adjusting the expansion zoom calculation.  
-- Improved the filtering of stations by excluding onboard chargers below 20 kW for all models with onboard capabilities higher than 20 kW. 
+- Improved tile service cluster break-up by adjusting the expansion zoom calculation.  
+- Improved filtering of stations by excluding onboard chargers below 20 kW for all models with onboard capabilities higher than 20 kW. 
 
 ### 🐞 Bug fixes
 - Fixed a bug where the `routePath` query changed the route path location search from a strict find to nearest point search. 
@@ -32,7 +32,7 @@ With every update we write release notes. This way you know what has been fixed 
 
 ### ✨ Improvements
 
-- Improved our charge time estimates by introducing a generalized charge curve model that accounts for the On Board Charging (OBC) power threshold and drop-off characteristic at higher state of charges. The generalized charge curve model is used for all cars for which we have sufficient data. We will increase our coverage over time when more data becomes available.
+- Improved charge time estimates by introducing a generalized charge curve model that accounts for the On Board Charging (OBC) power threshold and drop-off characteristic at higher state of charges. The generalized charge curve model is used for all cars for which we have sufficient data. We will increase our coverage over time when more data becomes available.
 
 </release-note>
 
