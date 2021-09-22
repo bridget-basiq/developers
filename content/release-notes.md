@@ -8,6 +8,18 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
+<release-note title="3.32.0 - Tiered preferred operators and excluded operators" date="22-09-2021">
+
+### ✨ Improvements
+- Improved the tile service cluster break-up by adjusting the expansion zoom calculation.  
+- Improved the filtering of stations by excluding onboard chargers below 20 kW for all models with onboard capabilities higher than 20 kW. 
+
+### 🐞 Bug fixes
+- Fixed a bug where the `routePath` query changed the route path location search from a strict find to nearest point search. 
+- Fixed a bug where list queries accepted negative integers.
+
+</release-note>
+
 <release-note title="3.31.0 - Tiered preferred operators and excluded operators" date="15-09-2021">
 
 ### ⚡️ New features
