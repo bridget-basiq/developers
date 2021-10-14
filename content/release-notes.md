@@ -8,6 +8,16 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
+<release-note title="3.34.0 - Stability Improvements" date="13-10-2021">
+
+### ✨ Improvements
+- Improved stability through several software updates. 
+
+### 🐞 Bug fixes
+- Fixed a bug where an incorrect start range when using `OPTIMIZE_TRAVEL_TIME` was displayed.
+
+</release-note>
+
 <release-note title="3.32.0 - Improved tile service expansion zoom" date="22-09-2021">
 
 ### ✨ Improvements
