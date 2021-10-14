@@ -8,7 +8,7 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
-<release-note title="3.34.0 - Stability improvements" date="13-10-2021">
+<release-note title="4.0.0 - Stability improvements" date="13-10-2021">
 
 ### ✨ Improvements
 - Improved stability through several software updates. 
