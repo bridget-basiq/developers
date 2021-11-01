@@ -8,6 +8,37 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
+<release-note title="4.3.1 - Bug fix review module" date="01-11-2021">
+
+### 🐞 Bug fixes
+- Fixed a bug where `station.review.count` and `station.review.rating` were not incremented when a review was added.
+
+</release-note>
+
+<release-note title="4.3.0 - Stability Improvements" date="28-10-2021">
+
+### ✨ Improvements
+- Improved stability through several software updates.
+
+</release-note>
+
+<release-note title="4.2.0 - Test merge into master" date="21-10-2021">
+
+### 👉 My finger ... is on the button
+Like The Chemical Brothers once said; <a href="https://youtu.be/Xu3FTEmN-eg?t=122">the time has come to push the button</a>.
+
+</release-note>
+
+<release-note title="4.1.0 - Route mutation validation" date="21-10-2021">
+
+### ✨ Improvements
+- Improved error coverage for the route mutation validation. All errors are currently collected and used to improve the error messages. Routes will be returned for now, even if there are mistakes in the route mutation. We will notify you before enforcing the new errors.
+
+### 🐞 Bug fixes
+- Fixed a bug where `safeRiskMargin` was applied twice in winter scenarios. 
+
+</release-note>
+
 <release-note title="4.0.0 - Stability improvements" date="13-10-2021">
 
 ### ✨ Improvements
