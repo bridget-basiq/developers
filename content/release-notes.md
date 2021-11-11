@@ -8,6 +8,13 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
+<release-note title="4.4.0 - Error handling" date="11-11-2021">
+
+### ✨ Improvements
+- Improved error handling on the login section of the dashboard.
+
+</release-note>
+
 <release-note title="4.3.1 - Bug fix review module" date="01-11-2021">
 
 ### 🐞 Bug fixes
