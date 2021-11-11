@@ -498,6 +498,12 @@ export default class Layout extends Mixins(Base) {
 }
 
 .nuxt-content {
+  .c-note {
+    & + h1 {
+      @apply mt-6;
+    }
+  }
+
   h1 {
     @apply mb-3;
 
