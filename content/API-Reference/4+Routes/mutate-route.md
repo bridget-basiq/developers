@@ -26,6 +26,10 @@ You can add a station as a waypoint or as a destination. To do this, add `statio
 
 Our route destination, origin and stations have an optional `properties` attribute in any of our route queries. You can use this to fetch a complete `address`, the current temperature (`temp`) and air `pressure` at that location.
 
+### Using percentages
+
+You can configure this query to use percentages for the state of charge and final state of charge. This way client-side conversions are no longer needed. Please be aware that the percentages are based upon the `usableCarBattery` or the capacity included inside this mutation.
+
 ### Operator ranking
 
 In your route request, you can rank or exclude operators based on preference. We support ten different levels of preference. Level 1 is considered the highest level, and level 10 is the lowest. It is possible to skip levels or add multiple operators to the same level. Every level lowers the preference by 10 percent. Enable your operator ranking by setting it to `preferred` or `required`.
