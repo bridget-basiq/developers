@@ -28,7 +28,7 @@ When you have obtained a `route ID` through the [route mutation](/API-Reference/
 <api-reference-actions url="https://playground.chargetrip.com/?page=routeUpdatedById"></api-reference-actions>
 
 ## Subscription
-The subscription service needs to be initiated with a `route ID`. From there on it will start calculating and, based on your interval, provide you with a route status. For all possible statuses, see the [response section](/API-Reference/Routes/subscribe-to-route-updates#response) of this chapter.
+The subscription service needs to be initiated with a `route ID`. From there on it will start calculating and, based on your interval, provide you with a route status. For all possible statuses, see the [response section](/API-Reference/Routes/subscribe-to-route-updates#response) of this document. 
 
 Last but not least, if your route supported any additional options you can now request them on the subscription response, as described here;
 
@@ -40,6 +40,9 @@ If your [route mutation](/API-Reference/Routes/mutate-route) included stations i
 
 ### Get additional properties
 Our route destination, origin and stations have an optional `properties` attribute any of our route queries. You can use this to fetch a complete `address`, the current temperature (`temp`) and air `pressure` at that location. 
+
+### Using percentages
+You can configure this query to use percentages for the state of charge and final state of charge. This way client-side conversions are no longer needed. Please be aware that the percentages are based upon the `usableCarBattery` or the capacity included inside this mutation.
 
 <schema type="Subscription" name="routeUpdatedById" :frequent="frequently"></schema>
 

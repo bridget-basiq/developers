@@ -8,6 +8,19 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
+<release-note title="4.5.0 - Range in percentages" date="17-11-2021">
+
+⚡️ New features
+- Added the ability to query range in percentages on getRoute and use percentages as an input value. Please be aware when adding percentages for the state of charge and the final state of charge they are a percentage of the `usableCarBattery` or the capacity when including this object in the mutation.
+
+✨ Improvements
+- Improved search and filtering on the `operatorList` query.
+
+🐞 Bug fixes
+- Fixed an issue where `rangeEnd` and `rangeEndKwh` were 0 when plotting a route using a car that does not  support fast charging.
+
+</release-note>
+
 <release-note title="4.4.0 - Error handling" date="11-11-2021">
 
 ### ✨ Improvements
