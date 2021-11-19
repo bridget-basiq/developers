@@ -36,6 +36,12 @@ In your route request, you can rank or exclude operators based on preference. We
 
 If you always prefer and exclude the same operators, we recommend that you add your operator ranking to your client configuration instead. The route request will override any client configuration you might have.
 
+### Amenities
+
+In the route request you can define a list of amenities that should be available at the charge stations. Valid amenity types are: `restaurant`, `bathroom`, `supermarket`, `playground`, `coffee`, `shoping`, `museum`, `hotel`, `park` and `pharmacy`. The route that matches the requested amenities best will be available as a route alternative with the type `bestMatching`. If you did include an operator ranking object in your route request this ranking is equally taken into account.
+
+Use the [amenity list query](/API-Reference/Stations/query-station-amenities) to retrieve the amenity details for a station id.
+
 <note display="block">
 We do not use onboard chargers of 20 kWh in routing unless a car has no plugs above 20 kWh. Therefore, if you add a plug of 20 kWh or less to your route request, this plug will often be ignored.
 </note>
