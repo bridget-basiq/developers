@@ -21,13 +21,13 @@ required:
 - No
 ---
 # Security
-When working with the Chargetrip API your keys are visible to anyone who makes an effort to look for it. That is why it is recommended to add a layer of restrictions to build secure applications and preventing unauthorized use. 
+When working with the Chargetrip API, your keys can be visible to anyone who makes an effort to look for it. That is why we recommend adding a layer of restrictions to build secure applications and prevent unauthorized use.
 
 ## Application keys
 When configuring new projects, creating applications or editing applications you can set up your security. You can use HTTP referrer, Android fingerprint and iOS bundle identifier restrictions. By default it's set to use no restrictions.
 
 ### HTTP referrer
-A HTTP referrer allows restriction to URLs that can use an application ID / `x-app-id`. This is useful when building any type of web application. You can add as many urls to a single application as you would like.
+A HTTP referrer allows restriction to URLs that can use an application ID / `x-app-id`. This is useful when building any type of web application. You can add as many URLs to a single application as you would like.
 
 Here are some examples of URLs that you can allow to set up a referrer:
 
@@ -42,7 +42,7 @@ Query parameters and fragments are not supported. When added, they will be ignor
 </note>
 
 ### Android fingerprint
-To restrict the use of an application ID on Android you will need to provide your application identifier and debug / release certificate fingerprint. To use this restriction you will need to send your identifier and fingerprint with every request by using the `x-app-identifier` and `x-app-fingerprint` headers.
+To restrict the use of an application ID on Android, you will need to provide your application identifier and debug / release certificate fingerprint. To use this restriction, you will need to send your identifier and fingerprint with every request by using the `x-app-identifier` and `x-app-fingerprint` headers.
 
 Your application identifier can be found in your modules `build.gradle` file. To obtain your release or debug fingerprint use any of the following commands;
 
@@ -59,7 +59,7 @@ keytool -list -v -keystore your_keystore_name -alias your_alias_name
 </code-block>
 
 ### iOS bundle identifier
-An iOS bundle identifier can be used to restrict the use of an application ID / `x-app-identifier` on any iOS application. To use this restriction you will need to send your bundle identifier with every request by using the `x-app-identifier` header.
+An iOS bundle identifier can be used to restrict the use of an application ID / `x-app-identifier` on any iOS application. To use this restriction, you will need to send your bundle identifier with every request by using the `x-app-identifier` header.
 
 The bundle identifier is a unique identifier within the Apple ecosystem and uses a reverse domain notation. Here is an example of such identifier; `com.example.app.ios`.
 
