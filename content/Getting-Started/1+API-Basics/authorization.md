@@ -46,7 +46,7 @@ To communicate with the chargetrip API, we require authorization on our endpoint
 
 If you would like to split up your analytics per platform you can provide an additional `x-app-id`. This way your requests will be categorised on this level. 
 
-The `x-app-id` is also used If you add iOS or Android security measurements, you need to use their respective headers as well.
+Apart from the `x-app-id` and `x-client-id` there are two other headers: `x-app-identifier` and `x-app-fingerprint`. Both of these are used to implement security restrictions. The `x-app-identifier` is used to set the iOS or Android bundle identifier. The `x-app-fingerprint` is only used for Android and requires the SHA fingerprint of the Android application. Learn more about security over [here](/Getting-Started/API-Basics/security).
 
 <property-table :keys="keys" :types="types" :descriptions="descriptions" :required="required"></property-table>
 

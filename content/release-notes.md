@@ -8,6 +8,15 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
+<release-note title="4.7.0 - Security" date="02-12-2021">
+
+### ⚡️ New features
+- Added the ability to restrict the use of client and application ids based on different security restrictions per platform. Read more [here](/Getting-Started/API-Basics/security).
+- Added the ability to configure `x-app-id` security restrictions on the dashboard
+- Added the ability to customize the charge duration and charge mode on the `x-client-id` through the dashboard
+
+</release-note>
+
 <release-note title="4.5.0 - Range in percentages" date="17-11-2021">
 
 ### ⚡️ New features
