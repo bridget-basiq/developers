@@ -538,6 +538,10 @@ export default class Layout extends Mixins(Base) {
     & + p {
       @apply mt-8;
     }
+
+    & + ul {
+      @apply mt-4;
+    }
   }
 
   .code-block {
