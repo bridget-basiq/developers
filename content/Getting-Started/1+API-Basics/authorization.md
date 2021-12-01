@@ -7,17 +7,25 @@ quickNav: true
 keys:
 - x-client-id
 - x-app-id
+- x-app-identifier
+- x-app-fingerprint
 
 types:
+- string
+- string
 - string
 - string
 
 descriptions:
 - Your project id with the corresponding configuration
-- Your app id for splitting up analytics
+- Your app id for splitting up analytics and security
+- Your iOS or Android bundle identifier
+- Your android SHA fingerprint
 
 required:
 - Yes
+- No
+- No
 - No
 ---
 # Authorization
@@ -30,13 +38,15 @@ Before you can start with our API you need to be able to authorize yourself. You
 Now that you have all necessary credentials you can start using our API. The first thing you need is the following base url:
 
 <code-block lang="bash" prefix="Authorization" title="Base Url">					
-http://api.chargetrip.io/graphql
+https://api.chargetrip.io/graphql
 </code-block>
 
 ## Authorization process
 To communicate with the chargetrip API, we require authorization on our endpoints as well as our websocket. Authentication can be done on one or two levels. If you provide us only with your `x-client-id` we will use this project configuration and the default `x-app-id` associated with it.
 
-If you would like to split up your analytics per platform you can provide an additional `x-app-id`. This way your requests will be categorised on this level.
+If you would like to split up your analytics per platform you can provide an additional `x-app-id`. This way your requests will be categorised on this level. 
+
+The `x-app-id` is also used If you add iOS or Android security measurements, you need to use their respective headers as well.
 
 <property-table :keys="keys" :types="types" :descriptions="descriptions" :required="required"></property-table>
 
@@ -48,7 +58,7 @@ curl -X POST \
 -H "x-client-id: 5e8c22366f9c5f23ab0eff39" \
 -H "x-app-id: 5e8c22366f9c5f23ab0eff39" \
 -d 'query { }' \
-http://api.chargetrip.io/graphql
+https://api.chargetrip.io/graphql
 </code-block>
 
 <right-aside large="true">

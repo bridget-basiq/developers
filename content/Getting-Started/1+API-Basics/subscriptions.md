@@ -1,7 +1,7 @@
 ---
 title: Subscriptions
 description: A quick introduction on how to authorize with the Chargetrip websocket, so you can use GraphQL subscriptions
-order: 4
+order: 5
 quickNav: true
 ---
 # Subscriptions
