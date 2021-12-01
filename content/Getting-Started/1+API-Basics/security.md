@@ -24,7 +24,9 @@ required:
 When working with the Chargetrip API, your keys can be visible to anyone who makes an effort to look for it. That is why we recommend adding a layer of restrictions to build secure applications and prevent unauthorized use.
 
 ## Application keys
-When configuring new projects, creating applications or editing applications you can set up your security. You can use HTTP referrer, Android fingerprint and iOS bundle identifier restrictions. By default it's set to use no restrictions.
+When configuring new projects, creating applications or editing applications you can set up your security. You can use HTTP referrer, Android fingerprint and iOS bundle identifier restrictions. By default it's set to use no restrictions. 
+
+__You can only set one restriction per application ID / `x-app-id`.__
 
 ### HTTP referrer
 A HTTP referrer allows restriction to URLs that can use an application ID / `x-app-id`. This is useful when building any type of web application. You can add as many URLs to a single application as you would like.
