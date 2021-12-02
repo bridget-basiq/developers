@@ -1,7 +1,7 @@
 ---
 title: Status & Error Codes
 description: Get a clear overview of how to handle chargetrip's API status & error codes
-order: 3
+order: 4
 quickNav: true
 statuses:
 - 200

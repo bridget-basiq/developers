@@ -10,7 +10,7 @@ frequently:
 ---
 
 # Query station amenities
-To gat a full overview of all amenities at a charging station you can use the `amenityList` query. Most of them support a link towards foursquare for more information.
+To get a full overview of all amenities at a charging station you can use the `amenityList` query. Most of them support a link towards foursquare for more information.
 
 The available amenities can also be used as [filters](/API-Reference/Tile-Service/filters) on our [tile service](/API-Reference/Tile-Service/introduction). To show the amenity count you can use the [station statistics](/API-Reference/Stations/query-station-stats) query. 
 
