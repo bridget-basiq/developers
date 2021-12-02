@@ -21,5 +21,10 @@ Most of our list queries support pagination to make fetching large sets of data 
 
 Implementing pagination isn't hard because a common structure is in place. Each list query has a `size` and `page` argument. The `size` argument sets the number of items you will get per `page`. The `page` argument is a pointer that incrementally fetches new data. Both are of type `int`.
 
+## Limits & defaults
+To keep up the performance of our API and prevent overfetching, size limits are in place. By default the limit is set to a maximum of 100. Exceptions to this rule are the car and review query. These both accept a maximum of 1000. If you send a size that's over the maximum, it will be set to the maximum.
+
+Next to limits, the following defaults will be used when they are not set on the query;
+
 ### Default values
 <c-table :argument="arguments" :type="types" :default="defaults"></c-table>
