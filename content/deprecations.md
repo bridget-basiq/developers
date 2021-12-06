@@ -32,6 +32,27 @@ Below you will find a list of everything that is deprecated and will be removed.
     supported-until="Dec, 2021">
 </deprecated-item>
 
+<deprecated-item 
+    from-title="newRoute.routeRequest.operatorIds" 
+    to-title="newRoute.routeRequest.operators" 
+    description="Dec, 2021: deprecated in favor of `operators`" 
+    supported-until="June, 2022">
+</deprecated-item>
+
+<deprecated-item 
+    from-title="newRoute.routeRequest.operatorRequired" 
+    to-title="newRoute.routeRequest.operators" 
+    description="Dec, 2021: deprecated in favor of `operators`" 
+    supported-until="June, 2022">
+</deprecated-item>
+
+<deprecated-item 
+    from-title="newRoute.routeRequest.operatorPrefer" 
+    to-title="newRoute.routeRequest.operators" 
+    description="Dec, 2021: deprecated in favor of `operators`" 
+    supported-until="June, 2022">
+</deprecated-item>
+
 ### Cars
 
 <deprecated-item 
