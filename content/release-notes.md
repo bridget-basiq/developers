@@ -33,6 +33,13 @@ With every update we write release notes. This way you know what has been fixed 
 
 </release-note>
 
+<release-note title="4.6.0 - Under the hood" date="18-11-2021">
+
+### 🛠 Refactoring
+- Some refactoring under the hood that needed to be <a href="https://www.youtube.com/watch?v=Mu0cE9RgK5M">launched</a>.
+
+</release-note>
+
 <release-note title="4.5.0 - Range in percentages" date="17-11-2021">
 
 ### ⚡️ New features
