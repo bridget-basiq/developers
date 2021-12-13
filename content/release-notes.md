@@ -8,6 +8,22 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
+<release-note title="4.9.0 - Advanced project settings" date="09-12-2021">
+
+### ⚡️ New features
+- Added the ability to automatically add cars to a project / `x-client-id`. Note: when enabled only new cars will be added. Cars that are currently available and not attached to a client will not be added.
+- Added the ability to set charge mode on a project / `x-client-id`
+- Added the ability to set charge stop duration on a project / `x-client-id`
+
+</release-note>
+
+<release-note title="4.8.0 - Merge into master" date="07-12-2021">
+
+### ⏭ Onto the next one
+- In this release we honor Jay-Z. No new features, improvements or fixes. We are <a href="https://youtu.be/VTYXVwrWz4Y?t=11">on to the next one</a>.
+
+</release-note>
+
 <release-note title="4.7.0 - Security" date="02-12-2021">
 
 ### ⚡️ New features
