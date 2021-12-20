@@ -28,11 +28,11 @@ First, use your GraphQL client to execute the [mutation](/API-Reference/Routes/m
         description="Grab the elevation profile from a route and plot it on a graph" 
         category="Routes">
     </example>
-    <example 
+    <!-- <example 
         href="https://examples.chargetrip.com/?id=alternative-routes" 
         img="alternative-routes-example.png" 
         title="Alternative routes" 
         description="Query and render alternative routes" 
         category="Routes">
-    </example>
+    </example> -->
 </examples>
