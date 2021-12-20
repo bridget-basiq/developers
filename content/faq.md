@@ -82,7 +82,7 @@ Charging station names flow from our station database. They receive these names 
 
 <accordion-item title="Can I show alternative routes?">
 
-Definitely. Just add alternatives to your `route` query, with all the parameters you want from your alternative routes. For more information, please visit our [examples](https://examples.chargetrip.com/?id=alternative-routes). 
+Definitely. Just add alternatives to your `route` query, with all the parameters you want from your alternative routes. 
 
 </accordion-item>
 

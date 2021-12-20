@@ -109,13 +109,13 @@ Need some information about EV routing, EVs or graphQL first? No worries, we hav
         description="Grab the elevation profile from a route and plot it on a graph" 
         category="Routes">
     </example>
-    <example 
+    <!-- <example 
         href="https://examples.chargetrip.com/?id=alternative-routes" 
         img="alternative-routes-example.png" 
         title="Alternative routes" 
         description="Query and render alternative routes" 
         category="Routes">
-    </example>
+    </example> -->
     <example 
         href="https://examples.chargetrip.com/?id=state-of-charge" 
         img="state-of-charge-example.png" 
