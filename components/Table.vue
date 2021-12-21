@@ -68,15 +68,12 @@ export default class Table extends Vue {
       }
     }
     .c-row {
-      &:hover,
-      &:hover + tr {
-        td,
-        th {
-          @apply bg-body;
-        }
-        .spacer {
-          @apply border-0;
-        }
+      &:hover {
+        @apply bg-transparent;
+      }
+
+      .spacer {
+        @apply border-0;
       }
     }
   }
