@@ -218,6 +218,12 @@ export default class Layout extends Mixins(Base) {
       ...this.sideNav,
       [
         {
+          title: 'Help center',
+          icon: 'question-mark-circle',
+          href: 'https://help.chargetrip.com/',
+          arrow: true,
+        },
+        {
           title: 'Playground',
           icon: 'playground',
           href: 'https://playground.chargetrip.com/',
