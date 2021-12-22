@@ -273,8 +273,8 @@ Below you will find a list of everything that is deprecated and will be removed.
 <deprecated-item 
     from-title="carList.query" 
     to-title="carList.filter"
-    description="January, 2021: n favor of `filter`" 
-    supported-until="January, 2022">
+    description="January, 2021: deprecated in favor of `filter`." 
+    supported-until="Jan, 2022">
 </deprecated-item>
 
 ### Reviews

@@ -8,6 +8,26 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
+<release-note title="4.11.0 - Station import improvements" date="22-12-2021">
+
+### ⚡️ Improvements
+- Improved the station import by comparing old and new station data before adding or removing stations from the database.
+
+### 🐞 Bug fixes
+- Fixed a bug on alternative routes where an error message was thrown when tariffs were requested.
+
+</release-note>
+
+<release-note title="4.10.0 - Configurable prioritized operators in the dashboard" date="20-12-2021">
+
+### ⚡️ New features
+- Added the ability in the dashboard to prioritize operators on a project / `x-client-id`.
+
+### 🐞 Bug fixes
+- Fixed a bug where the `safeRiskMargin` caused routes to fail when the SoC at origin was below the `safeRiskMargin`.
+
+</release-note>
+
 <release-note title="4.9.0 - Advanced project settings" date="09-12-2021">
 
 ### ⚡️ New features
