@@ -219,7 +219,7 @@ export default class Layout extends Mixins(Base) {
       [
         {
           title: 'Help center',
-          icon: 'question-mark-circle',
+          icon: 'faq-alt',
           href: 'https://help.chargetrip.com/',
           arrow: true,
         },
@@ -501,10 +501,6 @@ export default class Layout extends Mixins(Base) {
 
 .page .property .description p > code {
   @apply font-normal;
-}
-
-.top-nav .ctas .c-menu-item:nth-child(2) {
-  @apply border-l-0 border-r pr-4;
 }
 
 .nuxt-content {
