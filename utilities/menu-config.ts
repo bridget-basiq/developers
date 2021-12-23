@@ -1,7 +1,7 @@
 export default {
   groups: [
     ['/', 'Getting-Started', 'API-Reference'],
-    ['/release-notes', '/deprecations', '/faq'],
+    ['/release-notes', '/deprecations'],
   ],
   icons: {
     '/': 'home',
@@ -9,6 +9,5 @@ export default {
     'API-Reference': 'terminal',
     '/release-notes': 'announcement',
     '/deprecations': 'shredded',
-    '/faq': 'question-mark-circle',
   },
 }
