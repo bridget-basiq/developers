@@ -17,7 +17,9 @@
         class="mb-6 last:mb-0 block"
       >
         <div>
-          {{ item.props.title }}
+          <strong>
+            {{ item.props.title }}
+          </strong>
         </div>
         <span class="text-font-alt3">
           {{ item.props.date }}

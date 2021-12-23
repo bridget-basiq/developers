@@ -503,6 +503,10 @@ export default class Layout extends Mixins(Base) {
   @apply font-normal;
 }
 
+.top-nav .ctas .c-menu-item:nth-child(2) {
+  @apply border-l-0 border-r pr-4;
+}
+
 .nuxt-content {
   .c-note {
     & + h1 {
