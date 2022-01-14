@@ -8,6 +8,25 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
+<release-note title="4.13.0 - State management" date="13-01-2022">
+
+### ⚡️ Improvements 
+- Improved state management on the dashboard to remember filter and search states while navigating through pages.
+- Improved the performance of fetching project details.
+
+### 🐞 Bug fixes
+- Fixed a bug on the dashboard where you were not able to enter certain domains as HTTP referrer.
+- Fixed a bug on the dashboard where an empty graph would sometimes scale on Firefox.
+
+</release-note>
+
+<release-note title="4.12.0 - Stability" date="11-01-2022">
+
+### ⚡️ Improvements 
+- Improved stability by fixing various small bugs.
+
+</release-note>
+
 <release-note title="4.11.0 - Station import improvements" date="22-12-2021">
 
 ### ⚡️ Improvements
