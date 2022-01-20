@@ -15,7 +15,7 @@ https://api.chargetrip.io/graphql
 </code-block>
 
 ## Authorization
-The quick example below shows the header needed to authorize with the Chargetrip API. For a more in-depth guide around authorization and errors, you can take a look [here](/Getting-Started/API-Basics/status-error-codes).
+The example below shows the required headers needed to authorize with the Chargetrip API. For a more in-depth guide around authorization and errors, you can take a look [here](/Getting-Started/API-Basics/status-error-codes).
 
 <code-block lang="bash" prefix="API Reference / Authorization" title="Headers">
 curl -X POST \
@@ -23,6 +23,21 @@ curl -X POST \
 -H "x-client-id: 5e8c22366f9c5f23ab0eff39" \
 -d 'query { }' \
 http://api.chargetrip.io/graphql
+</code-block>
+
+## Subscriptions
+Subscriptions can be implemented by using the `graphql-ws` or `graphql-transport-ws` protocol. It is recommended to use the newer `graphql-transport-ws` protocol. Learn how to use websockets in detail over [here]().
+
+The `graphql-ws` protocol uses the following url:
+
+<code-block lang="bash" prefix="API Reference / Subscriptions" title="graphql-ws">
+wss://api.chargetrip.io/graphql
+</code-block>
+
+The `graphql-transport-ws` uses:
+
+<code-block lang="bash" prefix="API Reference / Subscriptions" title="graphql-transport-ws">
+wss://api.chargetrip.io/subscription
 </code-block>
 
 ## Who is this API for?
