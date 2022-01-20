@@ -8,9 +8,19 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
+<release-note title="4.14.0 - WebSocket Protocol" date="19-01-2022">
+
+### ⚡️ New features
+- Added support for the `graphql-transport-ws` protocol on our WebSocket. [Learn more](/Getting-Started/API-Basics/subscriptions).
+
+### 📦 Deprecations 
+- Deprecated passengers in favor of occupants. See [deprecations](/deprecations) for more information.
+
+</release-note>
+
 <release-note title="4.13.0 - State management" date="13-01-2022">
 
-### ⚡️ Improvements 
+### ✨ Improvements 
 - Improved state management on the dashboard to remember filter and search states while navigating through pages.
 - Improved the performance of fetching project details.
 
@@ -22,14 +32,14 @@ With every update we write release notes. This way you know what has been fixed 
 
 <release-note title="4.12.0 - Stability" date="11-01-2022">
 
-### ⚡️ Improvements 
+### ✨ Improvements 
 - Improved stability by fixing various small bugs.
 
 </release-note>
 
 <release-note title="4.11.0 - Station import improvements" date="22-12-2021">
 
-### ⚡️ Improvements
+### ✨ Improvements
 - Improved the station import by comparing old and new station data before adding or removing stations from the database.
 
 ### 🐞 Bug fixes
