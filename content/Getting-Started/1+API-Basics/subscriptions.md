@@ -15,10 +15,10 @@ Websocket connections can't be used out of the box in your terminal. So if you w
 </note>
 
 ## Library usage
-The guide below is for those do not opt in on a library like [Apollo GraphQL](https://www.apollographql.com/) or [Graphql-ws](https://github.com/enisdenjo/graphql-ws). If you do use a library, skip this and use their documentation.
+The guide below is for those that do not opt in on a library like [Apollo GraphQL](https://www.apollographql.com/) or [Graphql-ws](https://github.com/enisdenjo/graphql-ws). If you do use a library, skip this and use their documentation.
 
 ## Initialize the websocket
-To get started with the websocket, you will first need to initialize a connection. The important bit here is to set the correct websocket protocols. We support the `graphql-ws` and the `graphql-transport-ws` as `Sec-WebSocket-Protocol`. The latter is preferred. Each of these protocols is using a different base url. The `graphql-ws` protocol uses `wss://api.chargetrip.io/graphql`, the `graphql-transport-ws` uses; `wss://api.chargetrip.io/subscription`.
+To get started with the websocket, you must first initialize a connection. It is important that you set the correct WebSocket protocol. We support the `graphql-ws` and the `graphql-transport-ws` as `Sec-WebSocket-Protocol`. The latter is preferred. Each of these protocols uses a different base url. The `graphql-ws` protocol uses `wss://api.chargetrip.io/graphql`, the `graphql-transport-ws` uses `wss://api.chargetrip.io/subscription`.
 
 <code-block lang="bash" prefix="Subscriptions" title="Initializing">
 wscat -c wss://api.chargetrip.io/graphql -s graphql-ws

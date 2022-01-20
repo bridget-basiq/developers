@@ -26,7 +26,7 @@ http://api.chargetrip.io/graphql
 </code-block>
 
 ## Subscriptions
-Subscriptions can be implemented by using the `graphql-ws` or `graphql-transport-ws` protocol. It is recommend to use the newer `graphql-transport-ws` protocol. Learn how to use websockets in detail over [here]().
+Subscriptions can be implemented by using the `graphql-ws` or `graphql-transport-ws` protocol. It is recommended to use the newer `graphql-transport-ws` protocol. Learn how to use websockets in detail over [here]().
 
 The `graphql-ws` protocol uses the following url:
 
