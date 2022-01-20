@@ -19,6 +19,11 @@ Below you will find a list of everything that is deprecated and will be removed.
 
 ### Routes
 
+TODO: Passengers -> Occupants deprecation
+
+route.ev.passengers
+route.ev.occupants
+
 <deprecated-item 
     from-title="user" 
     description="May, 2021: user property is handled internally." 
@@ -275,6 +280,13 @@ Below you will find a list of everything that is deprecated and will be removed.
     to-title="carList.filter"
     description="January, 2021: deprecated in favor of `filter`." 
     supported-until="Jan, 2022">
+</deprecated-item>
+
+<deprecated-item 
+    from-title="route.ev.passengers" 
+    to-title="route.ev.occupants"
+    description="Jan, 2022: deprecated in favor of `occupants`." 
+    supported-until="June, 2022">
 </deprecated-item>
 
 ### Reviews

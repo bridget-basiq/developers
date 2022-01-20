@@ -15,20 +15,24 @@ Websocket connections can't be used out of the box in your terminal. So if you w
 </note>
 
 ## Library usage
-The guide below is for those not opting in on a library like [Apollo GraphQL](https://www.apollographql.com/), and rather taking care of it manually. If you do opt in for such a library, please follow along with the tutorials on the libraries website. They already take care of certain configurations for you.
+The guide below is for those do not opt in on a library like [Apollo GraphQL](https://www.apollographql.com/) or [Graphql-ws](https://github.com/enisdenjo/graphql-ws). If you do use a library, skip this and use their documentation.
 
 ## Initialize the websocket
-To get started with the websocket, you will first need to initialize a connection. The important bit here is to set the correct websocket protocols. We are using `graphql-ws` as the `Sec-WebSocket-Protocol`, so make sure you set this! You will end up with something like this;
+To get started with the websocket, you will first need to initialize a connection. The important bit here is to set the correct websocket protocols. We support the `graphql-ws` and the `graphql-transport-ws` as `Sec-WebSocket-Protocol`. The latter is preferred. Each of these protocols is using a different base url. The `graphql-ws` protocol uses `wss://api.chargetrip.io/graphql`, the `graphql-transport-ws` uses; `wss://api.chargetrip.io/subscription`.
 
 <code-block lang="bash" prefix="Subscriptions" title="Initializing">
 wscat -c wss://api.chargetrip.io/graphql -s graphql-ws
+</code-block>
+
+<code-block lang="bash" prefix="Subscriptions" title="Initializing">
+wscat -c wss://api.chargetrip.io/subscription -s graphql-transport-ws
 </code-block>
 
 ## Authorization on the websocket
 Now that we have opened our connection, we need to authorize ourselves. We can do this by sending a message with the correct type and payload. The type will need to be `init` and your payload must contain your `x-client-id`. In combination, it will look like this;
 
 <code-block lang="bash" prefix="Subscriptions" title="Authorizing">
-{ "type":"connection_init", "payload": { "x-client-id": "Your client id here" }
+{ "type":"connection_init", "payload": { "x-client-id": "Your client id here" } }
 </code-block>
 
 If everything was correct, you will receive the following message from the websocket; `{ "type": "connection_ack" }`.
