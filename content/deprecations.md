@@ -19,11 +19,6 @@ Below you will find a list of everything that is deprecated and will be removed.
 
 ### Routes
 
-TODO: Passengers -> Occupants deprecation
-
-route.ev.passengers
-route.ev.occupants
-
 <deprecated-item 
     from-title="user" 
     description="May, 2021: user property is handled internally." 
