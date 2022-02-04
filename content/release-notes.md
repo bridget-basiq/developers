@@ -8,6 +8,31 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
+<release-note title="4.16.0 - Added mapping for Mapbox navigation SDK" date="03-02-2022">
+
+<note display="block">
+This release contains experimental features. They are not supported and may change, break, or disappear at any time.
+</note>
+
+### ⚡️ New features
+- Added the new query `navigationMapping` that converts a route to navigation instructions for Mapbox. In the future, multiple mapping providers will be supported.
+- Added an all new dark and light mode to the dashboard.
+- Added date range inputfields to the dashboard calendar dropdown.
+- Added the ability to remove your account from the dashboard.
+- Added the ability to remove your own projects from the dashboard.
+
+### ✨ Improvements
+- Improved stability by fixing various small bugs
+
+</release-note>
+
+<release-note title="4.15.0 - Added operator ranking to best matching alternative route" date="26-01-2022">
+
+### ⚡️ New features
+- Added operator ranking `bestMatching` type. The best matching route is now a combination of operator and amenity preferences.
+
+</release-note>
+
 <release-note title="4.14.0 - WebSocket Protocol" date="19-01-2022">
 
 ### ⚡️ New features
