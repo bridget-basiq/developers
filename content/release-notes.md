@@ -15,7 +15,7 @@ This release contains experimental features. They are not supported and may chan
 </note>
 
 ### ⚡️ New features
-- Added the new query `navigationMapping` that converts a route to navigation instructions for Mapbox. In the future, multiple mapping providers will be supported.
+- Added the new query `navigationMapping` that converts a route to navigation instructions for a specified mapping provider. Currently Mapbox is supported, other mapping providers will follow.
 - Added an all new dark and light mode to the dashboard.
 - Added date range inputfields to the dashboard calendar dropdown.
 - Added the ability to remove your account from the dashboard.
