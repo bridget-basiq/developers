@@ -33,6 +33,7 @@ const getExceptionList = async () => {
   console.log(`Fetching exception list from ${process.env.CHARGETRIP_MGT_API_URL}`)
   const {
     data: {
+      errors,
       data: { exceptionList },
     },
   } = await axios.post(
@@ -45,7 +46,13 @@ const getExceptionList = async () => {
         Authorization: `Bearer ${accessToken}`,
       },
     }
-  )
+  ).catch(e => {
+    console.log(e)
+  })
+
+  if(errors) {
+    throw errors;
+  }
 
   return exceptionList.reduce(
     (groups, { operation, code, message }) => {
@@ -68,6 +75,7 @@ const getCarList = async () => {
   console.log(`Fetching car list from ${process.env.CHARGETRIP_MGT_API_URL}`)
   const {
     data: {
+      errors,
       data: { carList },
     },
   } = await axios.post(
@@ -81,6 +89,11 @@ const getCarList = async () => {
       },
     }
   )
+
+  if(errors) {
+    throw errors;
+  }
+
   return carList;
 }
 const main = async () => {
@@ -91,7 +104,7 @@ const main = async () => {
     const [exceptionList, carList] = await Promise.all([
       getExceptionList(),
       getCarList(),
-    ]);
+    ])
 
 
     await Promise.all(
@@ -107,7 +120,8 @@ const main = async () => {
       )
     )
   } catch (e) {
-    throw new Error("Can't fetch errors", JSON.stringify(e));
+    console.log(e)
+    throw new Error(JSON.stringify(e));
   }
 }
 

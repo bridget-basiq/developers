@@ -284,6 +284,12 @@ Below you will find a list of everything that is deprecated and will be removed.
     supported-until="June, 2022">
 </deprecated-item>
 
+<deprecated-item 
+    from-title="amenityRanking" 
+    description="Feb, 2022: deprecated." 
+    supported-until="July, 2022">
+</deprecated-item>
+
 ### Reviews
 
 <deprecated-item 
