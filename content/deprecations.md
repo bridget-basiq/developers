@@ -53,6 +53,12 @@ Below you will find a list of everything that is deprecated and will be removed.
     supported-until="June, 2022">
 </deprecated-item>
 
+<deprecated-item 
+    from-title="amenityRanking" 
+    description="Feb, 2022: deprecated." 
+    supported-until="July, 2022">
+</deprecated-item>
+
 ### Cars
 
 <deprecated-item 
@@ -282,12 +288,6 @@ Below you will find a list of everything that is deprecated and will be removed.
     to-title="route.ev.occupants"
     description="Jan, 2022: deprecated in favor of `occupants`." 
     supported-until="June, 2022">
-</deprecated-item>
-
-<deprecated-item 
-    from-title="amenityRanking" 
-    description="Feb, 2022: deprecated." 
-    supported-until="July, 2022">
 </deprecated-item>
 
 ### Reviews
