@@ -29,7 +29,7 @@ This release contains experimental features. They are not supported and may chan
 <release-note title="4.15.0 - Added operator ranking to best matching alternative route" date="26-01-2022">
 
 ### ⚡️ New features
-- Added operator ranking `bestMatching` type. The best matching route is now a combination of operator and amenity preferences.
+- Added operator ranking to `bestMatching` type. The best matching route is now a combination of operator and amenity preferences.
 
 </release-note>
 
