@@ -14,7 +14,7 @@ This query contains experimental features. They are not supported and may change
 
 ## Query
 
-To query the navigation mapping, you need a `route ID`, a navigation service provider name, the number of decimals for the polyline encoding and the preferred language for the navigation instructions. **Note: at the moment only English is supported.**
+To query the navigation mapping, you need a `route ID`, a navigation service `provider` name, the number of `decimals` for the polyline encoding and the preferred `language` for the navigation instructions. **Note: at the moment only English is supported.**
 
 <schema name="navigationMapping"></schema>
 
