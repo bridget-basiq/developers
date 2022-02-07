@@ -114,7 +114,6 @@ const mainTypes = ['Query', 'Mutation', 'Subscription'];
 
 const main = async () => {
   const baseURL = process.env.CHARGETRIP_API_URL;
-  console.log(`Fetching schema from ${baseURL}`)
   const { data: { errors, data: { __schema: { types } } } } = await axios.post(baseURL, {
     variables: {},
     query: getIntrospectionQuery({ descriptions: true })
@@ -134,7 +133,6 @@ const main = async () => {
         ]
       }
     }
-
 
     schema[type.name] = type;
 
