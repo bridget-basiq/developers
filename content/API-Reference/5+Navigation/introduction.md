@@ -14,7 +14,7 @@ The navigation product works by providing instructions that can be inserted into
 - Mapbox
 
 
-Other providers will follow when and where we see fit. If you would like to support a different provider already you can manually map the raw instructions from a [route request](/API-Reference/Routes/mutate-route).
+Other providers will follow when and where we see fit. If you would like to use a different provider already, you can manually map the raw instructions from a [route request](/API-Reference/Routes/mutate-route).
 
 <note display="block">
 The navigation product features are currently under development and thus experimental. Rerouting and dedicated SDKs for Android and iOS are on our roadmap. Anything within the navigation product and roadmap may change, break, or disappear at any time.
