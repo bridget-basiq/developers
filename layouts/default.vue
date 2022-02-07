@@ -589,6 +589,10 @@ export default class Layout extends Mixins(Base) {
     }
   }
 
+  ul + p {
+    @apply mt-4;
+  }
+
   > ul:not(.errors),
   .release-note ul {
     li {
