@@ -9,7 +9,7 @@ order: 1
 Chargetrip navigation allows you to build a complete turn-by-turn experience for electric vehicles. It takes a Chargetrip route and turns it into instructions that you can use inside a dedicated routing provider. 
 
 ## Providers
-The navigation product works by providing instructions that can be inserted into routing providers. Supported providers are:
+The navigation product works by generating instructions that can be used within a routing provider. Supported providers are:
 
 - Mapbox
 
