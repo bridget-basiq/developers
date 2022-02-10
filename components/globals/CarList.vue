@@ -3,17 +3,17 @@
     <h2>Vehicles</h2>
     <p>
       The table below lists all our supported upcoming vehicles sorted by make.
+      When using our API you can use the name of the vehicle or it's id to query
+      for specific details. Please
+      <a href="https://help.chargetrip.com/file-a-ticket">file a ticket</a> if
+      you miss a vehicle.
+      <br />
+      <br />
       <b
         >Disclaimer: Upcoming vehicles may be removed or change at any time.
         Upcoming vehicles can not be used in your project and are only an
         indication of vehicles that might be added.</b
       >
-      <br />
-      <br />
-      When using our API you can use the name of the vehicle or it's id to query
-      for specific details. Please
-      <a href="https://help.chargetrip.com/file-a-ticket">file a ticket</a> if
-      you miss a vehicle.
     </p>
 
     <nav class="flex space-x-4 mt-6">
