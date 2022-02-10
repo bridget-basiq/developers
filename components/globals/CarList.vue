@@ -3,9 +3,9 @@
     <h2>Vehicles</h2>
     <p>
       The table below lists all our supported upcoming vehicles sorted by make.
-      Upcoming vehicles may be removed or change at any time.
       <b
-        >Note: Upcoming vehicles can not be used in your project and are only an
+        >Disclaimer: Upcoming vehicles may be removed or change at any time.
+        Upcoming vehicles can not be used in your project and are only an
         indication of vehicles that might be added.</b
       >
       <br />
