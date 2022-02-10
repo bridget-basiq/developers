@@ -96,7 +96,9 @@ const getCarList = async () => {
     }
   )
 
-  carList.forEach(car => normalizedCarlist[car.status].push(car))
+  carList
+    .filter(car => car.status !== "new" || car.naming.make !== "Porsche")
+    .forEach(car => normalizedCarlist[car.status].push(car))
 
   if(errors) {
     throw errors;
