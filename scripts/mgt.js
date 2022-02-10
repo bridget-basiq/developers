@@ -73,6 +73,12 @@ const getExceptionList = async () => {
 
 const getCarList = async () => {
   console.log(`Fetching car list from ${process.env.CHARGETRIP_MGT_API_URL}`)
+
+  const normalizedCarlist = {
+    "public": [],
+    "new": []
+  }
+
   const {
     data: {
       errors,
@@ -81,7 +87,7 @@ const getCarList = async () => {
   } = await axios.post(
     process.env.CHARGETRIP_MGT_API_URL,
     {
-      query: 'query { carList(query: {status: public}, size: 1000) { id naming {model make version chargetrip_version edition } }}',
+      query: 'query { carList(filter: { status: [public, new] }, size: 1000) { id status naming {model make version chargetrip_version edition } }}',
     },
     {
       headers: {
@@ -90,11 +96,13 @@ const getCarList = async () => {
     }
   )
 
+  carList.forEach(car => normalizedCarlist[car.status].push(car))
+
   if(errors) {
     throw errors;
   }
 
-  return carList;
+  return normalizedCarlist;
 }
 const main = async () => {
   try {
