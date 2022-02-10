@@ -1,12 +1,32 @@
 <template>
   <div v-if="carList" class="car-list">
-    <h2>Available cars</h2>
+    <h2>Vehicles</h2>
     <p>
-      The table below lists all our supported cars sorted by make. When using
-      our API you can use the name of the car or it's id to query for specific
-      details. Please reach out to us if you think we are missing out on a
-      specific car.
+      The table below lists all our supported upcoming vehicles sorted by make.
+      <b
+        >Disclaimer: Upcoming vehicles may be removed or change at any time.
+        Upcoming vehicles can not be used in your project and are only an
+        indication of vehicles that might be added.</b
+      >
+      <br />
+      <br />
+      When using our API you can use the name of the vehicle or it's id to query
+      for specific details. Please
+      <a href="https://help.chargetrip.com/file-a-ticket">file a ticket</a> if
+      you missing a vehicle.
     </p>
+
+    <nav class="flex space-x-4 mt-6">
+      <Tab
+        v-for="(category, key) in categories"
+        :key="key"
+        :active="categoryIndex === key"
+        @click="categoryIndex = key"
+      >
+        {{ category }}
+      </Tab>
+    </nav>
+
     <ul class="mt-5 bor">
       <li
         v-for="(category, categoryKey) in normalizedCarList"
@@ -41,37 +61,44 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { Mutation } from 'vuex-class'
 import { Getter } from 'nuxt-property-decorator'
-import { Label } from '@chargetrip/internal-vue-components'
+import { Label, Tab } from '@chargetrip/internal-vue-components'
 import availableVars from '~/utilities/availableVars'
 
-@Component({ components: { Label } })
+@Component({ components: { Label, Tab } })
 export default class extends Vue {
   @Mutation setCarCount
   @Getter carList
   index = null
 
+  categoryIndex = 0
+  categories = ['Available vehicles', 'Upcoming vehicles']
+
   getCarName({ model, version, chargetrip_version }) {
     return `${model} ${chargetrip_version || version}`
   }
 
+  normalizeCarList(carList) {
+    return carList.reduce((obj, item) => {
+      if (!obj[item.naming.make]) obj[item.naming.make] = []
+      obj[item.naming.make].push({
+        ...item,
+        name: this.getCarName(item.naming),
+      })
+      return obj
+    }, {})
+  }
+
   get normalizedCarList() {
-    return this.carList
-      ?.slice(0)
-      ?.sort((a, b) =>
-        a.naming.make < b.naming.make
-          ? -1
-          : a.naming.make > b.naming.make
-          ? 1
-          : 0
-      )
-      .reduce((obj, item) => {
-        if (!obj[item.naming.make]) obj[item.naming.make] = []
-        obj[item.naming.make].push({
-          ...item,
-          name: this.getCarName(item.naming),
-        })
-        return obj
-      }, {})
+    const category = this.categories[this.categoryIndex]
+
+    switch (category) {
+      case 'Upcoming vehicles':
+        return this.normalizeCarList(this.carList.new)
+      case 'Available vehicles':
+        return this.normalizeCarList(this.carList.public)
+      default:
+        return this.normalizeCarList(this.carList.public)
+    }
   }
 
   async fetch() {
