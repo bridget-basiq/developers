@@ -13,7 +13,7 @@
       When using our API you can use the name of the vehicle or it's id to query
       for specific details. Please
       <a href="https://help.chargetrip.com/file-a-ticket">file a ticket</a> if
-      you missing a vehicle.
+      you miss a vehicle.
     </p>
 
     <nav class="flex space-x-4 mt-6">
