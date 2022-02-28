@@ -32,7 +32,7 @@ With every update we write release notes. This way you know what has been fixed 
 <release-note title="4.17.0 - Eco-movement pricing module" date="10-02-2022">
 
 ### ⚡️ New features
-- Added support for the Eco-movement pricing module. All our customers using the pre integrated Eco-movement database, can use pricing instead of tariff on EVSEs. We recommend customers to switch to the new pricing query. See pricing for more information.
+- Added support for the Eco-movement pricing module. All our customers using the pre integrated Eco-movement database, can use pricing instead of tariff on EVSEs. We recommend customers to switch to the new pricing query. See [pricing](API-Reference/Stations/query-station-details#query) for more information.
 - Added `operatorName` and `operatorRanking` on routeLeg
 
 ### 🐞 Bug fixes
