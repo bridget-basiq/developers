@@ -23,7 +23,7 @@ To get specific details of a station you need to provide a `stationId`. This `id
 ### Pricing
 To render pricing when using the Eco-Movement station database, you can use the pricing ID to fetch a list of prices on the connector level. You can find the `pricing_Id` on evse.connectors. The pricing list includes CPO and MSP prices. The "adhoc price" is the CPO price.
 
-When using any other station database, you can use the `tariff` query and `tariff details` query.
+When using any other station database, you can use the [tariff query](/API-Reference/Stations/query-tariffs) and [tariff details query](/API-Reference/Stations/query-tariff-details).
 
 <schema name="station" :frequent="frequently"></schema>
 
