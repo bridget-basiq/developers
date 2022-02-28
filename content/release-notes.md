@@ -8,6 +8,38 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
+<release-note title="4.18.0 - Road characteristics" date="24-02-2022">
+
+### ⚡️ New features
+- Added route steps to easily identify road characteristics like toll and ferries.
+- Added support for OCPI 2.2.1
+
+### ✨ Improvements
+- Improved performance when creating a new client or updating cars.
+
+</release-note>
+
+<release-note title="4.17.1 - Manually flag road closures" date="21-02-2022">
+
+### ⚡️ New features
+- Added the ability to manually flag road closures. We can manually close roads permanently or for a date range in regions where road closure data is seasonal or not available through traffic and incident API's. 
+
+### 🐞 Bug fixes
+- Fixed a bug in routing that caused the engine to consider the entry and exit ramp over the highway itself.
+
+</release-note>
+
+<release-note title="4.17.0 - Eco-movement pricing module" date="10-02-2022">
+
+### ⚡️ New features
+- Added support for the Eco-movement pricing module. All our customers using the pre integrated Eco-movement database, can use pricing instead of tariff on EVSEs. We recommend customers to switch to the new pricing query. See [pricing](API-Reference/Stations/query-station-details#query) for more information.
+- Added `operatorName` and `operatorRanking` on routeLeg
+
+### 🐞 Bug fixes
+- Fixed a bug in `stationStats` on the stations count grouped by amenities.  
+
+</release-note>
+
 <release-note title="4.16.0 - Added mapping for Mapbox navigation SDK" date="03-02-2022">
 
 <note display="block">
