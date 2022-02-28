@@ -17,6 +17,11 @@ To query the route details you will need to configure it with the `route ID`. Be
 
 If you also supported additional route options in the [route mutation](/API-Reference/Routes/mutate-route) you will now be able to collect the details. Below you can find instructions on how to do that.
 
+### Pricing
+To render pricing when using the Eco-Movement station database, you can use the pricing ID to fetch a list of prices on the connector level. You can find the `pricing_Id` on evse.connectors. The pricing list includes CPO and MSP prices. The "adhoc price" is the CPO price.
+
+When using any other station database, you can use the `tariff` query and `tariff details` query.
+
 ### Support alternative stations along a route
 If your [route mutation](/API-Reference/Routes/mutate-route) included the `stationsAlongRouteRadius` with a valid distance, you can now request the station details in this query. To do so, you will need to add the `stationsAlongRoute` field with its appropriate children.
 

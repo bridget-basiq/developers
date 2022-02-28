@@ -13,11 +13,15 @@ frequently:
 The `tariff` query will provide you with the costs to use a specific charging station. It will include the charging costs and optional setup fee.
 
 <note display="block">
-The station tariff data is currently not available on our playground. Create an account or <cta action='smallchat'>contact sales</cta> to get access to the data.
+
+1. We advise all customers using the Eco-movement database to switch to the new prices module.
+
+2. The station tariff data is currently not available on our playground. Create an account or <cta action='smallchat'>contact sales</cta> to get access to the data.
+
 </note>
 
 ## Query
-The `tariff` query requires a tariff `id` to work. This tariff `id` can be found inside the attributes of a [station]().
+The `tariff` query requires a tariff `id` to work. This tariff `id` can be found inside the attributes of a [station](/API-Reference/stations/query-station-details).
 
 <schema name="tariff" :frequent="frequently"></schema>
 

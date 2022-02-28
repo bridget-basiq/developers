@@ -20,6 +20,11 @@ Specific station details can be useful when you want to display the type of char
 ## Query
 To get specific details of a station you need to provide a `stationId`. This `id` can be obtained by using the stations query described [here](/API-Reference/Stations/query-stations) or by using the [tile service](/API-Reference/Tile-Service/introduction).
 
+### Pricing
+To render pricing when using the Eco-Movement station database, you can use the pricing ID to fetch a list of prices on the connector level. You can find the `pricing_Id` on evse.connectors. The pricing list includes CPO and MSP prices. The "adhoc price" is the CPO price.
+
+When using any other station database, you can use the `tariff` query and `tariff details` query.
+
 <schema name="station" :frequent="frequently"></schema>
 
 <response error="station"></response>
