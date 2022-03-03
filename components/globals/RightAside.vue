@@ -25,5 +25,9 @@ export default class RightAside extends Vue {}
   top: 64px;
   width: 480px;
   height: calc(100% - 64px);
+
+  .article-teaser {
+    @apply border-b border-base;
+  }
 }
 </style>

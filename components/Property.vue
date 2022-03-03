@@ -161,7 +161,7 @@ export default class Property extends Vue {
   &.is-deprecated {
     > .content .property-title > *:not(.tag-wrapper),
     > .children .property-title > *:not(.tag-wrapper),
-    > .children .description,
+    .description,
     > .children .content > .bg {
       @apply opacity-50;
     }
@@ -194,7 +194,7 @@ export default class Property extends Vue {
     z-index: -1;
   }
   &:not(.is-child) {
-    @apply bg-subdued rounded-md mb-2;
+    @apply bg-subdued rounded-md mb-2 overflow-hidden;
 
     &:last-child {
       @apply mb-0;

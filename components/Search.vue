@@ -24,9 +24,7 @@
       v-show="showSuggestions && suggestions.length"
       class="
         text-font-alt3 text-14
-        border
         rounded
-        border-base
         absolute
         w-full
         top-full

@@ -111,6 +111,9 @@ export default class extends Vue {
 </script>
 <style lang="scss">
 .car-list {
+  .c-tab {
+    @apply bg-transparent;
+  }
   .checkbox-tree-list {
     li ul {
       @apply pl-7;

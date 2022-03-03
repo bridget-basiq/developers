@@ -28,7 +28,7 @@
     }
   },
   "dependencies": {
-    "@chargetrip/internal-vue-components": "0.0.572",
+    "@chargetrip/internal-vue-components": "0.0.573",
     "@nuxt/content": "^1.14.0",
     "@nuxt/image": "^0.5.0",
     "@nuxtjs/axios": "^5.12.2",
