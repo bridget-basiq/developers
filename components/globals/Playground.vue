@@ -86,7 +86,7 @@ export default class extends Mixins(Base) {
       @apply flex-1 overflow-scroll;
 
       &:first-child {
-        @apply bg-subdued;
+        @apply bg-subdued border-base;
 
         .action-bar {
           background: var(--sticky-base-to-down-bg);

@@ -1,6 +1,16 @@
 <template>
   <div
-    class="step-note flex pt-6 mt-6 border-t border-alt flex-col md:flex-row items-start text-14"
+    class="
+      step-note
+      flex
+      pt-6
+      mt-6
+      border-t border-base
+      flex-col
+      md:flex-row
+      items-start
+      text-14
+    "
   >
     <div class="md:mr-6 md-max:mb-2">
       <div @click.stop="onClick">

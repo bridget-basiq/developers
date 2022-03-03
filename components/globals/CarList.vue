@@ -31,7 +31,7 @@
       <li
         v-for="(category, categoryKey) in normalizedCarList"
         :key="categoryKey"
-        class="divider-y divide-alt text-14 border-alt border-t"
+        class="divider-y divide-alt text-14 border-base border-t"
       >
         <div
           class="cursor-pointer py-2.5 flex items-center"
@@ -43,11 +43,11 @@
             :class="{ 'rotate-180': index === categoryKey }"
           />
         </div>
-        <ul v-show="index === categoryKey" class="pl-8 border-t border-alt">
+        <ul v-show="index === categoryKey" class="pl-8 border-t border-base">
           <li
             v-for="(car, carKey) in category"
             :key="carKey"
-            class="border-b border-alt last:border-b-0 py-4"
+            class="border-b border-base last:border-b-0 py-4"
           >
             <Label :label="car.name" :sub-label="car.id" />
           </li>

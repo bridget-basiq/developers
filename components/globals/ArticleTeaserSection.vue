@@ -22,7 +22,7 @@ export default class ArticleTeaserSection extends Vue {
 <style lang="scss">
 .article-teaser-section {
   .article-teaser {
-    @apply rounded border border-alt p-6 pt-14;
+    @apply rounded bg-subdued p-6 pt-14;
 
     img {
       transform: translateY(-50%);

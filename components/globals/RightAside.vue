@@ -1,6 +1,15 @@
 <template>
   <div
-    class="right-aside fixed border-l border-alt xl2:block right-0 bg-body z-40 hidden"
+    class="
+      right-aside
+      fixed
+      border-l border-base
+      xl2:block
+      right-0
+      bg-body
+      z-40
+      hidden
+    "
   >
     <slot />
   </div>

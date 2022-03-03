@@ -1,6 +1,15 @@
 <template>
   <div
-    class="deprecated-item flex flex-col md:flex-row mt-3 border border-alt rounded text-14"
+    class="
+      deprecated-item
+      flex flex-col
+      md:flex-row
+      overflow-hidden
+      mt-3
+      bg-subdued
+      rounded
+      text-14
+    "
   >
     <div class="p-4">
       <p>
@@ -18,7 +27,14 @@
       </p>
     </div>
     <div
-      class="p-4 bg-subdued md:ml-auto whitespace-nowrap flex md:flex-col md:border-t-0 md:border-l border-alt border-t"
+      class="
+        p-4
+        md:ml-auto
+        whitespace-nowrap
+        flex
+        md:flex-col md:border-t-0 md:border-l
+        border-base border-t
+      "
     >
       <p>
         <strong> Supported until </strong>
