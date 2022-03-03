@@ -5,7 +5,7 @@
   >
     <Button
       size="sm"
-      class="playground border bg-base text-accent"
+      class="playground border text-accent"
       title="Explore on the playground"
       icon="arrow-up-right"
       :href="url"

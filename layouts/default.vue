@@ -488,7 +488,9 @@ export default class Layout extends Mixins(Base) {
 .page p > code,
 .page p > strong > code,
 .release-note li > code {
-  @apply rounded-2xs bg-subdued border border-base px-1 leading-none text-14 text-font-primary font-medium;
+  //@apply rounded-2xs bg-subdued border border-base px-1 leading-none text-14 text-font-primary font-medium;
+  //@apply rounded-2xs bg-subdued border border-base px-1 leading-none text-14 text-font-primary font-medium;
+  @apply rounded-2xs bg-base px-1 leading-none text-14 text-font-primary font-medium;
 }
 
 .page .property .description p > code {
