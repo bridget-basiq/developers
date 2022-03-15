@@ -1,7 +1,20 @@
 <template>
   <li
     :id="code"
-    class="error flex sm-max:flex-col items-start py-4 border rounded-md border-alt sm:items-center text-14 p-4 mb-2 last:mb-0"
+    class="
+      error
+      flex
+      sm-max:flex-col
+      items-start
+      py-4
+      rounded-md
+      bg-subdued
+      sm:items-center
+      text-14
+      p-4
+      mb-2
+      last:mb-0
+    "
   >
     <Tag color="error" type="secondary">Error</Tag>
     <div class="sm:ml-4 sm-max:mt-2">

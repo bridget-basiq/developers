@@ -61,24 +61,6 @@ export default class extends Mixins(Base) {
 </script>
 <style lang="scss">
 .playground {
-  --sticky-body-to-down-bg: linear-gradient(
-    180deg,
-    var(--body) 0%,
-    var(--transparent-body) 100%
-  );
-
-  --sticky-base-to-down-bg: linear-gradient(
-    180deg,
-    var(--base) 0%,
-    var(--transparent-base) 100%
-  );
-
-  --sticky-subdued-to-down-bg: linear-gradient(
-    180deg,
-    var(--base) 0%,
-    var(--transparent-base) 100%
-  );
-
   .container {
     height: calc(100vh - 64px);
 
@@ -86,10 +68,10 @@ export default class extends Mixins(Base) {
       @apply flex-1 overflow-scroll;
 
       &:first-child {
-        @apply bg-subdued;
+        @apply bg-subdued border-base;
 
         .action-bar {
-          background: var(--sticky-base-to-down-bg);
+          background: var(--sticky-subdued-to-down-bg);
         }
         header {
           @apply top-0;

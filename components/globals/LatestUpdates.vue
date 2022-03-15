@@ -1,5 +1,5 @@
 <template>
-  <div v-if="items.length" class="latest-updates p-8 border-b border-alt">
+  <div v-if="items.length" class="latest-updates p-8 border-b border-base">
     <div class="flex items-center">
       <h2>Latest updates</h2>
       <router-link

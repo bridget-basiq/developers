@@ -16,7 +16,7 @@
   >
     <span
       v-if="children.length"
-      class="icon bg-body z-20 text-accent center"
+      class="icon bg-subdued z-20 text-accent center"
       :class="{
         'icon-circle-plus': !value,
         'icon-circle-minus': value,

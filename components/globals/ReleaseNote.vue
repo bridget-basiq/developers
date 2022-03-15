@@ -54,7 +54,7 @@ export default class ReleaseNote extends Vue {
   }
 
   hr {
-    @apply mt-6 pb-6 border-alt;
+    @apply mt-6 pb-6 border-base;
   }
 
   .content {

@@ -24,14 +24,12 @@
       v-show="showSuggestions && suggestions.length"
       class="
         text-font-alt3 text-14
-        border
         rounded
-        border-alt
         absolute
         w-full
         top-full
         -mt-2
-        bg-body
+        bg-subdued
       "
     >
       <main ref="container" class="flex flex-col suggestions overflow-y-scroll">
@@ -41,7 +39,7 @@
             :key="i"
             ref="suggestionEl"
             class="block py-2 px-3 cursor-pointer rounded-sm"
-            :class="{ 'bg-base': index === i }"
+            :class="{ 'bg-body': index === i }"
             @mouseenter="index = i"
             @mousedown="onClick(suggestion)"
           >
@@ -74,7 +72,7 @@
         class="
           border-t
           lg-max:hidden
-          border-alt
+          border-base
           py-1
           px-3
           flex
@@ -307,7 +305,7 @@ export default class Search extends Mixins(Base) {
   }
 
   @screen lg-max {
-    @apply w-full max-w-full h-full absolute top-0 left-0 bg-body px-6;
+    @apply w-full max-w-full h-full absolute top-0 left-0 bg-subdued px-6;
 
     .hotkey {
       @apply hidden;
