@@ -10,8 +10,10 @@
       <Input v-model="name" label="Name" class="mb-2" />
       <Input v-model="description" label="Description" />
       <div class="flex justify-between mt-8">
-        <Button color="alt" @click.native="$emit('cancel')"> Cancel </Button>
-        <Button color="accent" @click.native="save"> Save </Button>
+        <Button type="secondary" @click.native="$emit('cancel')">
+          Cancel
+        </Button>
+        <Button type="primary" @click.native="save"> Save </Button>
       </div>
     </div>
   </Modal>

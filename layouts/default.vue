@@ -274,14 +274,6 @@ export default class Layout extends Mixins(Base) {
     this.showKhaled = false
   }
 
-  findFirstChild(arr) {
-    if (arr?.[0]?.to) {
-      return arr[0]
-    }
-
-    return this.findFirstChild(arr[0].children)
-  }
-
   cancel() {
     this.$root.$emit('cancelEditor')
   }
@@ -496,11 +488,17 @@ export default class Layout extends Mixins(Base) {
 .page p > code,
 .page p > strong > code,
 .release-note li > code {
-  @apply rounded-2xs bg-base border border-alt px-1 leading-none text-14 text-font-primary font-medium;
+  //@apply rounded-2xs bg-subdued border border-base px-1 leading-none text-14 text-font-primary font-medium;
+  //@apply rounded-2xs bg-subdued border border-base px-1 leading-none text-14 text-font-primary font-medium;
+  @apply rounded-2xs bg-base px-1 leading-none text-14 text-font-primary font-medium;
 }
 
 .page .property .description p > code {
   @apply font-normal;
+}
+
+.view {
+  @apply rounded-tr-xl rounded-tl-none;
 }
 
 .nuxt-content {

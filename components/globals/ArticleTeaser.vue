@@ -1,6 +1,15 @@
 <template>
   <article
-    class="article-teaser pl-8 py-8 block relative border-b border-alt pr-20 overflow-hidden relative"
+    class="
+      article-teaser
+      pl-8
+      py-8
+      block
+      relative
+      pr-20
+      overflow-hidden
+      relative
+    "
   >
     <h3 v-if="title" class="title">
       {{ title }}

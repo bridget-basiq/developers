@@ -32,7 +32,9 @@
       :class="{ 'cursor-pointer': children.length }"
       @click="showChildren = !showChildren"
     >
-      <div class="absolute w-6 bg-body rounded-lg h-1/2 top-0 left-0 h-1/2" />
+      <div
+        class="absolute w-6 bg-subdued rounded-lg h-1/2 top-0 left-0 h-1/2"
+      />
       <div
         v-if="last"
         class="
@@ -41,7 +43,7 @@
           h-1/2
           bottom-0
           left-0
-          bg-body
+          bg-subdued
           transform
           -translate-x-full
         "
@@ -159,7 +161,7 @@ export default class Property extends Vue {
   &.is-deprecated {
     > .content .property-title > *:not(.tag-wrapper),
     > .children .property-title > *:not(.tag-wrapper),
-    > .children .description,
+    .description,
     > .children .content > .bg {
       @apply opacity-50;
     }
@@ -182,7 +184,7 @@ export default class Property extends Vue {
 
         &::before {
           content: '';
-          @apply w-10 transform z-10 -ml-6 h-full left-0 top-0 absolute bg-body;
+          @apply w-10 transform z-10 -ml-6 h-full left-0 top-0 absolute bg-subdued;
         }
       }
     }
@@ -192,7 +194,7 @@ export default class Property extends Vue {
     z-index: -1;
   }
   &:not(.is-child) {
-    @apply border border-alt rounded-md mb-2;
+    @apply bg-subdued rounded-md mb-2 overflow-hidden;
 
     &:last-child {
       @apply mb-0;
