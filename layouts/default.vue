@@ -497,6 +497,10 @@ export default class Layout extends Mixins(Base) {
   @apply font-normal;
 }
 
+.view {
+  @apply rounded-tr-xl rounded-tl-none;
+}
+
 .nuxt-content {
   .c-note {
     & + h1 {

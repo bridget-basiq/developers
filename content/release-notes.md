@@ -8,6 +8,27 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
+<release-note title="4.19.2 - Improved description" date="10-03-2022">
+
+### ⚡️ New features
+- Improved the scheme descriptions for fast_charging_support
+- Improved stability by fixing various small bugs
+
+### 🐞 Bug fixes
+- Fixed a bug in routing with OCPI-status BLOCKED. Status BLOCKED is no longer taken into account.
+
+</release-note>
+
+<release-note title="4.19.0 - External ids on via points" date="02-03-2022">
+
+### ⚡️ New features
+- Added support for external ids on via points
+
+### ✨ Improvements
+- Improved stability by fixing various small bugs
+
+</release-note>
+
 <release-note title="4.18.0 - Road characteristics" date="24-02-2022">
 
 ### ⚡️ New features
