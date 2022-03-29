@@ -45,7 +45,8 @@ export default {
         'data-site': process.env.FATHOM_ID,
       },
       {
-        src: 'https://embed.small.chat/T33286SKGGSBRX0P8T.js',
+        src: 'https://static.zdassets.com/ekr/snippet.js?key=559acab4-5df1-4b09-a177-99fb73e9c04a',
+        id: 'ze-snippet',
         defer: true,
       },
     ],

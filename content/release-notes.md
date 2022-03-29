@@ -659,7 +659,7 @@ This week the `chargetripEdition` field has been released. Often car manufacture
 
 <release-note title="2.0.0 - OCPI 2.1.1 Support" date="01-04-2020">
 
-Today's release contains an exclusive Eco-Movement Integration. Next to our free Open Charge Map stations, your account can be pre-loaded with over 100.000 highly curated premium charge stations across Europe. Our premium station data includes real-time availability, pricing, and charging history. You no longer need to connect several costly charge station database providers to get European coverage. See [Eco-Movement](https://www.eco-movement.com/) for more details about regional limitations. <cta action='smallchat'>Contact us</cta> for pricing.
+Today's release contains an exclusive Eco-Movement Integration. Next to our free Open Charge Map stations, your account can be pre-loaded with over 100.000 highly curated premium charge stations across Europe. Our premium station data includes real-time availability, pricing, and charging history. You no longer need to connect several costly charge station database providers to get European coverage. See [Eco-Movement](https://www.eco-movement.com/) for more details about regional limitations. <cta action='openChat'>Contact us</cta> for pricing.
 
 ### ⚡️ New features
 
