@@ -9,7 +9,7 @@ The EV landscape is changing rapidly and our ever-evolving API is reflecting tha
 
 <note display="block">
 
-If you do not migrate before the removal date unexpected behaviour, errors or missing data may occur. If you have any questions, please <cta action='smallchat'>contact us</cta>.
+If you do not migrate before the removal date unexpected behaviour, errors or missing data may occur. If you have any questions, please <cta action='openChat'>contact us</cta>.
 
 </note>
 

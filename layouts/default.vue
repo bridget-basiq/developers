@@ -430,22 +430,24 @@ export default class Layout extends Mixins(Base) {
   }
 
   onScroll() {
-    const smallchat: HTMLElement | null = document.querySelector('#Smallchat')
+    const chatBubble: HTMLElement | null = document.querySelector(
+      'div[role="presentation"]'
+    )
 
-    if (smallchat && window.innerWidth < 1280 && window.innerWidth >= 1024) {
+    if (chatBubble && window.innerWidth < 1280 && window.innerWidth >= 1024) {
       if (
         this.container.scrollTop >=
         this.container.scrollHeight - window.innerHeight
       ) {
-        smallchat.style.display = 'none'
+        chatBubble.style.display = 'none'
       } else {
-        smallchat.style.display = 'block'
+        chatBubble.style.display = 'block'
       }
-    } else if (smallchat && window.innerWidth < 1024) {
+    } else if (chatBubble && window.innerWidth < 1024) {
       if (window.scrollY >= document.body.offsetHeight - window.innerHeight) {
-        smallchat.style.display = 'none'
+        chatBubble.style.display = 'none'
       } else {
-        smallchat.style.display = 'block'
+        chatBubble.style.display = 'block'
       }
     }
 

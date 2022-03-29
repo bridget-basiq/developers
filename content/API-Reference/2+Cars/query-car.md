@@ -10,7 +10,7 @@ frequently:
 ---
 
 # Query car details
-Car data can be useful when you want to display more information about the car. You can access data using the `car` query or get even more data with`carPremium`. Please <cta action='smallchat'>contact us</cta> for more information on how to get access to our premium data set. You can see a live example with all available output parameters [here](https://playground.chargetrip.com/?page=car).
+Car data can be useful when you want to display more information about the car. You can access data using the `car` query or get even more data with`carPremium`. Please <cta action='openChat'>contact us</cta> for more information on how to get access to our premium data set. You can see a live example with all available output parameters [here](https://playground.chargetrip.com/?page=car).
 
 <api-reference-actions example-url="https://examples.chargetrip.com/?id=car-details" url="https://playground.chargetrip.com/?page=car"></api-reference-actions>
 

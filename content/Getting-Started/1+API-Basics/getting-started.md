@@ -8,7 +8,7 @@ images:
 - /configuring-your-project-2.png
 ---
 # Getting started
-The Chargetrip API can be used to render electric vehicles, plot stations and calculate routes. The API itself has different access levels and request limits depending on your plan. Everyone can start with a limited dataset on the free plan, but you can <cta action="small-chat">contact us</cta> at any time to upgrade your plan.
+The Chargetrip API can be used to render electric vehicles, plot stations and calculate routes. The API itself has different access levels and request limits depending on your plan. Everyone can start with a limited dataset on the free plan, but you can <cta action="openChat">contact us</cta> at any time to upgrade your plan.
 
 <steps>
 <step img="/getting-access.png">

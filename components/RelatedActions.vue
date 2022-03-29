@@ -13,7 +13,9 @@
 </template>
 <script lang="ts">
 import { Component, Getter, Vue } from 'nuxt-property-decorator'
-import { MenuItem } from '@chargetrip/internal-vue-components'
+import { MenuItem, Utilities } from '@chargetrip/internal-vue-components'
+
+const { openChat } = Utilities
 
 @Component({ components: { MenuItem } })
 export default class RelatedActions extends Vue {
@@ -34,7 +36,7 @@ export default class RelatedActions extends Vue {
       {
         title: 'Contact sales',
         icon: 'contact',
-        callback: () => window.Smallchat('open'),
+        callback: openChat,
       },
     ]
   }

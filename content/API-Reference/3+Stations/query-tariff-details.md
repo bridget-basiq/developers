@@ -16,7 +16,7 @@ The `tariff` query will provide you with the costs to use a specific charging st
 
 1. We advise all customers using the Eco-movement database to switch to the new prices module.
 
-2. The station tariff data is currently not available on our playground. Create an account or <cta action='smallchat'>contact sales</cta> to get access to the data.
+2. The station tariff data is currently not available on our playground. Create an account or <cta action='openChat'>contact sales</cta> to get access to the data.
 
 </note>
 
