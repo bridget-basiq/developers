@@ -21,8 +21,8 @@ With every update we write release notes. This way you know what has been fixed 
 <release-note title="4.20.1 - App ID" date="17-03-2022">
 
 ### ⚡️ New features
-- Added the `app id` in the response
-- Added an error message for an incorrect `app id`
+- Added the app id in the response
+- Added an error message for an incorrect app id
 
 ### 🐞 Bug fixes
 - Fixed a bug on station stats for new projects; now station stats are directly available after the creation of a new project
@@ -32,7 +32,7 @@ With every update we write release notes. This way you know what has been fixed 
 <release-note title="4.19.2 - Improved description" date="10-03-2022">
 
 ### ✨ Improvements
-- Improved the scheme descriptions for fast_charging_support
+- Improved the scheme descriptions for `fast_charging_support`
 - Improved stability by fixing various small bugs
 
 ### 🐞 Bug fixes
