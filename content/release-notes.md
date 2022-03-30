@@ -8,10 +8,31 @@ releasePage: true
 
 With every update we write release notes. This way you know what has been fixed or what has been added.
 
-<release-note title="4.19.2 - Improved description" date="10-03-2022">
+<release-note title="4.20.2 - Stability" date="23-03-2022">
 
 ### ⚡️ New features
-- Improved the scheme descriptions for fast_charging_support
+- Improved stability by fixing various small bugs
+
+### 🐞 Bug fixes
+- Fixed a bug on station stats for new projects; now station stats are directly available after the creation of a new project
+
+</release-note>
+
+<release-note title="4.20.1 - App ID" date="17-03-2022">
+
+### ⚡️ New features
+- Added the app id in the response
+- Added an error message for an incorrect app id
+
+### 🐞 Bug fixes
+- Fixed a bug on station stats for new projects; now station stats are directly available after the creation of a new project
+
+</release-note>
+
+<release-note title="4.19.2 - Improved description" date="10-03-2022">
+
+### ✨ Improvements
+- Improved the scheme descriptions for `fast_charging_support`
 - Improved stability by fixing various small bugs
 
 ### 🐞 Bug fixes
@@ -659,7 +680,7 @@ This week the `chargetripEdition` field has been released. Often car manufacture
 
 <release-note title="2.0.0 - OCPI 2.1.1 Support" date="01-04-2020">
 
-Today's release contains an exclusive Eco-Movement Integration. Next to our free Open Charge Map stations, your account can be pre-loaded with over 100.000 highly curated premium charge stations across Europe. Our premium station data includes real-time availability, pricing, and charging history. You no longer need to connect several costly charge station database providers to get European coverage. See [Eco-Movement](https://www.eco-movement.com/) for more details about regional limitations. <cta action='smallchat'>Contact us</cta> for pricing.
+Today's release contains an exclusive Eco-Movement Integration. Next to our free Open Charge Map stations, your account can be pre-loaded with over 100.000 highly curated premium charge stations across Europe. Our premium station data includes real-time availability, pricing, and charging history. You no longer need to connect several costly charge station database providers to get European coverage. See [Eco-Movement](https://www.eco-movement.com/) for more details about regional limitations. <cta action='openChat'>Contact us</cta> for pricing.
 
 ### ⚡️ New features
 

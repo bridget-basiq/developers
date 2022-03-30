@@ -13,7 +13,7 @@ frequently:
 To get an overview of the charging costs and optional setup fee you can run the query station tariff list. Within this list you will find all costs per station.
 
 <note display="block">
-The station tariff data is currently not available on our playground. Create an account or <cta action='smallchat'>contact sales</cta> to get access to the data.
+The station tariff data is currently not available on our playground. Create an account or <cta action='openChat'>contact sales</cta> to get access to the data.
 </note>
 
 ## Query

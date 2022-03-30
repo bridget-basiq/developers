@@ -22,6 +22,9 @@ To render pricing when using the Eco-Movement station database, you can use `pri
 
 When using any other station database, use the [tariff query](/API-Reference/Stations/query-tariffs) and [tariff details query](/API-Reference/Stations/query-tariff-details).
 
+### Route steps
+Every leg of the route includes the `steps` property. These steps allow you to easily identify different road characteristics and highlight them in your application.  The type of route steps are: `road`, `ferry`, `toll`, and `highway`. Every step includes the `distance`, `duration`, `consumption` and a separate `polyline`. If you want to know what type of road characteristics there are on your entire journey you can include the `tags` property in your route request. 
+
 ### Support alternative stations along a route
 If your [route mutation](/API-Reference/Routes/mutate-route) included the `stationsAlongRouteRadius` with a valid distance, you can now request the station details in this query. To do so, you will need to add the `stationsAlongRoute` field with its appropriate children.
 
